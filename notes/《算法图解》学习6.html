@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<!-- saved from url=(0100)file:///private/var/folders/jq/l66hzx9956qbmxs_990g1djh0000gn/T/mume2020317-90899-1yjcoko.5hgtg.html -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+      <title>《算法图解》学习6</title>
+      
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      
+      <link rel="stylesheet" href="./《算法图解》学习6_files/katex.min.css">
+      
+      
+
+      
+      
+      
+      
+      
+      
+      
+
+      <style>
+      /**
+ * prism.js Github theme based on GitHub's theme.
+ * @author Sam Clarke
+ */
+code[class*="language-"],
+pre[class*="language-"] {
+  color: #333;
+  background: none;
+  font-family: Consolas, "Liberation Mono", Menlo, Courier, monospace;
+  text-align: left;
+  white-space: pre;
+  word-spacing: normal;
+  word-break: normal;
+  word-wrap: normal;
+  line-height: 1.4;
+
+  -moz-tab-size: 8;
+  -o-tab-size: 8;
+  tab-size: 8;
+
+  -webkit-hyphens: none;
+  -moz-hyphens: none;
+  -ms-hyphens: none;
+  hyphens: none;
+}
+
+/* Code blocks */
+pre[class*="language-"] {
+  padding: .8em;
+  overflow: auto;
+  /* border: 1px solid #ddd; */
+  border-radius: 3px;
+  /* background: #fff; */
+  background: #f5f5f5;
+}
+
+/* Inline code */
+:not(pre) > code[class*="language-"] {
+  padding: .1em;
+  border-radius: .3em;
+  white-space: normal;
+  background: #f5f5f5;
+}
+
+.token.comment,
+.token.blockquote {
+  color: #969896;
+}
+
+.token.cdata {
+  color: #183691;
+}
+
+.token.doctype,
+.token.punctuation,
+.token.variable,
+.token.macro.property {
+  color: #333;
+}
+
+.token.operator,
+.token.important,
+.token.keyword,
+.token.rule,
+.token.builtin {
+  color: #a71d5d;
+}
+
+.token.string,
+.token.url,
+.token.regex,
+.token.attr-value {
+  color: #183691;
+}
+
+.token.property,
+.token.number,
+.token.boolean,
+.token.entity,
+.token.atrule,
+.token.constant,
+.token.symbol,
+.token.command,
+.token.code {
+  color: #0086b3;
+}
+
+.token.tag,
+.token.selector,
+.token.prolog {
+  color: #63a35c;
+}
+
+.token.function,
+.token.namespace,
+.token.pseudo-element,
+.token.class,
+.token.class-name,
+.token.pseudo-class,
+.token.id,
+.token.url-reference .token.variable,
+.token.attr-name {
+  color: #795da3;
+}
+
+.token.entity {
+  cursor: help;
+}
+
+.token.title,
+.token.title .token.punctuation {
+  font-weight: bold;
+  color: #1d3e81;
+}
+
+.token.list {
+  color: #ed6a43;
+}
+
+.token.inserted {
+  background-color: #eaffea;
+  color: #55a532;
+}
+
+.token.deleted {
+  background-color: #ffecec;
+  color: #bd2c00;
+}
+
+.token.bold {
+  font-weight: bold;
+}
+
+.token.italic {
+  font-style: italic;
+}
+
+
+/* JSON */
+.language-json .token.property {
+  color: #183691;
+}
+
+.language-markup .token.tag .token.punctuation {
+  color: #333;
+}
+
+/* CSS */
+code.language-css,
+.language-css .token.function {
+  color: #0086b3;
+}
+
+/* YAML */
+.language-yaml .token.atrule {
+  color: #63a35c;
+}
+
+code.language-yaml {
+  color: #183691;
+}
+
+/* Ruby */
+.language-ruby .token.function {
+  color: #333;
+}
+
+/* Markdown */
+.language-markdown .token.url {
+  color: #795da3;
+}
+
+/* Makefile */
+.language-makefile .token.symbol {
+  color: #795da3;
+}
+
+.language-makefile .token.variable {
+  color: #183691;
+}
+
+.language-makefile .token.builtin {
+  color: #0086b3;
+}
+
+/* Bash */
+.language-bash .token.keyword {
+  color: #0086b3;
+}
+
+/* highlight */
+pre[data-line] {
+  position: relative;
+  padding: 1em 0 1em 3em;
+}
+pre[data-line] .line-highlight-wrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: transparent;
+  display: block;
+  width: 100%;
+}
+
+pre[data-line] .line-highlight {
+  position: absolute;
+  left: 0;
+  right: 0;
+  padding: inherit 0;
+  margin-top: 1em;
+  background: hsla(24, 20%, 50%,.08);
+  background: linear-gradient(to right, hsla(24, 20%, 50%,.1) 70%, hsla(24, 20%, 50%,0));
+  pointer-events: none;
+  line-height: inherit;
+  white-space: pre;
+}
+
+pre[data-line] .line-highlight:before, 
+pre[data-line] .line-highlight[data-end]:after {
+  content: attr(data-start);
+  position: absolute;
+  top: .4em;
+  left: .6em;
+  min-width: 1em;
+  padding: 0 .5em;
+  background-color: hsla(24, 20%, 50%,.4);
+  color: hsl(24, 20%, 95%);
+  font: bold 65%/1.5 sans-serif;
+  text-align: center;
+  vertical-align: .3em;
+  border-radius: 999px;
+  text-shadow: none;
+  box-shadow: 0 1px white;
+}
+
+pre[data-line] .line-highlight[data-end]:after {
+  content: attr(data-end);
+  top: auto;
+  bottom: .4em;
+}html body{font-family:"Helvetica Neue",Helvetica,"Segoe UI",Arial,freesans,sans-serif;font-size:16px;line-height:1.6;color:#333;background-color:#fff;overflow:initial;box-sizing:border-box;word-wrap:break-word}html body>:first-child{margin-top:0}html body h1,html body h2,html body h3,html body h4,html body h5,html body h6{line-height:1.2;margin-top:1em;margin-bottom:16px;color:#000}html body h1{font-size:2.25em;font-weight:300;padding-bottom:.3em}html body h2{font-size:1.75em;font-weight:400;padding-bottom:.3em}html body h3{font-size:1.5em;font-weight:500}html body h4{font-size:1.25em;font-weight:600}html body h5{font-size:1.1em;font-weight:600}html body h6{font-size:1em;font-weight:600}html body h1,html body h2,html body h3,html body h4,html body h5{font-weight:600}html body h5{font-size:1em}html body h6{color:#5c5c5c}html body strong{color:#000}html body del{color:#5c5c5c}html body a:not([href]){color:inherit;text-decoration:none}html body a{color:#08c;text-decoration:none}html body a:hover{color:#00a3f5;text-decoration:none}html body img{max-width:100%}html body>p{margin-top:0;margin-bottom:16px;word-wrap:break-word}html body>ul,html body>ol{margin-bottom:16px}html body ul,html body ol{padding-left:2em}html body ul.no-list,html body ol.no-list{padding:0;list-style-type:none}html body ul ul,html body ul ol,html body ol ol,html body ol ul{margin-top:0;margin-bottom:0}html body li{margin-bottom:0}html body li.task-list-item{list-style:none}html body li>p{margin-top:0;margin-bottom:0}html body .task-list-item-checkbox{margin:0 .2em .25em -1.8em;vertical-align:middle}html body .task-list-item-checkbox:hover{cursor:pointer}html body blockquote{margin:16px 0;font-size:inherit;padding:0 15px;color:#5c5c5c;border-left:4px solid #d6d6d6}html body blockquote>:first-child{margin-top:0}html body blockquote>:last-child{margin-bottom:0}html body hr{height:4px;margin:32px 0;background-color:#d6d6d6;border:0 none}html body table{margin:10px 0 15px 0;border-collapse:collapse;border-spacing:0;display:block;width:100%;overflow:auto;word-break:normal;word-break:keep-all}html body table th{font-weight:bold;color:#000}html body table td,html body table th{border:1px solid #d6d6d6;padding:6px 13px}html body dl{padding:0}html body dl dt{padding:0;margin-top:16px;font-size:1em;font-style:italic;font-weight:bold}html body dl dd{padding:0 16px;margin-bottom:16px}html body code{font-family:Menlo,Monaco,Consolas,'Courier New',monospace;font-size:.85em !important;color:#000;background-color:#f0f0f0;border-radius:3px;padding:.2em 0}html body code::before,html body code::after{letter-spacing:-0.2em;content:"\00a0"}html body pre>code{padding:0;margin:0;font-size:.85em !important;word-break:normal;white-space:pre;background:transparent;border:0}html body .highlight{margin-bottom:16px}html body .highlight pre,html body pre{padding:1em;overflow:auto;font-size:.85em !important;line-height:1.45;border:#d6d6d6;border-radius:3px}html body .highlight pre{margin-bottom:0;word-break:normal}html body pre code,html body pre tt{display:inline;max-width:initial;padding:0;margin:0;overflow:initial;line-height:inherit;word-wrap:normal;background-color:transparent;border:0}html body pre code:before,html body pre tt:before,html body pre code:after,html body pre tt:after{content:normal}html body p,html body blockquote,html body ul,html body ol,html body dl,html body pre{margin-top:0;margin-bottom:16px}html body kbd{color:#000;border:1px solid #d6d6d6;border-bottom:2px solid #c7c7c7;padding:2px 4px;background-color:#f0f0f0;border-radius:3px}@media print{html body{background-color:#fff}html body h1,html body h2,html body h3,html body h4,html body h5,html body h6{color:#000;page-break-after:avoid}html body blockquote{color:#5c5c5c}html body pre{page-break-inside:avoid}html body table{display:table}html body img{display:block;max-width:100%;max-height:100%}html body pre,html body code{word-wrap:break-word;white-space:pre}}.markdown-preview{width:100%;height:100%;box-sizing:border-box}.markdown-preview .pagebreak,.markdown-preview .newpage{page-break-before:always}.markdown-preview pre.line-numbers{position:relative;padding-left:3.8em;counter-reset:linenumber}.markdown-preview pre.line-numbers>code{position:relative}.markdown-preview pre.line-numbers .line-numbers-rows{position:absolute;pointer-events:none;top:1em;font-size:100%;left:0;width:3em;letter-spacing:-1px;border-right:1px solid #999;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}.markdown-preview pre.line-numbers .line-numbers-rows>span{pointer-events:none;display:block;counter-increment:linenumber}.markdown-preview pre.line-numbers .line-numbers-rows>span:before{content:counter(linenumber);color:#999;display:block;padding-right:.8em;text-align:right}.markdown-preview .mathjax-exps .MathJax_Display{text-align:center !important}.markdown-preview:not([for="preview"]) .code-chunk .btn-group{display:none}.markdown-preview:not([for="preview"]) .code-chunk .status{display:none}.markdown-preview:not([for="preview"]) .code-chunk .output-div{margin-bottom:16px}.scrollbar-style::-webkit-scrollbar{width:8px}.scrollbar-style::-webkit-scrollbar-track{border-radius:10px;background-color:transparent}.scrollbar-style::-webkit-scrollbar-thumb{border-radius:5px;background-color:rgba(150,150,150,0.66);border:4px solid rgba(150,150,150,0.66);background-clip:content-box}html body[for="html-export"]:not([data-presentation-mode]){position:relative;width:100%;height:100%;top:0;left:0;margin:0;padding:0;overflow:auto}html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{position:relative;top:0}@media screen and (min-width:914px){html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{padding:2em calc(50% - 457px + 2em)}}@media screen and (max-width:914px){html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{padding:2em}}@media screen and (max-width:450px){html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{font-size:14px !important;padding:1em}}@media print{html body[for="html-export"]:not([data-presentation-mode]) #sidebar-toc-btn{display:none}}html body[for="html-export"]:not([data-presentation-mode]) #sidebar-toc-btn{position:fixed;bottom:8px;left:8px;font-size:28px;cursor:pointer;color:inherit;z-index:99;width:32px;text-align:center;opacity:.4}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] #sidebar-toc-btn{opacity:1}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc{position:fixed;top:0;left:0;width:300px;height:100%;padding:32px 0 48px 0;font-size:14px;box-shadow:0 0 4px rgba(150,150,150,0.33);box-sizing:border-box;overflow:auto;background-color:inherit}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar{width:8px}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-track{border-radius:10px;background-color:transparent}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-thumb{border-radius:5px;background-color:rgba(150,150,150,0.66);border:4px solid rgba(150,150,150,0.66);background-clip:content-box}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc a{text-decoration:none}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc ul{padding:0 1.6em;margin-top:.8em}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc li{margin-bottom:.8em}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc ul{list-style-type:none}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{left:300px;width:calc(100% -  300px);padding:2em calc(50% - 457px -  150px);margin:0;box-sizing:border-box}@media screen and (max-width:1274px){html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{padding:2em}}@media screen and (max-width:450px){html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{width:100%}}html body[for="html-export"]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .markdown-preview{left:50%;transform:translateX(-50%)}html body[for="html-export"]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .md-sidebar-toc{display:none}
+/* Please visit the URL below for more information: */
+/*   https://shd101wyy.github.io/markdown-preview-enhanced/#/customize-css */
+
+      </style>
+    </head>
+    <body for="html-export">
+      <div class="mume markdown-preview  ">
+      <h1 class="mume-header" id="%E7%AE%97%E6%B3%95%E5%9B%BE%E8%A7%A3%E5%AD%A6%E4%B9%A0">《算法图解》学习</h1>
+
+<h3 class="mume-header" id="%E7%AE%97%E6%B3%95%E5%9B%BE%E8%A7%A3%E5%AD%A6%E4%B9%A0%E4%B9%8B%E5%85%AD%E5%B9%BF%E5%BA%A6%E4%BC%98%E5%85%88%E6%90%9C%E7%B4%A2bfs">《算法图解》学习之六：广度优先搜索（BFS）</h3>
+
+<hr>
+<h2 class="mume-header" id="6-%E5%B9%BF%E5%BA%A6%E4%BC%98%E5%85%88%E6%90%9C%E7%B4%A2bfs">6. 广度优先搜索（BFS）</h2>
+
+<p>广度优先搜索让你能够找出两样东西之间的最短距离，不过最短距离的含义有很多!使用广度优先搜索可以:</p>
+<ul>
+<li>编写国际跳棋 AI，计算最少走多少步就可获胜;</li>
+<li>编写拼写检查器，计算最少编辑多少个地方就可将错拼的单词改成正确的单词，如将 READED 改为 READER 需要编辑一个地方;</li>
+<li>根据你的人际关系网络找到关系最近的医生。</li>
+</ul>
+<h3 class="mume-header" id="61-%E5%9B%BE%E7%AE%80%E4%BB%8B">6.1. 图简介</h3>
+
+<p>解决最短路径问题的算法被称为广度优先搜索。</p>
+<h3 class="mume-header" id="62-%E5%9B%BE%E6%98%AF%E4%BB%80%E4%B9%88">6.2. 图是什么</h3>
+
+<p>图模拟一组连接。图由节点(node)和边(edge)组成。</p>
+<p>一个节点可能与众多节点直接相连，这些节点被称为邻居。</p>
+<h3 class="mume-header" id="63-%E5%B9%BF%E5%BA%A6%E4%BC%98%E5%85%88%E6%90%9C%E7%B4%A2">6.3. 广度优先搜索</h3>
+
+<p>广度优先搜索是一种用于图的查找算法，可帮助 回答两类问题：</p>
+<ul>
+<li>第一类问题:从节点 A 出发，有前往节点 B 的路径吗?</li>
+<li>第二类问题:从节点 A 出发，前往节点 B 的哪条路径最短?</li>
+</ul>
+<p>假设你经营着一个芒果农场，需要寻找芒果销售商，以便将芒果卖给他。你的目标是在你的人际 关系网中找到一位芒果销售商。因此，如果 Alice 不是芒果销售商，就将其朋友也加入到名单中。这意味着你将在她的朋友、朋友的朋友等中查找。使用这种算法将搜遍你的整个人际关系网，直到找到芒果销售商。这就是广度优先搜索算法。</p>
+<h4 class="mume-header" id="631-%E6%9F%A5%E6%89%BE%E6%9C%80%E7%9F%AD%E8%B7%AF%E5%BE%84">6.3.1. 查找最短路径</h4>
+
+<p>谁是关系最近的芒果销售商。例如，朋友是一度关系，朋友的朋友是二度关系。</p>
+<p><img src="./《算法图解》学习6_files/45.png" alt=""></p>
+<p>在你看来，一度关系胜过二度关系，二度关系胜过三度关系，以此类推。因此，你应先在一度关系中搜索，确定其中没有芒果销售商后，才在二度关系中搜索。<strong>广度优先搜索就是这样做的! 在广度优先搜索的执行过程中，搜索范围从起点开始逐渐向外延伸，即先检查一度关系，再检查二度关系。</strong> 顺便问一句:将先检查 Claire 还是 Anuj 呢?Claire 是一度关系，而 Anuj 是二度关系，因此将先检查 Claire，后检查 Anuj。</p>
+<p>你也可以这样看，一度关系在二度关系之前加入查找名单。</p>
+<p>你按顺序依次检查名单中的每个人，看看他是否是芒果销售商。这将先在一度关系中查找，再在二度关系中查找，因此找到的是关系最近的芒果销售商。广度优先搜索不仅查找从 A 到 B 的路径，而且找到的是最短的路径。</p>
+<p><img src="./《算法图解》学习6_files/46.png" alt=""></p>
+<p><strong>注意，只有按添加顺序查找时，才能实现这样的目的。</strong> 换句话说，如果 Claire 先于 Anuj 加入名单，就需要先检查 Claire，再检查 Anuj。如果 Claire 和 Anuj 都是芒果销售商，而你先检查 Anuj 再检查 Claire，结果将如何呢?找到的芒果销售商并非是与你关系最近的，因为 Anuj 是你朋友的朋友，而 Claire 是你的朋友。因此，<strong>你需要按添加顺序进行检查。有一个可实现这种目的的数据结构，那就是队列(queue)。</strong></p>
+<h4 class="mume-header" id="632-%E9%98%9F%E5%88%97">6.3.2. 队列</h4>
+
+<p>队列的工作原理与现实生活中的队列完全相同。 假设你与朋友一起在公交车站排队，如果你排在他前面，你将先上车。队列的工作原理与此相同。队列类似于栈，你不能随机地访问队列中的元素。队列只支持两种操作:入队和出队。</p>
+<p>队列是一种先进先出(First In First Out，FIFO)的数据结构，而栈是一种后进先出(Last In First Out，LIFO)的数据结构。</p>
+<p><img src="./《算法图解》学习6_files/47.png" alt=""></p>
+<h3 class="mume-header" id="64-%E5%AE%9E%E7%8E%B0%E5%9B%BE">6.4. 实现图</h3>
+
+<p><img src="./《算法图解》学习6_files/48.png" alt=""></p>
+<p>可以用散列表来实现图。散列表让你能够将键映射到值。在这里，你要将节点映射到其所有邻居。</p>
+<p><img src="./《算法图解》学习6_files/49.png" alt=""></p>
+<p>表示这种映射关系的 Python 代码如下：</p>
+<pre data-role="codeBlock" data-info="python" class="language-python">graph <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
+graph<span class="token punctuation">[</span><span class="token string">"you"</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token string">"alice"</span><span class="token punctuation">,</span> <span class="token string">"bob"</span><span class="token punctuation">,</span> <span class="token string">"claire"</span><span class="token punctuation">]</span>
+</pre><p>注意，“你”被映射到了一个数组，因此 <code>graph["you"]</code> 是一个数组，其中包含了“你”的所有邻居。</p>
+<p>图不过是一系列的节点和边，因此在 Python 中，只需使用上述代码就可表示一个图。那像下面这样更大的图呢?</p>
+<p><img src="./《算法图解》学习6_files/50.png" alt=""></p>
+<p>表示它的 Python 代码如下：</p>
+<pre data-role="codeBlock" data-info="python" class="language-python">graph <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
+graph<span class="token punctuation">[</span><span class="token string">"you"</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token string">"alice"</span><span class="token punctuation">,</span> <span class="token string">"bob"</span><span class="token punctuation">,</span> <span class="token string">"claire"</span><span class="token punctuation">]</span>
+graph<span class="token punctuation">[</span><span class="token string">"bob"</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token string">"anuj"</span><span class="token punctuation">,</span> <span class="token string">"peggy"</span><span class="token punctuation">]</span>
+graph<span class="token punctuation">[</span><span class="token string">"alice"</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token string">"peggy"</span><span class="token punctuation">]</span>
+graph<span class="token punctuation">[</span><span class="token string">"claire"</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token string">"thom"</span><span class="token punctuation">,</span> <span class="token string">"jonny"</span><span class="token punctuation">]</span>
+graph<span class="token punctuation">[</span><span class="token string">"anuj"</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span>
+graph<span class="token punctuation">[</span><span class="token string">"peggy"</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span>
+graph<span class="token punctuation">[</span><span class="token string">"thom"</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span>
+graph<span class="token punctuation">[</span><span class="token string">"jonny"</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span>
+</pre><p>Anuj、Peggy、Thom 和 Jonny 都没有邻居，这是因为虽然有指向他们的箭头，但没有从他们出发指向其他人的箭头。这被称为有向图(directed graph)，其中的关系是单向的。因此，Anuj 是 Bob 的邻居，但 Bob 不是 Anuj 的邻居。无向图(undirected graph)没有箭头，直接相连的节点互为邻居。例如，下面两个图是等价的。</p>
+<p><img src="./《算法图解》学习6_files/51.png" alt=""></p>
+<h3 class="mume-header" id="65-%E5%AE%9E%E7%8E%B0%E7%AE%97%E6%B3%95">6.5. 实现算法</h3>
+
+<p>先概述一下这种算法的工作原理。</p>
+<p><img src="./《算法图解》学习6_files/52.png" alt=""></p>
+<p>首先，创建一个队列。在 Python 中，可使用函数 deque 来创建一个双端队列。</p>
+<pre data-role="codeBlock" data-info="python" class="language-python"><span class="token keyword">from</span> collections <span class="token keyword">import</span> deque
+
+search_queue <span class="token operator">=</span> deque<span class="token punctuation">(</span><span class="token punctuation">)</span>  <span class="token comment"># 创建一个队列</span>
+search_queue <span class="token operator">+=</span> graph<span class="token punctuation">[</span>name<span class="token punctuation">]</span>  <span class="token comment"># 将你的邻居加入到这个搜索队列中</span>
+</pre><p>别忘了，<code>graph["you"]</code> 是一个数组，其中包含你的所有邻居，如<code>["alice", "bob", "claire"]</code>。这些邻居都将加入到搜索队列中。</p>
+<p>下面来看看其他的代码。</p>
+<pre data-role="codeBlock" data-info="python" class="language-python"><span class="token keyword">while</span> search_queue<span class="token punctuation">:</span>  <span class="token comment"># 只要队列不为空</span>
+    person <span class="token operator">=</span> search_queue<span class="token punctuation">.</span>popleft<span class="token punctuation">(</span><span class="token punctuation">)</span>  <span class="token comment"># 就取出其中的第一个人</span>
+    <span class="token keyword">if</span> person_is_seller<span class="token punctuation">(</span>person<span class="token punctuation">)</span><span class="token punctuation">:</span>  <span class="token comment"># 检查这个人是否是经销商</span>
+        <span class="token keyword">print</span><span class="token punctuation">(</span>person <span class="token operator">+</span> <span class="token string">"is a mango seller!"</span><span class="token punctuation">)</span>
+        <span class="token keyword">return</span> <span class="token boolean">True</span>
+    <span class="token keyword">else</span><span class="token punctuation">:</span>  <span class="token comment"># 不是的话就将这个人的朋友加入到搜索队列</span>
+        search_queue <span class="token operator">+=</span> graph<span class="token punctuation">[</span>person<span class="token punctuation">]</span>
+        searched<span class="token punctuation">.</span>append<span class="token punctuation">(</span>person<span class="token punctuation">)</span>
+<span class="token keyword">return</span> <span class="token boolean">False</span>  <span class="token comment"># 如果到达了这里，就说明队列中没人是芒果经销商</span>
+</pre><p>后，你还需编写函数 <code>person_is_seller</code>，判断一个人是不是芒果销售商，如下所示。</p>
+<pre data-role="codeBlock" data-info="python" class="language-python"><span class="token keyword">def</span> <span class="token function">person_is_seller</span><span class="token punctuation">(</span>name<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword">return</span> name<span class="token punctuation">[</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token operator">==</span><span class="token string">"m"</span>
+</pre><p>这个函数检查人的姓名是否以 m 结尾:如果是，他就是芒果销售商。这种判断方法有点搞笑，但就这个示例而言是可行的。</p>
+<p>这个算法将不断执行，直到满足以下条件之一:</p>
+<ul>
+<li>找到一位芒果销售商;</li>
+<li>队列变成空的，这意味着你的人际关系网中没有芒果销售商。</li>
+</ul>
+<p>Peggy 既是 Alice 的朋友又是 Bob 的朋友，因此她将被加入队列两次:一次是在添加 Alice 的朋友时，另一次是在添加 Bob 的朋友时。因此，搜索队列将包含两个 Peggy。</p>
+<p>但你只需检查 Peggy 一次，看她是不是芒果销售商。如果你检查两次，就做了无用功。因此，检查完一个人后，应将其标记为已检查，且不再检查他。</p>
+<p>如果不这样做，就可能会导致无限循环。</p>
+<p>检查一个人之前，要确认之前没检查过他，这很重要。为此，你可使用一个 列表来记录检查过的人。</p>
+<p>考虑到这一点后，广度优先搜索的最终代码如下。</p>
+<pre data-role="codeBlock" data-info="python" class="language-python"><span class="token keyword">from</span> collections <span class="token keyword">import</span> deque
+
+graph <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
+graph<span class="token punctuation">[</span><span class="token string">"you"</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token string">"alice"</span><span class="token punctuation">,</span> <span class="token string">"bob"</span><span class="token punctuation">,</span> <span class="token string">"claire"</span><span class="token punctuation">]</span>
+graph<span class="token punctuation">[</span><span class="token string">"bob"</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token string">"anuj"</span><span class="token punctuation">,</span> <span class="token string">"peggy"</span><span class="token punctuation">]</span>
+graph<span class="token punctuation">[</span><span class="token string">"alice"</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token string">"peggy"</span><span class="token punctuation">]</span>
+graph<span class="token punctuation">[</span><span class="token string">"claire"</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token string">"thom"</span><span class="token punctuation">,</span> <span class="token string">"jonny"</span><span class="token punctuation">]</span>
+graph<span class="token punctuation">[</span><span class="token string">"anuj"</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span>
+graph<span class="token punctuation">[</span><span class="token string">"peggy"</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span>
+graph<span class="token punctuation">[</span><span class="token string">"thom"</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span>
+graph<span class="token punctuation">[</span><span class="token string">"jonny"</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span>
+
+<span class="token keyword">def</span> <span class="token function">search</span><span class="token punctuation">(</span>name<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    search_queue <span class="token operator">=</span> deque<span class="token punctuation">(</span><span class="token punctuation">)</span>
+    search_queue <span class="token operator">+=</span> graph<span class="token punctuation">[</span>name<span class="token punctuation">]</span>
+    searched <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span>
+    <span class="token keyword">while</span> search_queue<span class="token punctuation">:</span>
+        person <span class="token operator">=</span> search_queue<span class="token punctuation">.</span>popleft<span class="token punctuation">(</span><span class="token punctuation">)</span>
+        <span class="token keyword">if</span> <span class="token keyword">not</span> person <span class="token keyword">in</span> searched<span class="token punctuation">:</span>
+            <span class="token keyword">if</span> person_is_seller<span class="token punctuation">(</span>person<span class="token punctuation">)</span><span class="token punctuation">:</span>
+                <span class="token keyword">print</span><span class="token punctuation">(</span>person <span class="token operator">+</span> <span class="token string">"is a mango seller!"</span><span class="token punctuation">)</span>
+                <span class="token keyword">return</span> <span class="token boolean">True</span>
+            <span class="token keyword">else</span><span class="token punctuation">:</span>
+                search_queue <span class="token operator">+=</span> graph<span class="token punctuation">[</span>person<span class="token punctuation">]</span>
+                searched<span class="token punctuation">.</span>append<span class="token punctuation">(</span>person<span class="token punctuation">)</span>
+    <span class="token keyword">return</span> <span class="token boolean">False</span>
+
+<span class="token keyword">def</span> <span class="token function">person_is_seller</span><span class="token punctuation">(</span>name<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword">return</span> name<span class="token punctuation">[</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token operator">==</span><span class="token string">"m"</span>
+
+search<span class="token punctuation">(</span><span class="token string">"you"</span><span class="token punctuation">)</span>
+</pre><p>运行结果：</p>
+<pre data-role="codeBlock" data-info="python" class="language-python">thomis a mango seller!
+</pre><p><strong>运行时间；</strong></p>
+<p>如果你在你的整个人际关系网中搜索芒果销售商，就意味着你将沿每条边前行(记住，边是 从一个人到另一个人的箭头或连接)，因此运行时间至少为 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>O</mi><mo stretchy="false">(</mo><mtext>边数</mtext><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">O(边数)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord cjk_fallback">边</span><span class="mord cjk_fallback">数</span><span class="mclose">)</span></span></span></span>。</p>
+<p>你还使用了一个队列，其中包含要检查的每个人。将一个人添加到队列需要的时间是固定的，即为 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>O</mi><mo stretchy="false">(</mo><mn>1</mn><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">O(1)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord">1</span><span class="mclose">)</span></span></span></span>，因此对每个人都这样做需要的总时间为 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>O</mi><mo stretchy="false">(</mo><mtext>人数</mtext><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">O(人数)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord cjk_fallback">人</span><span class="mord cjk_fallback">数</span><span class="mclose">)</span></span></span></span>。所以，广度优先搜索的运行时间为 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>O</mi><mo stretchy="false">(</mo><mtext>人数</mtext><mo>+</mo><mtext>边数</mtext><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">O(人数 + 边数)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord cjk_fallback">人</span><span class="mord cjk_fallback">数</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord cjk_fallback">边</span><span class="mord cjk_fallback">数</span><span class="mclose">)</span></span></span></span>，这通常写作 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>O</mi><mo stretchy="false">(</mo><mi>V</mi><mo>+</mo><mi>E</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">O(V + E)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord mathdefault" style="margin-right:0.22222em;">V</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.05764em;">E</span><span class="mclose">)</span></span></span></span>，其中 V 为顶点(vertice)数，E 为边数。</p>
+<h3 class="mume-header" id="66-%E5%B0%8F%E7%BB%93">6.6. 小结</h3>
+
+<ul>
+<li>广度优先搜索指出是否有从 A 到 B 的路径。</li>
+<li>如果有，广度优先搜索将找出最短路径。</li>
+<li>面临类似于寻找最短路径的问题时，可尝试使用图来建立模型，再使用广度优先搜索来解决问题。</li>
+<li>有向图中的边为箭头，箭头的方向指定了关系的方向，例如，<code>rama→adit</code> 表示 <code>rama</code> 欠 <code>adit</code> 钱。</li>
+<li>无向图中的边不带箭头，其中的关系是双向的，例如，<code>ross - rachel</code> 表示“ross 与 rachel 约会，而 rachel 也与 ross 约会”。</li>
+<li>队列是先进先出(FIFO)的。</li>
+<li>栈是后进先出(LIFO)的。</li>
+<li>你需要按加入顺序检查搜索列表中的人，否则找到的就不是最短路径，因此搜索列表必须是队列。</li>
+<li>对于检查过的人，务必不要再去检查，否则可能导致无限循环。</li>
+</ul>
+<hr>
+
+      </div>
+      
+      
+    
+    
+    
+    
+    
+    
+    
+    
+  </body></html>

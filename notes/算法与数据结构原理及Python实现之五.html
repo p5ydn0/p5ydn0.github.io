@@ -1,0 +1,683 @@
+<!DOCTYPE html>
+<!-- saved from url=(0098)file:///private/var/folders/jq/l66hzx9956qbmxs_990g1djh0000gn/T/mume2020317-90899-g4wbzh.aj5j.html -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+      <title>算法与数据结构原理及Python实现之五</title>
+      
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      
+      <link rel="stylesheet" href="./算法与数据结构原理及Python实现之五_files/katex.min.css">
+      
+      
+
+      
+      
+      
+      
+      
+      
+      
+
+      <style>
+      /**
+ * prism.js Github theme based on GitHub's theme.
+ * @author Sam Clarke
+ */
+code[class*="language-"],
+pre[class*="language-"] {
+  color: #333;
+  background: none;
+  font-family: Consolas, "Liberation Mono", Menlo, Courier, monospace;
+  text-align: left;
+  white-space: pre;
+  word-spacing: normal;
+  word-break: normal;
+  word-wrap: normal;
+  line-height: 1.4;
+
+  -moz-tab-size: 8;
+  -o-tab-size: 8;
+  tab-size: 8;
+
+  -webkit-hyphens: none;
+  -moz-hyphens: none;
+  -ms-hyphens: none;
+  hyphens: none;
+}
+
+/* Code blocks */
+pre[class*="language-"] {
+  padding: .8em;
+  overflow: auto;
+  /* border: 1px solid #ddd; */
+  border-radius: 3px;
+  /* background: #fff; */
+  background: #f5f5f5;
+}
+
+/* Inline code */
+:not(pre) > code[class*="language-"] {
+  padding: .1em;
+  border-radius: .3em;
+  white-space: normal;
+  background: #f5f5f5;
+}
+
+.token.comment,
+.token.blockquote {
+  color: #969896;
+}
+
+.token.cdata {
+  color: #183691;
+}
+
+.token.doctype,
+.token.punctuation,
+.token.variable,
+.token.macro.property {
+  color: #333;
+}
+
+.token.operator,
+.token.important,
+.token.keyword,
+.token.rule,
+.token.builtin {
+  color: #a71d5d;
+}
+
+.token.string,
+.token.url,
+.token.regex,
+.token.attr-value {
+  color: #183691;
+}
+
+.token.property,
+.token.number,
+.token.boolean,
+.token.entity,
+.token.atrule,
+.token.constant,
+.token.symbol,
+.token.command,
+.token.code {
+  color: #0086b3;
+}
+
+.token.tag,
+.token.selector,
+.token.prolog {
+  color: #63a35c;
+}
+
+.token.function,
+.token.namespace,
+.token.pseudo-element,
+.token.class,
+.token.class-name,
+.token.pseudo-class,
+.token.id,
+.token.url-reference .token.variable,
+.token.attr-name {
+  color: #795da3;
+}
+
+.token.entity {
+  cursor: help;
+}
+
+.token.title,
+.token.title .token.punctuation {
+  font-weight: bold;
+  color: #1d3e81;
+}
+
+.token.list {
+  color: #ed6a43;
+}
+
+.token.inserted {
+  background-color: #eaffea;
+  color: #55a532;
+}
+
+.token.deleted {
+  background-color: #ffecec;
+  color: #bd2c00;
+}
+
+.token.bold {
+  font-weight: bold;
+}
+
+.token.italic {
+  font-style: italic;
+}
+
+
+/* JSON */
+.language-json .token.property {
+  color: #183691;
+}
+
+.language-markup .token.tag .token.punctuation {
+  color: #333;
+}
+
+/* CSS */
+code.language-css,
+.language-css .token.function {
+  color: #0086b3;
+}
+
+/* YAML */
+.language-yaml .token.atrule {
+  color: #63a35c;
+}
+
+code.language-yaml {
+  color: #183691;
+}
+
+/* Ruby */
+.language-ruby .token.function {
+  color: #333;
+}
+
+/* Markdown */
+.language-markdown .token.url {
+  color: #795da3;
+}
+
+/* Makefile */
+.language-makefile .token.symbol {
+  color: #795da3;
+}
+
+.language-makefile .token.variable {
+  color: #183691;
+}
+
+.language-makefile .token.builtin {
+  color: #0086b3;
+}
+
+/* Bash */
+.language-bash .token.keyword {
+  color: #0086b3;
+}
+
+/* highlight */
+pre[data-line] {
+  position: relative;
+  padding: 1em 0 1em 3em;
+}
+pre[data-line] .line-highlight-wrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: transparent;
+  display: block;
+  width: 100%;
+}
+
+pre[data-line] .line-highlight {
+  position: absolute;
+  left: 0;
+  right: 0;
+  padding: inherit 0;
+  margin-top: 1em;
+  background: hsla(24, 20%, 50%,.08);
+  background: linear-gradient(to right, hsla(24, 20%, 50%,.1) 70%, hsla(24, 20%, 50%,0));
+  pointer-events: none;
+  line-height: inherit;
+  white-space: pre;
+}
+
+pre[data-line] .line-highlight:before, 
+pre[data-line] .line-highlight[data-end]:after {
+  content: attr(data-start);
+  position: absolute;
+  top: .4em;
+  left: .6em;
+  min-width: 1em;
+  padding: 0 .5em;
+  background-color: hsla(24, 20%, 50%,.4);
+  color: hsl(24, 20%, 95%);
+  font: bold 65%/1.5 sans-serif;
+  text-align: center;
+  vertical-align: .3em;
+  border-radius: 999px;
+  text-shadow: none;
+  box-shadow: 0 1px white;
+}
+
+pre[data-line] .line-highlight[data-end]:after {
+  content: attr(data-end);
+  top: auto;
+  bottom: .4em;
+}html body{font-family:"Helvetica Neue",Helvetica,"Segoe UI",Arial,freesans,sans-serif;font-size:16px;line-height:1.6;color:#333;background-color:#fff;overflow:initial;box-sizing:border-box;word-wrap:break-word}html body>:first-child{margin-top:0}html body h1,html body h2,html body h3,html body h4,html body h5,html body h6{line-height:1.2;margin-top:1em;margin-bottom:16px;color:#000}html body h1{font-size:2.25em;font-weight:300;padding-bottom:.3em}html body h2{font-size:1.75em;font-weight:400;padding-bottom:.3em}html body h3{font-size:1.5em;font-weight:500}html body h4{font-size:1.25em;font-weight:600}html body h5{font-size:1.1em;font-weight:600}html body h6{font-size:1em;font-weight:600}html body h1,html body h2,html body h3,html body h4,html body h5{font-weight:600}html body h5{font-size:1em}html body h6{color:#5c5c5c}html body strong{color:#000}html body del{color:#5c5c5c}html body a:not([href]){color:inherit;text-decoration:none}html body a{color:#08c;text-decoration:none}html body a:hover{color:#00a3f5;text-decoration:none}html body img{max-width:100%}html body>p{margin-top:0;margin-bottom:16px;word-wrap:break-word}html body>ul,html body>ol{margin-bottom:16px}html body ul,html body ol{padding-left:2em}html body ul.no-list,html body ol.no-list{padding:0;list-style-type:none}html body ul ul,html body ul ol,html body ol ol,html body ol ul{margin-top:0;margin-bottom:0}html body li{margin-bottom:0}html body li.task-list-item{list-style:none}html body li>p{margin-top:0;margin-bottom:0}html body .task-list-item-checkbox{margin:0 .2em .25em -1.8em;vertical-align:middle}html body .task-list-item-checkbox:hover{cursor:pointer}html body blockquote{margin:16px 0;font-size:inherit;padding:0 15px;color:#5c5c5c;border-left:4px solid #d6d6d6}html body blockquote>:first-child{margin-top:0}html body blockquote>:last-child{margin-bottom:0}html body hr{height:4px;margin:32px 0;background-color:#d6d6d6;border:0 none}html body table{margin:10px 0 15px 0;border-collapse:collapse;border-spacing:0;display:block;width:100%;overflow:auto;word-break:normal;word-break:keep-all}html body table th{font-weight:bold;color:#000}html body table td,html body table th{border:1px solid #d6d6d6;padding:6px 13px}html body dl{padding:0}html body dl dt{padding:0;margin-top:16px;font-size:1em;font-style:italic;font-weight:bold}html body dl dd{padding:0 16px;margin-bottom:16px}html body code{font-family:Menlo,Monaco,Consolas,'Courier New',monospace;font-size:.85em !important;color:#000;background-color:#f0f0f0;border-radius:3px;padding:.2em 0}html body code::before,html body code::after{letter-spacing:-0.2em;content:"\00a0"}html body pre>code{padding:0;margin:0;font-size:.85em !important;word-break:normal;white-space:pre;background:transparent;border:0}html body .highlight{margin-bottom:16px}html body .highlight pre,html body pre{padding:1em;overflow:auto;font-size:.85em !important;line-height:1.45;border:#d6d6d6;border-radius:3px}html body .highlight pre{margin-bottom:0;word-break:normal}html body pre code,html body pre tt{display:inline;max-width:initial;padding:0;margin:0;overflow:initial;line-height:inherit;word-wrap:normal;background-color:transparent;border:0}html body pre code:before,html body pre tt:before,html body pre code:after,html body pre tt:after{content:normal}html body p,html body blockquote,html body ul,html body ol,html body dl,html body pre{margin-top:0;margin-bottom:16px}html body kbd{color:#000;border:1px solid #d6d6d6;border-bottom:2px solid #c7c7c7;padding:2px 4px;background-color:#f0f0f0;border-radius:3px}@media print{html body{background-color:#fff}html body h1,html body h2,html body h3,html body h4,html body h5,html body h6{color:#000;page-break-after:avoid}html body blockquote{color:#5c5c5c}html body pre{page-break-inside:avoid}html body table{display:table}html body img{display:block;max-width:100%;max-height:100%}html body pre,html body code{word-wrap:break-word;white-space:pre}}.markdown-preview{width:100%;height:100%;box-sizing:border-box}.markdown-preview .pagebreak,.markdown-preview .newpage{page-break-before:always}.markdown-preview pre.line-numbers{position:relative;padding-left:3.8em;counter-reset:linenumber}.markdown-preview pre.line-numbers>code{position:relative}.markdown-preview pre.line-numbers .line-numbers-rows{position:absolute;pointer-events:none;top:1em;font-size:100%;left:0;width:3em;letter-spacing:-1px;border-right:1px solid #999;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}.markdown-preview pre.line-numbers .line-numbers-rows>span{pointer-events:none;display:block;counter-increment:linenumber}.markdown-preview pre.line-numbers .line-numbers-rows>span:before{content:counter(linenumber);color:#999;display:block;padding-right:.8em;text-align:right}.markdown-preview .mathjax-exps .MathJax_Display{text-align:center !important}.markdown-preview:not([for="preview"]) .code-chunk .btn-group{display:none}.markdown-preview:not([for="preview"]) .code-chunk .status{display:none}.markdown-preview:not([for="preview"]) .code-chunk .output-div{margin-bottom:16px}.scrollbar-style::-webkit-scrollbar{width:8px}.scrollbar-style::-webkit-scrollbar-track{border-radius:10px;background-color:transparent}.scrollbar-style::-webkit-scrollbar-thumb{border-radius:5px;background-color:rgba(150,150,150,0.66);border:4px solid rgba(150,150,150,0.66);background-clip:content-box}html body[for="html-export"]:not([data-presentation-mode]){position:relative;width:100%;height:100%;top:0;left:0;margin:0;padding:0;overflow:auto}html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{position:relative;top:0}@media screen and (min-width:914px){html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{padding:2em calc(50% - 457px + 2em)}}@media screen and (max-width:914px){html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{padding:2em}}@media screen and (max-width:450px){html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{font-size:14px !important;padding:1em}}@media print{html body[for="html-export"]:not([data-presentation-mode]) #sidebar-toc-btn{display:none}}html body[for="html-export"]:not([data-presentation-mode]) #sidebar-toc-btn{position:fixed;bottom:8px;left:8px;font-size:28px;cursor:pointer;color:inherit;z-index:99;width:32px;text-align:center;opacity:.4}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] #sidebar-toc-btn{opacity:1}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc{position:fixed;top:0;left:0;width:300px;height:100%;padding:32px 0 48px 0;font-size:14px;box-shadow:0 0 4px rgba(150,150,150,0.33);box-sizing:border-box;overflow:auto;background-color:inherit}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar{width:8px}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-track{border-radius:10px;background-color:transparent}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-thumb{border-radius:5px;background-color:rgba(150,150,150,0.66);border:4px solid rgba(150,150,150,0.66);background-clip:content-box}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc a{text-decoration:none}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc ul{padding:0 1.6em;margin-top:.8em}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc li{margin-bottom:.8em}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc ul{list-style-type:none}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{left:300px;width:calc(100% -  300px);padding:2em calc(50% - 457px -  150px);margin:0;box-sizing:border-box}@media screen and (max-width:1274px){html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{padding:2em}}@media screen and (max-width:450px){html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{width:100%}}html body[for="html-export"]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .markdown-preview{left:50%;transform:translateX(-50%)}html body[for="html-export"]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .md-sidebar-toc{display:none}
+/* Please visit the URL below for more information: */
+/*   https://shd101wyy.github.io/markdown-preview-enhanced/#/customize-css */
+
+      </style>
+    </head>
+    <body for="html-export">
+      <div class="mume markdown-preview  ">
+      <h1 class="mume-header" id="%E7%AE%97%E6%B3%95%E4%B8%8E%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%8E%9F%E7%90%86%E5%8F%8Apython%E5%AE%9E%E7%8E%B0">算法与数据结构原理及Python实现</h1>
+
+<h3 class="mume-header" id="%E7%AE%97%E6%B3%95%E4%B8%8E%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%8E%9F%E7%90%86%E5%8F%8Apython%E5%AE%9E%E7%8E%B0%E4%B9%8B%E4%BA%94%E9%98%9F%E5%88%97">算法与数据结构原理及Python实现之五：队列</h3>
+
+<hr>
+<h2 class="mume-header" id="5-%E9%98%9F%E5%88%97">5. 队列</h2>
+
+<p>队列是先进先出结构(FIFO, first in first out)， 栈是后进先出结构(LIFO, last in first out)。</p>
+<p><strong>队列的实现：</strong></p>
+<p>现在考虑我们用什么来实现队列结构。回想之前说过在实现某种结构选取结构时需要考虑的事项：</p>
+<ol>
+<li>如何选用恰当的数据结构作为存储？</li>
+<li>选取的数据结构能否满足 ADT 的功能需求</li>
+<li>实现效率如何？</li>
+</ol>
+<p>队列主要频繁进行的操作是入队和出队。</p>
+<p>到目前我们学习的结构有 Array、List、LinkedList（单列表）、DLL（双链表）。Array 也可以实现，但是我们暂时先不考虑。如果使用 List，那么如果要在 list 头插入一个节点，那么后面的节点都需要向后移动，时间复杂度是 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>O</mi><mo stretchy="false">(</mo><mi>n</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">O(n)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord mathdefault">n</span><span class="mclose">)</span></span></span></span>。然后看单链表。之前我们在实现单链表的时候就实现了 <code>append()</code> 和 <code>popleft()</code> 方法，可以用这两个方法实现入队（<code>append()</code>）和出队（<code>popleft()</code>）操作，时间复杂度都是 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>O</mi><mo stretchy="false">(</mo><mn>1</mn><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">O(1)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord">1</span><span class="mclose">)</span></span></span></span>。双端链表也可以实现，但可能会比较复杂，这里就先不用它实现了。</p>
+<p><strong>队列结构的代码实现：</strong></p>
+<pre data-role="codeBlock" data-info="python" class="language-python"><span class="token keyword">from</span> collections <span class="token keyword">import</span> deque
+
+<span class="token comment"># 这里直接将前面单链表的实现代码 copy 过来</span>
+<span class="token keyword">class</span> <span class="token class-name">Node</span><span class="token punctuation">(</span><span class="token builtin">object</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword">def</span> <span class="token function">__init__</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> value<span class="token operator">=</span><span class="token boolean">None</span><span class="token punctuation">,</span> <span class="token builtin">next</span><span class="token operator">=</span><span class="token boolean">None</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+        self<span class="token punctuation">.</span>value <span class="token operator">=</span> value
+        self<span class="token punctuation">.</span><span class="token builtin">next</span> <span class="token operator">=</span> <span class="token builtin">next</span>
+
+    <span class="token keyword">def</span> <span class="token function">__str__</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token triple-quoted-string string">"""方便你打出来调试，复杂的代码可能需要断点调试"""</span>
+        <span class="token keyword">return</span> <span class="token string">'&lt;Node: value: {},next ={}&gt;'</span><span class="token punctuation">.</span><span class="token builtin">format</span><span class="token punctuation">(</span>self<span class="token punctuation">.</span>value<span class="token punctuation">,</span> self<span class="token punctuation">.</span><span class="token builtin">next</span><span class="token punctuation">)</span>
+
+    __repr__ <span class="token operator">=</span> __str__
+
+<span class="token keyword">class</span> <span class="token class-name">LinkedList</span><span class="token punctuation">(</span><span class="token builtin">object</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token triple-quoted-string string">'''
+    链接表 ADT：
+    [root] -&gt; [node0] -&gt; [node1] -&gt; [node2]
+    '''</span>
+
+    <span class="token keyword">def</span> <span class="token function">__init__</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> maxsize<span class="token operator">=</span><span class="token boolean">None</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token triple-quoted-string string">'''
+        :param maxsize: int or None, 如果是 None 则可无限扩充
+        '''</span>
+        self<span class="token punctuation">.</span>maxsize <span class="token operator">=</span> maxsize
+        self<span class="token punctuation">.</span>root <span class="token operator">=</span> Node<span class="token punctuation">(</span><span class="token punctuation">)</span>  <span class="token comment"># 默认 root 节点指向 None</span>
+        self<span class="token punctuation">.</span>tailnode <span class="token operator">=</span> <span class="token boolean">None</span>
+        self<span class="token punctuation">.</span>length <span class="token operator">=</span> <span class="token number">0</span>
+
+    <span class="token keyword">def</span> <span class="token function">__len__</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token keyword">return</span> self<span class="token punctuation">.</span>length
+
+    <span class="token keyword">def</span> <span class="token function">append</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> value<span class="token punctuation">)</span><span class="token punctuation">:</span>  <span class="token comment"># O(1)</span>
+        <span class="token comment"># 如果链表的长度不是无限长（即 self.maxsize 不是 None；是 None 就说明没有给</span>
+        <span class="token comment"># self.maxsize 赋值，即为无限长），且当前所占的长度（len(self)）超过了链表最大的</span>
+        <span class="token comment"># 长度（self.maxsize）</span>
+        <span class="token keyword">if</span> self<span class="token punctuation">.</span>maxsize <span class="token keyword">is</span> <span class="token keyword">not</span> <span class="token boolean">None</span> <span class="token keyword">and</span> <span class="token builtin">len</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span> <span class="token operator">&gt;=</span> self<span class="token punctuation">.</span>maxsize<span class="token punctuation">:</span>
+            <span class="token keyword">raise</span> Exception<span class="token punctuation">(</span><span class="token string">'LinkedList is Full!'</span><span class="token punctuation">)</span>
+        node <span class="token operator">=</span> Node<span class="token punctuation">(</span>value<span class="token punctuation">)</span>  <span class="token comment"># 构造节点</span>
+        tailnode <span class="token operator">=</span> self<span class="token punctuation">.</span>tailnode  <span class="token comment"># 得到当前的尾部节点</span>
+        <span class="token comment"># 说明该链表还没有 append 过，length = 0，所以直接将该节点追加到 root 后</span>
+        <span class="token keyword">if</span> tailnode <span class="token keyword">is</span> <span class="token boolean">None</span><span class="token punctuation">:</span>
+            self<span class="token punctuation">.</span>root<span class="token punctuation">.</span><span class="token builtin">next</span> <span class="token operator">=</span> node  <span class="token comment"># 将当前节点的对象赋值给 self.root 节点的 next 值</span>
+        <span class="token keyword">else</span><span class="token punctuation">:</span>  <span class="token comment"># 否则追加到最后一个节点的后边，并更新最后一个节点是 append 的节点</span>
+            tailnode<span class="token punctuation">.</span><span class="token builtin">next</span> <span class="token operator">=</span> node  <span class="token comment"># 将该节点设置为链表尾部节点的 next 值</span>
+        self<span class="token punctuation">.</span>tailnode <span class="token operator">=</span> node
+        self<span class="token punctuation">.</span>length <span class="token operator">+=</span> <span class="token number">1</span>
+
+    <span class="token comment"># 该方法实现从左边插入节点；即每次都插入到 root 节点的后边</span>
+    <span class="token keyword">def</span> <span class="token function">appendleft</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> value<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token keyword">if</span> self<span class="token punctuation">.</span>maxsize <span class="token keyword">is</span> <span class="token keyword">not</span> <span class="token boolean">None</span> <span class="token keyword">and</span> <span class="token builtin">len</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span> <span class="token operator">&gt;=</span> self<span class="token punctuation">.</span>maxsize<span class="token punctuation">:</span>
+            <span class="token keyword">raise</span> Exception<span class="token punctuation">(</span><span class="token string">'LinkedList is Full!'</span><span class="token punctuation">)</span>
+        node <span class="token operator">=</span> Node<span class="token punctuation">(</span>value<span class="token punctuation">)</span>
+        <span class="token comment"># 如果原链表为空，说明现在只有个 root 节点；因为插入的节点必须要在 root 的后面，</span>
+        <span class="token comment"># 所以直接将 tailnode 设置为该节点就可以了</span>
+        <span class="token keyword">if</span> self<span class="token punctuation">.</span>tailnode <span class="token keyword">is</span> <span class="token boolean">None</span><span class="token punctuation">:</span>
+            self<span class="token punctuation">.</span>tailnode <span class="token operator">=</span> node
+        headnode <span class="token operator">=</span> self<span class="token punctuation">.</span>root<span class="token punctuation">.</span><span class="token builtin">next</span>  <span class="token comment"># 将原来节点 root 的下一个节点先存在 headnode 中</span>
+        self<span class="token punctuation">.</span>root<span class="token punctuation">.</span><span class="token builtin">next</span> <span class="token operator">=</span> node  <span class="token comment"># 将该节点设置为 root 的下一个节点</span>
+        node<span class="token punctuation">.</span><span class="token builtin">next</span> <span class="token operator">=</span> headnode  <span class="token comment"># 将原来 root 后面的节点“接到”刚新建的该节点后面</span>
+        self<span class="token punctuation">.</span>length <span class="token operator">+=</span> <span class="token number">1</span>
+
+    <span class="token keyword">def</span> <span class="token function">__iter__</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token keyword">for</span> node <span class="token keyword">in</span> self<span class="token punctuation">.</span>iter_node<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+            <span class="token keyword">yield</span> node<span class="token punctuation">.</span>value
+
+    <span class="token keyword">def</span> <span class="token function">iter_node</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token triple-quoted-string string">'''遍历；从 head 节点到 tail 节点'''</span>
+        curnode <span class="token operator">=</span> self<span class="token punctuation">.</span>root<span class="token punctuation">.</span><span class="token builtin">next</span>  <span class="token comment"># 获取 root 之后的头节点</span>
+        <span class="token comment"># 从第一个节点开始遍历；但是没有遍历到 tailnode</span>
+        <span class="token keyword">while</span> curnode <span class="token keyword">is</span> <span class="token keyword">not</span> self<span class="token punctuation">.</span>tailnode<span class="token punctuation">:</span>
+            <span class="token keyword">yield</span> curnode
+            curnode <span class="token operator">=</span> curnode<span class="token punctuation">.</span><span class="token builtin">next</span>  <span class="token comment"># 移动到下一个节点</span>
+        <span class="token keyword">if</span> curnode <span class="token keyword">is</span> <span class="token keyword">not</span> <span class="token boolean">None</span><span class="token punctuation">:</span>  <span class="token comment"># 如果 tailnode 不是 None，就返回 tailnode</span>
+            <span class="token keyword">yield</span> curnode
+
+    <span class="token keyword">def</span> <span class="token function">remove</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> value<span class="token punctuation">)</span><span class="token punctuation">:</span>  <span class="token comment"># O(n)</span>
+        <span class="token triple-quoted-string string">'''
+        删除包含值的一个节点，将其前一个节点的 next 指向被查询节点的下一个即可
+
+        :param value:
+        '''</span>
+        prevnode <span class="token operator">=</span> self<span class="token punctuation">.</span>root  <span class="token comment"># prevnode 用来存储前一个节点；这里先把它指向 root 节点</span>
+        <span class="token keyword">for</span> curnode <span class="token keyword">in</span> self<span class="token punctuation">.</span>iter_node<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>  <span class="token comment"># 遍历从 head 节点到 tail 节点</span>
+            <span class="token comment"># 这里需要结合后面的 else 部分的代码进行理解</span>
+            <span class="token comment"># 如果当前节点是要删除的节点</span>
+            <span class="token keyword">if</span> curnode<span class="token punctuation">.</span>value <span class="token operator">==</span> value<span class="token punctuation">:</span>
+                prevnode<span class="token punctuation">.</span><span class="token builtin">next</span> <span class="token operator">=</span> curnode<span class="token punctuation">.</span><span class="token builtin">next</span>  <span class="token comment"># 将 prevnode 节点的下一个值指向该节点的下一个节点（因为该节点即将被删掉）</span>
+                <span class="token keyword">if</span> curnode <span class="token keyword">is</span> self<span class="token punctuation">.</span>tailnode<span class="token punctuation">:</span>  <span class="token comment"># 如果当前节点正好是尾部节点</span>
+                    <span class="token keyword">if</span> prevnode <span class="token keyword">is</span> self<span class="token punctuation">.</span>root<span class="token punctuation">:</span>  <span class="token comment"># 看一下它前面的节点是不是 root 节点</span>
+                        self<span class="token punctuation">.</span>tailnode <span class="token operator">=</span> <span class="token boolean">None</span>  <span class="token comment"># 如果是，那就将尾部节点设置为 None（该节点到后面也会被删掉）</span>
+                    <span class="token keyword">else</span><span class="token punctuation">:</span>
+                        self<span class="token punctuation">.</span>tailnode <span class="token operator">=</span> prevnode  <span class="token comment"># 如果不是，那么就将 prevnode 节点设置为尾节点；因为此时 curnode 后面已经没有其它节点了</span>
+                <span class="token keyword">del</span> curnode  <span class="token comment"># 删掉当前节点</span>
+                self<span class="token punctuation">.</span>length <span class="token operator">-=</span> <span class="token number">1</span>
+                <span class="token keyword">return</span> <span class="token number">1</span>  <span class="token comment"># 表明删除成功</span>
+            <span class="token keyword">else</span><span class="token punctuation">:</span>  <span class="token comment"># 如果当前节点不是要删除的节点，那么就将当前 prevnode 指向该节点</span>
+                prevnode <span class="token operator">=</span> curnode
+        <span class="token keyword">return</span> <span class="token operator">-</span><span class="token number">1</span>  <span class="token comment"># 表明删除失败</span>
+
+    <span class="token keyword">def</span> <span class="token function">find</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> value<span class="token punctuation">)</span><span class="token punctuation">:</span>  <span class="token comment"># O(n)</span>
+        <span class="token triple-quoted-string string">'''
+        查找一个节点，返回序号，从 0 开始
+
+        :param value:
+        '''</span>
+        index <span class="token operator">=</span> <span class="token number">0</span>
+        <span class="token keyword">for</span> node <span class="token keyword">in</span> self<span class="token punctuation">.</span>iter_node<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>  <span class="token comment"># 我们定义了 __iter__，这里就可以用 for 遍历它了</span>
+            <span class="token keyword">if</span> node<span class="token punctuation">.</span>value <span class="token operator">==</span> value<span class="token punctuation">:</span>
+                <span class="token keyword">return</span> index
+            index <span class="token operator">+=</span> <span class="token number">1</span>
+        <span class="token keyword">return</span> <span class="token operator">-</span><span class="token number">1</span>  <span class="token comment"># 没找到</span>
+
+    <span class="token keyword">def</span> <span class="token function">popleft</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>  <span class="token comment"># O(1)</span>
+        <span class="token triple-quoted-string string">'''
+        删除第一个链表节点
+        '''</span>
+        <span class="token keyword">if</span> self<span class="token punctuation">.</span>root<span class="token punctuation">.</span><span class="token builtin">next</span> <span class="token keyword">is</span> <span class="token boolean">None</span><span class="token punctuation">:</span>  <span class="token comment"># 如果是 None，就说明是空链表，没什么可删的</span>
+            <span class="token keyword">raise</span> Exception<span class="token punctuation">(</span><span class="token string">'pop from empty LinkedList'</span><span class="token punctuation">)</span>
+        headnode <span class="token operator">=</span> self<span class="token punctuation">.</span>root<span class="token punctuation">.</span><span class="token builtin">next</span>  <span class="token comment"># 先将 root 后面的节点“存储”在 headnode 中（即 headnode 指向 root 后面的节点）；这个节点就是后面要删除的节点</span>
+        self<span class="token punctuation">.</span>root<span class="token punctuation">.</span><span class="token builtin">next</span> <span class="token operator">=</span> headnode<span class="token punctuation">.</span><span class="token builtin">next</span>  <span class="token comment"># 将要 root 的 next 指向要删除的节点（headnode）的后面一个节点</span>
+        value <span class="token operator">=</span> headnode<span class="token punctuation">.</span>value  <span class="token comment"># 得到要删除的节点的值；后面返回要用到</span>
+        self<span class="token punctuation">.</span>length <span class="token operator">-=</span> <span class="token number">1</span>
+
+        <span class="token keyword">if</span> self<span class="token punctuation">.</span>tailnode <span class="token keyword">is</span> headnode<span class="token punctuation">:</span>  <span class="token comment"># 如果是单节点</span>
+            self<span class="token punctuation">.</span>tailnode <span class="token operator">=</span> <span class="token boolean">None</span>  <span class="token comment"># 那么（将该节点删除后）要将 tailnode 设置为空</span>
+        <span class="token keyword">del</span> headnode  <span class="token comment"># 删掉该节点</span>
+        <span class="token keyword">return</span> value
+
+    <span class="token keyword">def</span> <span class="token function">clear</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token keyword">for</span> node <span class="token keyword">in</span> self<span class="token punctuation">.</span>iter_node<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+            <span class="token keyword">del</span> node
+        self<span class="token punctuation">.</span>root<span class="token punctuation">.</span><span class="token builtin">next</span> <span class="token operator">=</span> <span class="token boolean">None</span>
+        self<span class="token punctuation">.</span>length <span class="token operator">=</span> <span class="token number">0</span>
+        self<span class="token punctuation">.</span>tailnode <span class="token operator">=</span> <span class="token boolean">None</span>
+
+    <span class="token comment"># 该部分理解时结合前面的说明部分</span>
+    <span class="token keyword">def</span> <span class="token function">reverse</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token triple-quoted-string string">'''
+        反转链表
+        '''</span>
+
+        <span class="token comment"># prevnode：前一个节点</span>
+        <span class="token comment"># curnode：当前节点</span>
+        <span class="token comment"># nextnode：下一个节点</span>
+        curnode <span class="token operator">=</span> self<span class="token punctuation">.</span>root<span class="token punctuation">.</span><span class="token builtin">next</span>  <span class="token comment"># 初始化将当前节点指向头节点</span>
+        self<span class="token punctuation">.</span>tailnode <span class="token operator">=</span> curnode  <span class="token comment"># 记得更新 tailnode；这个只需要更新一次就好了</span>
+        prevnode <span class="token operator">=</span> <span class="token boolean">None</span>  <span class="token comment"># 初始化前一个节点为 None</span>
+
+        <span class="token keyword">while</span> curnode<span class="token punctuation">:</span>  <span class="token comment"># 只要当前节点非空节点</span>
+            nextnode <span class="token operator">=</span> curnode<span class="token punctuation">.</span><span class="token builtin">next</span>  <span class="token comment"># 将 nextnode 指向当前节点后面的那一个节点</span>
+            curnode<span class="token punctuation">.</span><span class="token builtin">next</span> <span class="token operator">=</span> prevnode  <span class="token comment"># 将 curnode 的 next 设为前一个节点</span>
+
+            <span class="token keyword">if</span> nextnode <span class="token keyword">is</span> <span class="token boolean">None</span><span class="token punctuation">:</span>  <span class="token comment"># 如果 nextnode 是 None，说明已经到了尾部节点</span>
+                self<span class="token punctuation">.</span>root<span class="token punctuation">.</span><span class="token builtin">next</span> <span class="token operator">=</span> curnode  <span class="token comment"># 将尾部节点设置为 root 节点</span>
+
+            <span class="token comment"># 为下一次循环更新“做准备”</span>
+            prevnode <span class="token operator">=</span> curnode  <span class="token comment"># 将 curnode 节点更新为 prevnode 节点</span>
+            curnode <span class="token operator">=</span> nextnode  <span class="token comment"># 将 nextnode 节点更新为 curnode 节点</span>
+
+<span class="token comment">######################################################</span>
+<span class="token comment"># 下边是 Queue 实现</span>
+<span class="token comment">######################################################</span>
+
+<span class="token keyword">class</span> <span class="token class-name">EmptyError</span><span class="token punctuation">(</span>Exception<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token triple-quoted-string string">"""自定义异常"""</span>
+    <span class="token keyword">pass</span>
+
+<span class="token keyword">class</span> <span class="token class-name">Queue</span><span class="token punctuation">(</span><span class="token builtin">object</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword">def</span> <span class="token function">__init__</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> maxsize<span class="token operator">=</span><span class="token boolean">None</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+        self<span class="token punctuation">.</span>maxsize <span class="token operator">=</span> maxsize
+        self<span class="token punctuation">.</span>_item_link_list <span class="token operator">=</span> LinkedList<span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+    <span class="token keyword">def</span> <span class="token function">__len__</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token keyword">return</span> <span class="token builtin">len</span><span class="token punctuation">(</span>self<span class="token punctuation">.</span>_item_link_list<span class="token punctuation">)</span>
+
+    <span class="token keyword">def</span> <span class="token function">push</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> value<span class="token punctuation">)</span><span class="token punctuation">:</span>  <span class="token comment"># O(1)</span>
+        <span class="token triple-quoted-string string">""" 队尾添加元素 """</span>
+        <span class="token keyword">return</span> self<span class="token punctuation">.</span>_item_link_list<span class="token punctuation">.</span>append<span class="token punctuation">(</span>value<span class="token punctuation">)</span>
+
+    <span class="token keyword">def</span> <span class="token function">pop</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token triple-quoted-string string">"""队列头部删除元素"""</span>
+        <span class="token keyword">if</span> <span class="token builtin">len</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span> <span class="token operator">&lt;=</span> <span class="token number">0</span><span class="token punctuation">:</span>
+            <span class="token keyword">raise</span> EmptyError<span class="token punctuation">(</span><span class="token string">'empty queue.'</span><span class="token punctuation">)</span>
+        <span class="token keyword">return</span> self<span class="token punctuation">.</span>_item_link_list<span class="token punctuation">.</span>popleft<span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+<span class="token keyword">def</span> <span class="token function">test_queue</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    q <span class="token operator">=</span> Queue<span class="token punctuation">(</span><span class="token punctuation">)</span>
+    q<span class="token punctuation">.</span>push<span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span>
+    q<span class="token punctuation">.</span>push<span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span>
+    q<span class="token punctuation">.</span>push<span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">)</span>
+
+    <span class="token keyword">assert</span> <span class="token builtin">len</span><span class="token punctuation">(</span>q<span class="token punctuation">)</span> <span class="token operator">==</span> <span class="token number">3</span>
+
+    <span class="token keyword">assert</span> q<span class="token punctuation">.</span>pop<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">==</span> <span class="token number">0</span>
+    <span class="token keyword">assert</span> q<span class="token punctuation">.</span>pop<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">==</span> <span class="token number">1</span>
+    <span class="token keyword">assert</span> q<span class="token punctuation">.</span>pop<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">==</span> <span class="token number">2</span>
+
+    <span class="token keyword">import</span> pytest
+    <span class="token keyword">with</span> pytest<span class="token punctuation">.</span>raises<span class="token punctuation">(</span>EmptyError<span class="token punctuation">)</span> <span class="token keyword">as</span> excinfo<span class="token punctuation">:</span>  <span class="token comment"># 我们来测试是否真的抛出了异常</span>
+        q<span class="token punctuation">.</span>pop<span class="token punctuation">(</span><span class="token punctuation">)</span>  <span class="token comment"># 继续调用会抛出异常</span>
+    <span class="token keyword">assert</span> <span class="token string">'empty queue.'</span> <span class="token operator">==</span> <span class="token builtin">str</span><span class="token punctuation">(</span>excinfo<span class="token punctuation">.</span>value<span class="token punctuation">)</span>
+
+
+<span class="token keyword">class</span> <span class="token class-name">MyQueue</span><span class="token punctuation">:</span>
+    <span class="token triple-quoted-string string">"""
+    使用 collections.deque 可以迅速实现一个队列
+    """</span>
+    <span class="token keyword">def</span> <span class="token function">__init__</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        self<span class="token punctuation">.</span>items <span class="token operator">=</span> deque<span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+    <span class="token keyword">def</span> <span class="token function">append</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> val<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token keyword">return</span> self<span class="token punctuation">.</span>items<span class="token punctuation">.</span>append<span class="token punctuation">(</span>val<span class="token punctuation">)</span>
+
+    <span class="token keyword">def</span> <span class="token function">pop</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token keyword">return</span> self<span class="token punctuation">.</span>items<span class="token punctuation">.</span>popleft<span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+    <span class="token keyword">def</span> <span class="token function">__len__</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token keyword">return</span> <span class="token builtin">len</span><span class="token punctuation">(</span>self<span class="token punctuation">.</span>items<span class="token punctuation">)</span>
+
+    <span class="token keyword">def</span> <span class="token function">empty</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token keyword">return</span> <span class="token builtin">len</span><span class="token punctuation">(</span>self<span class="token punctuation">.</span>items<span class="token punctuation">)</span> <span class="token operator">==</span> <span class="token number">0</span>
+
+    <span class="token keyword">def</span> <span class="token function">front</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token keyword">return</span> self<span class="token punctuation">.</span>items<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span>
+</pre><p>运行 <code>pytest python.py -v</code> 结果如下：</p>
+<p><img src="./算法与数据结构原理及Python实现之五_files/09.png" alt=""></p>
+<p><strong>用 Array 实现队列代码实现：</strong></p>
+<p>用 Array 也可以实现队列，只不过数组是预先分配固定内存的，所以如果你知道了队列的最大长度，也是可以用数组来实现的。</p>
+<p>用 Array 实现队列的总体思路如下：</p>
+<p><img src="./算法与数据结构原理及Python实现之五_files/11.png" alt=""></p>
+<p>核心是通过 head 和 tail 两个指针的移动可以实现先进先出的效果。</p>
+<p>用 Array 实现队列它的实现很简单，但是缺点是需要预先知道队列的长度来分配内存。</p>
+<p>具体代码如下：</p>
+<pre data-role="codeBlock" data-info="python" class="language-python"><span class="token comment"># 这里直接将前面的 Array 实现 copy 过来</span>
+
+<span class="token keyword">class</span> <span class="token class-name">Array</span><span class="token punctuation">(</span><span class="token builtin">object</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+
+    <span class="token keyword">def</span> <span class="token function">__init__</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> size <span class="token operator">=</span> <span class="token number">32</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+        self<span class="token punctuation">.</span>_size <span class="token operator">=</span> size
+        self<span class="token punctuation">.</span>_items <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token boolean">None</span><span class="token punctuation">]</span> <span class="token operator">*</span> size  <span class="token comment"># 注意 [None] 是一个 list</span>
+
+    <span class="token keyword">def</span> <span class="token function">__getitem__</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> index<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token keyword">return</span> self<span class="token punctuation">.</span>_items<span class="token punctuation">[</span>index<span class="token punctuation">]</span>
+
+    <span class="token keyword">def</span> <span class="token function">__setitem__</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> index<span class="token punctuation">,</span> value<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        self<span class="token punctuation">.</span>_items<span class="token punctuation">[</span>index<span class="token punctuation">]</span> <span class="token operator">=</span> value
+
+    <span class="token keyword">def</span> <span class="token function">__len__</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token keyword">return</span> self<span class="token punctuation">.</span>_size
+
+    <span class="token keyword">def</span> <span class="token function">clear</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> value<span class="token operator">=</span><span class="token boolean">None</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token keyword">for</span> i <span class="token keyword">in</span> <span class="token builtin">range</span><span class="token punctuation">(</span><span class="token builtin">len</span><span class="token punctuation">(</span>self<span class="token punctuation">.</span>_items<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+            self<span class="token punctuation">.</span>_items<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">=</span> value
+
+    <span class="token keyword">def</span> <span class="token function">__iter__</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token keyword">for</span> item <span class="token keyword">in</span> self<span class="token punctuation">.</span>__items<span class="token punctuation">:</span>
+            <span class="token keyword">yield</span> item
+
+<span class="token comment">######################################################</span>
+<span class="token comment"># 用 Array 实现 Queue</span>
+<span class="token comment">######################################################</span>
+
+<span class="token keyword">class</span> <span class="token class-name">FullError</span><span class="token punctuation">(</span>Exception<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword">pass</span>
+
+<span class="token keyword">class</span> <span class="token class-name">ArrayQueue</span><span class="token punctuation">(</span><span class="token builtin">object</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword">def</span> <span class="token function">__init__</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> maxsize<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        self<span class="token punctuation">.</span>maxsize <span class="token operator">=</span> maxsize
+        self<span class="token punctuation">.</span>array <span class="token operator">=</span> Array<span class="token punctuation">(</span>maxsize<span class="token punctuation">)</span>
+        self<span class="token punctuation">.</span>head <span class="token operator">=</span> <span class="token number">0</span>
+        self<span class="token punctuation">.</span>tail <span class="token operator">=</span> <span class="token number">0</span>
+
+    <span class="token keyword">def</span> <span class="token function">push</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> value<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token keyword">if</span> <span class="token builtin">len</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span> <span class="token operator">&gt;=</span> self<span class="token punctuation">.</span>maxsize<span class="token punctuation">:</span>  <span class="token comment"># 如果现在队列的长度大于或等于 array 的最大长度，那么就不能继续 push 抛出一个错误</span>
+            <span class="token keyword">raise</span> FullError<span class="token punctuation">(</span><span class="token string">'queue full.'</span><span class="token punctuation">)</span>
+        self<span class="token punctuation">.</span>array<span class="token punctuation">[</span>self<span class="token punctuation">.</span>head <span class="token operator">%</span> self<span class="token punctuation">.</span>maxsize<span class="token punctuation">]</span> <span class="token operator">=</span> value  <span class="token comment"># 这里理解的时候可以参考下前面的图示；之所以要用 % 二不是直接移动 head，是因为取完之后还需要回到头部重新开始取</span>
+        self<span class="token punctuation">.</span>head <span class="token operator">+=</span> <span class="token number">1</span>
+
+    <span class="token keyword">def</span> <span class="token function">pop</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        value <span class="token operator">=</span> self<span class="token punctuation">.</span>array<span class="token punctuation">[</span>self<span class="token punctuation">.</span>tail <span class="token operator">%</span> self<span class="token punctuation">.</span>maxsize<span class="token punctuation">]</span>
+        self<span class="token punctuation">.</span>tail <span class="token operator">+=</span> <span class="token number">1</span>
+        <span class="token keyword">return</span> value
+
+    <span class="token keyword">def</span> <span class="token function">__len__</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token keyword">return</span> self<span class="token punctuation">.</span>head <span class="token operator">-</span> self<span class="token punctuation">.</span>tail  <span class="token comment"># 这里有一个点需要注意的是，head 和 tail 的值一直是往上加不会减小的；但是如果一开始没有 push 而只是 pop，那么可能会导致 tail 的值比 head 大从而导致 len() 调用后的值为负数</span>
+
+<span class="token keyword">def</span> <span class="token function">test_queue</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword">import</span> pytest
+    size <span class="token operator">=</span> <span class="token number">5</span>
+    q <span class="token operator">=</span> ArrayQueue<span class="token punctuation">(</span>size<span class="token punctuation">)</span>
+    <span class="token keyword">for</span> i <span class="token keyword">in</span> <span class="token builtin">range</span><span class="token punctuation">(</span>size<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        q<span class="token punctuation">.</span>push<span class="token punctuation">(</span>i<span class="token punctuation">)</span>
+
+    <span class="token keyword">with</span> pytest<span class="token punctuation">.</span>raises<span class="token punctuation">(</span>FullError<span class="token punctuation">)</span> <span class="token keyword">as</span> excinfo<span class="token punctuation">:</span>
+        q<span class="token punctuation">.</span>push<span class="token punctuation">(</span>size<span class="token punctuation">)</span>
+    <span class="token keyword">assert</span> <span class="token string">'queue full.'</span> <span class="token keyword">in</span> <span class="token builtin">str</span><span class="token punctuation">(</span>excinfo<span class="token punctuation">.</span>value<span class="token punctuation">)</span>
+
+    <span class="token keyword">assert</span> <span class="token builtin">len</span><span class="token punctuation">(</span>q<span class="token punctuation">)</span> <span class="token operator">==</span> <span class="token number">5</span>
+
+    <span class="token keyword">assert</span> q<span class="token punctuation">.</span>pop<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">==</span> <span class="token number">0</span>
+    <span class="token keyword">assert</span> q<span class="token punctuation">.</span>pop<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">==</span> <span class="token number">1</span>
+
+    q<span class="token punctuation">.</span>push<span class="token punctuation">(</span><span class="token number">5</span><span class="token punctuation">)</span>
+
+    <span class="token keyword">assert</span> <span class="token builtin">len</span><span class="token punctuation">(</span>q<span class="token punctuation">)</span> <span class="token operator">==</span> <span class="token number">4</span>
+
+    <span class="token keyword">assert</span> q<span class="token punctuation">.</span>pop<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">==</span> <span class="token number">2</span>
+    <span class="token keyword">assert</span> q<span class="token punctuation">.</span>pop<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">==</span> <span class="token number">3</span>
+    <span class="token keyword">assert</span> q<span class="token punctuation">.</span>pop<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">==</span> <span class="token number">4</span>
+    <span class="token keyword">assert</span> q<span class="token punctuation">.</span>pop<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">==</span> <span class="token number">5</span>
+
+    <span class="token keyword">assert</span> <span class="token builtin">len</span><span class="token punctuation">(</span>q<span class="token punctuation">)</span> <span class="token operator">==</span> <span class="token number">0</span>
+</pre><p>运行 <code>pytest python.py -v</code> 结果如下：</p>
+<p><img src="./算法与数据结构原理及Python实现之五_files/10.png" alt=""></p>
+<p>上面的代码中可能会出现 head 比 tail 小的情况。下面是对其进行错误抛出处理后的对应代码：</p>
+<pre data-role="codeBlock" data-info="python" class="language-python"><span class="token comment"># 这里直接将前面的 Array 实现 copy 过来</span>
+
+<span class="token keyword">class</span> <span class="token class-name">Array</span><span class="token punctuation">(</span><span class="token builtin">object</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+
+    <span class="token keyword">def</span> <span class="token function">__init__</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> size <span class="token operator">=</span> <span class="token number">32</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+        self<span class="token punctuation">.</span>_size <span class="token operator">=</span> size
+        self<span class="token punctuation">.</span>_items <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token boolean">None</span><span class="token punctuation">]</span> <span class="token operator">*</span> size  <span class="token comment"># 注意 [None] 是一个 list</span>
+
+    <span class="token keyword">def</span> <span class="token function">__getitem__</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> index<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token keyword">return</span> self<span class="token punctuation">.</span>_items<span class="token punctuation">[</span>index<span class="token punctuation">]</span>
+
+    <span class="token keyword">def</span> <span class="token function">__setitem__</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> index<span class="token punctuation">,</span> value<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        self<span class="token punctuation">.</span>_items<span class="token punctuation">[</span>index<span class="token punctuation">]</span> <span class="token operator">=</span> value
+
+    <span class="token keyword">def</span> <span class="token function">__len__</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token keyword">return</span> self<span class="token punctuation">.</span>_size
+
+    <span class="token keyword">def</span> <span class="token function">clear</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> value<span class="token operator">=</span><span class="token boolean">None</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token keyword">for</span> i <span class="token keyword">in</span> <span class="token builtin">range</span><span class="token punctuation">(</span><span class="token builtin">len</span><span class="token punctuation">(</span>self<span class="token punctuation">.</span>_items<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+            self<span class="token punctuation">.</span>_items<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">=</span> value
+
+    <span class="token keyword">def</span> <span class="token function">__iter__</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token keyword">for</span> item <span class="token keyword">in</span> self<span class="token punctuation">.</span>__items<span class="token punctuation">:</span>
+            <span class="token keyword">yield</span> item
+
+<span class="token comment">######################################################</span>
+<span class="token comment"># 用 Array 实现 Queue</span>
+<span class="token comment">######################################################</span>
+
+<span class="token keyword">class</span> <span class="token class-name">FullError</span><span class="token punctuation">(</span>Exception<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword">pass</span>
+
+<span class="token keyword">class</span> <span class="token class-name">MissingError</span><span class="token punctuation">(</span>Exception<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword">pass</span>
+
+<span class="token keyword">class</span> <span class="token class-name">ArrayQueue</span><span class="token punctuation">(</span><span class="token builtin">object</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword">def</span> <span class="token function">__init__</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> maxsize<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        self<span class="token punctuation">.</span>maxsize <span class="token operator">=</span> maxsize
+        self<span class="token punctuation">.</span>array <span class="token operator">=</span> Array<span class="token punctuation">(</span>maxsize<span class="token punctuation">)</span>
+        self<span class="token punctuation">.</span>head <span class="token operator">=</span> <span class="token number">0</span>
+        self<span class="token punctuation">.</span>tail <span class="token operator">=</span> <span class="token number">0</span>
+
+    <span class="token keyword">def</span> <span class="token function">push</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> value<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token keyword">if</span> <span class="token builtin">len</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span> <span class="token operator">&gt;=</span> self<span class="token punctuation">.</span>maxsize<span class="token punctuation">:</span>  <span class="token comment"># 如果现在队列的长度大于或等于 array 的最大长度，那么就不能继续 push 抛出一个错误</span>
+            <span class="token keyword">raise</span> FullError<span class="token punctuation">(</span><span class="token string">'queue full.'</span><span class="token punctuation">)</span>
+        self<span class="token punctuation">.</span>array<span class="token punctuation">[</span>self<span class="token punctuation">.</span>head <span class="token operator">%</span> self<span class="token punctuation">.</span>maxsize<span class="token punctuation">]</span> <span class="token operator">=</span> value  <span class="token comment"># 这里理解的时候可以参考下前面的图示；之所以要用 % 二不是直接移动 head，是因为取完之后还需要回到头部重新开始取</span>
+        self<span class="token punctuation">.</span>head <span class="token operator">+=</span> <span class="token number">1</span>
+
+    <span class="token keyword">def</span> <span class="token function">pop</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        value <span class="token operator">=</span> self<span class="token punctuation">.</span>array<span class="token punctuation">[</span>self<span class="token punctuation">.</span>tail <span class="token operator">%</span> self<span class="token punctuation">.</span>maxsize<span class="token punctuation">]</span>
+        self<span class="token punctuation">.</span>tail <span class="token operator">+=</span> <span class="token number">1</span>
+        <span class="token keyword">return</span> value
+
+    <span class="token keyword">def</span> <span class="token function">__len__</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token keyword">if</span> self<span class="token punctuation">.</span>head <span class="token operator">&lt;</span> self<span class="token punctuation">.</span>tail<span class="token punctuation">:</span>
+            <span class="token keyword">raise</span> MissingError<span class="token punctuation">(</span><span class="token string">'Please push the element first.'</span><span class="token punctuation">)</span>
+        <span class="token keyword">return</span> self<span class="token punctuation">.</span>head <span class="token operator">-</span> self<span class="token punctuation">.</span>tail  <span class="token comment"># 这里有一个点需要注意的是，head 和 tail 的值一直是往上加不会减小的；但是如果一开始没有 push 而只是 pop，那么可能会导致 tail 的值比 head 大从而导致 len() 调用后的值为负数</span>
+
+q <span class="token operator">=</span> ArrayQueue<span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">)</span>
+<span class="token comment"># for i in range(3):</span>
+<span class="token comment">#     q.push(i)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span>q<span class="token punctuation">.</span>pop<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span>q<span class="token punctuation">.</span>pop<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span>q<span class="token punctuation">.</span>head<span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span>q<span class="token punctuation">.</span>tail<span class="token punctuation">)</span>
+<span class="token comment"># # q.push(100)</span>
+
+<span class="token keyword">print</span><span class="token punctuation">(</span>q<span class="token punctuation">.</span>__len__<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+</pre><hr>
+
+      </div>
+      
+      
+    
+    
+    
+    
+    
+    
+    
+    
+  </body></html>

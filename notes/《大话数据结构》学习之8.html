@@ -1,0 +1,707 @@
+<!DOCTYPE html>
+<!-- saved from url=(0099)file:///private/var/folders/jq/l66hzx9956qbmxs_990g1djh0000gn/T/mume2020317-90899-zawb40.dhinb.html -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+      <title>《大话数据结构》学习之8</title>
+      
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      
+      <link rel="stylesheet" href="./《大话数据结构》学习之8_files/katex.min.css">
+      
+      
+
+      
+      
+      
+      
+      
+      
+      
+
+      <style>
+      /**
+ * prism.js Github theme based on GitHub's theme.
+ * @author Sam Clarke
+ */
+code[class*="language-"],
+pre[class*="language-"] {
+  color: #333;
+  background: none;
+  font-family: Consolas, "Liberation Mono", Menlo, Courier, monospace;
+  text-align: left;
+  white-space: pre;
+  word-spacing: normal;
+  word-break: normal;
+  word-wrap: normal;
+  line-height: 1.4;
+
+  -moz-tab-size: 8;
+  -o-tab-size: 8;
+  tab-size: 8;
+
+  -webkit-hyphens: none;
+  -moz-hyphens: none;
+  -ms-hyphens: none;
+  hyphens: none;
+}
+
+/* Code blocks */
+pre[class*="language-"] {
+  padding: .8em;
+  overflow: auto;
+  /* border: 1px solid #ddd; */
+  border-radius: 3px;
+  /* background: #fff; */
+  background: #f5f5f5;
+}
+
+/* Inline code */
+:not(pre) > code[class*="language-"] {
+  padding: .1em;
+  border-radius: .3em;
+  white-space: normal;
+  background: #f5f5f5;
+}
+
+.token.comment,
+.token.blockquote {
+  color: #969896;
+}
+
+.token.cdata {
+  color: #183691;
+}
+
+.token.doctype,
+.token.punctuation,
+.token.variable,
+.token.macro.property {
+  color: #333;
+}
+
+.token.operator,
+.token.important,
+.token.keyword,
+.token.rule,
+.token.builtin {
+  color: #a71d5d;
+}
+
+.token.string,
+.token.url,
+.token.regex,
+.token.attr-value {
+  color: #183691;
+}
+
+.token.property,
+.token.number,
+.token.boolean,
+.token.entity,
+.token.atrule,
+.token.constant,
+.token.symbol,
+.token.command,
+.token.code {
+  color: #0086b3;
+}
+
+.token.tag,
+.token.selector,
+.token.prolog {
+  color: #63a35c;
+}
+
+.token.function,
+.token.namespace,
+.token.pseudo-element,
+.token.class,
+.token.class-name,
+.token.pseudo-class,
+.token.id,
+.token.url-reference .token.variable,
+.token.attr-name {
+  color: #795da3;
+}
+
+.token.entity {
+  cursor: help;
+}
+
+.token.title,
+.token.title .token.punctuation {
+  font-weight: bold;
+  color: #1d3e81;
+}
+
+.token.list {
+  color: #ed6a43;
+}
+
+.token.inserted {
+  background-color: #eaffea;
+  color: #55a532;
+}
+
+.token.deleted {
+  background-color: #ffecec;
+  color: #bd2c00;
+}
+
+.token.bold {
+  font-weight: bold;
+}
+
+.token.italic {
+  font-style: italic;
+}
+
+
+/* JSON */
+.language-json .token.property {
+  color: #183691;
+}
+
+.language-markup .token.tag .token.punctuation {
+  color: #333;
+}
+
+/* CSS */
+code.language-css,
+.language-css .token.function {
+  color: #0086b3;
+}
+
+/* YAML */
+.language-yaml .token.atrule {
+  color: #63a35c;
+}
+
+code.language-yaml {
+  color: #183691;
+}
+
+/* Ruby */
+.language-ruby .token.function {
+  color: #333;
+}
+
+/* Markdown */
+.language-markdown .token.url {
+  color: #795da3;
+}
+
+/* Makefile */
+.language-makefile .token.symbol {
+  color: #795da3;
+}
+
+.language-makefile .token.variable {
+  color: #183691;
+}
+
+.language-makefile .token.builtin {
+  color: #0086b3;
+}
+
+/* Bash */
+.language-bash .token.keyword {
+  color: #0086b3;
+}
+
+/* highlight */
+pre[data-line] {
+  position: relative;
+  padding: 1em 0 1em 3em;
+}
+pre[data-line] .line-highlight-wrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: transparent;
+  display: block;
+  width: 100%;
+}
+
+pre[data-line] .line-highlight {
+  position: absolute;
+  left: 0;
+  right: 0;
+  padding: inherit 0;
+  margin-top: 1em;
+  background: hsla(24, 20%, 50%,.08);
+  background: linear-gradient(to right, hsla(24, 20%, 50%,.1) 70%, hsla(24, 20%, 50%,0));
+  pointer-events: none;
+  line-height: inherit;
+  white-space: pre;
+}
+
+pre[data-line] .line-highlight:before, 
+pre[data-line] .line-highlight[data-end]:after {
+  content: attr(data-start);
+  position: absolute;
+  top: .4em;
+  left: .6em;
+  min-width: 1em;
+  padding: 0 .5em;
+  background-color: hsla(24, 20%, 50%,.4);
+  color: hsl(24, 20%, 95%);
+  font: bold 65%/1.5 sans-serif;
+  text-align: center;
+  vertical-align: .3em;
+  border-radius: 999px;
+  text-shadow: none;
+  box-shadow: 0 1px white;
+}
+
+pre[data-line] .line-highlight[data-end]:after {
+  content: attr(data-end);
+  top: auto;
+  bottom: .4em;
+}html body{font-family:"Helvetica Neue",Helvetica,"Segoe UI",Arial,freesans,sans-serif;font-size:16px;line-height:1.6;color:#333;background-color:#fff;overflow:initial;box-sizing:border-box;word-wrap:break-word}html body>:first-child{margin-top:0}html body h1,html body h2,html body h3,html body h4,html body h5,html body h6{line-height:1.2;margin-top:1em;margin-bottom:16px;color:#000}html body h1{font-size:2.25em;font-weight:300;padding-bottom:.3em}html body h2{font-size:1.75em;font-weight:400;padding-bottom:.3em}html body h3{font-size:1.5em;font-weight:500}html body h4{font-size:1.25em;font-weight:600}html body h5{font-size:1.1em;font-weight:600}html body h6{font-size:1em;font-weight:600}html body h1,html body h2,html body h3,html body h4,html body h5{font-weight:600}html body h5{font-size:1em}html body h6{color:#5c5c5c}html body strong{color:#000}html body del{color:#5c5c5c}html body a:not([href]){color:inherit;text-decoration:none}html body a{color:#08c;text-decoration:none}html body a:hover{color:#00a3f5;text-decoration:none}html body img{max-width:100%}html body>p{margin-top:0;margin-bottom:16px;word-wrap:break-word}html body>ul,html body>ol{margin-bottom:16px}html body ul,html body ol{padding-left:2em}html body ul.no-list,html body ol.no-list{padding:0;list-style-type:none}html body ul ul,html body ul ol,html body ol ol,html body ol ul{margin-top:0;margin-bottom:0}html body li{margin-bottom:0}html body li.task-list-item{list-style:none}html body li>p{margin-top:0;margin-bottom:0}html body .task-list-item-checkbox{margin:0 .2em .25em -1.8em;vertical-align:middle}html body .task-list-item-checkbox:hover{cursor:pointer}html body blockquote{margin:16px 0;font-size:inherit;padding:0 15px;color:#5c5c5c;border-left:4px solid #d6d6d6}html body blockquote>:first-child{margin-top:0}html body blockquote>:last-child{margin-bottom:0}html body hr{height:4px;margin:32px 0;background-color:#d6d6d6;border:0 none}html body table{margin:10px 0 15px 0;border-collapse:collapse;border-spacing:0;display:block;width:100%;overflow:auto;word-break:normal;word-break:keep-all}html body table th{font-weight:bold;color:#000}html body table td,html body table th{border:1px solid #d6d6d6;padding:6px 13px}html body dl{padding:0}html body dl dt{padding:0;margin-top:16px;font-size:1em;font-style:italic;font-weight:bold}html body dl dd{padding:0 16px;margin-bottom:16px}html body code{font-family:Menlo,Monaco,Consolas,'Courier New',monospace;font-size:.85em !important;color:#000;background-color:#f0f0f0;border-radius:3px;padding:.2em 0}html body code::before,html body code::after{letter-spacing:-0.2em;content:"\00a0"}html body pre>code{padding:0;margin:0;font-size:.85em !important;word-break:normal;white-space:pre;background:transparent;border:0}html body .highlight{margin-bottom:16px}html body .highlight pre,html body pre{padding:1em;overflow:auto;font-size:.85em !important;line-height:1.45;border:#d6d6d6;border-radius:3px}html body .highlight pre{margin-bottom:0;word-break:normal}html body pre code,html body pre tt{display:inline;max-width:initial;padding:0;margin:0;overflow:initial;line-height:inherit;word-wrap:normal;background-color:transparent;border:0}html body pre code:before,html body pre tt:before,html body pre code:after,html body pre tt:after{content:normal}html body p,html body blockquote,html body ul,html body ol,html body dl,html body pre{margin-top:0;margin-bottom:16px}html body kbd{color:#000;border:1px solid #d6d6d6;border-bottom:2px solid #c7c7c7;padding:2px 4px;background-color:#f0f0f0;border-radius:3px}@media print{html body{background-color:#fff}html body h1,html body h2,html body h3,html body h4,html body h5,html body h6{color:#000;page-break-after:avoid}html body blockquote{color:#5c5c5c}html body pre{page-break-inside:avoid}html body table{display:table}html body img{display:block;max-width:100%;max-height:100%}html body pre,html body code{word-wrap:break-word;white-space:pre}}.markdown-preview{width:100%;height:100%;box-sizing:border-box}.markdown-preview .pagebreak,.markdown-preview .newpage{page-break-before:always}.markdown-preview pre.line-numbers{position:relative;padding-left:3.8em;counter-reset:linenumber}.markdown-preview pre.line-numbers>code{position:relative}.markdown-preview pre.line-numbers .line-numbers-rows{position:absolute;pointer-events:none;top:1em;font-size:100%;left:0;width:3em;letter-spacing:-1px;border-right:1px solid #999;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}.markdown-preview pre.line-numbers .line-numbers-rows>span{pointer-events:none;display:block;counter-increment:linenumber}.markdown-preview pre.line-numbers .line-numbers-rows>span:before{content:counter(linenumber);color:#999;display:block;padding-right:.8em;text-align:right}.markdown-preview .mathjax-exps .MathJax_Display{text-align:center !important}.markdown-preview:not([for="preview"]) .code-chunk .btn-group{display:none}.markdown-preview:not([for="preview"]) .code-chunk .status{display:none}.markdown-preview:not([for="preview"]) .code-chunk .output-div{margin-bottom:16px}.scrollbar-style::-webkit-scrollbar{width:8px}.scrollbar-style::-webkit-scrollbar-track{border-radius:10px;background-color:transparent}.scrollbar-style::-webkit-scrollbar-thumb{border-radius:5px;background-color:rgba(150,150,150,0.66);border:4px solid rgba(150,150,150,0.66);background-clip:content-box}html body[for="html-export"]:not([data-presentation-mode]){position:relative;width:100%;height:100%;top:0;left:0;margin:0;padding:0;overflow:auto}html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{position:relative;top:0}@media screen and (min-width:914px){html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{padding:2em calc(50% - 457px + 2em)}}@media screen and (max-width:914px){html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{padding:2em}}@media screen and (max-width:450px){html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{font-size:14px !important;padding:1em}}@media print{html body[for="html-export"]:not([data-presentation-mode]) #sidebar-toc-btn{display:none}}html body[for="html-export"]:not([data-presentation-mode]) #sidebar-toc-btn{position:fixed;bottom:8px;left:8px;font-size:28px;cursor:pointer;color:inherit;z-index:99;width:32px;text-align:center;opacity:.4}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] #sidebar-toc-btn{opacity:1}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc{position:fixed;top:0;left:0;width:300px;height:100%;padding:32px 0 48px 0;font-size:14px;box-shadow:0 0 4px rgba(150,150,150,0.33);box-sizing:border-box;overflow:auto;background-color:inherit}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar{width:8px}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-track{border-radius:10px;background-color:transparent}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-thumb{border-radius:5px;background-color:rgba(150,150,150,0.66);border:4px solid rgba(150,150,150,0.66);background-clip:content-box}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc a{text-decoration:none}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc ul{padding:0 1.6em;margin-top:.8em}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc li{margin-bottom:.8em}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc ul{list-style-type:none}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{left:300px;width:calc(100% -  300px);padding:2em calc(50% - 457px -  150px);margin:0;box-sizing:border-box}@media screen and (max-width:1274px){html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{padding:2em}}@media screen and (max-width:450px){html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{width:100%}}html body[for="html-export"]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .markdown-preview{left:50%;transform:translateX(-50%)}html body[for="html-export"]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .md-sidebar-toc{display:none}
+/* Please visit the URL below for more information: */
+/*   https://shd101wyy.github.io/markdown-preview-enhanced/#/customize-css */
+
+      </style>
+    </head>
+    <body for="html-export">
+      <div class="mume markdown-preview  ">
+      <h1 class="mume-header" id="%E5%A4%A7%E8%AF%9D%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%AD%A6%E4%B9%A0">《大话数据结构》学习</h1>
+
+<h3 class="mume-header" id="%E5%A4%A7%E8%AF%9D%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%AD%A6%E4%B9%A0%E4%B9%8B%E5%85%AB%E6%9F%A5%E6%89%BE">《大话数据结构》学习之八：查找</h3>
+
+<hr>
+<h2 class="mume-header" id="8-%E6%9F%A5%E6%89%BE">8. 查找</h2>
+
+<h3 class="mume-header" id="81-%E5%BC%80%E5%9C%BA%E7%99%BD">8.1. 开场白</h3>
+
+<h3 class="mume-header" id="82-%E6%9F%A5%E6%89%BE%E6%A6%82%E8%AE%BA">8.2. 查找概论</h3>
+
+<p><strong>查找表（Search Table）是由同一类型的数据元素（或记录）构成的集合。</strong> 如下图所示就是一个查找表：</p>
+<p><img src="./《大话数据结构》学习之8_files/232.png" alt=""></p>
+<p>关键字（Key）是数据元素中某个数据项的值，又称为键值，用它可以标识一个数据元素，也可以标识一个记录的某个数据项（字段），称为关键码，如上图中的①和②。</p>
+<p>若关键字可以唯一地标识一个记录，称此关键字为主关键字（Primary Key）。意味着对不同的记录其主关键字均不相同。主关键字所在的数据项称为主关键码，如③和④。</p>
+<p>可以识别多个数据元素（或记录）的关键字，称为次关键字（SecondaryKey），如⑤。可以理解为是不以唯一标识一个数据元素（或记录）的关键字，对应的数据项就是次关键码。</p>
+<p>查找（Searching）是根据给定的某个值，在查找表中确定一个其关键字等于给定值的数据元素（或记录）。</p>
+<p>若表中存在这样的一个记录，则称查找是成功的，此时查找的结果给出整个记录的信息，或指示该记录在查找表中的位置。比如查找主关键码“代码”的主关键字为 “sh601398” 的记录时，得到第 2 条唯一记录。查找次关键码“涨跌额”为 “-0.11” 的记录时，得到两条记录。</p>
+<p>若表中不存在关键字等于给定值的记录，称查找不成功，此时查找的结果可给出一个“空”记录或“空”指针。</p>
+<p>查找表按照操作方式来分有两大种：</p>
+<ul>
+<li>静态查找表（Static Search Table）：只作查找操作的查找表。</li>
+</ul>
+<p>主要操作：</p>
+<ul>
+<li>
+<p>查询某个“特定的”数据元素是否在查找表中；</p>
+</li>
+<li>
+<p>检索某个“特定的”数据元素和各种属性。</p>
+</li>
+<li>
+<p>动态查找表（Dynamic Search Table）：在查找过程中同时插入查找表中不存在的数据元素，或者从查找表中删除已经存在的某个数据元素。</p>
+</li>
+</ul>
+<p>主要操作：</p>
+<ul>
+<li>查找时插入数据元素；</li>
+<li>查找时删除数据元素。</li>
+</ul>
+<p>为了提高查找的效率，我们需要专门为查找操作设置数据结构，这种面向查找操作的数据结构称为查找结构。</p>
+<h3 class="mume-header" id="83-%E9%A1%BA%E5%BA%8F%E8%A1%A8%E6%9F%A5%E6%89%BE">8.3. 顺序表查找</h3>
+
+<p><strong>顺序查找（Sequential Search）又叫线性查找，是最基本的查找技术。</strong></p>
+<p>查找过程是：</p>
+<ol>
+<li>从表中第一个（或最后一个）记录开始，逐个进行记录的关键字和给定值比较；</li>
+<li>若某个记录的关键字和给定值相等，则查找成功，找到所查的记录；</li>
+<li>如果直到最后一个（或第一个）记录，其关键字和给定值比较都不等时，则表中没有所查的记录，查找不成功。</li>
+</ol>
+<h4 class="mume-header" id="831-%E9%A1%BA%E5%BA%8F%E8%A1%A8%E6%9F%A5%E6%89%BE%E7%AE%97%E6%B3%95">8.3.1. 顺序表查找算法</h4>
+
+<p>顺序查找的算法：</p>
+<pre data-role="codeBlock" data-info="C" class="language-c"><span class="token comment">/* 顺序查找，a为数组，n为要查找的数组长度，   key为要查找的关键字 */</span>
+<span class="token keyword">int</span> <span class="token function">Sequential_Search</span><span class="token punctuation">(</span><span class="token keyword">int</span> <span class="token operator">*</span>a<span class="token punctuation">,</span> <span class="token keyword">int</span> n<span class="token punctuation">,</span> <span class="token keyword">int</span> key<span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token keyword">int</span> i<span class="token punctuation">;</span>
+    <span class="token keyword">for</span> <span class="token punctuation">(</span>i <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span> i <span class="token operator">&lt;=</span> n<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>a<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">==</span> key<span class="token punctuation">)</span>
+            <span class="token keyword">return</span> i<span class="token punctuation">;</span>
+    <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</pre><h4 class="mume-header" id="832-%E9%A1%BA%E5%BA%8F%E8%A1%A8%E6%9F%A5%E6%89%BE%E4%BC%98%E5%8C%96">8.3.2. 顺序表查找优化</h4>
+
+<p>设置一个哨兵，可以解决不需要每次让 i 与 n 作比较。</p>
+<p>改进后的顺序查找算法：</p>
+<pre data-role="codeBlock" data-info="C" class="language-c"><span class="token comment">/* 有哨兵顺序查找 */</span>
+<span class="token keyword">int</span> <span class="token function">Sequential_Search2</span><span class="token punctuation">(</span><span class="token keyword">int</span> <span class="token operator">*</span>a<span class="token punctuation">,</span> <span class="token keyword">int</span> n<span class="token punctuation">,</span> <span class="token keyword">int</span> key<span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token keyword">int</span> i<span class="token punctuation">;</span>
+    <span class="token comment">/* 设置a[0]为关键字值，我们称之为“哨兵” */</span>
+    a<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span> <span class="token operator">=</span> key<span class="token punctuation">;</span>
+    <span class="token comment">/* 循环从数组尾部开始 */</span>
+    i <span class="token operator">=</span> n<span class="token punctuation">;</span>
+    <span class="token keyword">while</span> <span class="token punctuation">(</span>a<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">!=</span> key<span class="token punctuation">)</span>
+        i<span class="token operator">--</span><span class="token punctuation">;</span>
+    <span class="token comment">/* 返回0则说明查找失败 */</span>
+    <span class="token keyword">return</span> i<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</pre><p><strong>更多内容（如对源码的解析等）详见书籍。</strong></p>
+<p>时间复杂度为 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>O</mi><mo stretchy="false">(</mo><mi>n</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">O(n)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord mathdefault">n</span><span class="mclose">)</span></span></span></span>。</p>
+<p>顺序查找技术 n 很大时，查找效率极为低下，不过优点是算法非常简单，对静态查找表的记录没有任何要求，在一些小型数据的查找时，是可以适用的。</p>
+<p>由于查找概率的不同，将容易查找到的记录放在前面，不常用的记录放置在后面，效率可以大幅提高。</p>
+<h3 class="mume-header" id="84-%E6%9C%89%E5%BA%8F%E8%A1%A8%E6%9F%A5%E6%89%BE">8.4. 有序表查找</h3>
+
+<h4 class="mume-header" id="841-%E6%8A%98%E5%8D%8A%E6%9F%A5%E6%89%BE">8.4.1. 折半查找</h4>
+
+<p><strong>折半查找（Binary Search）技术</strong>，又称为二分查找。前提是线性表中的记录必须是关键码有序（通常从小到大有序），线性表必须采用顺序存储。</p>
+<p><strong>折半查找的基本思想：</strong> 在有序表中，取中间记录作为比较对象，若给定值与中间记录的关键字相等，则查找成功；若给定值小于中间记录的关键字，则在中间记录的左半区继续查找；若给定值大于中间记录的关键字，则在中间记录的右半区继续查找。不断重复上述过程，直到查找成功，或所有查找区域无记录，查找失败为止。</p>
+<p>有序表数组 <code>{0,1,16,24,35,47,59,62,73,88,99}</code>，除 0 下标外共 10 个数字。对它进行查找是否存在 62 这个数。</p>
+<pre data-role="codeBlock" data-info="C" class="language-c"><span class="token comment">/* 折半查找 */</span>
+<span class="token keyword">int</span> <span class="token function">Binary_Search</span><span class="token punctuation">(</span><span class="token keyword">int</span> <span class="token operator">*</span>a<span class="token punctuation">,</span> <span class="token keyword">int</span> n<span class="token punctuation">,</span> <span class="token keyword">int</span> key<span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token keyword">int</span> low<span class="token punctuation">,</span> high<span class="token punctuation">,</span> mid<span class="token punctuation">;</span>
+    <span class="token comment">/* 定义最低下标为记录首位 */</span>
+    low <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span>
+    <span class="token comment">/* 定义最高下标为记录末位 */</span>
+    high <span class="token operator">=</span> n<span class="token punctuation">;</span>
+    <span class="token keyword">while</span> <span class="token punctuation">(</span>low <span class="token operator">&lt;=</span> high<span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        <span class="token comment">/* 折半 */</span>
+        mid <span class="token operator">=</span> <span class="token punctuation">(</span>low <span class="token operator">+</span> high<span class="token punctuation">)</span> <span class="token operator">/</span> <span class="token number">2</span><span class="token punctuation">;</span>
+        <span class="token comment">/* 若查找值比中值小 */</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>key <span class="token operator">&lt;</span> a<span class="token punctuation">[</span>mid<span class="token punctuation">]</span><span class="token punctuation">)</span>
+            <span class="token comment">/* 最高下标调整到中位下标小一位 */</span>
+            high <span class="token operator">=</span> mid <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">;</span>
+        <span class="token comment">/* 若查找值比中值大 */</span>
+        <span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span>key <span class="token operator">&gt;</span> a<span class="token punctuation">[</span>mid<span class="token punctuation">]</span><span class="token punctuation">)</span>
+            <span class="token comment">/* 最低下标调整到中位下标大一位 */</span>
+            low <span class="token operator">=</span> mid <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">;</span>
+        <span class="token keyword">else</span>
+            <span class="token comment">/* 若相等则说明mid即为查找到的位置 */</span>
+            <span class="token keyword">return</span> mid<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+</pre><p>将这个数组的查找过程绘制成一棵二叉树，如果查找的关键字不是中间记录 47 的话，折半查找等于是把静态有序查找表分成了两棵子树，即查找结果只需要找其中的一半数据记录即可，等于工作量少了一半，然后继续折半查找。</p>
+<p><img src="./《大话数据结构》学习之8_files/233.png" alt=""></p>
+<p>折半算法的时间复杂度为 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>O</mi><mo stretchy="false">(</mo><mi>log</mi><mo>⁡</mo><mi>n</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">O(\log n)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mop">lo<span style="margin-right:0.01389em;">g</span></span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault">n</span><span class="mclose">)</span></span></span></span>，远远好于顺序查找的 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>O</mi><mo stretchy="false">(</mo><mi>n</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">O(n)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord mathdefault">n</span><span class="mclose">)</span></span></span></span>。</p>
+<p>不过由于折半查找的前提条件是需要有序表顺序存储，对于静态查找表，一次排序后不再变化，这样的算法已经比较好了。但对于需要频繁执行插入或删除操作的数据集来说，维护有序的排序会带来不小的工作量，那就不建议使用。</p>
+<h4 class="mume-header" id="842-%E6%8F%92%E5%80%BC%E6%9F%A5%E6%89%BE">8.4.2. 插值查找</h4>
+
+<p>折半查找代码改进为：</p>
+<p><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">mid</mi><mo>⁡</mo><mo>=</mo><mi>l</mi><mi>o</mi><mi>w</mi><mo>+</mo><mfrac><mrow><mi>k</mi><mi>e</mi><mi>y</mi><mo>−</mo><mi>a</mi><mo stretchy="false">[</mo><mi>l</mi><mi>o</mi><mi>w</mi><mo stretchy="false">]</mo></mrow><mrow><mi>a</mi><mo stretchy="false">[</mo><mi>h</mi><mi>i</mi><mi>g</mi><mi>h</mi><mo stretchy="false">]</mo><mo>−</mo><mi>a</mi><mo stretchy="false">[</mo><mi>l</mi><mi>o</mi><mi>w</mi><mo stretchy="false">]</mo></mrow></mfrac><mo stretchy="false">(</mo><mi>h</mi><mi>i</mi><mi>g</mi><mi>h</mi><mo>−</mo><mi>l</mi><mi>o</mi><mi>w</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">\operatorname{mid}=l o w+\frac{k e y-a[l o w]}{a[h i g h]-a[l o w]}(h i g h-l o w)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mop"><span class="mord mathrm">m</span><span class="mord mathrm">i</span><span class="mord mathrm">d</span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.77777em;vertical-align:-0.08333em;"></span><span class="mord mathdefault" style="margin-right:0.01968em;">l</span><span class="mord mathdefault">o</span><span class="mord mathdefault" style="margin-right:0.02691em;">w</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:2.363em;vertical-align:-0.936em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.427em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathdefault">a</span><span class="mopen">[</span><span class="mord mathdefault">h</span><span class="mord mathdefault">i</span><span class="mord mathdefault" style="margin-right:0.03588em;">g</span><span class="mord mathdefault">h</span><span class="mclose">]</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mord mathdefault">a</span><span class="mopen">[</span><span class="mord mathdefault" style="margin-right:0.01968em;">l</span><span class="mord mathdefault">o</span><span class="mord mathdefault" style="margin-right:0.02691em;">w</span><span class="mclose">]</span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.03148em;">k</span><span class="mord mathdefault">e</span><span class="mord mathdefault" style="margin-right:0.03588em;">y</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mord mathdefault">a</span><span class="mopen">[</span><span class="mord mathdefault" style="margin-right:0.01968em;">l</span><span class="mord mathdefault">o</span><span class="mord mathdefault" style="margin-right:0.02691em;">w</span><span class="mclose">]</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.936em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mopen">(</span><span class="mord mathdefault">h</span><span class="mord mathdefault">i</span><span class="mord mathdefault" style="margin-right:0.03588em;">g</span><span class="mord mathdefault">h</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.01968em;">l</span><span class="mord mathdefault">o</span><span class="mord mathdefault" style="margin-right:0.02691em;">w</span><span class="mclose">)</span></span></span></span></span></p>
+<p>折半查找算法的代码中更改如下：</p>
+<pre data-role="codeBlock" data-info="C" class="language-c">mid<span class="token operator">=</span>low<span class="token operator">+</span> <span class="token punctuation">(</span>high<span class="token operator">-</span>low<span class="token punctuation">)</span><span class="token operator">*</span><span class="token punctuation">(</span>key<span class="token operator">-</span>a<span class="token punctuation">[</span>low<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token operator">/</span><span class="token punctuation">(</span>a<span class="token punctuation">[</span>high<span class="token punctuation">]</span><span class="token operator">-</span>a<span class="token punctuation">[</span>low<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">/* 插值 */</span>
+</pre><p>就得到了另一种有序表查找算法，插值查找法。</p>
+<p>插值查找（Interpolation Search）是根据要查找的关键字 key 与查找表中最大最小记录的关键字比较后的查找方法，其核心就在于插值的计算公式 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mfrac><mrow><mi>k</mi><mi>e</mi><mi>y</mi><mo>−</mo><mi>a</mi><mo stretchy="false">[</mo><mi>l</mi><mi>o</mi><mi>w</mi><mo stretchy="false">]</mo></mrow><mrow><mi>a</mi><mo stretchy="false">[</mo><mi>h</mi><mi>i</mi><mi>g</mi><mi>h</mi><mo stretchy="false">]</mo><mo>−</mo><mi>a</mi><mo stretchy="false">[</mo><mi>l</mi><mi>o</mi><mi>w</mi><mo stretchy="false">]</mo></mrow></mfrac></mrow><annotation encoding="application/x-tex">\frac{k e y-a[l o w]}{a[h i g h]-a[l o w]}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.53em;vertical-align:-0.52em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.01em;"><span style="top:-2.655em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">a</span><span class="mopen mtight">[</span><span class="mord mathdefault mtight">h</span><span class="mord mathdefault mtight">i</span><span class="mord mathdefault mtight" style="margin-right:0.03588em;">g</span><span class="mord mathdefault mtight">h</span><span class="mclose mtight">]</span><span class="mbin mtight">−</span><span class="mord mathdefault mtight">a</span><span class="mopen mtight">[</span><span class="mord mathdefault mtight" style="margin-right:0.01968em;">l</span><span class="mord mathdefault mtight">o</span><span class="mord mathdefault mtight" style="margin-right:0.02691em;">w</span><span class="mclose mtight">]</span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.485em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight" style="margin-right:0.03148em;">k</span><span class="mord mathdefault mtight">e</span><span class="mord mathdefault mtight" style="margin-right:0.03588em;">y</span><span class="mbin mtight">−</span><span class="mord mathdefault mtight">a</span><span class="mopen mtight">[</span><span class="mord mathdefault mtight" style="margin-right:0.01968em;">l</span><span class="mord mathdefault mtight">o</span><span class="mord mathdefault mtight" style="margin-right:0.02691em;">w</span><span class="mclose mtight">]</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.52em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span>。时间复杂度是 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>O</mi><mo stretchy="false">(</mo><mi>l</mi><mi>o</mi><mi>g</mi><mi>n</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">O(logn)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord mathdefault" style="margin-right:0.01968em;">l</span><span class="mord mathdefault">o</span><span class="mord mathdefault" style="margin-right:0.03588em;">g</span><span class="mord mathdefault">n</span><span class="mclose">)</span></span></span></span>，对于表长较大，关键字分布又比较均匀的查找表，插值查找算法的平均性能比折半查找要好得多。反之，如果数组中数据的分布极端的不均匀，用插值查找未必是很合适的选择。</p>
+<h4 class="mume-header" id="843-%E6%96%90%E6%B3%A2%E9%82%A3%E5%A5%91%E6%9F%A5%E6%89%BE">8.4.3. 斐波那契查找</h4>
+
+<p><strong>更多内容详见书籍。</strong></p>
+<p>时间复杂度为 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>O</mi><mo stretchy="false">(</mo><mi>l</mi><mi>o</mi><mi>g</mi><mi>n</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">O(logn)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord mathdefault" style="margin-right:0.01968em;">l</span><span class="mord mathdefault">o</span><span class="mord mathdefault" style="margin-right:0.03588em;">g</span><span class="mord mathdefault">n</span><span class="mclose">)</span></span></span></span>，就平均性能来说，斐波那契查找要优于折半查找。如果是最坏情况，比如这里 key=1，那么始终都处于左侧长半区在查找，则查找效率要低于折半查找。</p>
+<p>折半查找是进行加法与除法运算：</p>
+<p><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>m</mi><mi>i</mi><mi>d</mi><mo>=</mo><mfrac><mrow><mi>l</mi><mi>o</mi><mi>w</mi><mo>+</mo><mi>h</mi><mi>i</mi><mi>g</mi><mi>h</mi></mrow><mn>2</mn></mfrac></mrow><annotation encoding="application/x-tex">m i d=\frac{l o w+h i g h}{2}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathdefault">m</span><span class="mord mathdefault">i</span><span class="mord mathdefault">d</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:2.0574399999999997em;vertical-align:-0.686em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.3714399999999998em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">2</span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.01968em;">l</span><span class="mord mathdefault">o</span><span class="mord mathdefault" style="margin-right:0.02691em;">w</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mord mathdefault">h</span><span class="mord mathdefault">i</span><span class="mord mathdefault" style="margin-right:0.03588em;">g</span><span class="mord mathdefault">h</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.686em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span></span></p>
+<p>插值查找进行复杂的四则运算：</p>
+<p><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>m</mi><mi>i</mi><mi>d</mi><mo>=</mo><mi>l</mi><mi>o</mi><mi>w</mi><mo>+</mo><mfrac><mrow><mi>k</mi><mi>e</mi><mi>y</mi><mo>−</mo><mi>a</mi><mo stretchy="false">[</mo><mi>l</mi><mi>o</mi><mi>w</mi><mo stretchy="false">]</mo></mrow><mrow><mi>a</mi><mo stretchy="false">[</mo><mi>h</mi><mi>i</mi><mi>g</mi><mi>h</mi><mo stretchy="false">]</mo><mo>−</mo><mi>a</mi><mo stretchy="false">[</mo><mi>l</mi><mi>o</mi><mi>w</mi><mo stretchy="false">]</mo></mrow></mfrac><mo stretchy="false">(</mo><mi>h</mi><mi>i</mi><mi>g</mi><mi>h</mi><mo>−</mo><mi>l</mi><mi>o</mi><mi>w</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">m i d=l o w+\frac{k e y-a[l o w]}{a[h i g h]-a[l o w]}(h i g h-l o w)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathdefault">m</span><span class="mord mathdefault">i</span><span class="mord mathdefault">d</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.77777em;vertical-align:-0.08333em;"></span><span class="mord mathdefault" style="margin-right:0.01968em;">l</span><span class="mord mathdefault">o</span><span class="mord mathdefault" style="margin-right:0.02691em;">w</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:2.363em;vertical-align:-0.936em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.427em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathdefault">a</span><span class="mopen">[</span><span class="mord mathdefault">h</span><span class="mord mathdefault">i</span><span class="mord mathdefault" style="margin-right:0.03588em;">g</span><span class="mord mathdefault">h</span><span class="mclose">]</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mord mathdefault">a</span><span class="mopen">[</span><span class="mord mathdefault" style="margin-right:0.01968em;">l</span><span class="mord mathdefault">o</span><span class="mord mathdefault" style="margin-right:0.02691em;">w</span><span class="mclose">]</span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.03148em;">k</span><span class="mord mathdefault">e</span><span class="mord mathdefault" style="margin-right:0.03588em;">y</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mord mathdefault">a</span><span class="mopen">[</span><span class="mord mathdefault" style="margin-right:0.01968em;">l</span><span class="mord mathdefault">o</span><span class="mord mathdefault" style="margin-right:0.02691em;">w</span><span class="mclose">]</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.936em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mopen">(</span><span class="mord mathdefault">h</span><span class="mord mathdefault">i</span><span class="mord mathdefault" style="margin-right:0.03588em;">g</span><span class="mord mathdefault">h</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.01968em;">l</span><span class="mord mathdefault">o</span><span class="mord mathdefault" style="margin-right:0.02691em;">w</span><span class="mclose">)</span></span></span></span></span></p>
+<p>斐波那契查找是最简单加减法运算：</p>
+<p><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>m</mi><mi>i</mi><mi>d</mi><mo>=</mo><mi>l</mi><mi>o</mi><mi>w</mi><mo>+</mo><mi>F</mi><mo stretchy="false">[</mo><mi>k</mi><mo>−</mo><mn>1</mn><mo stretchy="false">]</mo><mo>−</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">m i d=l o w+F[k-1]-1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathdefault">m</span><span class="mord mathdefault">i</span><span class="mord mathdefault">d</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.77777em;vertical-align:-0.08333em;"></span><span class="mord mathdefault" style="margin-right:0.01968em;">l</span><span class="mord mathdefault">o</span><span class="mord mathdefault" style="margin-right:0.02691em;">w</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.13889em;">F</span><span class="mopen">[</span><span class="mord mathdefault" style="margin-right:0.03148em;">k</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">1</span><span class="mclose">]</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span></span></span></span></span></p>
+<p>在海量数据的查找过程中，这种细微的差别可能会影响最终的查找效率。三种有序表的查找本质上是分隔点的选择不同，各有优劣。</p>
+<h3 class="mume-header" id="85-%E7%BA%BF%E6%80%A7%E7%B4%A2%E5%BC%95%E6%9F%A5%E6%89%BE">8.5. 线性索引查找</h3>
+
+<p>数据结构的最终目的是提高数据的处理速度，索引是为了加快查找速度而设计的一种数据结构。 <strong>索引是把一个关键字与它对应的记录相关联的过程</strong>，一个索引由若干个索引项构成，每个索引项至少应包含关键字和其对应的记录在存储器中的位置等信息。</p>
+<p>索引按照结构可以分为线性索引、树形索引和多级索引。这里只介绍线性索引技术。<strong>所谓线性索引就是将索引项集合组织为线性结构，也称为索引表。</strong> 我们重点介绍三种线性索引：稠密索引、分块索引和倒排索引。</p>
+<h4 class="mume-header" id="851-%E7%A8%A0%E5%AF%86%E7%B4%A2%E5%BC%95">8.5.1. 稠密索引</h4>
+
+<p>稠密索引是指在线性索引中，将数据集中的每个记录对应一个索引项。</p>
+<p><img src="./《大话数据结构》学习之8_files/234.png" alt=""></p>
+<p>对于稠密索引这个索引表来说，索引项一定是按照关键码有序的排列。</p>
+<p>索引项有序也就意味着，我们查找关键字时，可以用到折半、插值、斐波那契等有序查找算法，大大提高了效率。</p>
+<p>这显然是稠密索引的优点，但是如果数据集非常大，比如上亿，那也就意味着索引也得同样的数据集长度规模，对于内存有限的计算机来说，可能就需要反复去访问磁盘，查找性能反而大大下降了。</p>
+<h4 class="mume-header" id="852-%E5%88%86%E5%9D%97%E7%B4%A2%E5%BC%95">8.5.2. 分块索引</h4>
+
+<p>稠密索引因为索引项与数据集的记录个数相同，所以空间代价很大。为了减少索引项的个数，我们可以对数据集进行分块，使其分块有序，然后再对每一块建立一个索引项，从而减少索引项的个数。</p>
+<p>分块有序，是把数据集的记录分成了若干块，并且这些块需要满足两个条件：</p>
+<ul>
+<li>块内无序，即每一块内的记录不要求有序；</li>
+<li>块间有序，例如，要求第二块所有记录的关键字均要大于第一块中所有记录的关键字，第三块的所有记录的关键字均要大于第二块的所有记录关键字……只有块间有序，才有可能在查找时带来效率。</li>
+</ul>
+<p>对于分块有序的数据集，将每块对应一个索引项，这种索引方法叫做分块索引。</p>
+<p>如下图所示，分块索引的索引项结构分三个数据项：</p>
+<ul>
+<li>最大关键码，存储每一块中的最大关键字，使得在它之后的下一块中的最小关键字也能比这一块最大的关键字要大；</li>
+<li>存储了块中的记录个数，以便于循环时使用；</li>
+<li>用于指向块首数据元素的指针，便于开始对这一块中记录进行遍历。</li>
+</ul>
+<p><img src="./《大话数据结构》学习之8_files/235.png" alt=""></p>
+<p>在分块索引表中查找，分两步进行：</p>
+<ol>
+<li>在分块索引表中查找要查关键字所在的块。由于分块索引表是块间有序的，很容易利用折半、插值等算法得到结果。上图的数据集中查找 62，由 57&lt;62&lt;96 得到 62 在第三个块中。</li>
+<li>根据块首指针找到相应的块，并在块中顺序查找关键码。因为块中可以是无序的，因此只能顺序查找。</li>
+</ol>
+<p>分块索引的效率比之顺序查找的 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>O</mi><mo stretchy="false">(</mo><mi>n</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">O(n)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord mathdefault">n</span><span class="mclose">)</span></span></span></span> 是高了不少，不过显然它与折半查找的 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>O</mi><mo stretchy="false">(</mo><mi>l</mi><mi>o</mi><mi>g</mi><mi>n</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">O(logn)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord mathdefault" style="margin-right:0.01968em;">l</span><span class="mord mathdefault">o</span><span class="mord mathdefault" style="margin-right:0.03588em;">g</span><span class="mord mathdefault">n</span><span class="mclose">)</span></span></span></span> 相比还有不小的差距。因此在确定所在块的过程中，由于块间有序，所以可以应用折半、插值等手段来提高效率。</p>
+<p>总的来说，分块索引在兼顾了对细分块不需要有序的情况下，大大增加了整体查找的速度，所以普遍被用于数据库查找等技术的应用当中。</p>
+<h4 class="mume-header" id="853-%E5%80%92%E6%8E%92%E7%B4%A2%E5%BC%95">8.5.3. 倒排索引</h4>
+
+<p>索引项的通用结构是：</p>
+<ul>
+<li>次关键码，如“英文单词”；</li>
+<li>记录号表，如“文章编号”。</li>
+</ul>
+<p><img src="./《大话数据结构》学习之8_files/236.png" alt=""></p>
+<p>其中记录号表存储具有相同次关键字的所有记录的记录号（可以是指向记录的指针或者是该记录的主关键字）。这样的索引方法就是倒排索引（in-verted index）。倒排索引源于实际应用中需要根据属性（或字段、次关键码）的值来查找记录。这种索引表中的每一项都包括一个属性值和具有该属性值的各记录的地址。由于不是由记录来确定属性值，而是由属性值来确定记录的位置，因而称为倒排索引。</p>
+<h3 class="mume-header" id="86-%E4%BA%8C%E5%8F%89%E6%8E%92%E5%BA%8F%E6%A0%91">8.6. 二叉排序树</h3>
+
+<p><img src="./《大话数据结构》学习之8_files/237.png" alt=""></p>
+<p><img src="./《大话数据结构》学习之8_files/238.png" alt=""></p>
+<p><img src="./《大话数据结构》学习之8_files/239.png" alt=""></p>
+<p><img src="./《大话数据结构》学习之8_files/240.png" alt=""></p>
+<h3 class="mume-header" id="861-%E4%BA%8C%E5%8F%89%E6%8E%92%E5%BA%8F%E6%A0%91%E6%9F%A5%E6%89%BE%E6%93%8D%E4%BD%9C">8.6.1. 二叉排序树查找操作</h3>
+
+<p>首先提供一个二叉树的结构：</p>
+<pre data-role="codeBlock" data-info="C" class="language-c"><span class="token comment">/* 二叉树的二叉链表结点结构定义 */</span>
+<span class="token keyword">typedef</span>  <span class="token keyword">struct</span> BiTNode <span class="token comment">/* 结点结构 */</span>
+<span class="token punctuation">{</span>
+    <span class="token keyword">int</span> data<span class="token punctuation">;</span>   <span class="token comment">/* 结点数据 */</span>
+    <span class="token keyword">struct</span> BiTNode <span class="token operator">*</span>lchild<span class="token punctuation">,</span> <span class="token operator">*</span>rchild<span class="token punctuation">;</span>    <span class="token comment">/* 左右孩子指针 */</span>
+<span class="token punctuation">}</span> BiTNode<span class="token punctuation">,</span> <span class="token operator">*</span>BiTree<span class="token punctuation">;</span>
+</pre><p>二叉排序树的查找实现：</p>
+<pre data-role="codeBlock" data-info="C" class="language-c"><span class="token comment">/* 递归查找二叉排序树T中是否存在key, */</span>
+<span class="token comment">/* 指针f指向T的双亲，其初始调用值为NULL */</span>
+<span class="token comment">/* 若查找成功，则指针p指向该数据元素结点，并返回TRUE */</span>
+<span class="token comment">/* 否则指针p指向查找路径上访问的最后一个结点并返回FALSE */</span>
+Status <span class="token function">SearchBST</span><span class="token punctuation">(</span>BiTree T<span class="token punctuation">,</span> <span class="token keyword">int</span> key<span class="token punctuation">,</span> BiTree f<span class="token punctuation">,</span> BiTree <span class="token operator">*</span>p<span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>T<span class="token punctuation">)</span> <span class="token comment">/*  查找不成功 */</span>
+    <span class="token punctuation">{</span>
+        <span class="token operator">*</span>p <span class="token operator">=</span> f<span class="token punctuation">;</span>
+        <span class="token keyword">return</span> FALSE<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span>key<span class="token operator">==</span>T<span class="token operator">-&gt;</span>data<span class="token punctuation">)</span> <span class="token comment">/*  查找成功 */</span>
+    <span class="token punctuation">{</span>
+        <span class="token operator">*</span>p <span class="token operator">=</span> T<span class="token punctuation">;</span>
+        <span class="token keyword">return</span> TRUE<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span>key<span class="token operator">&lt;</span>T<span class="token operator">-&gt;</span>data<span class="token punctuation">)</span>
+        <span class="token keyword">return</span> <span class="token function">SearchBST</span><span class="token punctuation">(</span>T<span class="token operator">-&gt;</span>lchild<span class="token punctuation">,</span> key<span class="token punctuation">,</span> T<span class="token punctuation">,</span> p<span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment">/*  在左子树中继续查找 */</span>
+    <span class="token keyword">else</span>
+        <span class="token keyword">return</span> <span class="token function">SearchBST</span><span class="token punctuation">(</span>T<span class="token operator">-&gt;</span>rchild<span class="token punctuation">,</span> key<span class="token punctuation">,</span> T<span class="token punctuation">,</span> p<span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment">/*  在右子树中继续查找 */</span>
+<span class="token punctuation">}</span>
+</pre><p><strong>更多内容（如源码解析等）详见书籍。</strong></p>
+<h4 class="mume-header" id="862-%E4%BA%8C%E5%8F%89%E6%8E%92%E5%BA%8F%E6%A0%91%E6%8F%92%E5%85%A5%E6%93%8D%E4%BD%9C">8.6.2. 二叉排序树插入操作</h4>
+
+<p><strong>更多内容详见书籍。</strong></p>
+<h4 class="mume-header" id="863-%E4%BA%8C%E5%8F%89%E6%8E%92%E5%BA%8F%E6%A0%91%E5%88%A0%E9%99%A4%E6%93%8D%E4%BD%9C">8.6.3. 二叉排序树删除操作</h4>
+
+<p><strong>更多内容详见书籍。</strong></p>
+<h4 class="mume-header" id="864-%E4%BA%8C%E5%8F%89%E6%8E%92%E5%BA%8F%E6%A0%91%E6%80%BB%E7%BB%93">8.6.4. 二叉排序树总结</h4>
+
+<p>二叉排序树是以链接的方式存储，保持了链接存储结构在执行插入或删除操作时不用移动元素的优点，只要找到合适的插入和删除位置后，仅需修改链接指针即可。</p>
+<p>对于二叉排序树的查找，走的就是从根结点到要查找的结点的路径，其比较次数等于给定值的结点在二叉排序树的层数。最少为 1 次，即根结点就是要找的结点，最多不超过树的深度。</p>
+<p>如果我们希望对一个集合按照二叉排序树查找最好是把它构建成一棵平衡的二叉排序树。这样我们就引出另一个问题，如何让二叉排序树平衡的问题。</p>
+<h3 class="mume-header" id="87-%E5%B9%B3%E8%A1%A1%E4%BA%8C%E5%8F%89%E6%A0%91avl%E6%A0%91">8.7. 平衡二叉树（AVL树）</h3>
+
+<p>平衡二叉树（Self-Balancing Binary SearchTree或Height-Balanced Binary Search Tree），是一种二叉排序树，其中每一个节点的左子树和右子树的高度差至多等于 1。</p>
+<p>高度平衡的二叉排序树：</p>
+<ul>
+<li>要么它是一棵空树；</li>
+<li>要么它的左子树和右子树都是平衡二叉树，且左子树和右子树的深度之差的绝对值不超过 1。</li>
+</ul>
+<p>二叉树上结点的左子树深度减去右子树深度的值称为平衡因子BF（Balance Factor），平衡二叉树上所有结点的平衡因子只可能是 -1、0 和 1。只要二叉树上有一个结点的平衡因子的绝对值大于 1，则该二叉树就是不平衡的。</p>
+<p><img src="./《大话数据结构》学习之8_files/241.png" alt=""></p>
+<p><img src="./《大话数据结构》学习之8_files/242.png" alt=""></p>
+<p>距离插入结点最近的，且平衡因子的绝对值大于 1 的结点为根的子树，我们称为最小不平衡子树。如下图所示，当新插入结点 37 时，距离它最近的平衡因子绝对值超过 1 的结点是 58（即它的左子树高度 2 减去右子树高度 0），所以从 58 开始以下的子树为最小不平衡子树。</p>
+<p><img src="./《大话数据结构》学习之8_files/243.png" alt=""></p>
+<h4 class="mume-header" id="871-%E5%B9%B3%E8%A1%A1%E4%BA%8C%E5%8F%89%E6%A0%91%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86">8.7.1. 平衡二叉树实现原理</h4>
+
+<p>平衡二叉树构建的基本思想就是在构建二叉排序树的过程中，每当插入一个结点时，先检查是否因插入而破坏了树的平衡性，若是，则找出最小不平衡子树。在保持二叉排序树特性的前提下，调整最小不平衡子树中各结点之间的链接关系，进行相应的旋转，使之成为新的平衡子树。</p>
+<p><img src="./《大话数据结构》学习之8_files/244.png" alt=""></p>
+<p><img src="./《大话数据结构》学习之8_files/245.png" alt=""></p>
+<p><img src="./《大话数据结构》学习之8_files/246.png" alt=""></p>
+<p><img src="./《大话数据结构》学习之8_files/247.png" alt=""></p>
+<p><img src="./《大话数据结构》学习之8_files/248.png" alt=""></p>
+<p><img src="./《大话数据结构》学习之8_files/249.png" alt=""></p>
+<p><img src="./《大话数据结构》学习之8_files/250.png" alt=""></p>
+<p><img src="./《大话数据结构》学习之8_files/251.png" alt=""></p>
+<h4 class="mume-header" id="872-%E5%B9%B3%E8%A1%A1%E4%BA%8C%E5%8F%89%E6%A0%91%E5%AE%9E%E7%8E%B0%E7%AE%97%E6%B3%95">8.7.2. 平衡二叉树实现算法</h4>
+
+<p><strong>更多内容详见书籍。</strong></p>
+<p>如果我们需要查找的集合本身没有顺序，在频繁査找的同时也需要经常的插入和删除操作，显然我们需要构建一棵二叉排序树，但是不平衡的二叉排序树，查找效率是非常低的，因此我们需要在构建时，就让这棵二叉排序树是平衡二叉树，此时我们的查找时间复杂度就为 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>O</mi><mo stretchy="false">(</mo><mi>l</mi><mi>o</mi><mi>g</mi><mi>n</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">O(logn)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord mathdefault" style="margin-right:0.01968em;">l</span><span class="mord mathdefault">o</span><span class="mord mathdefault" style="margin-right:0.03588em;">g</span><span class="mord mathdefault">n</span><span class="mclose">)</span></span></span></span>，而插入和删除也为 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>O</mi><mo stretchy="false">(</mo><mi>l</mi><mi>o</mi><mi>g</mi><mi>n</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">O(logn)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord mathdefault" style="margin-right:0.01968em;">l</span><span class="mord mathdefault">o</span><span class="mord mathdefault" style="margin-right:0.03588em;">g</span><span class="mord mathdefault">n</span><span class="mclose">)</span></span></span></span>。 这显然是比较理想的一 种动态査找表算法。</p>
+<h3 class="mume-header" id="88-%E5%A4%9A%E8%B7%AF%E6%9F%A5%E6%89%BE%E6%A0%91b%E6%A0%91">8.8. 多路查找树（B树）</h3>
+
+<p>多路查找树（muitl-way search tree），其每一个结点的孩子数可以多于两个，且每一个结点处可以存储多个元素。由于是查找树，所有元素之间存在某种特定的排序关系。</p>
+<p>在这里，每一个结点可以存储多少个元素，以及它的孩子数的多少是非常关键的。为此，我们讲解它的 4 种特殊形式：2-3树、2-3-4树、B 树和 B+ 树。</p>
+<h4 class="mume-header" id="881-2-3%E6%A0%91">8.8.1. 2-3树</h4>
+
+<p><strong>2-3树是每一个结点都具有两个孩子（2 结点）或三个孩子（3结 点）的一棵多路查找树。</strong></p>
+<p><strong>一个 2 结点包含一个元素和两个孩子（或没有孩子）</strong>，左子树包含的元素小于该元素，右子树包含的元素大于该元素。这个 2 结点要么没有孩子，要有就有两个，不能只有一个孩子。</p>
+<p><strong>一个 3 结点包含一小一大两个元素和三个孩子（或没有孩子）</strong>，一个 3 结点要么没有孩子，要么具有 3 个孩子。如果某个 3 结点有孩子的话，左子树包含小于较小元素的元素，右子树包含大于较大元素的元素，中间子树包含介于两元素之间的元素。</p>
+<p>并且 2-3树中所有的叶子都在同一层次上。</p>
+<p>如下图所示就是一棵有效的 2-3树：</p>
+<p><img src="./《大话数据结构》学习之8_files/252.png" alt=""></p>
+<p>事实上，2-3树复杂的地方就在于新结点的插入和已有结点的删除。毕竟，每个结点可能是 2 结点也可能是 3 结点，要保证所有叶子都在同一层次，是需要进行一番复杂操作的。</p>
+<ol>
+<li>2-3树的插入实现</li>
+</ol>
+<p><img src="./《大话数据结构》学习之8_files/253.png" alt=""></p>
+<p><img src="./《大话数据结构》学习之8_files/254.png" alt=""></p>
+<p><img src="./《大话数据结构》学习之8_files/255.png" alt=""></p>
+<p><img src="./《大话数据结构》学习之8_files/256.png" alt=""></p>
+<ol start="2">
+<li>2-3树的删除实现</li>
+</ol>
+<p><img src="./《大话数据结构》学习之8_files/257.png" alt=""></p>
+<p><img src="./《大话数据结构》学习之8_files/258.png" alt=""></p>
+<p><img src="./《大话数据结构》学习之8_files/259.png" alt=""></p>
+<p><img src="./《大话数据结构》学习之8_files/260.png" alt=""></p>
+<h4 class="mume-header" id="882-2-3-4%E6%A0%91">8.8.2. 2-3-4树</h4>
+
+<p>2-3-4树是 2-3树的概念扩展，包括了 4结点的使用。一个 4结点包含小中大三个元素和四个孩子（或没有孩子），一个 4结点要么没有孩子，要么具有 4 个孩子。如果某个 4结点有孩子的话，左子树包含小于最小元素的元素；第二子树包含大于最小元素，小于第二元素的元素；第三子树包含大于第二元素，小于最大元素的元素；右子树包含大于最大元素的元素。</p>
+<p><img src="./《大话数据结构》学习之8_files/261.png" alt=""></p>
+<h4 class="mume-header" id="883-b%E6%A0%91">8.8.3. B树</h4>
+
+<p><strong>更多内容详见书籍。</strong></p>
+<h4 class="mume-header" id="884-b%E6%A0%91">8.8.4. B+树</h4>
+
+<p><strong>更多内容详见书籍。</strong></p>
+<h3 class="mume-header" id="89-%E6%95%A3%E5%88%97%E8%A1%A8%E6%9F%A5%E6%89%BE%E5%93%88%E5%B8%8C%E8%A1%A8%E6%A6%82%E8%BF%B0">8.9. 散列表查找（哈希表）概述</h3>
+
+<h4 class="mume-header" id="891-%E6%95%A3%E5%88%97%E8%A1%A8%E6%9F%A5%E6%89%BE%E5%AE%9A%E4%B9%89">8.9.1. 散列表查找定义</h4>
+
+<p>通过某个函数 f，使得：<code>存储位置=f(关键字)</code>。</p>
+<p>这样我们就可以通过查找关键字<strong>不需要比较</strong>就可获得需要的记录的存储位置。</p>
+<p>散列技术是在记录的存储位置和它的关键字之间建立一个确定的对应关系 f，使得每个关键字 key 对应一个存储位置 f（key）。查找时，根据这个确定的对应关系找到给定值 key 的映射 f(key)，若查找集合中存在这个记录，则必定在 f(key) 的位置上。</p>
+<p>这里我们把这种对应关系 f 称为散列函数，又称为哈希（Hash）函数。采用散列技术将记录存储在一块连续的存储空间中，这块连续存储空间称为散列表或哈希表（Hash table）。关键字对应的记录存储位置称为散列地址。</p>
+<h4 class="mume-header" id="892-%E6%95%A3%E5%88%97%E8%A1%A8%E6%9F%A5%E6%89%BE%E6%AD%A5%E9%AA%A4">8.9.2. 散列表查找步骤</h4>
+
+<p>整个散列过程其实就是两步：</p>
+<ol>
+<li>
+<p>在存储时，通过散列函数计算记录的散列地址，并按此散列地址存储该记录。不管什么记录，都需要用同一个散列函数计算出地址再存储。</p>
+</li>
+<li>
+<p>查找记录时，通过同样的散列函数计算记录的散列地址，按此散列地址访问该记录。由于存取用的是同一个散列函数，因此结果相同。</p>
+</li>
+</ol>
+<p>散列技术既是一种存储方法，也是一种查找方法。散列技术的记录之间不存在逻辑关系，只与关键字有关联。散列主要是面向查找的存储结构。</p>
+<p>散列技术最适合的求解问题是查找与给定值相等的记录。对于查找来说，简化了比较过程，效率就会大大提高。但散列技术不具备很多常规数据结构的能力。</p>
+<p>比如那种同样的关键字，它能对应很多记录的情况，却不适合用散列技术。一个班级几十个学生，他们的性别有男有女，你用关键字“男”去查找，对应的有许多学生的记录，这显然是不合适的。只有如用班级学生的学号或者身份证号来散列存储，此时一个号码唯一对应一个学生才比较合适。</p>
+<p>同样散列表也不适合范围查找，比如査找一个班级 18〜22 岁的同学，在散列表中没法进行。想获得表中记录的排序也不可能，像最大值、最小值等结果也都无法从散列表中计算出来。</p>
+<p>我们说了这么多，散列函数应该如何设计？这个我们需要重点来讲解，总之设计一个简单、均匀、存储利用率高的散列函数是散列技术中最关键的问题。</p>
+<p>另一个问题是冲突。在理想的情况下，每一个关键字，通过散列函数计算出来的地址都是不一样的，可现实中，这只是一个理想。我们时常会碰到两个关键字 key1≠key2，但是却有 f(key1)=f(key2)，这种现象我们称为冲突，并把 key1 和 key2 称为这个散列函数的同义词。 出现了冲突当然非常糟糕，那将造成数据査找错误。尽管我们可以通过精心设计的散列函数让冲突尽可能的少，但是不能完全避免。于是如何处理冲突就成了一个很重要的课题，这在我们后面也需要详细讲解。</p>
+<h3 class="mume-header" id="810-%E6%95%A3%E5%88%97%E5%87%BD%E6%95%B0%E7%9A%84%E6%9E%84%E9%80%A0%E6%96%B9%E6%B3%95">8.10. 散列函数的构造方法</h3>
+
+<p>好的散列函数的两个可以参考的原则：</p>
+<ul>
+<li>计算简单。散列函数的计算时间不应该超过其他查找技术与关键字比较的时间；</li>
+<li>散列地址分布均匀。尽量让散列地址均匀地分布在存储空间中，保证存储空间的有效利用，减少为处理冲突而耗费的时间。</li>
+</ul>
+<p>接下来介绍几种常用的散列函数构造方法。</p>
+<h4 class="mume-header" id="8101-%E7%9B%B4%E6%8E%A5%E5%AE%9A%E5%9D%80%E6%B3%95">8.10.1. 直接定址法</h4>
+
+<p>对0～100岁的人口数字统计表，对年龄这个关键字就可以直接用年龄的数字作为地址。此时f(key)=key：</p>
+<p><img src="./《大话数据结构》学习之8_files/262.png" alt=""></p>
+<p>统计80后出生年份的人口数，对出生年份这个关键字可以用年份减去1980来作为地址。此时f(key)=key-1980：</p>
+<p><img src="./《大话数据结构》学习之8_files/263.png" alt=""></p>
+<p>也就是说，我们可以取关键字的某个线性函数值为散列地址，(a、b为常数)即：</p>
+<p><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>f</mi><mo stretchy="false">(</mo><mi>k</mi><mi>e</mi><mi>y</mi><mo stretchy="false">)</mo><mo>=</mo><mi>a</mi><mo>×</mo><mi>k</mi><mi>e</mi><mi>y</mi><mo>+</mo><mi>b</mi><mo stretchy="false">(</mo><mi>a</mi><mo separator="true">,</mo><mi>b</mi><mtext>为常数</mtext><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">f(key)=a×key+b(a,b为常数)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.10764em;">f</span><span class="mopen">(</span><span class="mord mathdefault" style="margin-right:0.03148em;">k</span><span class="mord mathdefault">e</span><span class="mord mathdefault" style="margin-right:0.03588em;">y</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.66666em;vertical-align:-0.08333em;"></span><span class="mord mathdefault">a</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span class="mord mathdefault" style="margin-right:0.03148em;">k</span><span class="mord mathdefault">e</span><span class="mord mathdefault" style="margin-right:0.03588em;">y</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault">b</span><span class="mopen">(</span><span class="mord mathdefault">a</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault">b</span><span class="mord cjk_fallback">为</span><span class="mord cjk_fallback">常</span><span class="mord cjk_fallback">数</span><span class="mclose">)</span></span></span></span></span></p>
+<p>这样的散列函数优点是简单、均匀，不产生冲突，但问题是需要事先知道关键字的分布情况，适合查找表较小且连续的情况。由于这样的限制，在现实应用中，此方法虽然简单，但却并不常用。</p>
+<h4 class="mume-header" id="8102-%E6%95%B0%E5%AD%97%E5%88%86%E6%9E%90%E6%B3%95">8.10.2. 数字分析法</h4>
+
+<p>如果关键字是位数较多的数字，比如11位手机号前三位是接入号，一般对应不同运营商公司的子品牌；中间四位是HLR识别号，表示用户号的归属地；后四位是真正的用户号。</p>
+<p><img src="./《大话数据结构》学习之8_files/264.png" alt=""></p>
+<p>如果用手机号作为关键字，极有可能前7位都是相同的。那么选择后面的四位成为散列地址就是不错的选择。</p>
+<p>如果这样的抽取工作还是容易出现冲突问题，还可以对抽取出来的数字再进行反转（如1234改成4321）、右环位移（如1234改成4123）、左环位移、甚至前两数与后两数叠加（如1234改成12+34=46）等方法。总的目的就是为了提供一个散列函数，能够合理地将关键字分配到散列表的各位置。</p>
+<p>抽取方法是使用关键字的一部分来计算散列存储位置的方法，数字分析法通常适合处理关键字位数比较大的情况，如果事先知道关键字的分布且关键字的若干位分布较均匀，可以考虑用这个方法。</p>
+<h4 class="mume-header" id="8103-%E5%B9%B3%E6%96%B9%E5%8F%96%E4%B8%AD%E6%B3%95">8.10.3. 平方取中法</h4>
+
+<p>关键字1234的平方是1522756，抽取中间的3位227用做散列地址。关键字是4321的平方就是18671041，抽取中间的3位671或710用做散列地址。</p>
+<p>平方取中法适合于不知道关键字的分布，而位数又不是很大的情况。</p>
+<h4 class="mume-header" id="8104-%E6%8A%98%E5%8F%A0%E6%B3%95">8.10.4. 折叠法</h4>
+
+<p>折叠法是将关键字从左到右分割成位数相等的几部分（最后一部分位数不够时可以短些），然后将这几部分叠加求和，并按散列表表长，取后几位作为散列地址。</p>
+<p>关键字9876543210，散列表表长为三位，分为四组，987|654|321|0，叠加求和987+654+321+0=1962，得到散列地址为962。</p>
+<p>有时还不能保证分布均匀，不妨从一端向另一端来回折叠后对齐相加。比如将987和321反转，再与654和0相加，变成789+654+123+0=1566，此时散列地址为566。</p>
+<p>折叠法事先不需要知道关键字的分布，适合关键字位数较多的情况。</p>
+<h4 class="mume-header" id="8105-%E9%99%A4%E7%95%99%E4%BD%99%E6%95%B0%E6%B3%95">8.10.5. 除留余数法</h4>
+
+<p>此方法为最常用的构造散列函数方法。对于散列表长为 m 的散列函数公式为：</p>
+<p><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>f</mi><mo stretchy="false">(</mo><mi>k</mi><mi>e</mi><mi>y</mi><mo stretchy="false">)</mo><mo>=</mo><mi>k</mi><mi>e</mi><mi>y</mi><mi>m</mi><mi>o</mi><mi>d</mi><mi>p</mi><mo stretchy="false">(</mo><mi>p</mi><mo>≤</mo><mi>m</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">f(key)=key mod p(p≤m)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.10764em;">f</span><span class="mopen">(</span><span class="mord mathdefault" style="margin-right:0.03148em;">k</span><span class="mord mathdefault">e</span><span class="mord mathdefault" style="margin-right:0.03588em;">y</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.03148em;">k</span><span class="mord mathdefault">e</span><span class="mord mathdefault" style="margin-right:0.03588em;">y</span><span class="mord mathdefault">m</span><span class="mord mathdefault">o</span><span class="mord mathdefault">d</span><span class="mord mathdefault">p</span><span class="mopen">(</span><span class="mord mathdefault">p</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">≤</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault">m</span><span class="mclose">)</span></span></span></span></span></p>
+<p>这方法不仅可以对关键字直接取模，也可在折叠、平方取中后再取模。本方法的关键在于选择合适的 p，p 如果选得不好，可能会容易产生同义词。</p>
+<p>对于有 12 个记录的关键字构造散列表时，就用了 f(key)=key mod 12 的方法。</p>
+<p><img src="./《大话数据结构》学习之8_files/265.png" alt=""></p>
+<p>极端：让 p 为 12，所有的关键字都得到了 0 这个地址数。</p>
+<p><img src="./《大话数据结构》学习之8_files/266.png" alt=""></p>
+<p>若散列表表长为 m，通常 p 为小于或等于表长（最好接近 m）的最小质数或不包含小于 20 质因子的合数。</p>
+<h4 class="mume-header" id="8106-%E9%9A%8F%E6%9C%BA%E6%95%B0%E6%B3%95">8.10.6. 随机数法</h4>
+
+<p>选择一个随机数，取关键字的随机函数值为它的散列地址。即：</p>
+<p><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>f</mi><mo stretchy="false">(</mo><mi>k</mi><mi>e</mi><mi>y</mi><mo stretchy="false">)</mo><mo>=</mo><mi>r</mi><mi>a</mi><mi>n</mi><mi>d</mi><mi>o</mi><mi>m</mi><mo stretchy="false">(</mo><mi>k</mi><mi>e</mi><mi>y</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">f(key)=random(key)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.10764em;">f</span><span class="mopen">(</span><span class="mord mathdefault" style="margin-right:0.03148em;">k</span><span class="mord mathdefault">e</span><span class="mord mathdefault" style="margin-right:0.03588em;">y</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">r</span><span class="mord mathdefault">a</span><span class="mord mathdefault">n</span><span class="mord mathdefault">d</span><span class="mord mathdefault">o</span><span class="mord mathdefault">m</span><span class="mopen">(</span><span class="mord mathdefault" style="margin-right:0.03148em;">k</span><span class="mord mathdefault">e</span><span class="mord mathdefault" style="margin-right:0.03588em;">y</span><span class="mclose">)</span></span></span></span></span></p>
+<p>random是随机函数。当关键字的长度不等时，采用这个方法构造散列函数比较合适。</p>
+<p>应该视不同的情况采用不同的散列函数。考虑因素：</p>
+<ol>
+<li>计算散列地址所需的时间</li>
+<li>关键字的长度</li>
+<li>散列表的大小</li>
+<li>关键字的分布情况</li>
+<li>记录查找的频率</li>
+</ol>
+<p>综合这些因素，才能决策选择哪种散列函数更合适。</p>
+<h3 class="mume-header" id="811-%E5%A4%84%E7%90%86%E6%95%A3%E5%88%97%E5%86%B2%E7%AA%81%E7%9A%84%E6%96%B9%E6%B3%95">8.11. 处理散列冲突的方法</h3>
+
+<h4 class="mume-header" id="8111-%E5%BC%80%E6%94%BE%E5%AE%9A%E5%9D%80%E6%B3%95">8.11.1. 开放定址法</h4>
+
+<p><img src="./《大话数据结构》学习之8_files/267.png" alt=""></p>
+<p><img src="./《大话数据结构》学习之8_files/268.png" alt=""></p>
+<p><img src="./《大话数据结构》学习之8_files/269.png" alt=""></p>
+<h4 class="mume-header" id="8112-%E5%86%8D%E6%95%A3%E5%88%97%E5%87%BD%E6%95%B0%E6%B3%95">8.11.2. 再散列函数法</h4>
+
+<p>事先准备多个散列函数：</p>
+<p><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>f</mi><mi>i</mi></msub><mo stretchy="false">(</mo><mi>k</mi><mi>e</mi><mi>y</mi><mo stretchy="false">)</mo><mo>=</mo><mi>R</mi><msub><mi>H</mi><mi>i</mi></msub><mo stretchy="false">(</mo><mi>k</mi><mi>e</mi><mi>y</mi><mo stretchy="false">)</mo><mo stretchy="false">(</mo><mi>i</mi><mo>=</mo><mn>1</mn><mo separator="true">,</mo><mn>2</mn><mo separator="true">,</mo><mo>…</mo><mo separator="true">,</mo><mi>k</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">f_{i}(k e y)=R H_{i}(k e y)(i=1,2, \dots, k)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.10764em;">f</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31166399999999994em;"><span style="top:-2.5500000000000003em;margin-left:-0.10764em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">i</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord mathdefault" style="margin-right:0.03148em;">k</span><span class="mord mathdefault">e</span><span class="mord mathdefault" style="margin-right:0.03588em;">y</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.00773em;">R</span><span class="mord"><span class="mord mathdefault" style="margin-right:0.08125em;">H</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31166399999999994em;"><span style="top:-2.5500000000000003em;margin-left:-0.08125em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">i</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord mathdefault" style="margin-right:0.03148em;">k</span><span class="mord mathdefault">e</span><span class="mord mathdefault" style="margin-right:0.03588em;">y</span><span class="mclose">)</span><span class="mopen">(</span><span class="mord mathdefault">i</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">1</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord">2</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="minner">…</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault" style="margin-right:0.03148em;">k</span><span class="mclose">)</span></span></span></span></span></p>
+<p><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>R</mi><msub><mi>H</mi><mi>i</mi></msub></mrow><annotation encoding="application/x-tex">RH_{i}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.83333em;vertical-align:-0.15em;"></span><span class="mord mathdefault" style="margin-right:0.00773em;">R</span><span class="mord"><span class="mord mathdefault" style="margin-right:0.08125em;">H</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31166399999999994em;"><span style="top:-2.5500000000000003em;margin-left:-0.08125em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">i</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span> 是不同的散列函数，每当发生散列地址冲突时，就换一个散列函数计算，这种方法能够使得关键字不产生聚集，但也增加了计算的时间。</p>
+<h4 class="mume-header" id="8113-%E9%93%BE%E5%9C%B0%E5%9D%80%E6%B3%95">8.11.3. 链地址法</h4>
+
+<p>将所有关键字为同义词的记录存储在一个单链表中，称这种表为同义词子表，在散列表中只存储所有同义词子表的头指针。</p>
+<p>对关键字集合{12,67,56,16,25,37,22,29,15,47,48,34}，用12为除数,不存在冲突换址的问题，无论有多少个冲突，都只在当前位置给单链表增加结点。</p>
+<p><img src="./《大话数据结构》学习之8_files/270.png" alt=""></p>
+<p>链地址法对于可能会造成很多冲突的散列函数来说，提供了绝不会出现找不到地址的保障。也带来了查找时需要遍历单链表的性能损耗。</p>
+<h4 class="mume-header" id="8114-%E5%85%AC%E5%85%B1%E6%BA%A2%E5%87%BA%E5%8C%BA%E6%B3%95">8.11.4. 公共溢出区法</h4>
+
+<p>这个方法其实就更加好理解，你不是冲突吗？好吧，凡是冲突的都跟我走，我给你们这些冲突找个地儿待着。这就如同孤儿院收留所有无家可归的孩子一样，我们为所有冲突的关键字建立了一个公共的溢出区来存放。</p>
+<p>如关键字{37,48,34}与之前的关键字位置有冲突，将它们存储到溢出表：</p>
+<p><img src="./《大话数据结构》学习之8_files/271.png" alt=""></p>
+<p>在查找时，对给定值通过散列函数计算出散列地址后，先与基本表的相应位置进行比对，如果相等，则查找成功；如果不相等，则到溢出表去进行顺序查找。如果相对于基本表而言，有冲突的数据很少的情况下，公共溢出区的结构对查找性能来说还是非常高。</p>
+<h3 class="mume-header" id="812-%E6%95%A3%E5%88%97%E8%A1%A8%E6%9F%A5%E6%89%BE%E5%AE%9E%E7%8E%B0">8.12. 散列表查找实现</h3>
+
+<h4 class="mume-header" id="8121-%E6%95%A3%E5%88%97%E8%A1%A8%E6%9F%A5%E6%89%BE%E7%AE%97%E6%B3%95%E5%AE%9E%E7%8E%B0">8.12.1. 散列表查找算法实现</h4>
+
+<p><strong>更多内容详见书籍。</strong></p>
+<h4 class="mume-header" id="8122-%E6%95%A3%E5%88%97%E8%A1%A8%E6%9F%A5%E6%89%BE%E6%80%A7%E8%83%BD%E5%88%86%E6%9E%90">8.12.2. 散列表查找性能分析</h4>
+
+<p>散列查找的平均查找长度取决因素：</p>
+<ol>
+<li>散列函数是否均匀</li>
+</ol>
+<p>散列函数的好坏直接影响着出现冲突的频繁程度，不过，由于不同的散列函数对同一组随机的关键字，产生冲突的可能性是相同的，因此可以不考虑它对平均查找长度的影响。</p>
+<ol start="2">
+<li>处理冲突的方法</li>
+</ol>
+<p>相同的关键字、相同的散列函数，但处理冲突的方法不同，会使得平均查找长度不同。比如线性探测处理冲突可能会产生堆积，显然就没有二次探测法好，而链地址法处理冲突不会产生任何堆积，因而具有更佳的平均查找性能。</p>
+<ol start="3">
+<li>散列表的装填因子</li>
+</ol>
+<p>所谓的装填因子 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>α</mi></mrow><annotation encoding="application/x-tex">\alpha</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.0037em;">α</span></span></span></span> = 填入表中的记录个数/散列表长度。<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>α</mi></mrow><annotation encoding="application/x-tex">\alpha</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.0037em;">α</span></span></span></span> 标志着散列表的装满的程度。当填入表中的记录越多，<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>α</mi></mrow><annotation encoding="application/x-tex">\alpha</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.0037em;">α</span></span></span></span> 就越大，产生冲突的可能性就越大。如果散列表长度是 12，而填入表中的记录个数为 11，装填因子 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>α</mi></mrow><annotation encoding="application/x-tex">\alpha</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.0037em;">α</span></span></span></span> = 11/12=0.9167，再填入最后一个关键字产生冲突的可能性就非常之大。散列表的平均查找长度取决于装填因子，而不是取决于查找集合中的记录个数。</p>
+<p>不管记录个数 n 有多大，总可以选择一个合适的装填因子以便将平均查找长度限定在一个范围之内，此时散列查找的时间复杂度是 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>O</mi><mo stretchy="false">(</mo><mn>1</mn><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">O(1)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord">1</span><span class="mclose">)</span></span></span></span>。通常都是将散列表的空间设置得比查找集合大，虽然是浪费了一定的空间，但换来的是查找效率的大大提升，总的来说，还是非常值得的。</p>
+<h3 class="mume-header" id="813-%E6%80%BB%E7%BB%93%E5%9B%9E%E9%A1%BE">8.13. 总结回顾</h3>
+
+<h3 class="mume-header" id="814-%E7%BB%93%E5%B0%BE%E8%AF%AD">8.14. 结尾语</h3>
+
+<hr>
+
+      </div>
+      
+      
+    
+    
+    
+    
+    
+    
+    
+    
+  </body></html>

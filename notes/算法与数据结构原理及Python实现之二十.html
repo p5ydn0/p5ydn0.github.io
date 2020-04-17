@@ -1,0 +1,639 @@
+<!DOCTYPE html>
+<!-- saved from url=(0099)file:///private/var/folders/jq/l66hzx9956qbmxs_990g1djh0000gn/T/mume2020317-90899-lcedw.5f8a69.html -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+      <title>算法与数据结构原理及Python实现之二十</title>
+      
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      
+      <link rel="stylesheet" href="./算法与数据结构原理及Python实现之二十_files/katex.min.css">
+      
+      
+
+      
+      
+      
+      
+      
+      
+      
+
+      <style>
+      /**
+ * prism.js Github theme based on GitHub's theme.
+ * @author Sam Clarke
+ */
+code[class*="language-"],
+pre[class*="language-"] {
+  color: #333;
+  background: none;
+  font-family: Consolas, "Liberation Mono", Menlo, Courier, monospace;
+  text-align: left;
+  white-space: pre;
+  word-spacing: normal;
+  word-break: normal;
+  word-wrap: normal;
+  line-height: 1.4;
+
+  -moz-tab-size: 8;
+  -o-tab-size: 8;
+  tab-size: 8;
+
+  -webkit-hyphens: none;
+  -moz-hyphens: none;
+  -ms-hyphens: none;
+  hyphens: none;
+}
+
+/* Code blocks */
+pre[class*="language-"] {
+  padding: .8em;
+  overflow: auto;
+  /* border: 1px solid #ddd; */
+  border-radius: 3px;
+  /* background: #fff; */
+  background: #f5f5f5;
+}
+
+/* Inline code */
+:not(pre) > code[class*="language-"] {
+  padding: .1em;
+  border-radius: .3em;
+  white-space: normal;
+  background: #f5f5f5;
+}
+
+.token.comment,
+.token.blockquote {
+  color: #969896;
+}
+
+.token.cdata {
+  color: #183691;
+}
+
+.token.doctype,
+.token.punctuation,
+.token.variable,
+.token.macro.property {
+  color: #333;
+}
+
+.token.operator,
+.token.important,
+.token.keyword,
+.token.rule,
+.token.builtin {
+  color: #a71d5d;
+}
+
+.token.string,
+.token.url,
+.token.regex,
+.token.attr-value {
+  color: #183691;
+}
+
+.token.property,
+.token.number,
+.token.boolean,
+.token.entity,
+.token.atrule,
+.token.constant,
+.token.symbol,
+.token.command,
+.token.code {
+  color: #0086b3;
+}
+
+.token.tag,
+.token.selector,
+.token.prolog {
+  color: #63a35c;
+}
+
+.token.function,
+.token.namespace,
+.token.pseudo-element,
+.token.class,
+.token.class-name,
+.token.pseudo-class,
+.token.id,
+.token.url-reference .token.variable,
+.token.attr-name {
+  color: #795da3;
+}
+
+.token.entity {
+  cursor: help;
+}
+
+.token.title,
+.token.title .token.punctuation {
+  font-weight: bold;
+  color: #1d3e81;
+}
+
+.token.list {
+  color: #ed6a43;
+}
+
+.token.inserted {
+  background-color: #eaffea;
+  color: #55a532;
+}
+
+.token.deleted {
+  background-color: #ffecec;
+  color: #bd2c00;
+}
+
+.token.bold {
+  font-weight: bold;
+}
+
+.token.italic {
+  font-style: italic;
+}
+
+
+/* JSON */
+.language-json .token.property {
+  color: #183691;
+}
+
+.language-markup .token.tag .token.punctuation {
+  color: #333;
+}
+
+/* CSS */
+code.language-css,
+.language-css .token.function {
+  color: #0086b3;
+}
+
+/* YAML */
+.language-yaml .token.atrule {
+  color: #63a35c;
+}
+
+code.language-yaml {
+  color: #183691;
+}
+
+/* Ruby */
+.language-ruby .token.function {
+  color: #333;
+}
+
+/* Markdown */
+.language-markdown .token.url {
+  color: #795da3;
+}
+
+/* Makefile */
+.language-makefile .token.symbol {
+  color: #795da3;
+}
+
+.language-makefile .token.variable {
+  color: #183691;
+}
+
+.language-makefile .token.builtin {
+  color: #0086b3;
+}
+
+/* Bash */
+.language-bash .token.keyword {
+  color: #0086b3;
+}
+
+/* highlight */
+pre[data-line] {
+  position: relative;
+  padding: 1em 0 1em 3em;
+}
+pre[data-line] .line-highlight-wrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: transparent;
+  display: block;
+  width: 100%;
+}
+
+pre[data-line] .line-highlight {
+  position: absolute;
+  left: 0;
+  right: 0;
+  padding: inherit 0;
+  margin-top: 1em;
+  background: hsla(24, 20%, 50%,.08);
+  background: linear-gradient(to right, hsla(24, 20%, 50%,.1) 70%, hsla(24, 20%, 50%,0));
+  pointer-events: none;
+  line-height: inherit;
+  white-space: pre;
+}
+
+pre[data-line] .line-highlight:before, 
+pre[data-line] .line-highlight[data-end]:after {
+  content: attr(data-start);
+  position: absolute;
+  top: .4em;
+  left: .6em;
+  min-width: 1em;
+  padding: 0 .5em;
+  background-color: hsla(24, 20%, 50%,.4);
+  color: hsl(24, 20%, 95%);
+  font: bold 65%/1.5 sans-serif;
+  text-align: center;
+  vertical-align: .3em;
+  border-radius: 999px;
+  text-shadow: none;
+  box-shadow: 0 1px white;
+}
+
+pre[data-line] .line-highlight[data-end]:after {
+  content: attr(data-end);
+  top: auto;
+  bottom: .4em;
+}html body{font-family:"Helvetica Neue",Helvetica,"Segoe UI",Arial,freesans,sans-serif;font-size:16px;line-height:1.6;color:#333;background-color:#fff;overflow:initial;box-sizing:border-box;word-wrap:break-word}html body>:first-child{margin-top:0}html body h1,html body h2,html body h3,html body h4,html body h5,html body h6{line-height:1.2;margin-top:1em;margin-bottom:16px;color:#000}html body h1{font-size:2.25em;font-weight:300;padding-bottom:.3em}html body h2{font-size:1.75em;font-weight:400;padding-bottom:.3em}html body h3{font-size:1.5em;font-weight:500}html body h4{font-size:1.25em;font-weight:600}html body h5{font-size:1.1em;font-weight:600}html body h6{font-size:1em;font-weight:600}html body h1,html body h2,html body h3,html body h4,html body h5{font-weight:600}html body h5{font-size:1em}html body h6{color:#5c5c5c}html body strong{color:#000}html body del{color:#5c5c5c}html body a:not([href]){color:inherit;text-decoration:none}html body a{color:#08c;text-decoration:none}html body a:hover{color:#00a3f5;text-decoration:none}html body img{max-width:100%}html body>p{margin-top:0;margin-bottom:16px;word-wrap:break-word}html body>ul,html body>ol{margin-bottom:16px}html body ul,html body ol{padding-left:2em}html body ul.no-list,html body ol.no-list{padding:0;list-style-type:none}html body ul ul,html body ul ol,html body ol ol,html body ol ul{margin-top:0;margin-bottom:0}html body li{margin-bottom:0}html body li.task-list-item{list-style:none}html body li>p{margin-top:0;margin-bottom:0}html body .task-list-item-checkbox{margin:0 .2em .25em -1.8em;vertical-align:middle}html body .task-list-item-checkbox:hover{cursor:pointer}html body blockquote{margin:16px 0;font-size:inherit;padding:0 15px;color:#5c5c5c;border-left:4px solid #d6d6d6}html body blockquote>:first-child{margin-top:0}html body blockquote>:last-child{margin-bottom:0}html body hr{height:4px;margin:32px 0;background-color:#d6d6d6;border:0 none}html body table{margin:10px 0 15px 0;border-collapse:collapse;border-spacing:0;display:block;width:100%;overflow:auto;word-break:normal;word-break:keep-all}html body table th{font-weight:bold;color:#000}html body table td,html body table th{border:1px solid #d6d6d6;padding:6px 13px}html body dl{padding:0}html body dl dt{padding:0;margin-top:16px;font-size:1em;font-style:italic;font-weight:bold}html body dl dd{padding:0 16px;margin-bottom:16px}html body code{font-family:Menlo,Monaco,Consolas,'Courier New',monospace;font-size:.85em !important;color:#000;background-color:#f0f0f0;border-radius:3px;padding:.2em 0}html body code::before,html body code::after{letter-spacing:-0.2em;content:"\00a0"}html body pre>code{padding:0;margin:0;font-size:.85em !important;word-break:normal;white-space:pre;background:transparent;border:0}html body .highlight{margin-bottom:16px}html body .highlight pre,html body pre{padding:1em;overflow:auto;font-size:.85em !important;line-height:1.45;border:#d6d6d6;border-radius:3px}html body .highlight pre{margin-bottom:0;word-break:normal}html body pre code,html body pre tt{display:inline;max-width:initial;padding:0;margin:0;overflow:initial;line-height:inherit;word-wrap:normal;background-color:transparent;border:0}html body pre code:before,html body pre tt:before,html body pre code:after,html body pre tt:after{content:normal}html body p,html body blockquote,html body ul,html body ol,html body dl,html body pre{margin-top:0;margin-bottom:16px}html body kbd{color:#000;border:1px solid #d6d6d6;border-bottom:2px solid #c7c7c7;padding:2px 4px;background-color:#f0f0f0;border-radius:3px}@media print{html body{background-color:#fff}html body h1,html body h2,html body h3,html body h4,html body h5,html body h6{color:#000;page-break-after:avoid}html body blockquote{color:#5c5c5c}html body pre{page-break-inside:avoid}html body table{display:table}html body img{display:block;max-width:100%;max-height:100%}html body pre,html body code{word-wrap:break-word;white-space:pre}}.markdown-preview{width:100%;height:100%;box-sizing:border-box}.markdown-preview .pagebreak,.markdown-preview .newpage{page-break-before:always}.markdown-preview pre.line-numbers{position:relative;padding-left:3.8em;counter-reset:linenumber}.markdown-preview pre.line-numbers>code{position:relative}.markdown-preview pre.line-numbers .line-numbers-rows{position:absolute;pointer-events:none;top:1em;font-size:100%;left:0;width:3em;letter-spacing:-1px;border-right:1px solid #999;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}.markdown-preview pre.line-numbers .line-numbers-rows>span{pointer-events:none;display:block;counter-increment:linenumber}.markdown-preview pre.line-numbers .line-numbers-rows>span:before{content:counter(linenumber);color:#999;display:block;padding-right:.8em;text-align:right}.markdown-preview .mathjax-exps .MathJax_Display{text-align:center !important}.markdown-preview:not([for="preview"]) .code-chunk .btn-group{display:none}.markdown-preview:not([for="preview"]) .code-chunk .status{display:none}.markdown-preview:not([for="preview"]) .code-chunk .output-div{margin-bottom:16px}.scrollbar-style::-webkit-scrollbar{width:8px}.scrollbar-style::-webkit-scrollbar-track{border-radius:10px;background-color:transparent}.scrollbar-style::-webkit-scrollbar-thumb{border-radius:5px;background-color:rgba(150,150,150,0.66);border:4px solid rgba(150,150,150,0.66);background-clip:content-box}html body[for="html-export"]:not([data-presentation-mode]){position:relative;width:100%;height:100%;top:0;left:0;margin:0;padding:0;overflow:auto}html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{position:relative;top:0}@media screen and (min-width:914px){html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{padding:2em calc(50% - 457px + 2em)}}@media screen and (max-width:914px){html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{padding:2em}}@media screen and (max-width:450px){html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{font-size:14px !important;padding:1em}}@media print{html body[for="html-export"]:not([data-presentation-mode]) #sidebar-toc-btn{display:none}}html body[for="html-export"]:not([data-presentation-mode]) #sidebar-toc-btn{position:fixed;bottom:8px;left:8px;font-size:28px;cursor:pointer;color:inherit;z-index:99;width:32px;text-align:center;opacity:.4}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] #sidebar-toc-btn{opacity:1}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc{position:fixed;top:0;left:0;width:300px;height:100%;padding:32px 0 48px 0;font-size:14px;box-shadow:0 0 4px rgba(150,150,150,0.33);box-sizing:border-box;overflow:auto;background-color:inherit}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar{width:8px}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-track{border-radius:10px;background-color:transparent}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-thumb{border-radius:5px;background-color:rgba(150,150,150,0.66);border:4px solid rgba(150,150,150,0.66);background-clip:content-box}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc a{text-decoration:none}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc ul{padding:0 1.6em;margin-top:.8em}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc li{margin-bottom:.8em}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc ul{list-style-type:none}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{left:300px;width:calc(100% -  300px);padding:2em calc(50% - 457px -  150px);margin:0;box-sizing:border-box}@media screen and (max-width:1274px){html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{padding:2em}}@media screen and (max-width:450px){html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{width:100%}}html body[for="html-export"]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .markdown-preview{left:50%;transform:translateX(-50%)}html body[for="html-export"]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .md-sidebar-toc{display:none}
+/* Please visit the URL below for more information: */
+/*   https://shd101wyy.github.io/markdown-preview-enhanced/#/customize-css */
+
+      </style>
+    </head>
+    <body for="html-export">
+      <div class="mume markdown-preview  ">
+      <h1 class="mume-header" id="%E7%AE%97%E6%B3%95%E4%B8%8E%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%8E%9F%E7%90%86%E5%8F%8Apython%E5%AE%9E%E7%8E%B0">算法与数据结构原理及Python实现</h1>
+
+<h3 class="mume-header" id="%E7%AE%97%E6%B3%95%E4%B8%8E%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%8E%9F%E7%90%86%E5%8F%8Apython%E5%AE%9E%E7%8E%B0%E4%B9%8B%E4%BA%8C%E5%8D%81%E4%BA%8C%E5%8F%89%E6%9F%A5%E6%89%BE%E6%A0%91">算法与数据结构原理及Python实现之二十：二叉查找树</h3>
+
+<hr>
+<h2 class="mume-header" id="20-%E4%BA%8C%E5%8F%89%E6%9F%A5%E6%89%BE%E6%A0%91">20. 二叉查找树</h2>
+
+<p>二叉树的一种应用就是来实现堆，今天我们再看看用二叉查找树(Binary Search Tree, BST)。前面有章节说到了查找操作，包括线性查找、二分查找、哈希查找等，线性查找效率比较低，二分又要求必须是有序的序列，<br>
+为了维持有序插入的代价比较高、哈希查找效率很高但是浪费空间。能不能有一种插入和查找都比较快的数据结构呢？二叉查找树就是这样一种结构，可以高效地插入和查询节点。</p>
+<p><strong>BST 定义：</strong></p>
+<p>二叉查找树是这样一种二叉树结构，它的每个节点包含一个 key 和它附带的数据，对于每个内部节点 V：</p>
+<ul>
+<li>所有 key 小于 V 的都被存储在 V 的左子树</li>
+<li>所有 key 大于 V 的都存储在 V 的右子树</li>
+</ul>
+<p><img src="./算法与数据结构原理及Python实现之二十_files/41.png" alt=""></p>
+<p>说白了就是对于每个内部节点，左子树的 key 都比它小，右子树都比它大。如果中序遍历(二叉树遍历讲过了)这颗二叉树，你会发现输出的顺序正好是有序的。我们先来定义一下 BST 的节点结构：</p>
+<pre data-role="codeBlock" data-info="python" class="language-python"><span class="token keyword">class</span> <span class="token class-name">BSTNode</span><span class="token punctuation">(</span><span class="token builtin">object</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword">def</span> <span class="token function">__init__</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> key<span class="token punctuation">,</span> value<span class="token punctuation">,</span> left<span class="token operator">=</span><span class="token boolean">None</span><span class="token punctuation">,</span> right<span class="token operator">=</span><span class="token boolean">None</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+        self<span class="token punctuation">.</span>key<span class="token punctuation">,</span> self<span class="token punctuation">.</span>value<span class="token punctuation">,</span> self<span class="token punctuation">.</span>left<span class="token punctuation">,</span> self<span class="token punctuation">.</span>right <span class="token operator">=</span> key<span class="token punctuation">,</span> value<span class="token punctuation">,</span> left<span class="token punctuation">,</span> right
+</pre><p><strong>构造一个 BST:</strong></p>
+<p>我们还像之前构造二叉树一样，按照上图构造一个 BST 用来演示：</p>
+<pre data-role="codeBlock" data-info="python" class="language-python"><span class="token keyword">class</span> <span class="token class-name">BSTNode</span><span class="token punctuation">(</span><span class="token builtin">object</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword">def</span> <span class="token function">__init__</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> key<span class="token punctuation">,</span> value<span class="token punctuation">,</span> left<span class="token operator">=</span><span class="token boolean">None</span><span class="token punctuation">,</span> right<span class="token operator">=</span><span class="token boolean">None</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+        self<span class="token punctuation">.</span>key<span class="token punctuation">,</span> self<span class="token punctuation">.</span>value<span class="token punctuation">,</span> self<span class="token punctuation">.</span>left<span class="token punctuation">,</span> self<span class="token punctuation">.</span>right <span class="token operator">=</span> key<span class="token punctuation">,</span> value<span class="token punctuation">,</span> left<span class="token punctuation">,</span> right
+
+<span class="token keyword">class</span> <span class="token class-name">BST</span><span class="token punctuation">(</span><span class="token builtin">object</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword">def</span> <span class="token function">__init__</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> root<span class="token operator">=</span><span class="token boolean">None</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+        self<span class="token punctuation">.</span>root <span class="token operator">=</span> root
+
+    @<span class="token builtin">classmethod</span>
+    <span class="token keyword">def</span> <span class="token function">build_from</span><span class="token punctuation">(</span>cls<span class="token punctuation">,</span> node_list<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        cls<span class="token punctuation">.</span>size <span class="token operator">=</span> <span class="token number">0</span>
+        key_to_node_dict <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
+        <span class="token keyword">for</span> node_dict <span class="token keyword">in</span> node_list<span class="token punctuation">:</span>
+            key <span class="token operator">=</span> node_dict<span class="token punctuation">[</span><span class="token string">'key'</span><span class="token punctuation">]</span>
+            key_to_node_dict<span class="token punctuation">[</span>key<span class="token punctuation">]</span> <span class="token operator">=</span> BSTNode<span class="token punctuation">(</span>key<span class="token punctuation">,</span> value<span class="token operator">=</span>key<span class="token punctuation">)</span>  <span class="token comment"># 这里值暂时用和 key一样的</span>
+
+        <span class="token keyword">for</span> node_dict <span class="token keyword">in</span> node_list<span class="token punctuation">:</span>
+            key <span class="token operator">=</span> node_dict<span class="token punctuation">[</span><span class="token string">'key'</span><span class="token punctuation">]</span>
+            node <span class="token operator">=</span> key_to_node_dict<span class="token punctuation">[</span>key<span class="token punctuation">]</span>
+            <span class="token keyword">if</span> node_dict<span class="token punctuation">[</span><span class="token string">'is_root'</span><span class="token punctuation">]</span><span class="token punctuation">:</span>
+                root <span class="token operator">=</span> node
+            node<span class="token punctuation">.</span>left <span class="token operator">=</span> key_to_node_dict<span class="token punctuation">.</span>get<span class="token punctuation">(</span>node_dict<span class="token punctuation">[</span><span class="token string">'left'</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+            node<span class="token punctuation">.</span>right <span class="token operator">=</span> key_to_node_dict<span class="token punctuation">.</span>get<span class="token punctuation">(</span>node_dict<span class="token punctuation">[</span><span class="token string">'right'</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+            cls<span class="token punctuation">.</span>size <span class="token operator">+=</span> <span class="token number">1</span>
+        <span class="token keyword">return</span> cls<span class="token punctuation">(</span>root<span class="token punctuation">)</span>
+
+NODE_LIST <span class="token operator">=</span> <span class="token punctuation">[</span>
+    <span class="token punctuation">{</span><span class="token string">'key'</span><span class="token punctuation">:</span> <span class="token number">60</span><span class="token punctuation">,</span> <span class="token string">'left'</span><span class="token punctuation">:</span> <span class="token number">12</span><span class="token punctuation">,</span> <span class="token string">'right'</span><span class="token punctuation">:</span> <span class="token number">90</span><span class="token punctuation">,</span> <span class="token string">'is_root'</span><span class="token punctuation">:</span> <span class="token boolean">True</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token punctuation">{</span><span class="token string">'key'</span><span class="token punctuation">:</span> <span class="token number">12</span><span class="token punctuation">,</span> <span class="token string">'left'</span><span class="token punctuation">:</span> <span class="token number">4</span><span class="token punctuation">,</span> <span class="token string">'right'</span><span class="token punctuation">:</span> <span class="token number">41</span><span class="token punctuation">,</span> <span class="token string">'is_root'</span><span class="token punctuation">:</span> <span class="token boolean">False</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token punctuation">{</span><span class="token string">'key'</span><span class="token punctuation">:</span> <span class="token number">4</span><span class="token punctuation">,</span> <span class="token string">'left'</span><span class="token punctuation">:</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token string">'right'</span><span class="token punctuation">:</span> <span class="token boolean">None</span><span class="token punctuation">,</span> <span class="token string">'is_root'</span><span class="token punctuation">:</span> <span class="token boolean">False</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token punctuation">{</span><span class="token string">'key'</span><span class="token punctuation">:</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token string">'left'</span><span class="token punctuation">:</span> <span class="token boolean">None</span><span class="token punctuation">,</span> <span class="token string">'right'</span><span class="token punctuation">:</span> <span class="token boolean">None</span><span class="token punctuation">,</span> <span class="token string">'is_root'</span><span class="token punctuation">:</span> <span class="token boolean">False</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token punctuation">{</span><span class="token string">'key'</span><span class="token punctuation">:</span> <span class="token number">41</span><span class="token punctuation">,</span> <span class="token string">'left'</span><span class="token punctuation">:</span> <span class="token number">29</span><span class="token punctuation">,</span> <span class="token string">'right'</span><span class="token punctuation">:</span> <span class="token boolean">None</span><span class="token punctuation">,</span> <span class="token string">'is_root'</span><span class="token punctuation">:</span> <span class="token boolean">False</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token punctuation">{</span><span class="token string">'key'</span><span class="token punctuation">:</span> <span class="token number">29</span><span class="token punctuation">,</span> <span class="token string">'left'</span><span class="token punctuation">:</span> <span class="token number">23</span><span class="token punctuation">,</span> <span class="token string">'right'</span><span class="token punctuation">:</span> <span class="token number">37</span><span class="token punctuation">,</span> <span class="token string">'is_root'</span><span class="token punctuation">:</span> <span class="token boolean">False</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token punctuation">{</span><span class="token string">'key'</span><span class="token punctuation">:</span> <span class="token number">23</span><span class="token punctuation">,</span> <span class="token string">'left'</span><span class="token punctuation">:</span> <span class="token boolean">None</span><span class="token punctuation">,</span> <span class="token string">'right'</span><span class="token punctuation">:</span> <span class="token boolean">None</span><span class="token punctuation">,</span> <span class="token string">'is_root'</span><span class="token punctuation">:</span> <span class="token boolean">False</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token punctuation">{</span><span class="token string">'key'</span><span class="token punctuation">:</span> <span class="token number">37</span><span class="token punctuation">,</span> <span class="token string">'left'</span><span class="token punctuation">:</span> <span class="token boolean">None</span><span class="token punctuation">,</span> <span class="token string">'right'</span><span class="token punctuation">:</span> <span class="token boolean">None</span><span class="token punctuation">,</span> <span class="token string">'is_root'</span><span class="token punctuation">:</span> <span class="token boolean">False</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token punctuation">{</span><span class="token string">'key'</span><span class="token punctuation">:</span> <span class="token number">90</span><span class="token punctuation">,</span> <span class="token string">'left'</span><span class="token punctuation">:</span> <span class="token number">71</span><span class="token punctuation">,</span> <span class="token string">'right'</span><span class="token punctuation">:</span> <span class="token number">100</span><span class="token punctuation">,</span> <span class="token string">'is_root'</span><span class="token punctuation">:</span> <span class="token boolean">False</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token punctuation">{</span><span class="token string">'key'</span><span class="token punctuation">:</span> <span class="token number">71</span><span class="token punctuation">,</span> <span class="token string">'left'</span><span class="token punctuation">:</span> <span class="token boolean">None</span><span class="token punctuation">,</span> <span class="token string">'right'</span><span class="token punctuation">:</span> <span class="token number">84</span><span class="token punctuation">,</span> <span class="token string">'is_root'</span><span class="token punctuation">:</span> <span class="token boolean">False</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token punctuation">{</span><span class="token string">'key'</span><span class="token punctuation">:</span> <span class="token number">100</span><span class="token punctuation">,</span> <span class="token string">'left'</span><span class="token punctuation">:</span> <span class="token boolean">None</span><span class="token punctuation">,</span> <span class="token string">'right'</span><span class="token punctuation">:</span> <span class="token boolean">None</span><span class="token punctuation">,</span> <span class="token string">'is_root'</span><span class="token punctuation">:</span> <span class="token boolean">False</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token punctuation">{</span><span class="token string">'key'</span><span class="token punctuation">:</span> <span class="token number">84</span><span class="token punctuation">,</span> <span class="token string">'left'</span><span class="token punctuation">:</span> <span class="token boolean">None</span><span class="token punctuation">,</span> <span class="token string">'right'</span><span class="token punctuation">:</span> <span class="token boolean">None</span><span class="token punctuation">,</span> <span class="token string">'is_root'</span><span class="token punctuation">:</span> <span class="token boolean">False</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+<span class="token punctuation">]</span>
+
+bst <span class="token operator">=</span> BST<span class="token punctuation">.</span>build_from<span class="token punctuation">(</span>NODE_LIST<span class="token punctuation">)</span>
+</pre><p><strong>BST 操作：</strong></p>
+<ul>
+<li>查找</li>
+</ul>
+<p>如何查找一个指定的节点呢，根据定义我们知道每个内部节点左子树的 key 都比它小，右子树的 key 都比它大，所以对于带查找的节点 search_key，从根节点开始，如果 search_key 大于当前 key，就去右子树查找，否则去左子树查找。 一直到当前节点是 None 了说明没找到对应 key。</p>
+<p><img src="./算法与数据结构原理及Python实现之二十_files/42.png" alt=""></p>
+<p>代码如下：</p>
+<pre data-role="codeBlock" data-info="python" class="language-python">    <span class="token comment"># 找到某个 key 所在的节点并将该节点返回</span>
+    <span class="token keyword">def</span> <span class="token function">_bst_search</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> subtree<span class="token punctuation">,</span> key<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token keyword">if</span> subtree <span class="token keyword">is</span> <span class="token boolean">None</span><span class="token punctuation">:</span>
+            <span class="token keyword">return</span> <span class="token boolean">None</span>
+        <span class="token keyword">elif</span> key <span class="token operator">&lt;</span> subtree<span class="token punctuation">.</span>key<span class="token punctuation">:</span>  <span class="token comment"># 如果这个值比当前节点的值小，就去左子树去查找</span>
+            <span class="token keyword">return</span> self<span class="token punctuation">.</span>_bst_search<span class="token punctuation">(</span>subtree<span class="token punctuation">.</span>left<span class="token punctuation">,</span> key<span class="token punctuation">)</span>
+        <span class="token keyword">elif</span> key <span class="token operator">&gt;</span> subtree<span class="token punctuation">.</span>key<span class="token punctuation">:</span>  <span class="token comment"># 否则就去右子树去找</span>
+            <span class="token keyword">return</span> self<span class="token punctuation">.</span>_bst_search<span class="token punctuation">(</span>subtree<span class="token punctuation">.</span>right<span class="token punctuation">,</span> key<span class="token punctuation">)</span>
+        <span class="token keyword">else</span><span class="token punctuation">:</span>  <span class="token comment"># 如果 key = subtree.key，就将这个节点返回</span>
+            <span class="token keyword">return</span> subtree
+
+    <span class="token comment"># 根据提供的 key 得到对应的节点的值</span>
+    <span class="token keyword">def</span> <span class="token function">get</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> key<span class="token punctuation">,</span> default<span class="token operator">=</span><span class="token boolean">None</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+        node <span class="token operator">=</span> self<span class="token punctuation">.</span>_bst_search<span class="token punctuation">(</span>self<span class="token punctuation">.</span>root<span class="token punctuation">,</span> key<span class="token punctuation">)</span>  <span class="token comment"># 从 root 节点开始找，找到这个 key 对应的节点</span>
+        <span class="token keyword">if</span> node <span class="token keyword">is</span> <span class="token boolean">None</span><span class="token punctuation">:</span>  <span class="token comment"># 如果这个节点是 None</span>
+            <span class="token keyword">return</span> default
+        <span class="token keyword">else</span><span class="token punctuation">:</span>
+            <span class="token keyword">return</span> node<span class="token punctuation">.</span>value  <span class="token comment"># 如果非空就返回这个值</span>
+</pre><ul>
+<li>获取最大和最小 key 的节点</li>
+</ul>
+<p>其实还按照其定义，最小值就一直向着左子树找，最大值一直向右子树找，递归查找就行。</p>
+<pre data-role="codeBlock" data-info="python" class="language-python">    <span class="token comment"># 找到值最小的节点</span>
+    <span class="token keyword">def</span> <span class="token function">_bst_min_node</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> subtree<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token keyword">if</span> subtree <span class="token keyword">is</span> <span class="token boolean">None</span><span class="token punctuation">:</span>
+            <span class="token keyword">return</span> <span class="token boolean">None</span>
+        <span class="token keyword">elif</span> subtree<span class="token punctuation">.</span>left <span class="token keyword">is</span> <span class="token boolean">None</span><span class="token punctuation">:</span>  <span class="token comment"># 找到左子树的头</span>
+            <span class="token keyword">return</span> subtree
+        <span class="token keyword">else</span><span class="token punctuation">:</span>
+            <span class="token keyword">return</span> self<span class="token punctuation">.</span>_bst_min_node<span class="token punctuation">(</span>subtree<span class="token punctuation">.</span>left<span class="token punctuation">)</span>
+
+    <span class="token comment"># 找到二叉树中最小值的节点的值（最小值）</span>
+    <span class="token keyword">def</span> <span class="token function">bst_min</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        node <span class="token operator">=</span> self<span class="token punctuation">.</span>_bst_min_node<span class="token punctuation">(</span>self<span class="token punctuation">.</span>root<span class="token punctuation">)</span>  <span class="token comment"># 从 root 节点开始找找到最小值的节点</span>
+        <span class="token keyword">return</span> node<span class="token punctuation">.</span>value <span class="token keyword">if</span> node <span class="token keyword">else</span> <span class="token boolean">None</span>  <span class="token comment"># 如果 node 非空就返回 node.value，否则就返回 None</span>
+</pre><ul>
+<li>插入</li>
+</ul>
+<p>插入节点的时候我们需要一直保持 BST 的性质，每次插入一个节点，我们都通过递归比较把它放到正确的位置。你会发现新节点总是被作为叶子结点插入。</p>
+<p><img src="./算法与数据结构原理及Python实现之二十_files/43.png" alt=""></p>
+<pre data-role="codeBlock" data-info="python" class="language-python">    <span class="token comment"># 找到合适的位置将该值（节点）插入（新建该节点），并将最开始的额根结点返回（注意返回的是根结点，而不是新建（插入）的这个节点）</span>
+    <span class="token keyword">def</span> <span class="token function">_bst_insert</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> subtree<span class="token punctuation">,</span> key<span class="token punctuation">,</span> value<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token triple-quoted-string string">""" 插入并且返回根结点
+
+        :param subtree:
+        :param key:
+        :param value:
+        """</span>
+        <span class="token keyword">if</span> subtree <span class="token keyword">is</span> <span class="token boolean">None</span><span class="token punctuation">:</span>  <span class="token comment"># 直到递归到的位置的节点为空，也就是还没有这个节点</span>
+            subtree <span class="token operator">=</span> BSTNode<span class="token punctuation">(</span>key<span class="token punctuation">,</span> value<span class="token punctuation">)</span>  <span class="token comment"># 就直接新建一个节点</span>
+        <span class="token keyword">elif</span> key <span class="token operator">&lt;</span> subtree<span class="token punctuation">.</span>key<span class="token punctuation">:</span>  <span class="token comment"># 如果要插入的值比要插入节点的值小，就往左边走；递归向下找，直到找到最左边的根结点；每次插入都是插入到根结点的</span>
+            subtree<span class="token punctuation">.</span>left <span class="token operator">=</span> self<span class="token punctuation">.</span>_bst_insert<span class="token punctuation">(</span>subtree<span class="token punctuation">.</span>left<span class="token punctuation">,</span> key<span class="token punctuation">,</span> value<span class="token punctuation">)</span>
+        <span class="token keyword">elif</span> key <span class="token operator">&gt;</span> subtree<span class="token punctuation">.</span>key<span class="token punctuation">:</span>  <span class="token comment"># 往右边走</span>
+            subtree<span class="token punctuation">.</span>right <span class="token operator">=</span> self<span class="token punctuation">.</span>_bst_insert<span class="token punctuation">(</span>subtree<span class="token punctuation">.</span>right<span class="token punctuation">,</span> key<span class="token punctuation">,</span> value<span class="token punctuation">)</span>
+        <span class="token keyword">return</span> subtree  <span class="token comment"># 返回最开始的根结点</span>
+
+    <span class="token keyword">def</span> <span class="token function">add</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> key<span class="token punctuation">,</span> value<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        node <span class="token operator">=</span> self<span class="token punctuation">.</span>_bst_search<span class="token punctuation">(</span>self<span class="token punctuation">.</span>root<span class="token punctuation">,</span> key<span class="token punctuation">)</span>  <span class="token comment"># 得到该 key 所对应的节点</span>
+        <span class="token keyword">if</span> node <span class="token keyword">is</span> <span class="token keyword">not</span> <span class="token boolean">None</span><span class="token punctuation">:</span>  <span class="token comment"># 如果这个节点非空，就说明已经存在</span>
+            node<span class="token punctuation">.</span>value <span class="token operator">=</span> value  <span class="token comment"># 对该 key 对应的节点的值进行更新</span>
+            <span class="token keyword">return</span> <span class="token boolean">False</span>
+        <span class="token keyword">else</span><span class="token punctuation">:</span>  <span class="token comment"># 否则就新建</span>
+            self<span class="token punctuation">.</span>root <span class="token operator">=</span> self<span class="token punctuation">.</span>_bst_insert<span class="token punctuation">(</span>self<span class="token punctuation">.</span>root<span class="token punctuation">,</span> key<span class="token punctuation">,</span> value<span class="token punctuation">)</span>  <span class="token comment"># 插入完成之后对该树的 root 节点进行更新</span>
+            self<span class="token punctuation">.</span>size <span class="token operator">+=</span> <span class="token number">1</span>
+            <span class="token keyword">return</span> <span class="token boolean">True</span>
+</pre><ul>
+<li>删除节点</li>
+</ul>
+<p><strong>关于二叉搜索树删除节点的内容可以参考 [reference]-[二叉排序树的删除.flv]；讲的很不错。</strong></p>
+<p>删除操作相比上边的操作要麻烦很多，首先需要定位一个节点，删除节点后，我们需要始终保持 BST 的性质。</p>
+<p>删除一个节点涉及到三种情况：</p>
+<ul>
+<li>节点是叶节点</li>
+<li>节点有一个孩子</li>
+<li>节点有两个孩子</li>
+</ul>
+<p>我们分别来看看三种情况下如何删除一个节点：</p>
+<p>删除叶节点：</p>
+<p>这是最简单的一种情况，只需要把它的父亲指向它的指针设置为 None 就好。</p>
+<p><img src="./算法与数据结构原理及Python实现之二十_files/44.png" alt=""></p>
+<p>删除只有一个孩子的节点：</p>
+<p>删除有一个孩子的节点时，我们拿掉需要删除的节点，之后把它的父亲指向它的孩子就行，因为根据 BST 左子树都小于节点，右子树都大于节点的特性，删除它之后这个条件依旧满足。</p>
+<p><img src="./算法与数据结构原理及Python实现之二十_files/45.png" alt=""></p>
+<p>删除有两个孩子的内部节点：</p>
+<p>假如我们想删除 12 这个节点改怎么做呢？你的第一反应可能是按照下图的方式：</p>
+<p><img src="./算法与数据结构原理及Python实现之二十_files/46.png" alt=""></p>
+<p>但是这种方式可能会影响树的高度，降低查找的效率。这里我们用另一种非常巧妙的方式。还记得上边提到的吗，如果你中序遍历 BST 并且输出每个节点的 key，你会发现就是一个有序的数组。<code>[1 4 12 23 29 37 41 60 71 84 90 100]</code>。这里我们定义两个概念，逻辑前任(predecessor)和后继(successor)，请看下图:</p>
+<p><img src="./算法与数据结构原理及Python实现之二十_files/47.png" alt=""></p>
+<p>12 在中序遍历中的逻辑前任和后继分别是 4 和 23 节点。于是我们还有一种方法来删除 12 这个节点：</p>
+<ul>
+<li>找到待删除节点 N(12) 的后继节点 S(23)</li>
+<li>复制节点 S 到节点 N</li>
+<li>从 N 的右子树中删除节点 S，并更新其删除后继节点后的右子树（<strong>其实应该是删除节点 S，删除的方法和前面的删除方法类似，就是根据这个节点孩子的情况来选择对应的方法。</strong>）</li>
+</ul>
+<p>有个问题是如何找到后继节点呢？待删除节点的右子树的最小的节点不就是后继嘛，上边我们已经实现了找到最小 key 的方法了。</p>
+<p><img src="./算法与数据结构原理及Python实现之二十_files/48.png" alt=""></p>
+<p>删除节点的代码实现如下：</p>
+<pre data-role="codeBlock" data-info="python" class="language-python"><span class="token keyword">def</span> <span class="token function">_bst_remove</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> subtree<span class="token punctuation">,</span> key<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token triple-quoted-string string">"""删除节点并返回根节点"""</span>
+        <span class="token keyword">if</span> subtree <span class="token keyword">is</span> <span class="token boolean">None</span><span class="token punctuation">:</span>
+            <span class="token keyword">return</span> <span class="token boolean">None</span>
+        <span class="token keyword">elif</span> key <span class="token operator">&lt;</span> subtree<span class="token punctuation">.</span>key<span class="token punctuation">:</span>  <span class="token comment"># 从左边往下找</span>
+            subtree<span class="token punctuation">.</span>left <span class="token operator">=</span> self<span class="token punctuation">.</span>_bst_remove<span class="token punctuation">(</span>subtree<span class="token punctuation">.</span>left<span class="token punctuation">,</span> key<span class="token punctuation">)</span>
+            <span class="token keyword">return</span> subtree
+        <span class="token keyword">elif</span> key <span class="token operator">&gt;</span> subtree<span class="token punctuation">.</span>key<span class="token punctuation">:</span>  <span class="token comment"># 从右边往下找</span>
+            subtree<span class="token punctuation">.</span>right <span class="token operator">=</span> self<span class="token punctuation">.</span>_bst_remove<span class="token punctuation">(</span>subtree<span class="token punctuation">.</span>right<span class="token punctuation">,</span> key<span class="token punctuation">)</span>
+            <span class="token keyword">return</span> subtree
+        <span class="token keyword">else</span><span class="token punctuation">:</span>  <span class="token comment"># 找到了需要删除的节点</span>
+            <span class="token keyword">if</span> subtree<span class="token punctuation">.</span>left <span class="token keyword">is</span> <span class="token boolean">None</span> <span class="token keyword">and</span> subtree<span class="token punctuation">.</span>right <span class="token keyword">is</span> <span class="token boolean">None</span><span class="token punctuation">:</span>  <span class="token comment"># 如果是叶节点，返回 None 把其父亲指向它的指针置为 None</span>
+                <span class="token keyword">return</span> <span class="token boolean">None</span>
+            <span class="token keyword">elif</span> subtree<span class="token punctuation">.</span>left <span class="token keyword">is</span> <span class="token boolean">None</span> <span class="token keyword">or</span> subtree<span class="token punctuation">.</span>right <span class="token keyword">is</span> <span class="token boolean">None</span><span class="token punctuation">:</span>  <span class="token comment"># 如果只有一个孩子</span>
+                <span class="token keyword">if</span> subtree<span class="token punctuation">.</span>left <span class="token keyword">is</span> <span class="token keyword">not</span> <span class="token boolean">None</span><span class="token punctuation">:</span>  <span class="token comment"># 如果左孩子为非 None</span>
+                    <span class="token keyword">return</span> subtree<span class="token punctuation">.</span>left  <span class="token comment"># 返回它的孩子并让它的父亲指过去</span>
+                <span class="token keyword">else</span><span class="token punctuation">:</span>  <span class="token comment"># 否则就返回右孩子</span>
+                    <span class="token keyword">return</span> subtree<span class="token punctuation">.</span>right
+            <span class="token keyword">else</span><span class="token punctuation">:</span>  <span class="token comment"># 如果是有俩孩子，寻找后继节点替换，并删除其右子树的后继节点，同时更新其右子树</span>
+                successor_node <span class="token operator">=</span> self<span class="token punctuation">.</span>_bst_min_node<span class="token punctuation">(</span>subtree<span class="token punctuation">.</span>right<span class="token punctuation">)</span>  <span class="token comment"># 找到后继节点</span>
+                subtree<span class="token punctuation">.</span>key<span class="token punctuation">,</span> subtree<span class="token punctuation">.</span>value <span class="token operator">=</span> successor_node<span class="token punctuation">.</span>key<span class="token punctuation">,</span> successor_node<span class="token punctuation">.</span>value  <span class="token comment"># 将该节点与后继节点的 key 和 value 进行互换</span>
+                subtree<span class="token punctuation">.</span>right <span class="token operator">=</span> self<span class="token punctuation">.</span>_bst_remove<span class="token punctuation">(</span>subtree<span class="token punctuation">.</span>right<span class="token punctuation">,</span> successor_node<span class="token punctuation">.</span>key<span class="token punctuation">)</span>  <span class="token comment"># 对右子树继续递归调用该函数进行更新</span>
+                <span class="token keyword">return</span> subtree
+
+    <span class="token keyword">def</span> <span class="token function">remove</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> key<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token keyword">assert</span> key <span class="token keyword">in</span> self
+        self<span class="token punctuation">.</span>size <span class="token operator">-=</span> <span class="token number">1</span>
+        <span class="token keyword">return</span> self<span class="token punctuation">.</span>_bst_remove<span class="token punctuation">(</span>self<span class="token punctuation">.</span>root<span class="token punctuation">,</span> key<span class="token punctuation">)</span>
+</pre><p><strong>二叉查找树完整代码实现：</strong></p>
+<pre data-role="codeBlock" data-info="python" class="language-python"><span class="token comment"># 前面的 BSTNode 类和 build_from 方法与前面二叉树的实现非常相似</span>
+
+<span class="token keyword">class</span> <span class="token class-name">BSTNode</span><span class="token punctuation">(</span><span class="token builtin">object</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword">def</span> <span class="token function">__init__</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> key<span class="token punctuation">,</span> value<span class="token punctuation">,</span> left<span class="token operator">=</span><span class="token boolean">None</span><span class="token punctuation">,</span> right<span class="token operator">=</span><span class="token boolean">None</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+        self<span class="token punctuation">.</span>key<span class="token punctuation">,</span> self<span class="token punctuation">.</span>value<span class="token punctuation">,</span> self<span class="token punctuation">.</span>left<span class="token punctuation">,</span> self<span class="token punctuation">.</span>right <span class="token operator">=</span> key<span class="token punctuation">,</span> value<span class="token punctuation">,</span> left<span class="token punctuation">,</span> right
+
+<span class="token keyword">class</span> <span class="token class-name">BST</span><span class="token punctuation">(</span><span class="token builtin">object</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword">def</span> <span class="token function">__init__</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> root<span class="token operator">=</span><span class="token boolean">None</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+        self<span class="token punctuation">.</span>root <span class="token operator">=</span> root
+
+    @<span class="token builtin">classmethod</span>
+    <span class="token keyword">def</span> <span class="token function">build_from</span><span class="token punctuation">(</span>cls<span class="token punctuation">,</span> node_list<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        cls<span class="token punctuation">.</span>size <span class="token operator">=</span> <span class="token number">0</span>
+        key_to_node_dict <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
+        <span class="token keyword">for</span> node_dict <span class="token keyword">in</span> node_list<span class="token punctuation">:</span>
+            key <span class="token operator">=</span> node_dict<span class="token punctuation">[</span><span class="token string">'key'</span><span class="token punctuation">]</span>
+            key_to_node_dict<span class="token punctuation">[</span>key<span class="token punctuation">]</span> <span class="token operator">=</span> BSTNode<span class="token punctuation">(</span>key<span class="token punctuation">,</span> value<span class="token operator">=</span>key<span class="token punctuation">)</span>  <span class="token comment"># 这里值暂时用和 key一样的</span>
+
+        <span class="token keyword">for</span> node_dict <span class="token keyword">in</span> node_list<span class="token punctuation">:</span>
+            key <span class="token operator">=</span> node_dict<span class="token punctuation">[</span><span class="token string">'key'</span><span class="token punctuation">]</span>
+            node <span class="token operator">=</span> key_to_node_dict<span class="token punctuation">[</span>key<span class="token punctuation">]</span>
+            <span class="token keyword">if</span> node_dict<span class="token punctuation">[</span><span class="token string">'is_root'</span><span class="token punctuation">]</span><span class="token punctuation">:</span>
+                root <span class="token operator">=</span> node
+            node<span class="token punctuation">.</span>left <span class="token operator">=</span> key_to_node_dict<span class="token punctuation">.</span>get<span class="token punctuation">(</span>node_dict<span class="token punctuation">[</span><span class="token string">'left'</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+            node<span class="token punctuation">.</span>right <span class="token operator">=</span> key_to_node_dict<span class="token punctuation">.</span>get<span class="token punctuation">(</span>node_dict<span class="token punctuation">[</span><span class="token string">'right'</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+            cls<span class="token punctuation">.</span>size <span class="token operator">+=</span> <span class="token number">1</span>
+        <span class="token keyword">return</span> cls<span class="token punctuation">(</span>root<span class="token punctuation">)</span>
+
+    <span class="token comment"># 找到某个 key 所在的节点并将该节点返回</span>
+    <span class="token keyword">def</span> <span class="token function">_bst_search</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> subtree<span class="token punctuation">,</span> key<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token keyword">if</span> subtree <span class="token keyword">is</span> <span class="token boolean">None</span><span class="token punctuation">:</span>
+            <span class="token keyword">return</span> <span class="token boolean">None</span>
+        <span class="token keyword">elif</span> key <span class="token operator">&lt;</span> subtree<span class="token punctuation">.</span>key<span class="token punctuation">:</span>  <span class="token comment"># 如果这个值比当前节点的值小，就去左子树去查找</span>
+            <span class="token keyword">return</span> self<span class="token punctuation">.</span>_bst_search<span class="token punctuation">(</span>subtree<span class="token punctuation">.</span>left<span class="token punctuation">,</span> key<span class="token punctuation">)</span>
+        <span class="token keyword">elif</span> key <span class="token operator">&gt;</span> subtree<span class="token punctuation">.</span>key<span class="token punctuation">:</span>  <span class="token comment"># 否则就去右子树去找</span>
+            <span class="token keyword">return</span> self<span class="token punctuation">.</span>_bst_search<span class="token punctuation">(</span>subtree<span class="token punctuation">.</span>right<span class="token punctuation">,</span> key<span class="token punctuation">)</span>
+        <span class="token keyword">else</span><span class="token punctuation">:</span>  <span class="token comment"># 如果 key = subtree.key，就将这个节点返回</span>
+            <span class="token keyword">return</span> subtree
+
+    <span class="token keyword">def</span> <span class="token function">__contains__</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> key<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token triple-quoted-string string">"""实现 in 操作符"""</span>
+        <span class="token keyword">return</span> self<span class="token punctuation">.</span>_bst_search<span class="token punctuation">(</span>self<span class="token punctuation">.</span>root<span class="token punctuation">,</span> key<span class="token punctuation">)</span> <span class="token keyword">is</span> <span class="token keyword">not</span> <span class="token boolean">None</span>  <span class="token comment"># 返回 True or False</span>
+
+    <span class="token comment"># 根据提供的 key 得到对应的节点的值</span>
+    <span class="token keyword">def</span> <span class="token function">get</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> key<span class="token punctuation">,</span> default<span class="token operator">=</span><span class="token boolean">None</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+        node <span class="token operator">=</span> self<span class="token punctuation">.</span>_bst_search<span class="token punctuation">(</span>self<span class="token punctuation">.</span>root<span class="token punctuation">,</span> key<span class="token punctuation">)</span>  <span class="token comment"># 从 root 节点开始找，找到这个 key 对应的节点</span>
+        <span class="token keyword">if</span> node <span class="token keyword">is</span> <span class="token boolean">None</span><span class="token punctuation">:</span>  <span class="token comment"># 如果这个节点是 None</span>
+            <span class="token keyword">return</span> default
+        <span class="token keyword">else</span><span class="token punctuation">:</span>
+            <span class="token keyword">return</span> node<span class="token punctuation">.</span>value  <span class="token comment"># 如果非空就返回这个值</span>
+
+    <span class="token comment"># 找到值最小的节点</span>
+    <span class="token keyword">def</span> <span class="token function">_bst_min_node</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> subtree<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token keyword">if</span> subtree <span class="token keyword">is</span> <span class="token boolean">None</span><span class="token punctuation">:</span>
+            <span class="token keyword">return</span> <span class="token boolean">None</span>
+        <span class="token keyword">elif</span> subtree<span class="token punctuation">.</span>left <span class="token keyword">is</span> <span class="token boolean">None</span><span class="token punctuation">:</span>  <span class="token comment"># 找到左子树的头</span>
+            <span class="token keyword">return</span> subtree
+        <span class="token keyword">else</span><span class="token punctuation">:</span>
+            <span class="token keyword">return</span> self<span class="token punctuation">.</span>_bst_min_node<span class="token punctuation">(</span>subtree<span class="token punctuation">.</span>left<span class="token punctuation">)</span>
+
+    <span class="token comment"># 找到二叉树中最小值的节点的值（最小值）</span>
+    <span class="token keyword">def</span> <span class="token function">bst_min</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        node <span class="token operator">=</span> self<span class="token punctuation">.</span>_bst_min_node<span class="token punctuation">(</span>self<span class="token punctuation">.</span>root<span class="token punctuation">)</span>  <span class="token comment"># 从 root 节点开始找找到最小值的节点</span>
+        <span class="token keyword">return</span> node<span class="token punctuation">.</span>value <span class="token keyword">if</span> node <span class="token keyword">else</span> <span class="token boolean">None</span>  <span class="token comment"># 如果 node 非空就返回 node.value，否则就返回 None</span>
+
+    <span class="token comment"># 找到合适的位置将该值（节点）插入（新建该节点），并将最开始的额根结点返回（注意返回的是根结点，而不是新建（插入）的这个节点）</span>
+    <span class="token keyword">def</span> <span class="token function">_bst_insert</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> subtree<span class="token punctuation">,</span> key<span class="token punctuation">,</span> value<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token triple-quoted-string string">""" 插入并且返回根结点
+
+        :param subtree:
+        :param key:
+        :param value:
+        """</span>
+        <span class="token keyword">if</span> subtree <span class="token keyword">is</span> <span class="token boolean">None</span><span class="token punctuation">:</span>  <span class="token comment"># 直到递归到的位置的节点为空，也就是还没有这个节点</span>
+            subtree <span class="token operator">=</span> BSTNode<span class="token punctuation">(</span>key<span class="token punctuation">,</span> value<span class="token punctuation">)</span>  <span class="token comment"># 就直接新建一个节点</span>
+        <span class="token keyword">elif</span> key <span class="token operator">&lt;</span> subtree<span class="token punctuation">.</span>key<span class="token punctuation">:</span>  <span class="token comment"># 如果要插入的值比要插入节点的值小，就往左边走；递归向下找，直到找到最左边的根结点；每次插入都是插入到根结点的</span>
+            subtree<span class="token punctuation">.</span>left <span class="token operator">=</span> self<span class="token punctuation">.</span>_bst_insert<span class="token punctuation">(</span>subtree<span class="token punctuation">.</span>left<span class="token punctuation">,</span> key<span class="token punctuation">,</span> value<span class="token punctuation">)</span>
+        <span class="token keyword">elif</span> key <span class="token operator">&gt;</span> subtree<span class="token punctuation">.</span>key<span class="token punctuation">:</span>  <span class="token comment"># 往右边走</span>
+            subtree<span class="token punctuation">.</span>right <span class="token operator">=</span> self<span class="token punctuation">.</span>_bst_insert<span class="token punctuation">(</span>subtree<span class="token punctuation">.</span>right<span class="token punctuation">,</span> key<span class="token punctuation">,</span> value<span class="token punctuation">)</span>
+        <span class="token keyword">return</span> subtree  <span class="token comment"># 返回最开始的根结点</span>
+
+    <span class="token keyword">def</span> <span class="token function">add</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> key<span class="token punctuation">,</span> value<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        node <span class="token operator">=</span> self<span class="token punctuation">.</span>_bst_search<span class="token punctuation">(</span>self<span class="token punctuation">.</span>root<span class="token punctuation">,</span> key<span class="token punctuation">)</span>  <span class="token comment"># 得到该 key 所对应的节点</span>
+        <span class="token keyword">if</span> node <span class="token keyword">is</span> <span class="token keyword">not</span> <span class="token boolean">None</span><span class="token punctuation">:</span>  <span class="token comment"># 如果这个节点非空，就说明已经存在</span>
+            node<span class="token punctuation">.</span>value <span class="token operator">=</span> value  <span class="token comment"># 对该 key 对应的节点的值进行更新</span>
+            <span class="token keyword">return</span> <span class="token boolean">False</span>
+        <span class="token keyword">else</span><span class="token punctuation">:</span>  <span class="token comment"># 否则就新建</span>
+            self<span class="token punctuation">.</span>root <span class="token operator">=</span> self<span class="token punctuation">.</span>_bst_insert<span class="token punctuation">(</span>self<span class="token punctuation">.</span>root<span class="token punctuation">,</span> key<span class="token punctuation">,</span> value<span class="token punctuation">)</span>  <span class="token comment"># 插入完成之后对该树的 root 节点进行更新</span>
+            self<span class="token punctuation">.</span>size <span class="token operator">+=</span> <span class="token number">1</span>
+            <span class="token keyword">return</span> <span class="token boolean">True</span>
+
+    <span class="token keyword">def</span> <span class="token function">_bst_remove</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> subtree<span class="token punctuation">,</span> key<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token triple-quoted-string string">"""删除节点并返回根节点"""</span>
+        <span class="token keyword">if</span> subtree <span class="token keyword">is</span> <span class="token boolean">None</span><span class="token punctuation">:</span>
+            <span class="token keyword">return</span> <span class="token boolean">None</span>
+        <span class="token keyword">elif</span> key <span class="token operator">&lt;</span> subtree<span class="token punctuation">.</span>key<span class="token punctuation">:</span>  <span class="token comment"># 从左边往下找</span>
+            subtree<span class="token punctuation">.</span>left <span class="token operator">=</span> self<span class="token punctuation">.</span>_bst_remove<span class="token punctuation">(</span>subtree<span class="token punctuation">.</span>left<span class="token punctuation">,</span> key<span class="token punctuation">)</span>
+            <span class="token keyword">return</span> subtree
+        <span class="token keyword">elif</span> key <span class="token operator">&gt;</span> subtree<span class="token punctuation">.</span>key<span class="token punctuation">:</span>  <span class="token comment"># 从右边往下找</span>
+            subtree<span class="token punctuation">.</span>right <span class="token operator">=</span> self<span class="token punctuation">.</span>_bst_remove<span class="token punctuation">(</span>subtree<span class="token punctuation">.</span>right<span class="token punctuation">,</span> key<span class="token punctuation">)</span>
+            <span class="token keyword">return</span> subtree
+        <span class="token keyword">else</span><span class="token punctuation">:</span>  <span class="token comment"># 找到了需要删除的节点</span>
+            <span class="token keyword">if</span> subtree<span class="token punctuation">.</span>left <span class="token keyword">is</span> <span class="token boolean">None</span> <span class="token keyword">and</span> subtree<span class="token punctuation">.</span>right <span class="token keyword">is</span> <span class="token boolean">None</span><span class="token punctuation">:</span>  <span class="token comment"># 如果是叶节点，返回 None 把其父亲指向它的指针置为 None</span>
+                <span class="token keyword">return</span> <span class="token boolean">None</span>
+            <span class="token keyword">elif</span> subtree<span class="token punctuation">.</span>left <span class="token keyword">is</span> <span class="token boolean">None</span> <span class="token keyword">or</span> subtree<span class="token punctuation">.</span>right <span class="token keyword">is</span> <span class="token boolean">None</span><span class="token punctuation">:</span>  <span class="token comment"># 如果只有一个孩子</span>
+                <span class="token keyword">if</span> subtree<span class="token punctuation">.</span>left <span class="token keyword">is</span> <span class="token keyword">not</span> <span class="token boolean">None</span><span class="token punctuation">:</span>  <span class="token comment"># 如果左孩子为非 None</span>
+                    <span class="token keyword">return</span> subtree<span class="token punctuation">.</span>left  <span class="token comment"># 返回它的孩子并让它的父亲指过去</span>
+                <span class="token keyword">else</span><span class="token punctuation">:</span>  <span class="token comment"># 否则就返回右孩子</span>
+                    <span class="token keyword">return</span> subtree<span class="token punctuation">.</span>right
+            <span class="token keyword">else</span><span class="token punctuation">:</span>  <span class="token comment"># 如果是有俩孩子，寻找后继节点替换，并删除其右子树的后继节点，同时更新其右子树</span>
+                successor_node <span class="token operator">=</span> self<span class="token punctuation">.</span>_bst_min_node<span class="token punctuation">(</span>subtree<span class="token punctuation">.</span>right<span class="token punctuation">)</span>  <span class="token comment"># 找到后继节点</span>
+                subtree<span class="token punctuation">.</span>key<span class="token punctuation">,</span> subtree<span class="token punctuation">.</span>value <span class="token operator">=</span> successor_node<span class="token punctuation">.</span>key<span class="token punctuation">,</span> successor_node<span class="token punctuation">.</span>value  <span class="token comment"># 将该节点与后继节点的 key 和 value 进行互换</span>
+                subtree<span class="token punctuation">.</span>right <span class="token operator">=</span> self<span class="token punctuation">.</span>_bst_remove<span class="token punctuation">(</span>subtree<span class="token punctuation">.</span>right<span class="token punctuation">,</span> successor_node<span class="token punctuation">.</span>key<span class="token punctuation">)</span>  <span class="token comment"># 对右子树继续递归调用该函数进行更新</span>
+                <span class="token keyword">return</span> subtree
+
+    <span class="token keyword">def</span> <span class="token function">remove</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> key<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token keyword">assert</span> key <span class="token keyword">in</span> self
+        self<span class="token punctuation">.</span>size <span class="token operator">-=</span> <span class="token number">1</span>
+        <span class="token keyword">return</span> self<span class="token punctuation">.</span>_bst_remove<span class="token punctuation">(</span>self<span class="token punctuation">.</span>root<span class="token punctuation">,</span> key<span class="token punctuation">)</span>
+
+NODE_LIST <span class="token operator">=</span> <span class="token punctuation">[</span>
+    <span class="token punctuation">{</span><span class="token string">'key'</span><span class="token punctuation">:</span> <span class="token number">60</span><span class="token punctuation">,</span> <span class="token string">'left'</span><span class="token punctuation">:</span> <span class="token number">12</span><span class="token punctuation">,</span> <span class="token string">'right'</span><span class="token punctuation">:</span> <span class="token number">90</span><span class="token punctuation">,</span> <span class="token string">'is_root'</span><span class="token punctuation">:</span> <span class="token boolean">True</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token punctuation">{</span><span class="token string">'key'</span><span class="token punctuation">:</span> <span class="token number">12</span><span class="token punctuation">,</span> <span class="token string">'left'</span><span class="token punctuation">:</span> <span class="token number">4</span><span class="token punctuation">,</span> <span class="token string">'right'</span><span class="token punctuation">:</span> <span class="token number">41</span><span class="token punctuation">,</span> <span class="token string">'is_root'</span><span class="token punctuation">:</span> <span class="token boolean">False</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token punctuation">{</span><span class="token string">'key'</span><span class="token punctuation">:</span> <span class="token number">4</span><span class="token punctuation">,</span> <span class="token string">'left'</span><span class="token punctuation">:</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token string">'right'</span><span class="token punctuation">:</span> <span class="token boolean">None</span><span class="token punctuation">,</span> <span class="token string">'is_root'</span><span class="token punctuation">:</span> <span class="token boolean">False</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token punctuation">{</span><span class="token string">'key'</span><span class="token punctuation">:</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token string">'left'</span><span class="token punctuation">:</span> <span class="token boolean">None</span><span class="token punctuation">,</span> <span class="token string">'right'</span><span class="token punctuation">:</span> <span class="token boolean">None</span><span class="token punctuation">,</span> <span class="token string">'is_root'</span><span class="token punctuation">:</span> <span class="token boolean">False</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token punctuation">{</span><span class="token string">'key'</span><span class="token punctuation">:</span> <span class="token number">41</span><span class="token punctuation">,</span> <span class="token string">'left'</span><span class="token punctuation">:</span> <span class="token number">29</span><span class="token punctuation">,</span> <span class="token string">'right'</span><span class="token punctuation">:</span> <span class="token boolean">None</span><span class="token punctuation">,</span> <span class="token string">'is_root'</span><span class="token punctuation">:</span> <span class="token boolean">False</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token punctuation">{</span><span class="token string">'key'</span><span class="token punctuation">:</span> <span class="token number">29</span><span class="token punctuation">,</span> <span class="token string">'left'</span><span class="token punctuation">:</span> <span class="token number">23</span><span class="token punctuation">,</span> <span class="token string">'right'</span><span class="token punctuation">:</span> <span class="token number">37</span><span class="token punctuation">,</span> <span class="token string">'is_root'</span><span class="token punctuation">:</span> <span class="token boolean">False</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token punctuation">{</span><span class="token string">'key'</span><span class="token punctuation">:</span> <span class="token number">23</span><span class="token punctuation">,</span> <span class="token string">'left'</span><span class="token punctuation">:</span> <span class="token boolean">None</span><span class="token punctuation">,</span> <span class="token string">'right'</span><span class="token punctuation">:</span> <span class="token boolean">None</span><span class="token punctuation">,</span> <span class="token string">'is_root'</span><span class="token punctuation">:</span> <span class="token boolean">False</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token punctuation">{</span><span class="token string">'key'</span><span class="token punctuation">:</span> <span class="token number">37</span><span class="token punctuation">,</span> <span class="token string">'left'</span><span class="token punctuation">:</span> <span class="token boolean">None</span><span class="token punctuation">,</span> <span class="token string">'right'</span><span class="token punctuation">:</span> <span class="token boolean">None</span><span class="token punctuation">,</span> <span class="token string">'is_root'</span><span class="token punctuation">:</span> <span class="token boolean">False</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token punctuation">{</span><span class="token string">'key'</span><span class="token punctuation">:</span> <span class="token number">90</span><span class="token punctuation">,</span> <span class="token string">'left'</span><span class="token punctuation">:</span> <span class="token number">71</span><span class="token punctuation">,</span> <span class="token string">'right'</span><span class="token punctuation">:</span> <span class="token number">100</span><span class="token punctuation">,</span> <span class="token string">'is_root'</span><span class="token punctuation">:</span> <span class="token boolean">False</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token punctuation">{</span><span class="token string">'key'</span><span class="token punctuation">:</span> <span class="token number">71</span><span class="token punctuation">,</span> <span class="token string">'left'</span><span class="token punctuation">:</span> <span class="token boolean">None</span><span class="token punctuation">,</span> <span class="token string">'right'</span><span class="token punctuation">:</span> <span class="token number">84</span><span class="token punctuation">,</span> <span class="token string">'is_root'</span><span class="token punctuation">:</span> <span class="token boolean">False</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token punctuation">{</span><span class="token string">'key'</span><span class="token punctuation">:</span> <span class="token number">100</span><span class="token punctuation">,</span> <span class="token string">'left'</span><span class="token punctuation">:</span> <span class="token boolean">None</span><span class="token punctuation">,</span> <span class="token string">'right'</span><span class="token punctuation">:</span> <span class="token boolean">None</span><span class="token punctuation">,</span> <span class="token string">'is_root'</span><span class="token punctuation">:</span> <span class="token boolean">False</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token punctuation">{</span><span class="token string">'key'</span><span class="token punctuation">:</span> <span class="token number">84</span><span class="token punctuation">,</span> <span class="token string">'left'</span><span class="token punctuation">:</span> <span class="token boolean">None</span><span class="token punctuation">,</span> <span class="token string">'right'</span><span class="token punctuation">:</span> <span class="token boolean">None</span><span class="token punctuation">,</span> <span class="token string">'is_root'</span><span class="token punctuation">:</span> <span class="token boolean">False</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+<span class="token punctuation">]</span>
+
+<span class="token keyword">def</span> <span class="token function">test_bst_tree</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    bst <span class="token operator">=</span> BST<span class="token punctuation">.</span>build_from<span class="token punctuation">(</span>NODE_LIST<span class="token punctuation">)</span>
+    <span class="token keyword">for</span> node_dict <span class="token keyword">in</span> NODE_LIST<span class="token punctuation">:</span>
+        key <span class="token operator">=</span> node_dict<span class="token punctuation">[</span><span class="token string">'key'</span><span class="token punctuation">]</span>
+        <span class="token keyword">assert</span> bst<span class="token punctuation">.</span>get<span class="token punctuation">(</span>key<span class="token punctuation">)</span> <span class="token operator">==</span> key
+    <span class="token keyword">assert</span> bst<span class="token punctuation">.</span>size <span class="token operator">==</span> <span class="token builtin">len</span><span class="token punctuation">(</span>NODE_LIST<span class="token punctuation">)</span>
+    <span class="token keyword">assert</span> bst<span class="token punctuation">.</span>get<span class="token punctuation">(</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span> <span class="token keyword">is</span> <span class="token boolean">None</span>  <span class="token comment"># 单例的 None 我们用 is 来比较</span>
+
+    <span class="token keyword">assert</span> bst<span class="token punctuation">.</span>bst_min<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">==</span> <span class="token number">1</span>
+
+    bst<span class="token punctuation">.</span>add<span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span>
+    <span class="token keyword">assert</span> bst<span class="token punctuation">.</span>bst_min<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">==</span> <span class="token number">0</span>
+
+    bst<span class="token punctuation">.</span>remove<span class="token punctuation">(</span><span class="token number">12</span><span class="token punctuation">)</span>
+    <span class="token keyword">assert</span> bst<span class="token punctuation">.</span>get<span class="token punctuation">(</span><span class="token number">12</span><span class="token punctuation">)</span> <span class="token keyword">is</span> <span class="token boolean">None</span>
+
+    bst<span class="token punctuation">.</span>remove<span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span>
+    <span class="token keyword">assert</span> bst<span class="token punctuation">.</span>get<span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span> <span class="token keyword">is</span> <span class="token boolean">None</span>
+
+    bst<span class="token punctuation">.</span>remove<span class="token punctuation">(</span><span class="token number">29</span><span class="token punctuation">)</span>
+    <span class="token keyword">assert</span> bst<span class="token punctuation">.</span>get<span class="token punctuation">(</span><span class="token number">29</span><span class="token punctuation">)</span> <span class="token keyword">is</span> <span class="token boolean">None</span>
+</pre><p>运行 <code>pytest python.py -v</code> 后结果如下：</p>
+<p><img src="./算法与数据结构原理及Python实现之二十_files/49.png" alt=""></p>
+<p><strong>时间复杂度分析：</strong></p>
+<p>上边介绍的操作时间复杂度和二叉树的形状有关。平均来说时间复杂度是和树的高度成正比的，树的高度 h 是 log(n)，但是最坏情况下以上操作的时间复杂度都是 O(n)。为了改善 BST 有很多变种。</p>
+<p><img src="./算法与数据结构原理及Python实现之二十_files/50.png" alt=""></p>
+<hr>
+
+      </div>
+      
+      
+    
+    
+    
+    
+    
+    
+    
+    
+  </body></html>

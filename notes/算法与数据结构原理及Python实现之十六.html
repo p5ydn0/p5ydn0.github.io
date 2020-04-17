@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<!-- saved from url=(0099)file:///private/var/folders/jq/l66hzx9956qbmxs_990g1djh0000gn/T/mume2020317-90899-73p0h6.mb36p.html -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+      <title>算法与数据结构原理及Python实现之十六</title>
+      
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      
+      <link rel="stylesheet" href="./算法与数据结构原理及Python实现之十六_files/katex.min.css">
+      
+      
+
+      
+      
+      
+      
+      
+      
+      
+
+      <style>
+      /**
+ * prism.js Github theme based on GitHub's theme.
+ * @author Sam Clarke
+ */
+code[class*="language-"],
+pre[class*="language-"] {
+  color: #333;
+  background: none;
+  font-family: Consolas, "Liberation Mono", Menlo, Courier, monospace;
+  text-align: left;
+  white-space: pre;
+  word-spacing: normal;
+  word-break: normal;
+  word-wrap: normal;
+  line-height: 1.4;
+
+  -moz-tab-size: 8;
+  -o-tab-size: 8;
+  tab-size: 8;
+
+  -webkit-hyphens: none;
+  -moz-hyphens: none;
+  -ms-hyphens: none;
+  hyphens: none;
+}
+
+/* Code blocks */
+pre[class*="language-"] {
+  padding: .8em;
+  overflow: auto;
+  /* border: 1px solid #ddd; */
+  border-radius: 3px;
+  /* background: #fff; */
+  background: #f5f5f5;
+}
+
+/* Inline code */
+:not(pre) > code[class*="language-"] {
+  padding: .1em;
+  border-radius: .3em;
+  white-space: normal;
+  background: #f5f5f5;
+}
+
+.token.comment,
+.token.blockquote {
+  color: #969896;
+}
+
+.token.cdata {
+  color: #183691;
+}
+
+.token.doctype,
+.token.punctuation,
+.token.variable,
+.token.macro.property {
+  color: #333;
+}
+
+.token.operator,
+.token.important,
+.token.keyword,
+.token.rule,
+.token.builtin {
+  color: #a71d5d;
+}
+
+.token.string,
+.token.url,
+.token.regex,
+.token.attr-value {
+  color: #183691;
+}
+
+.token.property,
+.token.number,
+.token.boolean,
+.token.entity,
+.token.atrule,
+.token.constant,
+.token.symbol,
+.token.command,
+.token.code {
+  color: #0086b3;
+}
+
+.token.tag,
+.token.selector,
+.token.prolog {
+  color: #63a35c;
+}
+
+.token.function,
+.token.namespace,
+.token.pseudo-element,
+.token.class,
+.token.class-name,
+.token.pseudo-class,
+.token.id,
+.token.url-reference .token.variable,
+.token.attr-name {
+  color: #795da3;
+}
+
+.token.entity {
+  cursor: help;
+}
+
+.token.title,
+.token.title .token.punctuation {
+  font-weight: bold;
+  color: #1d3e81;
+}
+
+.token.list {
+  color: #ed6a43;
+}
+
+.token.inserted {
+  background-color: #eaffea;
+  color: #55a532;
+}
+
+.token.deleted {
+  background-color: #ffecec;
+  color: #bd2c00;
+}
+
+.token.bold {
+  font-weight: bold;
+}
+
+.token.italic {
+  font-style: italic;
+}
+
+
+/* JSON */
+.language-json .token.property {
+  color: #183691;
+}
+
+.language-markup .token.tag .token.punctuation {
+  color: #333;
+}
+
+/* CSS */
+code.language-css,
+.language-css .token.function {
+  color: #0086b3;
+}
+
+/* YAML */
+.language-yaml .token.atrule {
+  color: #63a35c;
+}
+
+code.language-yaml {
+  color: #183691;
+}
+
+/* Ruby */
+.language-ruby .token.function {
+  color: #333;
+}
+
+/* Markdown */
+.language-markdown .token.url {
+  color: #795da3;
+}
+
+/* Makefile */
+.language-makefile .token.symbol {
+  color: #795da3;
+}
+
+.language-makefile .token.variable {
+  color: #183691;
+}
+
+.language-makefile .token.builtin {
+  color: #0086b3;
+}
+
+/* Bash */
+.language-bash .token.keyword {
+  color: #0086b3;
+}
+
+/* highlight */
+pre[data-line] {
+  position: relative;
+  padding: 1em 0 1em 3em;
+}
+pre[data-line] .line-highlight-wrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: transparent;
+  display: block;
+  width: 100%;
+}
+
+pre[data-line] .line-highlight {
+  position: absolute;
+  left: 0;
+  right: 0;
+  padding: inherit 0;
+  margin-top: 1em;
+  background: hsla(24, 20%, 50%,.08);
+  background: linear-gradient(to right, hsla(24, 20%, 50%,.1) 70%, hsla(24, 20%, 50%,0));
+  pointer-events: none;
+  line-height: inherit;
+  white-space: pre;
+}
+
+pre[data-line] .line-highlight:before, 
+pre[data-line] .line-highlight[data-end]:after {
+  content: attr(data-start);
+  position: absolute;
+  top: .4em;
+  left: .6em;
+  min-width: 1em;
+  padding: 0 .5em;
+  background-color: hsla(24, 20%, 50%,.4);
+  color: hsl(24, 20%, 95%);
+  font: bold 65%/1.5 sans-serif;
+  text-align: center;
+  vertical-align: .3em;
+  border-radius: 999px;
+  text-shadow: none;
+  box-shadow: 0 1px white;
+}
+
+pre[data-line] .line-highlight[data-end]:after {
+  content: attr(data-end);
+  top: auto;
+  bottom: .4em;
+}html body{font-family:"Helvetica Neue",Helvetica,"Segoe UI",Arial,freesans,sans-serif;font-size:16px;line-height:1.6;color:#333;background-color:#fff;overflow:initial;box-sizing:border-box;word-wrap:break-word}html body>:first-child{margin-top:0}html body h1,html body h2,html body h3,html body h4,html body h5,html body h6{line-height:1.2;margin-top:1em;margin-bottom:16px;color:#000}html body h1{font-size:2.25em;font-weight:300;padding-bottom:.3em}html body h2{font-size:1.75em;font-weight:400;padding-bottom:.3em}html body h3{font-size:1.5em;font-weight:500}html body h4{font-size:1.25em;font-weight:600}html body h5{font-size:1.1em;font-weight:600}html body h6{font-size:1em;font-weight:600}html body h1,html body h2,html body h3,html body h4,html body h5{font-weight:600}html body h5{font-size:1em}html body h6{color:#5c5c5c}html body strong{color:#000}html body del{color:#5c5c5c}html body a:not([href]){color:inherit;text-decoration:none}html body a{color:#08c;text-decoration:none}html body a:hover{color:#00a3f5;text-decoration:none}html body img{max-width:100%}html body>p{margin-top:0;margin-bottom:16px;word-wrap:break-word}html body>ul,html body>ol{margin-bottom:16px}html body ul,html body ol{padding-left:2em}html body ul.no-list,html body ol.no-list{padding:0;list-style-type:none}html body ul ul,html body ul ol,html body ol ol,html body ol ul{margin-top:0;margin-bottom:0}html body li{margin-bottom:0}html body li.task-list-item{list-style:none}html body li>p{margin-top:0;margin-bottom:0}html body .task-list-item-checkbox{margin:0 .2em .25em -1.8em;vertical-align:middle}html body .task-list-item-checkbox:hover{cursor:pointer}html body blockquote{margin:16px 0;font-size:inherit;padding:0 15px;color:#5c5c5c;border-left:4px solid #d6d6d6}html body blockquote>:first-child{margin-top:0}html body blockquote>:last-child{margin-bottom:0}html body hr{height:4px;margin:32px 0;background-color:#d6d6d6;border:0 none}html body table{margin:10px 0 15px 0;border-collapse:collapse;border-spacing:0;display:block;width:100%;overflow:auto;word-break:normal;word-break:keep-all}html body table th{font-weight:bold;color:#000}html body table td,html body table th{border:1px solid #d6d6d6;padding:6px 13px}html body dl{padding:0}html body dl dt{padding:0;margin-top:16px;font-size:1em;font-style:italic;font-weight:bold}html body dl dd{padding:0 16px;margin-bottom:16px}html body code{font-family:Menlo,Monaco,Consolas,'Courier New',monospace;font-size:.85em !important;color:#000;background-color:#f0f0f0;border-radius:3px;padding:.2em 0}html body code::before,html body code::after{letter-spacing:-0.2em;content:"\00a0"}html body pre>code{padding:0;margin:0;font-size:.85em !important;word-break:normal;white-space:pre;background:transparent;border:0}html body .highlight{margin-bottom:16px}html body .highlight pre,html body pre{padding:1em;overflow:auto;font-size:.85em !important;line-height:1.45;border:#d6d6d6;border-radius:3px}html body .highlight pre{margin-bottom:0;word-break:normal}html body pre code,html body pre tt{display:inline;max-width:initial;padding:0;margin:0;overflow:initial;line-height:inherit;word-wrap:normal;background-color:transparent;border:0}html body pre code:before,html body pre tt:before,html body pre code:after,html body pre tt:after{content:normal}html body p,html body blockquote,html body ul,html body ol,html body dl,html body pre{margin-top:0;margin-bottom:16px}html body kbd{color:#000;border:1px solid #d6d6d6;border-bottom:2px solid #c7c7c7;padding:2px 4px;background-color:#f0f0f0;border-radius:3px}@media print{html body{background-color:#fff}html body h1,html body h2,html body h3,html body h4,html body h5,html body h6{color:#000;page-break-after:avoid}html body blockquote{color:#5c5c5c}html body pre{page-break-inside:avoid}html body table{display:table}html body img{display:block;max-width:100%;max-height:100%}html body pre,html body code{word-wrap:break-word;white-space:pre}}.markdown-preview{width:100%;height:100%;box-sizing:border-box}.markdown-preview .pagebreak,.markdown-preview .newpage{page-break-before:always}.markdown-preview pre.line-numbers{position:relative;padding-left:3.8em;counter-reset:linenumber}.markdown-preview pre.line-numbers>code{position:relative}.markdown-preview pre.line-numbers .line-numbers-rows{position:absolute;pointer-events:none;top:1em;font-size:100%;left:0;width:3em;letter-spacing:-1px;border-right:1px solid #999;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}.markdown-preview pre.line-numbers .line-numbers-rows>span{pointer-events:none;display:block;counter-increment:linenumber}.markdown-preview pre.line-numbers .line-numbers-rows>span:before{content:counter(linenumber);color:#999;display:block;padding-right:.8em;text-align:right}.markdown-preview .mathjax-exps .MathJax_Display{text-align:center !important}.markdown-preview:not([for="preview"]) .code-chunk .btn-group{display:none}.markdown-preview:not([for="preview"]) .code-chunk .status{display:none}.markdown-preview:not([for="preview"]) .code-chunk .output-div{margin-bottom:16px}.scrollbar-style::-webkit-scrollbar{width:8px}.scrollbar-style::-webkit-scrollbar-track{border-radius:10px;background-color:transparent}.scrollbar-style::-webkit-scrollbar-thumb{border-radius:5px;background-color:rgba(150,150,150,0.66);border:4px solid rgba(150,150,150,0.66);background-clip:content-box}html body[for="html-export"]:not([data-presentation-mode]){position:relative;width:100%;height:100%;top:0;left:0;margin:0;padding:0;overflow:auto}html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{position:relative;top:0}@media screen and (min-width:914px){html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{padding:2em calc(50% - 457px + 2em)}}@media screen and (max-width:914px){html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{padding:2em}}@media screen and (max-width:450px){html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{font-size:14px !important;padding:1em}}@media print{html body[for="html-export"]:not([data-presentation-mode]) #sidebar-toc-btn{display:none}}html body[for="html-export"]:not([data-presentation-mode]) #sidebar-toc-btn{position:fixed;bottom:8px;left:8px;font-size:28px;cursor:pointer;color:inherit;z-index:99;width:32px;text-align:center;opacity:.4}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] #sidebar-toc-btn{opacity:1}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc{position:fixed;top:0;left:0;width:300px;height:100%;padding:32px 0 48px 0;font-size:14px;box-shadow:0 0 4px rgba(150,150,150,0.33);box-sizing:border-box;overflow:auto;background-color:inherit}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar{width:8px}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-track{border-radius:10px;background-color:transparent}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-thumb{border-radius:5px;background-color:rgba(150,150,150,0.66);border:4px solid rgba(150,150,150,0.66);background-clip:content-box}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc a{text-decoration:none}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc ul{padding:0 1.6em;margin-top:.8em}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc li{margin-bottom:.8em}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc ul{list-style-type:none}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{left:300px;width:calc(100% -  300px);padding:2em calc(50% - 457px -  150px);margin:0;box-sizing:border-box}@media screen and (max-width:1274px){html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{padding:2em}}@media screen and (max-width:450px){html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{width:100%}}html body[for="html-export"]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .markdown-preview{left:50%;transform:translateX(-50%)}html body[for="html-export"]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .md-sidebar-toc{display:none}
+/* Please visit the URL below for more information: */
+/*   https://shd101wyy.github.io/markdown-preview-enhanced/#/customize-css */
+
+      </style>
+    </head>
+    <body for="html-export">
+      <div class="mume markdown-preview  ">
+      <h1 class="mume-header" id="%E7%AE%97%E6%B3%95%E4%B8%8E%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%8E%9F%E7%90%86%E5%8F%8Apython%E5%AE%9E%E7%8E%B0">算法与数据结构原理及Python实现</h1>
+
+<h3 class="mume-header" id="%E7%AE%97%E6%B3%95%E4%B8%8E%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%8E%9F%E7%90%86%E5%8F%8Apython%E5%AE%9E%E7%8E%B0%E4%B9%8B%E5%8D%81%E5%85%AD%E5%BF%AB%E9%80%9F%E6%8E%92%E5%BA%8F">算法与数据结构原理及Python实现之十六：快速排序</h3>
+
+<hr>
+<h2 class="mume-header" id="16-%E5%BF%AB%E9%80%9F%E6%8E%92%E5%BA%8F">16. 快速排序</h2>
+
+<p>快速排序名字可不是盖的，很多程序语言标准库实现的内置排序都有它的身影，我们就直奔主题吧。和归并排序一样，快排也是一种分而治之(divide and conquer)的策略。归并排序把数组递归成只有单个元素的数组，之后再不断两两合并，最后得到一个有序数组。这里的递归基本条件就是只包含一个元素的数组，当数组只包含一个元素的时候，我们可以认为它本来就是有序的（当然空数组也不用排序）。</p>
+<p>快排的工作过程其实比较简单，三步走：</p>
+<ul>
+<li>选择基准值 pivot 将数组分成两个子数组：小于基准值的元素和大于基准值的元素。这个过程称之为 partition；</li>
+<li>对这两个子数组进行快速排序；</li>
+<li>合并结果。</li>
+</ul>
+<p><img src="./算法与数据结构原理及Python实现之十六_files/25.png" alt=""></p>
+<p>根据这个想法我们可以快速写出快排的代码，简直就是在翻译上边的描述：</p>
+<pre data-role="codeBlock" data-info="python" class="language-python"><span class="token keyword">def</span> <span class="token function">quicksort</span><span class="token punctuation">(</span>array<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    size <span class="token operator">=</span> <span class="token builtin">len</span><span class="token punctuation">(</span>array<span class="token punctuation">)</span>
+    <span class="token keyword">if</span> <span class="token keyword">not</span> array <span class="token keyword">or</span> size <span class="token operator">&lt;</span> <span class="token number">2</span><span class="token punctuation">:</span>  <span class="token comment"># 递归出口，空数组或者只有一个元素的数组都是有序的</span>
+        <span class="token keyword">return</span> array
+    pivot_idx <span class="token operator">=</span> <span class="token number">0</span>
+    pivot <span class="token operator">=</span> array<span class="token punctuation">[</span>pivot_idx<span class="token punctuation">]</span>
+    less_part <span class="token operator">=</span> <span class="token punctuation">[</span>array<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token keyword">for</span> i <span class="token keyword">in</span> <span class="token builtin">range</span><span class="token punctuation">(</span>size<span class="token punctuation">)</span> <span class="token keyword">if</span> array<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">&lt;=</span> pivot <span class="token keyword">and</span> pivot_idx <span class="token operator">!=</span> i<span class="token punctuation">]</span>
+    great_part <span class="token operator">=</span> <span class="token punctuation">[</span>array<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token keyword">for</span> i <span class="token keyword">in</span> <span class="token builtin">range</span><span class="token punctuation">(</span>size<span class="token punctuation">)</span> <span class="token keyword">if</span> array<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">&gt;</span> pivot <span class="token keyword">and</span> pivot_idx <span class="token operator">!=</span> i<span class="token punctuation">]</span>
+    <span class="token keyword">return</span> quicksort<span class="token punctuation">(</span>less_part<span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token punctuation">[</span>pivot<span class="token punctuation">]</span> <span class="token operator">+</span> quicksort<span class="token punctuation">(</span>great_part<span class="token punctuation">)</span>
+
+<span class="token keyword">def</span> <span class="token function">test_quicksort</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword">import</span> random
+    seq <span class="token operator">=</span> <span class="token builtin">list</span><span class="token punctuation">(</span><span class="token builtin">range</span><span class="token punctuation">(</span><span class="token number">10</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+    random<span class="token punctuation">.</span>shuffle<span class="token punctuation">(</span>seq<span class="token punctuation">)</span>
+    <span class="token keyword">assert</span> quicksort<span class="token punctuation">(</span>seq<span class="token punctuation">)</span> <span class="token operator">==</span> <span class="token builtin">sorted</span><span class="token punctuation">(</span>seq<span class="token punctuation">)</span>
+</pre><p>很简单。当然这个实现有两个不好的地方:</p>
+<ul>
+<li>第一是它需要额外的存储空间，我们想实现 inplace 原地排序。如上面代码中的 <code>less_part</code> 和 <code>right_part</code> 都是额外的空间。</li>
+<li>第二是它的 partition 操作每次都要两次遍历整个数组，我们想改善一下。</li>
+</ul>
+<p>这里我们就来优化一下它，<strong>实现 inplace 排序并且改善下 partition 操作</strong>。新的代码大概如下。</p>
+<p>下面代码中的 partition 函数可以实现只遍历一次数组就可以完成 partition 操作。实现的思路是设置首位俩个指针 left, right，两个指针不断向中间收拢。如果遇到 left 位置的元素大于 pivot 并且 right 指向的元素小于 pivot，我们就交换这俩元素，当 left &gt; right 的时候退出就行了，这样实现了一次遍历就完成了 partition。如下图所示（更多内容可参考 [referenc]-[快速排序.mp4]。）：</p>
+<p><img src="./算法与数据结构原理及Python实现之十六_files/26.png" alt=""></p>
+<p>具体代码如下：</p>
+<pre data-role="codeBlock" data-info="python" class="language-python"><span class="token keyword">def</span> <span class="token function">quicksort_inplace</span><span class="token punctuation">(</span>array<span class="token punctuation">,</span> beg<span class="token punctuation">,</span> end<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword">if</span> beg <span class="token operator">&lt;</span> end<span class="token punctuation">:</span>  <span class="token comment"># 递归直到 beg &lt; end（也就是只剩下一个元素的时候；beg = end 的时候是只有一个元素的时候）；只有一个元素的时候就是有序的</span>
+        pivot <span class="token operator">=</span> partition<span class="token punctuation">(</span>array<span class="token punctuation">,</span> beg<span class="token punctuation">,</span> end<span class="token punctuation">)</span>  <span class="token comment"># 得到 pivot 的位置；此时的数组左边的元素都是比 pivot 小的，数组右边的元素就都是比 pivot 大的；所以后面的递归调用就只对 pivot 左边和右边的元素分别“重排”就好了</span>
+        quicksort_inplace<span class="token punctuation">(</span>array<span class="token punctuation">,</span> beg<span class="token punctuation">,</span> pivot<span class="token punctuation">)</span>
+        quicksort_inplace<span class="token punctuation">(</span>array<span class="token punctuation">,</span> pivot<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">,</span> end<span class="token punctuation">)</span>
+
+<span class="token keyword">def</span> <span class="token function">partition</span><span class="token punctuation">(</span>array<span class="token punctuation">,</span> beg<span class="token punctuation">,</span> end<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token triple-quoted-string string">"""对给定数组执行 partition 操作，返回新的 pivot 位置"""</span>
+    pivot_index <span class="token operator">=</span> beg
+    pivot <span class="token operator">=</span> array<span class="token punctuation">[</span>pivot_index<span class="token punctuation">]</span>
+    left <span class="token operator">=</span> pivot_index <span class="token operator">+</span> <span class="token number">1</span>
+    right <span class="token operator">=</span> end <span class="token operator">-</span> <span class="token number">1</span>  <span class="token comment"># 开区间，最后一个元素位置是 end-1     [0, end-1] or [0: end)，括号表示开区间</span>
+
+    <span class="token keyword">while</span> <span class="token boolean">True</span><span class="token punctuation">:</span>
+        <span class="token comment"># 从数组的左边开始找比 pivot 大的元素</span>
+        <span class="token keyword">while</span> left <span class="token operator">&lt;=</span> right <span class="token keyword">and</span> array<span class="token punctuation">[</span>left<span class="token punctuation">]</span> <span class="token operator">&lt;</span> pivot<span class="token punctuation">:</span>
+            left <span class="token operator">+=</span> <span class="token number">1</span>
+
+        <span class="token comment"># 从数组的右边开始找比 pivot 小的元素</span>
+        <span class="token keyword">while</span> right <span class="token operator">&gt;=</span> left <span class="token keyword">and</span> array<span class="token punctuation">[</span>right<span class="token punctuation">]</span> <span class="token operator">&gt;=</span> pivot<span class="token punctuation">:</span>
+            right <span class="token operator">-=</span> <span class="token number">1</span>
+
+        <span class="token comment"># 如果 left &gt; right，就可以退出了</span>
+        <span class="token keyword">if</span> left <span class="token operator">&gt;</span> right<span class="token punctuation">:</span>
+            <span class="token keyword">break</span>
+        <span class="token keyword">else</span><span class="token punctuation">:</span>  <span class="token comment"># 否则的话就将左右的元素进行对调</span>
+            array<span class="token punctuation">[</span>left<span class="token punctuation">]</span><span class="token punctuation">,</span> array<span class="token punctuation">[</span>right<span class="token punctuation">]</span> <span class="token operator">=</span> array<span class="token punctuation">[</span>right<span class="token punctuation">]</span><span class="token punctuation">,</span> array<span class="token punctuation">[</span>left<span class="token punctuation">]</span>
+
+    <span class="token comment"># 最后将 pivot 与 right 的元素对调</span>
+    array<span class="token punctuation">[</span>pivot_index<span class="token punctuation">]</span><span class="token punctuation">,</span> array<span class="token punctuation">[</span>right<span class="token punctuation">]</span> <span class="token operator">=</span> array<span class="token punctuation">[</span>right<span class="token punctuation">]</span><span class="token punctuation">,</span> array<span class="token punctuation">[</span>pivot_index<span class="token punctuation">]</span>
+    <span class="token keyword">return</span> right  <span class="token comment"># 返回新的 pivot 位置</span>
+
+<span class="token keyword">def</span> <span class="token function">test_partition</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    l <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token number">4</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">8</span><span class="token punctuation">]</span>
+    <span class="token keyword">assert</span> partition<span class="token punctuation">(</span>l<span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token builtin">len</span><span class="token punctuation">(</span>l<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token operator">==</span> <span class="token number">2</span>  <span class="token comment"># 以 4（index=0）为 pivot，重新排序后 4 的位置为 2</span>
+    l <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">4</span><span class="token punctuation">]</span>
+    <span class="token keyword">assert</span> partition<span class="token punctuation">(</span>l<span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token builtin">len</span><span class="token punctuation">(</span>l<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token operator">==</span> <span class="token number">0</span>  <span class="token comment"># 同上；应该位于第一个位置</span>
+    l <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token number">4</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">]</span>
+    <span class="token keyword">assert</span> partition<span class="token punctuation">(</span>l<span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token builtin">len</span><span class="token punctuation">(</span>l<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token operator">==</span> <span class="token number">3</span>
+    l <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span>
+    <span class="token keyword">assert</span> partition<span class="token punctuation">(</span>l<span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token builtin">len</span><span class="token punctuation">(</span>l<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token operator">==</span> <span class="token number">0</span>
+    l <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token number">2</span><span class="token punctuation">,</span><span class="token number">1</span><span class="token punctuation">]</span>
+    <span class="token keyword">assert</span> partition<span class="token punctuation">(</span>l<span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token builtin">len</span><span class="token punctuation">(</span>l<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token operator">==</span> <span class="token number">1</span>
+
+<span class="token keyword">def</span> <span class="token function">test_quicksort_inplace</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword">import</span> random
+    seq <span class="token operator">=</span> <span class="token builtin">list</span><span class="token punctuation">(</span><span class="token builtin">range</span><span class="token punctuation">(</span><span class="token number">10</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+    random<span class="token punctuation">.</span>shuffle<span class="token punctuation">(</span>seq<span class="token punctuation">)</span>
+    sorted_seq <span class="token operator">=</span> <span class="token builtin">sorted</span><span class="token punctuation">(</span>seq<span class="token punctuation">)</span>
+    quicksort_inplace<span class="token punctuation">(</span>seq<span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token builtin">len</span><span class="token punctuation">(</span>seq<span class="token punctuation">)</span><span class="token punctuation">)</span>
+    <span class="token keyword">assert</span> seq <span class="token operator">==</span> sorted_seq
+</pre><p>运行 <code>pytest python.py -v</code> 后结果如下：</p>
+<p><img src="./算法与数据结构原理及Python实现之十六_files/27.png" alt=""></p>
+<p><strong>时间复杂度总结：</strong></p>
+<p>面试经常问的就是常用排序算法的时间空间复杂，这里列一个表格方便记忆：</p>
+<table>
+<thead>
+<tr>
+<th>排序算法</th>
+<th>最差时间分析</th>
+<th>平均时间复杂度</th>
+<th>稳定度</th>
+<th>空间复杂度</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>冒泡排序</td>
+<td>O(n^2)</td>
+<td>O(n^2)</td>
+<td>稳定</td>
+<td>O(1)</td>
+</tr>
+<tr>
+<td>选择排序</td>
+<td>O(n^2)</td>
+<td>O(n^2)</td>
+<td>不稳定</td>
+<td>O(1)</td>
+</tr>
+<tr>
+<td>插入排序</td>
+<td>O(n^2)</td>
+<td>O(n^2)</td>
+<td>稳定</td>
+<td>O(1)</td>
+</tr>
+<tr>
+<td>二叉树排序</td>
+<td>O(n^2)</td>
+<td>O(n*log2n)</td>
+<td>不一顶</td>
+<td>O(n)</td>
+</tr>
+<tr>
+<td>快速排序</td>
+<td>O(n^2)</td>
+<td>O(n*log2n)</td>
+<td>不稳定</td>
+<td>O(log2n)~O(n)</td>
+</tr>
+<tr>
+<td>堆排序</td>
+<td>O(n*log2n)</td>
+<td>O(n*log2n)</td>
+<td>不稳定</td>
+<td>O(1)</td>
+</tr>
+</tbody>
+</table>
+<hr>
+
+      </div>
+      
+      
+    
+    
+    
+    
+    
+    
+    
+    
+  </body></html>

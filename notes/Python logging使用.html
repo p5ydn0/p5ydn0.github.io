@@ -1,0 +1,692 @@
+<!DOCTYPE html>
+<!-- saved from url=(0099)file:///private/var/folders/jq/l66hzx9956qbmxs_990g1djh0000gn/T/mume2020317-90899-2mt875.89rwv.html -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+      <title>Python logging使用</title>
+      
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      
+      <link rel="stylesheet" href="./Python logging使用_files/katex.min.css">
+      
+      
+
+      
+      
+      
+      
+      
+      
+      
+
+      <style>
+      /**
+ * prism.js Github theme based on GitHub's theme.
+ * @author Sam Clarke
+ */
+code[class*="language-"],
+pre[class*="language-"] {
+  color: #333;
+  background: none;
+  font-family: Consolas, "Liberation Mono", Menlo, Courier, monospace;
+  text-align: left;
+  white-space: pre;
+  word-spacing: normal;
+  word-break: normal;
+  word-wrap: normal;
+  line-height: 1.4;
+
+  -moz-tab-size: 8;
+  -o-tab-size: 8;
+  tab-size: 8;
+
+  -webkit-hyphens: none;
+  -moz-hyphens: none;
+  -ms-hyphens: none;
+  hyphens: none;
+}
+
+/* Code blocks */
+pre[class*="language-"] {
+  padding: .8em;
+  overflow: auto;
+  /* border: 1px solid #ddd; */
+  border-radius: 3px;
+  /* background: #fff; */
+  background: #f5f5f5;
+}
+
+/* Inline code */
+:not(pre) > code[class*="language-"] {
+  padding: .1em;
+  border-radius: .3em;
+  white-space: normal;
+  background: #f5f5f5;
+}
+
+.token.comment,
+.token.blockquote {
+  color: #969896;
+}
+
+.token.cdata {
+  color: #183691;
+}
+
+.token.doctype,
+.token.punctuation,
+.token.variable,
+.token.macro.property {
+  color: #333;
+}
+
+.token.operator,
+.token.important,
+.token.keyword,
+.token.rule,
+.token.builtin {
+  color: #a71d5d;
+}
+
+.token.string,
+.token.url,
+.token.regex,
+.token.attr-value {
+  color: #183691;
+}
+
+.token.property,
+.token.number,
+.token.boolean,
+.token.entity,
+.token.atrule,
+.token.constant,
+.token.symbol,
+.token.command,
+.token.code {
+  color: #0086b3;
+}
+
+.token.tag,
+.token.selector,
+.token.prolog {
+  color: #63a35c;
+}
+
+.token.function,
+.token.namespace,
+.token.pseudo-element,
+.token.class,
+.token.class-name,
+.token.pseudo-class,
+.token.id,
+.token.url-reference .token.variable,
+.token.attr-name {
+  color: #795da3;
+}
+
+.token.entity {
+  cursor: help;
+}
+
+.token.title,
+.token.title .token.punctuation {
+  font-weight: bold;
+  color: #1d3e81;
+}
+
+.token.list {
+  color: #ed6a43;
+}
+
+.token.inserted {
+  background-color: #eaffea;
+  color: #55a532;
+}
+
+.token.deleted {
+  background-color: #ffecec;
+  color: #bd2c00;
+}
+
+.token.bold {
+  font-weight: bold;
+}
+
+.token.italic {
+  font-style: italic;
+}
+
+
+/* JSON */
+.language-json .token.property {
+  color: #183691;
+}
+
+.language-markup .token.tag .token.punctuation {
+  color: #333;
+}
+
+/* CSS */
+code.language-css,
+.language-css .token.function {
+  color: #0086b3;
+}
+
+/* YAML */
+.language-yaml .token.atrule {
+  color: #63a35c;
+}
+
+code.language-yaml {
+  color: #183691;
+}
+
+/* Ruby */
+.language-ruby .token.function {
+  color: #333;
+}
+
+/* Markdown */
+.language-markdown .token.url {
+  color: #795da3;
+}
+
+/* Makefile */
+.language-makefile .token.symbol {
+  color: #795da3;
+}
+
+.language-makefile .token.variable {
+  color: #183691;
+}
+
+.language-makefile .token.builtin {
+  color: #0086b3;
+}
+
+/* Bash */
+.language-bash .token.keyword {
+  color: #0086b3;
+}
+
+/* highlight */
+pre[data-line] {
+  position: relative;
+  padding: 1em 0 1em 3em;
+}
+pre[data-line] .line-highlight-wrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: transparent;
+  display: block;
+  width: 100%;
+}
+
+pre[data-line] .line-highlight {
+  position: absolute;
+  left: 0;
+  right: 0;
+  padding: inherit 0;
+  margin-top: 1em;
+  background: hsla(24, 20%, 50%,.08);
+  background: linear-gradient(to right, hsla(24, 20%, 50%,.1) 70%, hsla(24, 20%, 50%,0));
+  pointer-events: none;
+  line-height: inherit;
+  white-space: pre;
+}
+
+pre[data-line] .line-highlight:before, 
+pre[data-line] .line-highlight[data-end]:after {
+  content: attr(data-start);
+  position: absolute;
+  top: .4em;
+  left: .6em;
+  min-width: 1em;
+  padding: 0 .5em;
+  background-color: hsla(24, 20%, 50%,.4);
+  color: hsl(24, 20%, 95%);
+  font: bold 65%/1.5 sans-serif;
+  text-align: center;
+  vertical-align: .3em;
+  border-radius: 999px;
+  text-shadow: none;
+  box-shadow: 0 1px white;
+}
+
+pre[data-line] .line-highlight[data-end]:after {
+  content: attr(data-end);
+  top: auto;
+  bottom: .4em;
+}html body{font-family:"Helvetica Neue",Helvetica,"Segoe UI",Arial,freesans,sans-serif;font-size:16px;line-height:1.6;color:#333;background-color:#fff;overflow:initial;box-sizing:border-box;word-wrap:break-word}html body>:first-child{margin-top:0}html body h1,html body h2,html body h3,html body h4,html body h5,html body h6{line-height:1.2;margin-top:1em;margin-bottom:16px;color:#000}html body h1{font-size:2.25em;font-weight:300;padding-bottom:.3em}html body h2{font-size:1.75em;font-weight:400;padding-bottom:.3em}html body h3{font-size:1.5em;font-weight:500}html body h4{font-size:1.25em;font-weight:600}html body h5{font-size:1.1em;font-weight:600}html body h6{font-size:1em;font-weight:600}html body h1,html body h2,html body h3,html body h4,html body h5{font-weight:600}html body h5{font-size:1em}html body h6{color:#5c5c5c}html body strong{color:#000}html body del{color:#5c5c5c}html body a:not([href]){color:inherit;text-decoration:none}html body a{color:#08c;text-decoration:none}html body a:hover{color:#00a3f5;text-decoration:none}html body img{max-width:100%}html body>p{margin-top:0;margin-bottom:16px;word-wrap:break-word}html body>ul,html body>ol{margin-bottom:16px}html body ul,html body ol{padding-left:2em}html body ul.no-list,html body ol.no-list{padding:0;list-style-type:none}html body ul ul,html body ul ol,html body ol ol,html body ol ul{margin-top:0;margin-bottom:0}html body li{margin-bottom:0}html body li.task-list-item{list-style:none}html body li>p{margin-top:0;margin-bottom:0}html body .task-list-item-checkbox{margin:0 .2em .25em -1.8em;vertical-align:middle}html body .task-list-item-checkbox:hover{cursor:pointer}html body blockquote{margin:16px 0;font-size:inherit;padding:0 15px;color:#5c5c5c;border-left:4px solid #d6d6d6}html body blockquote>:first-child{margin-top:0}html body blockquote>:last-child{margin-bottom:0}html body hr{height:4px;margin:32px 0;background-color:#d6d6d6;border:0 none}html body table{margin:10px 0 15px 0;border-collapse:collapse;border-spacing:0;display:block;width:100%;overflow:auto;word-break:normal;word-break:keep-all}html body table th{font-weight:bold;color:#000}html body table td,html body table th{border:1px solid #d6d6d6;padding:6px 13px}html body dl{padding:0}html body dl dt{padding:0;margin-top:16px;font-size:1em;font-style:italic;font-weight:bold}html body dl dd{padding:0 16px;margin-bottom:16px}html body code{font-family:Menlo,Monaco,Consolas,'Courier New',monospace;font-size:.85em !important;color:#000;background-color:#f0f0f0;border-radius:3px;padding:.2em 0}html body code::before,html body code::after{letter-spacing:-0.2em;content:"\00a0"}html body pre>code{padding:0;margin:0;font-size:.85em !important;word-break:normal;white-space:pre;background:transparent;border:0}html body .highlight{margin-bottom:16px}html body .highlight pre,html body pre{padding:1em;overflow:auto;font-size:.85em !important;line-height:1.45;border:#d6d6d6;border-radius:3px}html body .highlight pre{margin-bottom:0;word-break:normal}html body pre code,html body pre tt{display:inline;max-width:initial;padding:0;margin:0;overflow:initial;line-height:inherit;word-wrap:normal;background-color:transparent;border:0}html body pre code:before,html body pre tt:before,html body pre code:after,html body pre tt:after{content:normal}html body p,html body blockquote,html body ul,html body ol,html body dl,html body pre{margin-top:0;margin-bottom:16px}html body kbd{color:#000;border:1px solid #d6d6d6;border-bottom:2px solid #c7c7c7;padding:2px 4px;background-color:#f0f0f0;border-radius:3px}@media print{html body{background-color:#fff}html body h1,html body h2,html body h3,html body h4,html body h5,html body h6{color:#000;page-break-after:avoid}html body blockquote{color:#5c5c5c}html body pre{page-break-inside:avoid}html body table{display:table}html body img{display:block;max-width:100%;max-height:100%}html body pre,html body code{word-wrap:break-word;white-space:pre}}.markdown-preview{width:100%;height:100%;box-sizing:border-box}.markdown-preview .pagebreak,.markdown-preview .newpage{page-break-before:always}.markdown-preview pre.line-numbers{position:relative;padding-left:3.8em;counter-reset:linenumber}.markdown-preview pre.line-numbers>code{position:relative}.markdown-preview pre.line-numbers .line-numbers-rows{position:absolute;pointer-events:none;top:1em;font-size:100%;left:0;width:3em;letter-spacing:-1px;border-right:1px solid #999;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}.markdown-preview pre.line-numbers .line-numbers-rows>span{pointer-events:none;display:block;counter-increment:linenumber}.markdown-preview pre.line-numbers .line-numbers-rows>span:before{content:counter(linenumber);color:#999;display:block;padding-right:.8em;text-align:right}.markdown-preview .mathjax-exps .MathJax_Display{text-align:center !important}.markdown-preview:not([for="preview"]) .code-chunk .btn-group{display:none}.markdown-preview:not([for="preview"]) .code-chunk .status{display:none}.markdown-preview:not([for="preview"]) .code-chunk .output-div{margin-bottom:16px}.scrollbar-style::-webkit-scrollbar{width:8px}.scrollbar-style::-webkit-scrollbar-track{border-radius:10px;background-color:transparent}.scrollbar-style::-webkit-scrollbar-thumb{border-radius:5px;background-color:rgba(150,150,150,0.66);border:4px solid rgba(150,150,150,0.66);background-clip:content-box}html body[for="html-export"]:not([data-presentation-mode]){position:relative;width:100%;height:100%;top:0;left:0;margin:0;padding:0;overflow:auto}html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{position:relative;top:0}@media screen and (min-width:914px){html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{padding:2em calc(50% - 457px + 2em)}}@media screen and (max-width:914px){html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{padding:2em}}@media screen and (max-width:450px){html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{font-size:14px !important;padding:1em}}@media print{html body[for="html-export"]:not([data-presentation-mode]) #sidebar-toc-btn{display:none}}html body[for="html-export"]:not([data-presentation-mode]) #sidebar-toc-btn{position:fixed;bottom:8px;left:8px;font-size:28px;cursor:pointer;color:inherit;z-index:99;width:32px;text-align:center;opacity:.4}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] #sidebar-toc-btn{opacity:1}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc{position:fixed;top:0;left:0;width:300px;height:100%;padding:32px 0 48px 0;font-size:14px;box-shadow:0 0 4px rgba(150,150,150,0.33);box-sizing:border-box;overflow:auto;background-color:inherit}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar{width:8px}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-track{border-radius:10px;background-color:transparent}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-thumb{border-radius:5px;background-color:rgba(150,150,150,0.66);border:4px solid rgba(150,150,150,0.66);background-clip:content-box}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc a{text-decoration:none}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc ul{padding:0 1.6em;margin-top:.8em}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc li{margin-bottom:.8em}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc ul{list-style-type:none}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{left:300px;width:calc(100% -  300px);padding:2em calc(50% - 457px -  150px);margin:0;box-sizing:border-box}@media screen and (max-width:1274px){html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{padding:2em}}@media screen and (max-width:450px){html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{width:100%}}html body[for="html-export"]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .markdown-preview{left:50%;transform:translateX(-50%)}html body[for="html-export"]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .md-sidebar-toc{display:none}
+/* Please visit the URL below for more information: */
+/*   https://shd101wyy.github.io/markdown-preview-enhanced/#/customize-css */
+
+      </style>
+    </head>
+    <body for="html-export">
+      <div class="mume markdown-preview  ">
+      <h1 class="mume-header" id="python-logging%E4%BD%BF%E7%94%A8">Python logging使用</h1>
+
+<h2 class="mume-header" id="1-%E6%80%BB%E4%BD%93%E8%AE%A4%E8%AF%86">1. 总体认识</h2>
+
+<p>在开始理解的时候，印象上可以认为将把(调试时用的)print()替换为logging即可进行一个logging的简单使用。如下：</p>
+<pre data-role="codeBlock" data-info="python" class="language-python"><span class="token keyword">import</span> logging
+logging<span class="token punctuation">.</span>basicConfig<span class="token punctuation">(</span>level<span class="token operator">=</span>logging<span class="token punctuation">.</span>INFO<span class="token punctuation">)</span>
+
+s <span class="token operator">=</span> <span class="token string">'0'</span>
+n <span class="token operator">=</span> <span class="token builtin">int</span><span class="token punctuation">(</span>s<span class="token punctuation">)</span>
+logging<span class="token punctuation">.</span>info<span class="token punctuation">(</span><span class="token string">'n = %d'</span> <span class="token operator">%</span> n<span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span><span class="token number">10</span> <span class="token operator">/</span> n<span class="token punctuation">)</span>
+</pre><p>输出如下：</p>
+<pre data-role="codeBlock" data-info="python" class="language-python">$ python3 err<span class="token punctuation">.</span>py
+INFO<span class="token punctuation">:</span>root<span class="token punctuation">:</span>n <span class="token operator">=</span> <span class="token number">0</span>  <span class="token comment"># 打印出的信息</span>
+Traceback <span class="token punctuation">(</span>most recent call last<span class="token punctuation">)</span><span class="token punctuation">:</span>
+  File <span class="token string">"err.py"</span><span class="token punctuation">,</span> line <span class="token number">8</span><span class="token punctuation">,</span> <span class="token keyword">in</span> <span class="token operator">&lt;</span>module<span class="token operator">&gt;</span>
+    <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token number">10</span> <span class="token operator">/</span> n<span class="token punctuation">)</span>
+ZeroDivisionError<span class="token punctuation">:</span> division by zero
+</pre><p>logging允许你指定记录信息的级别，有debug，info，warning，error等几个级别，当我们指定level=INFO时，logging.debug就不起作用了。同理，指定level=WARNING后，debug和info就不起作用了。这样一来，你可以放心地输出不同级别的信息，也不用删除，最后统一控制输出哪个级别的信息。</p>
+<p>logging的另一个好处是通过简单的配置，一条语句可以同时输出到不同的地方，比如console和文件。</p>
+<h2 class="mume-header" id="2-%E5%86%8D%E7%9C%8B%E5%87%A0%E4%B8%AA%E4%BE%8B%E5%AD%90">2. 再看几个例子</h2>
+
+<p>(1) 简单的将日志打印到屏幕：</p>
+<pre data-role="codeBlock" data-info="python" class="language-python"><span class="token keyword">import</span> logging
+
+logging<span class="token punctuation">.</span>debug<span class="token punctuation">(</span><span class="token string">'This is debug message'</span><span class="token punctuation">)</span>
+logging<span class="token punctuation">.</span>info<span class="token punctuation">(</span><span class="token string">'This is info message'</span><span class="token punctuation">)</span>
+logging<span class="token punctuation">.</span>warning<span class="token punctuation">(</span><span class="token string">'This is warning message'</span><span class="token punctuation">)</span>
+</pre><p>屏幕上打印:</p>
+<pre data-role="codeBlock" data-info="python" class="language-python">WARNING<span class="token punctuation">:</span>root<span class="token punctuation">:</span>This <span class="token keyword">is</span> warning message
+</pre><p>默认情况下，logging将日志打印到屏幕，日志级别为WARNING；</p>
+<p>日志级别大小关系为：CRITICAL &gt; ERROR &gt; WARNING &gt; INFO &gt; DEBUG &gt; NOTSET，当然也可以自己定义日志级别。</p>
+<p><img src="./Python logging使用_files/01.png" alt="01"></p>
+<p>日志级别:</p>
+<table>
+<thead>
+<tr>
+<th>级别</th>
+<th>何时使用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>DEBUG</td>
+<td>详细信息，典型地调试问题时会感兴趣</td>
+</tr>
+<tr>
+<td>INFO</td>
+<td>证明事情按预期工作</td>
+</tr>
+<tr>
+<td>WARNING</td>
+<td>表明发生了一些意外，或者不久的将来会发生问题（如‘磁盘满了’）。软件还是在正常工作</td>
+</tr>
+<tr>
+<td>ERROR</td>
+<td>由于更严重的问题，软件已不能执行一些功能了</td>
+</tr>
+<tr>
+<td>CRITICAL</td>
+<td>严重错误，表明软件已不能继续运行了</td>
+</tr>
+</tbody>
+</table>
+<p>(2) 使用basicConfig配置logging日志行为：</p>
+<pre data-role="codeBlock" data-info="python" class="language-python"><span class="token keyword">import</span> logging
+
+logging<span class="token punctuation">.</span>basicConfig<span class="token punctuation">(</span>level<span class="token operator">=</span>logging<span class="token punctuation">.</span>DEBUG<span class="token punctuation">,</span>
+                <span class="token builtin">format</span><span class="token operator">=</span><span class="token string">'%(asctime)s %(filename)s[line:%(lineno)d] %(levelname)s %(message)s'</span><span class="token punctuation">,</span>
+                datefmt<span class="token operator">=</span><span class="token string">'%a, %d %b %Y %H:%M:%S'</span><span class="token punctuation">,</span>
+                filename<span class="token operator">=</span><span class="token string">'myapp.log'</span><span class="token punctuation">,</span>
+                filemode<span class="token operator">=</span><span class="token string">'w'</span><span class="token punctuation">)</span>
+
+logging<span class="token punctuation">.</span>debug<span class="token punctuation">(</span><span class="token string">'This is debug message'</span><span class="token punctuation">)</span>
+logging<span class="token punctuation">.</span>info<span class="token punctuation">(</span><span class="token string">'This is info message'</span><span class="token punctuation">)</span>
+logging<span class="token punctuation">.</span>warning<span class="token punctuation">(</span><span class="token string">'This is warning message'</span><span class="token punctuation">)</span>
+</pre><p><code>./myapp.log</code>文件中内容为:</p>
+<pre data-role="codeBlock" data-info="python" class="language-python">Sun<span class="token punctuation">,</span> <span class="token number">24</span> May <span class="token number">2009</span> <span class="token number">21</span><span class="token punctuation">:</span><span class="token number">48</span><span class="token punctuation">:</span><span class="token number">54</span> demo2<span class="token punctuation">.</span>py<span class="token punctuation">[</span>line<span class="token punctuation">:</span><span class="token number">11</span><span class="token punctuation">]</span> DEBUG This <span class="token keyword">is</span> debug message
+Sun<span class="token punctuation">,</span> <span class="token number">24</span> May <span class="token number">2009</span> <span class="token number">21</span><span class="token punctuation">:</span><span class="token number">48</span><span class="token punctuation">:</span><span class="token number">54</span> demo2<span class="token punctuation">.</span>py<span class="token punctuation">[</span>line<span class="token punctuation">:</span><span class="token number">12</span><span class="token punctuation">]</span> INFO This <span class="token keyword">is</span> info message
+Sun<span class="token punctuation">,</span> <span class="token number">24</span> May <span class="token number">2009</span> <span class="token number">21</span><span class="token punctuation">:</span><span class="token number">48</span><span class="token punctuation">:</span><span class="token number">54</span> demo2<span class="token punctuation">.</span>py<span class="token punctuation">[</span>line<span class="token punctuation">:</span><span class="token number">13</span><span class="token punctuation">]</span> WARNING This <span class="token keyword">is</span> warning message
+</pre><p>logging.basicConfig函数各参数:</p>
+<ul>
+<li>filename: 指定日志文件名</li>
+<li>filemode: 和file函数意义相同，指定日志文件的打开模式，'w'或'a'</li>
+<li>format: 指定输出的格式和内容，format可以输出很多有用信息，如上例所示</li>
+<li>%(levelno)s: 打印日志级别的数值</li>
+<li>%(levelname)s: 打印日志级别名称</li>
+<li>%(pathname)s: 打印当前执行程序的路径，其实就是sys.argv[0]</li>
+<li>%(filename)s: 打印当前执行程序名</li>
+<li>%(funcName)s: 打印日志的当前函数</li>
+<li>%(lineno)d: 打印日志的当前行号</li>
+<li>%(asctime)s: 打印日志的时间</li>
+<li>%(thread)d: 打印线程ID</li>
+<li>%(threadName)s: 打印线程名称</li>
+<li>%(process)d: 打印进程ID</li>
+<li>%(message)s: 打印日志信息</li>
+<li>datefmt: 指定时间格式，同time.strftime()</li>
+<li>level: 设置日志级别，默认为logging.WARNING</li>
+<li>stream: 指定将日志的输出流，可以指定输出到<code>sys.stderr,sys.stdout</code>或者文件，默认输出到<code>sys.stderr</code>，当stream和filename同时指定时，stream被忽略</li>
+</ul>
+<h2 class="mume-header" id="3-%E5%87%A0%E4%B8%AA%E9%87%8D%E8%A6%81%E7%9A%84%E6%A6%82%E5%BF%B5">3. 几个重要的概念</h2>
+
+<ul>
+<li>
+<p><strong>Logger：</strong> 一个界面，程序员在写应用程序时直接使用它来记录日志信息。该类无需自定义重载。</p>
+</li>
+<li>
+<p><strong>Handler：</strong> 处理器，它用于将由Logger创建的日志信息发送到相应的目的地;不同的Handler种类(继承自Handler抽象类)发送到不同的目的地，比如：FileHandler将日志写入到文件中，StreamHandler将日志输出到控制台，SMTPHandler将日志以邮件的形式发送出去，SocketHandler将日志用TCP Socket发送出去，而DatagramHandler将日志用UDP数据报发送出去，等等。以上都是logging已经实现的Handler，另外，也可以自己定义自己的Handler，只要继承自Handler抽象类并重载emit方法即可。</p>
+</li>
+<li>
+<p><strong>Filter：</strong> 过滤器，表明一个日志信息是否要被过滤掉而不记录;它提供了一个好的、细粒度的日志控制。可以重载Filter来自定义自己的Filter，此时要重载Filter类的filter方法。</p>
+</li>
+<li>
+<p><strong>Formatter：</strong> 格式化工具，在Handler处理器把日志信息发送出去之后，会使用该类对象格式日志信息，即该类指定日志信息最终被输出的格式。该类无需自定义重载。</p>
+</li>
+</ul>
+<p><strong>相互关系：</strong></p>
+<p>(1)Logger可以包含一个或多个Handler和Filter，即Logger与Handler或Fitler是一对多的关系;</p>
+<p>(2)Handler可以包含一个或多个Filter，但只能包含一个Formatter，即Handler与Filter是一对多的关系，与Formatter是一对一的关系;</p>
+<p>(3)Filter可以多次被包含在Logger和Handler中;</p>
+<p>(4)Formatter只能被包含在Handler中，不能被包含在Logger中，并且只能有一个被包含在Handler中。</p>
+<p><img src="./Python logging使用_files/02.jpg" alt="02"></p>
+<p>说明：不带箭头端是包含者，带箭头端是被包含者;箭头线旁边的1和n表示箭头线两端的对象之间对应关系(一对多或一对一)，此处的“一对多”指的是一个对象可以包含多个另外一个对象，“一对一”指的是一个对象只能包含一个另外一个对象。</p>
+<p>Logger是一个树形层级结构;</p>
+<p>Logger可以包含一个或多个Handler和Filter，即Logger与Handler或Fitler是一对多的关系;</p>
+<p>一个Logger实例可以新增多个Handler，一个Handler可以新增多个格式化器或多个过滤器，而且 <strong>日志级别将会继承</strong> 。</p>
+<p><strong>常用功能：</strong></p>
+<p><strong>(1)Logger：</strong> 可以设置Logger上的日志等级(Logger.setLevel方法)、添加或移除过滤器(Logger.addFilter和Logger.removeFilter方法)、添加或移除处理器(Logger.addHanlder和Logger.removeHandler方法)以及一些日志记录工具(Logger类的debug、info、error、warning、critical、log等方法)。</p>
+<p><strong>(2)Handler：</strong> 可以设置Handler上的日志等级(Handler.setLevel方法)、设置Formatter(Handler.setFormatter方法)、添加或移除过滤器(Handler.addFilter和Handler.removeFilter方法)。</p>
+<p><strong>(3)Fitler：</strong> 默认的Filter类，需要获取一个字符串类型的参数，该参数是用来判断日志信息是否允许被记录。Filter类中有一个filter方法，该方法返回真则表示日志信息被记录，否则将丢弃，不再处理。如果该参数为空字符串，则filter方法返回真;否则，该字符串参数表示着一个Logger(每个Logger对象都有一个用点分隔的字符串名字)，只有当前处理日志信息的Logger对象是该字符串参数指定的Logger对象或子对象，filter方法才返回真，其它情况返回假。</p>
+<p><strong>(4)Formatter：</strong> Formatter在实例化时，需要传递至少一个参数、至多三个参数。第一个参数代表格式化字符串，第二个参数代表日期格式，第三个参数表示格式化字符串中将要使用哪种占符符(“%”表示旧的Python格式化方式，“{”表示新的Python格式化方式，“$”表示模板格式化方式)。</p>
+<h2 class="mume-header" id="4-%E5%86%8D%E5%95%B0%E5%97%A6%E4%B8%8B">4. 再啰嗦下</h2>
+
+<p><strong>Logger 记录器：</strong></p>
+<p>Logger是一个树形层级结构，在使用接口debug，info，warn，error，critical之前必须创建Logger实例，即创建一个记录器，如果没有显式的进行创建，则默认创建一个root logger，并应用默认的日志级别(WARN)，处理器Handler(StreamHandler，即将日志信息打印输出在标准输出上)，和格式化器Formatter(默认的格式即为第一个简单使用程序中输出的格式)。</p>
+<p>创建方法: <code>logger = logging.getLogger(logger_name)</code></p>
+<p>创建Logger实例后，可以使用以下方法进行日志级别设置，增加处理器Handler。</p>
+<ul>
+<li>logger.setLevel(logging.ERROR) # 设置日志级别为ERROR，即只有日志级别大于等于ERROR的日志才会输出</li>
+<li>logger.addHandler(handler_name) # 为Logger实例增加一个处理器</li>
+<li>logger.removeHandler(handler_name) # 为Logger实例删除一个处理器</li>
+</ul>
+<p><strong>Handler 处理器:</strong></p>
+<p>Handler处理器类型有很多种，比较常用的有三个，<strong>StreamHandler</strong> ，<strong>FileHandler</strong> ，<strong>NullHandler</strong> ，详情可以访问Python logging.handlers</p>
+<p>创建StreamHandler之后，可以通过使用以下方法设置日志级别，设置格式化器Formatter，增加或删除过滤器Filter。</p>
+<ul>
+<li>ch.setLevel(logging.WARN) # 指定日志级别，低于WARN级别的日志将被忽略</li>
+<li>ch.setFormatter(formatter_name) # 设置一个格式化器formatter</li>
+<li>ch.addFilter(filter_name) # 增加一个过滤器，可以增加多个</li>
+<li>ch.removeFilter(filter_name) # 删除一个过滤器</li>
+</ul>
+<h6 class="mume-header" id="streamhandler">StreamHandler</h6>
+
+<p>创建方法: <code>sh = logging.StreamHandler(stream=None)</code></p>
+<h6 class="mume-header" id="filehandler">FileHandler</h6>
+
+<p>创建方法: <code>fh = logging.FileHandler(filename, mode='a', encoding=None, delay=False)</code></p>
+<h6 class="mume-header" id="nullhandler">NullHandler</h6>
+
+<p>NullHandler类位于核心logging包，不做任何的格式化或者输出。<br>
+本质上它是个“什么都不做”的handler，由库开发者使用。</p>
+<p><strong>Formatter 格式化器:</strong></p>
+<p>使用Formatter对象设置日志信息最后的规则、结构和内容，默认的时间格式为%Y-%m-%d %H:%M:%S。</p>
+<p>创建方法: <code>formatter = logging.Formatter(fmt=None, datefmt=None)</code></p>
+<p>其中，fmt是消息的格式化字符串，datefmt是日期字符串。如果不指明fmt，将使用'%(message)s'。如果不指明datefmt，将使用ISO8601日期格式。</p>
+<p><strong>Filter 过滤器:</strong></p>
+<p>Handlers和Loggers可以使用Filters来完成比级别更复杂的过滤。Filter基类只允许特定Logger层次以下的事件。例如用‘A.B’初始化的Filter允许Logger ‘A.B’, ‘A.B.C’, ‘A.B.C.D’, ‘A.B.D’等记录的事件，logger‘<a href="http://a.bb/">A.BB</a>’, ‘B.A.B’ 等就不行。 如果用空字符串来初始化，所有的事件都接受。</p>
+<p>创建方法: <code>filter = logging.Filter(name='')</code></p>
+<h2 class="mume-header" id="5-%E7%9C%8B%E4%B8%AA%E4%BE%8B%E5%AD%90">5. 看个例子</h2>
+
+<pre data-role="codeBlock" data-info="python" class="language-python"><span class="token keyword">import</span> logging
+
+logging<span class="token punctuation">.</span>basicConfig<span class="token punctuation">(</span>level<span class="token operator">=</span>logging<span class="token punctuation">.</span>DEBUG<span class="token punctuation">,</span>
+                <span class="token builtin">format</span><span class="token operator">=</span><span class="token string">'%(asctime)s %(filename)s[line:%(lineno)d] %(levelname)s %(message)s'</span><span class="token punctuation">,</span>
+                datefmt<span class="token operator">=</span><span class="token string">'%a, %d %b %Y %H:%M:%S'</span><span class="token punctuation">,</span>
+                filename<span class="token operator">=</span><span class="token string">'myapp.log'</span><span class="token punctuation">,</span>
+                filemode<span class="token operator">=</span><span class="token string">'w'</span><span class="token punctuation">)</span>
+
+<span class="token comment">#################################################################################################</span>
+<span class="token comment">#定义一个StreamHandler，将INFO级别或更高的日志信息打印到标准错误，并将其添加到当前的日志处理对象#</span>
+console <span class="token operator">=</span> logging<span class="token punctuation">.</span>StreamHandler<span class="token punctuation">(</span><span class="token punctuation">)</span>
+console<span class="token punctuation">.</span>setLevel<span class="token punctuation">(</span>logging<span class="token punctuation">.</span>INFO<span class="token punctuation">)</span>
+formatter <span class="token operator">=</span> logging<span class="token punctuation">.</span>Formatter<span class="token punctuation">(</span><span class="token string">'%(name)-12s: %(levelname)-8s %(message)s'</span><span class="token punctuation">)</span>
+console<span class="token punctuation">.</span>setFormatter<span class="token punctuation">(</span>formatter<span class="token punctuation">)</span>
+logging<span class="token punctuation">.</span>getLogger<span class="token punctuation">(</span><span class="token string">''</span><span class="token punctuation">)</span><span class="token punctuation">.</span>addHandler<span class="token punctuation">(</span>console<span class="token punctuation">)</span>
+<span class="token comment">#################################################################################################</span>
+
+logging<span class="token punctuation">.</span>debug<span class="token punctuation">(</span><span class="token string">'This is debug message'</span><span class="token punctuation">)</span>
+logging<span class="token punctuation">.</span>info<span class="token punctuation">(</span><span class="token string">'This is info message'</span><span class="token punctuation">)</span>
+logging<span class="token punctuation">.</span>warning<span class="token punctuation">(</span><span class="token string">'This is warning message'</span><span class="token punctuation">)</span>
+</pre><p>屏幕上打印:</p>
+<pre data-role="codeBlock" data-info="python" class="language-python">root        <span class="token punctuation">:</span> INFO     This <span class="token keyword">is</span> info message
+root        <span class="token punctuation">:</span> WARNING  This <span class="token keyword">is</span> warning message
+</pre><p><code>./myapp.log</code>文件中内容为:</p>
+<pre data-role="codeBlock" data-info="python" class="language-python">Sun<span class="token punctuation">,</span> <span class="token number">24</span> May <span class="token number">2009</span> <span class="token number">21</span><span class="token punctuation">:</span><span class="token number">48</span><span class="token punctuation">:</span><span class="token number">54</span> demo2<span class="token punctuation">.</span>py<span class="token punctuation">[</span>line<span class="token punctuation">:</span><span class="token number">11</span><span class="token punctuation">]</span> DEBUG This <span class="token keyword">is</span> debug message
+Sun<span class="token punctuation">,</span> <span class="token number">24</span> May <span class="token number">2009</span> <span class="token number">21</span><span class="token punctuation">:</span><span class="token number">48</span><span class="token punctuation">:</span><span class="token number">54</span> demo2<span class="token punctuation">.</span>py<span class="token punctuation">[</span>line<span class="token punctuation">:</span><span class="token number">12</span><span class="token punctuation">]</span> INFO This <span class="token keyword">is</span> info message
+Sun<span class="token punctuation">,</span> <span class="token number">24</span> May <span class="token number">2009</span> <span class="token number">21</span><span class="token punctuation">:</span><span class="token number">48</span><span class="token punctuation">:</span><span class="token number">54</span> demo2<span class="token punctuation">.</span>py<span class="token punctuation">[</span>line<span class="token punctuation">:</span><span class="token number">13</span><span class="token punctuation">]</span> WARNING This <span class="token keyword">is</span> warning message
+</pre><h2 class="mume-header" id="6-logging%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%A8%8B">6. Logging工作流程</h2>
+
+<p><strong>logging模块使用过程</strong></p>
+<p>(1) 第一次导入logging模块或使用reload函数重新导入logging模块，logging模块中的代码将被执行，这个过程中将产生logging日志系统的默认配置。</p>
+<p>(2) 自定义配置(可选)。logging标准模块支持三种配置方式: dictConfig，fileConfig，listen。其中，dictConfig是通过一个字典进行配置Logger，Handler，Filter，Formatter；fileConfig则是通过一个文件进行配置；而listen则监听一个网络端口，通过接收网络数据来进行配置。当然，除了以上集体化配置外，也可以直接调用Logger，Handler等对象中的方法在代码中来显式配置。</p>
+<p>(3) 使用logging模块的全局作用域中的getLogger函数来得到一个Logger对象实例(其参数即是一个字符串，表示Logger对象实例的名字，即通过该名字来得到相应的Logger对象实例)。</p>
+<p>(4) 使用Logger对象中的debug，info，error，warn，critical等方法记录日志信息。</p>
+<p><strong>logging模块处理流程</strong></p>
+<p><img src="./Python logging使用_files/03.png" alt="03"></p>
+<p>(1) 判断日志的等级是否大于Logger对象的等级，如果大于，则往下执行，否则，流程结束。</p>
+<p>(2) 产生日志。第一步，判断是否有异常，如果有，则添加异常信息。第二步，处理日志记录方法(如debug，info等)中的占位符，即一般的字符串格式化处理。</p>
+<p>(3) 使用注册到Logger对象中的Filters进行过滤。如果有多个过滤器，则依次过滤；只要有一个过滤器返回假，则过滤结束，且该日志信息将丢弃，不再处理，而处理流程也至此结束。否则，处理流程往下执行。</p>
+<p>(4) 在当前Logger对象中查找Handlers，如果找不到任何Handler，则往上到该Logger对象的父Logger中查找；如果找到一个或多个Handler，则依次用Handler来处理日志信息。但在每个Handler处理日志信息过程中，会首先判断日志信息的等级是否大于该Handler的等级，如果大于，则往下执行(由Logger对象进入Handler对象中)，否则，处理流程结束。</p>
+<p>(5) 执行Handler对象中的filter方法，该方法会依次执行注册到该Handler对象中的Filter。如果有一个Filter判断该日志信息为假，则此后的所有Filter都不再执行，而直接将该日志信息丢弃，处理流程结束。</p>
+<p>(6) 使用Formatter类格式化最终的输出结果。 注：Formatter同上述第2步的字符串格式化不同，它会添加额外的信息，比如日志产生的时间，产生日志的源代码所在的源文件的路径等等。</p>
+<p>(7) 真正地输出日志信息(到网络，文件，终端，邮件等)。至于输出到哪个目的地，由Handler的种类来决定。</p>
+<h2 class="mume-header" id="7-%E5%86%8D%E7%9C%8B%E6%97%A5%E5%BF%97%E9%85%8D%E7%BD%AE">7. 再看日志配置</h2>
+
+<p><strong>配置方式</strong></p>
+<ul>
+<li>显式创建记录器Logger、处理器Handler和格式化器Formatter，并进行相关设置；</li>
+<li>通过简单方式进行配置，使用basicConfig()函数直接进行配置；</li>
+<li>通过配置文件进行配置，使用fileConfig()函数读取配置文件；</li>
+<li>通过配置字典进行配置，使用dictConfig()函数读取配置信息；</li>
+<li>通过网络进行配置，使用listen()函数进行网络配置。</li>
+</ul>
+<p><strong>basicConfig关键字参数</strong></p>
+<table>
+<thead>
+<tr>
+<th>关键字</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>filename</td>
+<td>创建一个FileHandler，使用指定的文件名，而不是使用StreamHandler。</td>
+</tr>
+<tr>
+<td>filemode</td>
+<td>如果指明了文件名，指明打开文件的模式（如果没有指明filemode，默认为'a'）。</td>
+</tr>
+<tr>
+<td>format</td>
+<td>handler使用指明的格式化字符串。</td>
+</tr>
+<tr>
+<td>datefmt</td>
+<td>使用指明的日期／时间格式。</td>
+</tr>
+<tr>
+<td>level</td>
+<td>指明根logger的级别。</td>
+</tr>
+<tr>
+<td>stream</td>
+<td>使用指明的流来初始化StreamHandler。该参数与'filename'不兼容，如果两个都有，'stream'被忽略。</td>
+</tr>
+</tbody>
+</table>
+<p><strong>有用的format格式</strong></p>
+<table>
+<thead>
+<tr>
+<th>格式</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>%(levelno)s</td>
+<td>打印日志级别的数值</td>
+</tr>
+<tr>
+<td>%(levelname)s</td>
+<td>打印日志级别名称</td>
+</tr>
+<tr>
+<td>%(levelname)s</td>
+<td>打印日志级别名称</td>
+</tr>
+<tr>
+<td>%(pathname)s</td>
+<td>打印当前执行程序的路径</td>
+</tr>
+<tr>
+<td>%(filename)s</td>
+<td>打印当前执行程序名称</td>
+</tr>
+<tr>
+<td>%(funcName)s</td>
+<td>打印日志的当前函数</td>
+</tr>
+<tr>
+<td>%(lineno)d</td>
+<td>打印日志的当前行号</td>
+</tr>
+<tr>
+<td>%(asctime)s</td>
+<td>打印日志的时间</td>
+</tr>
+<tr>
+<td>%(thread)d</td>
+<td>打印线程id</td>
+</tr>
+<tr>
+<td>%(threadName)s</td>
+<td>打印线程名称</td>
+</tr>
+<tr>
+<td>%(process)d</td>
+<td>打印进程ID</td>
+</tr>
+<tr>
+<td>%(message)s</td>
+<td>打印日志信息</td>
+</tr>
+</tbody>
+</table>
+<p><strong>有用的datefmt格式</strong></p>
+<p>参考<a href="https://docs.python.org/2/library/time.html?highlight=strftime#time.strftime" title="Go!">time.strftime</a></p>
+<p><strong>配置示例</strong></p>
+<ul>
+<li>显式配置:</li>
+</ul>
+<p>使用程序logger.py如下:</p>
+<pre data-role="codeBlock" data-info="python" class="language-python"><span class="token comment"># -*- encoding:utf-8 -*-</span>
+<span class="token keyword">import</span> logging
+
+<span class="token comment"># create logger</span>
+logger_name <span class="token operator">=</span> <span class="token string">"example"</span>
+logger <span class="token operator">=</span> logging<span class="token punctuation">.</span>getLogger<span class="token punctuation">(</span>logger_name<span class="token punctuation">)</span>
+logger<span class="token punctuation">.</span>setLevel<span class="token punctuation">(</span>logging<span class="token punctuation">.</span>DEBUG<span class="token punctuation">)</span>
+
+<span class="token comment"># create file handler</span>
+log_path <span class="token operator">=</span> <span class="token string">"./log.log"</span>
+fh <span class="token operator">=</span> logging<span class="token punctuation">.</span>FileHandler<span class="token punctuation">(</span>log_path<span class="token punctuation">)</span>
+fh<span class="token punctuation">.</span>setLevel<span class="token punctuation">(</span>logging<span class="token punctuation">.</span>WARN<span class="token punctuation">)</span>
+
+<span class="token comment"># create formatter</span>
+fmt <span class="token operator">=</span> <span class="token string">"%(asctime)-15s %(levelname)s %(filename)s %(lineno)d %(process)d %(message)s"</span>
+datefmt <span class="token operator">=</span> <span class="token string">"%a %d %b %Y %H:%M:%S"</span>
+formatter <span class="token operator">=</span> logging<span class="token punctuation">.</span>Formatter<span class="token punctuation">(</span>fmt<span class="token punctuation">,</span> datefmt<span class="token punctuation">)</span>
+
+<span class="token comment"># add handler and formatter to logger</span>
+fh<span class="token punctuation">.</span>setFormatter<span class="token punctuation">(</span>formatter<span class="token punctuation">)</span>
+logger<span class="token punctuation">.</span>addHandler<span class="token punctuation">(</span>fh<span class="token punctuation">)</span>
+
+<span class="token comment"># print log info</span>
+logger<span class="token punctuation">.</span>debug<span class="token punctuation">(</span><span class="token string">'debug message'</span><span class="token punctuation">)</span>
+logger<span class="token punctuation">.</span>info<span class="token punctuation">(</span><span class="token string">'info message'</span><span class="token punctuation">)</span>
+logger<span class="token punctuation">.</span>warn<span class="token punctuation">(</span><span class="token string">'warn message'</span><span class="token punctuation">)</span>
+logger<span class="token punctuation">.</span>error<span class="token punctuation">(</span><span class="token string">'error message'</span><span class="token punctuation">)</span>
+logger<span class="token punctuation">.</span>critical<span class="token punctuation">(</span><span class="token string">'critical message'</span><span class="token punctuation">)</span>
+</pre><ul>
+<li>文件配置:</li>
+</ul>
+<p>配置文件logging.conf如下:</p>
+<pre data-role="codeBlock" data-info="python" class="language-python">keys<span class="token operator">=</span>root<span class="token punctuation">,</span>example01
+
+<span class="token punctuation">[</span>logger_root<span class="token punctuation">]</span>
+level<span class="token operator">=</span>DEBUG
+handlers<span class="token operator">=</span>hand01<span class="token punctuation">,</span>hand02
+
+<span class="token punctuation">[</span>logger_example01<span class="token punctuation">]</span>
+handlers<span class="token operator">=</span>hand01<span class="token punctuation">,</span>hand02
+qualname<span class="token operator">=</span>example01
+propagate<span class="token operator">=</span><span class="token number">0</span>
+
+<span class="token punctuation">[</span>handlers<span class="token punctuation">]</span>
+keys<span class="token operator">=</span>hand01<span class="token punctuation">,</span>hand02
+
+<span class="token punctuation">[</span>handler_hand01<span class="token punctuation">]</span>
+<span class="token keyword">class</span><span class="token operator">=</span>StreamHandler
+level<span class="token operator">=</span>INFO
+formatter<span class="token operator">=</span>form02
+args<span class="token operator">=</span><span class="token punctuation">(</span>sys<span class="token punctuation">.</span>stderr<span class="token punctuation">,</span><span class="token punctuation">)</span>
+
+<span class="token punctuation">[</span>handler_hand02<span class="token punctuation">]</span>
+<span class="token keyword">class</span><span class="token operator">=</span>FileHandler
+level<span class="token operator">=</span>DEBUG
+formatter<span class="token operator">=</span>form01
+args<span class="token operator">=</span><span class="token punctuation">(</span><span class="token string">'log.log'</span><span class="token punctuation">,</span> <span class="token string">'a'</span><span class="token punctuation">)</span>
+
+<span class="token punctuation">[</span>formatters<span class="token punctuation">]</span>
+keys<span class="token operator">=</span>form01<span class="token punctuation">,</span>form02
+
+<span class="token punctuation">[</span>formatter_form01<span class="token punctuation">]</span>
+<span class="token builtin">format</span><span class="token operator">=</span><span class="token operator">%</span><span class="token punctuation">(</span>asctime<span class="token punctuation">)</span>s <span class="token operator">%</span><span class="token punctuation">(</span>filename<span class="token punctuation">)</span>s<span class="token punctuation">[</span>line<span class="token punctuation">:</span><span class="token operator">%</span><span class="token punctuation">(</span>lineno<span class="token punctuation">)</span>d<span class="token punctuation">]</span> <span class="token operator">%</span><span class="token punctuation">(</span>levelname<span class="token punctuation">)</span>s <span class="token operator">%</span><span class="token punctuation">(</span>message<span class="token punctuation">)</span>s
+</pre><p>使用程序logger.py如下:</p>
+<pre data-role="codeBlock" data-info="python" class="language-python"><span class="token comment"># -*- encoding:utf-8 -*-</span>
+<span class="token keyword">import</span> logging
+<span class="token keyword">import</span> logging<span class="token punctuation">.</span>config
+
+logging<span class="token punctuation">.</span>config<span class="token punctuation">.</span>fileConfig<span class="token punctuation">(</span><span class="token string">"./logging.conf"</span><span class="token punctuation">)</span>
+
+<span class="token comment"># create logger</span>
+logger_name <span class="token operator">=</span> <span class="token string">"example"</span>
+logger <span class="token operator">=</span> logging<span class="token punctuation">.</span>getLogger<span class="token punctuation">(</span>logger_name<span class="token punctuation">)</span>
+
+logger<span class="token punctuation">.</span>debug<span class="token punctuation">(</span><span class="token string">'debug message'</span><span class="token punctuation">)</span>
+logger<span class="token punctuation">.</span>info<span class="token punctuation">(</span><span class="token string">'info message'</span><span class="token punctuation">)</span>
+logger<span class="token punctuation">.</span>warn<span class="token punctuation">(</span><span class="token string">'warn message'</span><span class="token punctuation">)</span>
+logger<span class="token punctuation">.</span>error<span class="token punctuation">(</span><span class="token string">'error message'</span><span class="token punctuation">)</span>
+logger<span class="token punctuation">.</span>critical<span class="token punctuation">(</span><span class="token string">'critical message'</span><span class="token punctuation">)</span>
+</pre><ul>
+<li>字典配置:</li>
+</ul>
+<p>使用logging.config.dictConfig(config)配置；暂缺。</p>
+<ul>
+<li>监听配置：</li>
+</ul>
+<p>使用logging.config.listen(port=DEFAULT_LOGGING_CONFIG_PORT)配置；暂缺。</p>
+
+      </div>
+      
+      
+    
+    
+    
+    
+    
+    
+    
+    
+  </body></html>

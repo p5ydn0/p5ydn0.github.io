@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<!-- saved from url=(0099)file:///private/var/folders/jq/l66hzx9956qbmxs_990g1djh0000gn/T/mume2020317-90899-10prv14.d8f3.html -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+      <title>Python中的赋值、深拷贝和浅拷贝</title>
+      
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      
+      <link rel="stylesheet" href="./Python中的赋值、深拷贝和浅拷贝_files/katex.min.css">
+      
+      
+
+      
+      
+      
+      
+      
+      
+      
+
+      <style>
+      /**
+ * prism.js Github theme based on GitHub's theme.
+ * @author Sam Clarke
+ */
+code[class*="language-"],
+pre[class*="language-"] {
+  color: #333;
+  background: none;
+  font-family: Consolas, "Liberation Mono", Menlo, Courier, monospace;
+  text-align: left;
+  white-space: pre;
+  word-spacing: normal;
+  word-break: normal;
+  word-wrap: normal;
+  line-height: 1.4;
+
+  -moz-tab-size: 8;
+  -o-tab-size: 8;
+  tab-size: 8;
+
+  -webkit-hyphens: none;
+  -moz-hyphens: none;
+  -ms-hyphens: none;
+  hyphens: none;
+}
+
+/* Code blocks */
+pre[class*="language-"] {
+  padding: .8em;
+  overflow: auto;
+  /* border: 1px solid #ddd; */
+  border-radius: 3px;
+  /* background: #fff; */
+  background: #f5f5f5;
+}
+
+/* Inline code */
+:not(pre) > code[class*="language-"] {
+  padding: .1em;
+  border-radius: .3em;
+  white-space: normal;
+  background: #f5f5f5;
+}
+
+.token.comment,
+.token.blockquote {
+  color: #969896;
+}
+
+.token.cdata {
+  color: #183691;
+}
+
+.token.doctype,
+.token.punctuation,
+.token.variable,
+.token.macro.property {
+  color: #333;
+}
+
+.token.operator,
+.token.important,
+.token.keyword,
+.token.rule,
+.token.builtin {
+  color: #a71d5d;
+}
+
+.token.string,
+.token.url,
+.token.regex,
+.token.attr-value {
+  color: #183691;
+}
+
+.token.property,
+.token.number,
+.token.boolean,
+.token.entity,
+.token.atrule,
+.token.constant,
+.token.symbol,
+.token.command,
+.token.code {
+  color: #0086b3;
+}
+
+.token.tag,
+.token.selector,
+.token.prolog {
+  color: #63a35c;
+}
+
+.token.function,
+.token.namespace,
+.token.pseudo-element,
+.token.class,
+.token.class-name,
+.token.pseudo-class,
+.token.id,
+.token.url-reference .token.variable,
+.token.attr-name {
+  color: #795da3;
+}
+
+.token.entity {
+  cursor: help;
+}
+
+.token.title,
+.token.title .token.punctuation {
+  font-weight: bold;
+  color: #1d3e81;
+}
+
+.token.list {
+  color: #ed6a43;
+}
+
+.token.inserted {
+  background-color: #eaffea;
+  color: #55a532;
+}
+
+.token.deleted {
+  background-color: #ffecec;
+  color: #bd2c00;
+}
+
+.token.bold {
+  font-weight: bold;
+}
+
+.token.italic {
+  font-style: italic;
+}
+
+
+/* JSON */
+.language-json .token.property {
+  color: #183691;
+}
+
+.language-markup .token.tag .token.punctuation {
+  color: #333;
+}
+
+/* CSS */
+code.language-css,
+.language-css .token.function {
+  color: #0086b3;
+}
+
+/* YAML */
+.language-yaml .token.atrule {
+  color: #63a35c;
+}
+
+code.language-yaml {
+  color: #183691;
+}
+
+/* Ruby */
+.language-ruby .token.function {
+  color: #333;
+}
+
+/* Markdown */
+.language-markdown .token.url {
+  color: #795da3;
+}
+
+/* Makefile */
+.language-makefile .token.symbol {
+  color: #795da3;
+}
+
+.language-makefile .token.variable {
+  color: #183691;
+}
+
+.language-makefile .token.builtin {
+  color: #0086b3;
+}
+
+/* Bash */
+.language-bash .token.keyword {
+  color: #0086b3;
+}
+
+/* highlight */
+pre[data-line] {
+  position: relative;
+  padding: 1em 0 1em 3em;
+}
+pre[data-line] .line-highlight-wrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: transparent;
+  display: block;
+  width: 100%;
+}
+
+pre[data-line] .line-highlight {
+  position: absolute;
+  left: 0;
+  right: 0;
+  padding: inherit 0;
+  margin-top: 1em;
+  background: hsla(24, 20%, 50%,.08);
+  background: linear-gradient(to right, hsla(24, 20%, 50%,.1) 70%, hsla(24, 20%, 50%,0));
+  pointer-events: none;
+  line-height: inherit;
+  white-space: pre;
+}
+
+pre[data-line] .line-highlight:before, 
+pre[data-line] .line-highlight[data-end]:after {
+  content: attr(data-start);
+  position: absolute;
+  top: .4em;
+  left: .6em;
+  min-width: 1em;
+  padding: 0 .5em;
+  background-color: hsla(24, 20%, 50%,.4);
+  color: hsl(24, 20%, 95%);
+  font: bold 65%/1.5 sans-serif;
+  text-align: center;
+  vertical-align: .3em;
+  border-radius: 999px;
+  text-shadow: none;
+  box-shadow: 0 1px white;
+}
+
+pre[data-line] .line-highlight[data-end]:after {
+  content: attr(data-end);
+  top: auto;
+  bottom: .4em;
+}html body{font-family:"Helvetica Neue",Helvetica,"Segoe UI",Arial,freesans,sans-serif;font-size:16px;line-height:1.6;color:#333;background-color:#fff;overflow:initial;box-sizing:border-box;word-wrap:break-word}html body>:first-child{margin-top:0}html body h1,html body h2,html body h3,html body h4,html body h5,html body h6{line-height:1.2;margin-top:1em;margin-bottom:16px;color:#000}html body h1{font-size:2.25em;font-weight:300;padding-bottom:.3em}html body h2{font-size:1.75em;font-weight:400;padding-bottom:.3em}html body h3{font-size:1.5em;font-weight:500}html body h4{font-size:1.25em;font-weight:600}html body h5{font-size:1.1em;font-weight:600}html body h6{font-size:1em;font-weight:600}html body h1,html body h2,html body h3,html body h4,html body h5{font-weight:600}html body h5{font-size:1em}html body h6{color:#5c5c5c}html body strong{color:#000}html body del{color:#5c5c5c}html body a:not([href]){color:inherit;text-decoration:none}html body a{color:#08c;text-decoration:none}html body a:hover{color:#00a3f5;text-decoration:none}html body img{max-width:100%}html body>p{margin-top:0;margin-bottom:16px;word-wrap:break-word}html body>ul,html body>ol{margin-bottom:16px}html body ul,html body ol{padding-left:2em}html body ul.no-list,html body ol.no-list{padding:0;list-style-type:none}html body ul ul,html body ul ol,html body ol ol,html body ol ul{margin-top:0;margin-bottom:0}html body li{margin-bottom:0}html body li.task-list-item{list-style:none}html body li>p{margin-top:0;margin-bottom:0}html body .task-list-item-checkbox{margin:0 .2em .25em -1.8em;vertical-align:middle}html body .task-list-item-checkbox:hover{cursor:pointer}html body blockquote{margin:16px 0;font-size:inherit;padding:0 15px;color:#5c5c5c;border-left:4px solid #d6d6d6}html body blockquote>:first-child{margin-top:0}html body blockquote>:last-child{margin-bottom:0}html body hr{height:4px;margin:32px 0;background-color:#d6d6d6;border:0 none}html body table{margin:10px 0 15px 0;border-collapse:collapse;border-spacing:0;display:block;width:100%;overflow:auto;word-break:normal;word-break:keep-all}html body table th{font-weight:bold;color:#000}html body table td,html body table th{border:1px solid #d6d6d6;padding:6px 13px}html body dl{padding:0}html body dl dt{padding:0;margin-top:16px;font-size:1em;font-style:italic;font-weight:bold}html body dl dd{padding:0 16px;margin-bottom:16px}html body code{font-family:Menlo,Monaco,Consolas,'Courier New',monospace;font-size:.85em !important;color:#000;background-color:#f0f0f0;border-radius:3px;padding:.2em 0}html body code::before,html body code::after{letter-spacing:-0.2em;content:"\00a0"}html body pre>code{padding:0;margin:0;font-size:.85em !important;word-break:normal;white-space:pre;background:transparent;border:0}html body .highlight{margin-bottom:16px}html body .highlight pre,html body pre{padding:1em;overflow:auto;font-size:.85em !important;line-height:1.45;border:#d6d6d6;border-radius:3px}html body .highlight pre{margin-bottom:0;word-break:normal}html body pre code,html body pre tt{display:inline;max-width:initial;padding:0;margin:0;overflow:initial;line-height:inherit;word-wrap:normal;background-color:transparent;border:0}html body pre code:before,html body pre tt:before,html body pre code:after,html body pre tt:after{content:normal}html body p,html body blockquote,html body ul,html body ol,html body dl,html body pre{margin-top:0;margin-bottom:16px}html body kbd{color:#000;border:1px solid #d6d6d6;border-bottom:2px solid #c7c7c7;padding:2px 4px;background-color:#f0f0f0;border-radius:3px}@media print{html body{background-color:#fff}html body h1,html body h2,html body h3,html body h4,html body h5,html body h6{color:#000;page-break-after:avoid}html body blockquote{color:#5c5c5c}html body pre{page-break-inside:avoid}html body table{display:table}html body img{display:block;max-width:100%;max-height:100%}html body pre,html body code{word-wrap:break-word;white-space:pre}}.markdown-preview{width:100%;height:100%;box-sizing:border-box}.markdown-preview .pagebreak,.markdown-preview .newpage{page-break-before:always}.markdown-preview pre.line-numbers{position:relative;padding-left:3.8em;counter-reset:linenumber}.markdown-preview pre.line-numbers>code{position:relative}.markdown-preview pre.line-numbers .line-numbers-rows{position:absolute;pointer-events:none;top:1em;font-size:100%;left:0;width:3em;letter-spacing:-1px;border-right:1px solid #999;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}.markdown-preview pre.line-numbers .line-numbers-rows>span{pointer-events:none;display:block;counter-increment:linenumber}.markdown-preview pre.line-numbers .line-numbers-rows>span:before{content:counter(linenumber);color:#999;display:block;padding-right:.8em;text-align:right}.markdown-preview .mathjax-exps .MathJax_Display{text-align:center !important}.markdown-preview:not([for="preview"]) .code-chunk .btn-group{display:none}.markdown-preview:not([for="preview"]) .code-chunk .status{display:none}.markdown-preview:not([for="preview"]) .code-chunk .output-div{margin-bottom:16px}.scrollbar-style::-webkit-scrollbar{width:8px}.scrollbar-style::-webkit-scrollbar-track{border-radius:10px;background-color:transparent}.scrollbar-style::-webkit-scrollbar-thumb{border-radius:5px;background-color:rgba(150,150,150,0.66);border:4px solid rgba(150,150,150,0.66);background-clip:content-box}html body[for="html-export"]:not([data-presentation-mode]){position:relative;width:100%;height:100%;top:0;left:0;margin:0;padding:0;overflow:auto}html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{position:relative;top:0}@media screen and (min-width:914px){html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{padding:2em calc(50% - 457px + 2em)}}@media screen and (max-width:914px){html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{padding:2em}}@media screen and (max-width:450px){html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{font-size:14px !important;padding:1em}}@media print{html body[for="html-export"]:not([data-presentation-mode]) #sidebar-toc-btn{display:none}}html body[for="html-export"]:not([data-presentation-mode]) #sidebar-toc-btn{position:fixed;bottom:8px;left:8px;font-size:28px;cursor:pointer;color:inherit;z-index:99;width:32px;text-align:center;opacity:.4}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] #sidebar-toc-btn{opacity:1}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc{position:fixed;top:0;left:0;width:300px;height:100%;padding:32px 0 48px 0;font-size:14px;box-shadow:0 0 4px rgba(150,150,150,0.33);box-sizing:border-box;overflow:auto;background-color:inherit}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar{width:8px}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-track{border-radius:10px;background-color:transparent}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-thumb{border-radius:5px;background-color:rgba(150,150,150,0.66);border:4px solid rgba(150,150,150,0.66);background-clip:content-box}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc a{text-decoration:none}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc ul{padding:0 1.6em;margin-top:.8em}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc li{margin-bottom:.8em}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc ul{list-style-type:none}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{left:300px;width:calc(100% -  300px);padding:2em calc(50% - 457px -  150px);margin:0;box-sizing:border-box}@media screen and (max-width:1274px){html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{padding:2em}}@media screen and (max-width:450px){html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{width:100%}}html body[for="html-export"]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .markdown-preview{left:50%;transform:translateX(-50%)}html body[for="html-export"]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .md-sidebar-toc{display:none}
+/* Please visit the URL below for more information: */
+/*   https://shd101wyy.github.io/markdown-preview-enhanced/#/customize-css */
+
+      </style>
+    </head>
+    <body for="html-export">
+      <div class="mume markdown-preview  ">
+      <h3 class="mume-header" id="python%E5%AF%B9%E8%B1%A1%E5%92%8C%E5%8F%98%E9%87%8F">Python对象和变量：</h3>
+
+<p>在python中，<strong>类型</strong> 属于 <strong>对象</strong> ，<strong>变量</strong> 是没有类型的，这正是python的语言特性，也是吸引着很多pythoner的一点。所有的变量都可以理解是内存中一个对象的“引用”，或者，也可以看似c中void*的感觉。所以，在看到一个python变量的时候，要把变量和真正的内存对象分开。</p>
+<p><strong>类型是属于对象的，而不是变量。</strong></p>
+<p>这样，很多问题就容易思考了。</p>
+<p>例如：</p>
+<pre data-role="codeBlock" data-info="python" class="language-python"><span class="token number">1</span>
+<span class="token number">2</span>
+nfoo <span class="token operator">=</span> <span class="token number">1</span>   <span class="token comment">#一个指向int数据类型的nfoo（再次提醒，nfoo没有类型）</span>
+lstFoo <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span>   <span class="token comment">#一个指向list类型的lstFoo，这个list中包含一个整数1</span>
+</pre><h3 class="mume-header" id="python%E5%8F%AF%E5%8F%98%E5%AF%B9%E8%B1%A1%E4%B8%8E%E4%B8%8D%E5%8F%AF%E5%8F%98%E5%AF%B9%E8%B1%A1">python可变对象与不可变对象：</h3>
+
+<p>在Python中，对象分为两种：<strong>可变对象</strong> 和 <strong>不可变对象</strong> ，不可变对象包括int，float，long，str，tuple等，可变对象包括list，set，dict等。需要注意的是：这里说的不可变指的是值的不可变。 <strong>对于不可变类型的变量，如果要更改变量，则会创建一个新值，把变量绑定到新值上，而旧值如果没有被引用就等待垃圾回收。</strong> 另外，不可变的类型可以计算hash值，作为字典的key。可变类型数据对对象操作的时候，不需要再在其他地方申请内存，<strong>只需要在此对象后面连续申请(+/-)即可</strong> ，也就是它的内存地址会保持不变，但区域会变长或者变短。</p>
+<pre data-role="codeBlock" data-info="python" class="language-python"><span class="token operator">&gt;&gt;</span><span class="token operator">&gt;</span> a <span class="token operator">=</span> <span class="token string">'xianglong.me'</span>
+<span class="token operator">&gt;&gt;</span><span class="token operator">&gt;</span> <span class="token builtin">id</span><span class="token punctuation">(</span>a<span class="token punctuation">)</span>
+<span class="token number">140443303134352</span>
+<span class="token operator">&gt;&gt;</span><span class="token operator">&gt;</span> a <span class="token operator">=</span> <span class="token string">'1saying.com'</span>
+<span class="token operator">&gt;&gt;</span><span class="token operator">&gt;</span> <span class="token builtin">id</span><span class="token punctuation">(</span>a<span class="token punctuation">)</span>
+<span class="token number">140443303131776</span>
+<span class="token comment"># 重新赋值之后，变量a的内存地址已经变了</span>
+<span class="token comment"># 'xianglong.me'是str类型，不可变，所以赋值操作知识重新创建了str '1saying.com'对象，然后将变量a指向了它</span>
+
+<span class="token operator">&gt;&gt;</span><span class="token operator">&gt;</span> a_list <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">]</span>
+<span class="token operator">&gt;&gt;</span><span class="token operator">&gt;</span> <span class="token builtin">id</span><span class="token punctuation">(</span>a_list<span class="token punctuation">)</span>
+<span class="token number">140443302951680</span>
+<span class="token operator">&gt;&gt;</span><span class="token operator">&gt;</span> a_list<span class="token punctuation">.</span>append<span class="token punctuation">(</span><span class="token number">4</span><span class="token punctuation">)</span>
+<span class="token operator">&gt;&gt;</span><span class="token operator">&gt;</span> <span class="token builtin">id</span><span class="token punctuation">(</span>a_list<span class="token punctuation">)</span>
+<span class="token number">140443302951680</span>
+<span class="token comment"># list重新赋值之后，变量a_list的内存地址并未改变</span>
+<span class="token comment"># [1, 2, 3]是可变的，append操作只是改变了其value，变量a_list指向没有变</span>
+</pre><h3 class="mume-header" id="python%E5%87%BD%E6%95%B0%E5%8F%82%E6%95%B0%E6%8C%89%E5%80%BC%E4%BC%A0%E9%80%92">python函数参数按值传递：</h3>
+
+<p>对于变量（与对象相对的概念），其实，python函数参数传递可以理解为就是变量传值操作。如果这个变量的值不变，我们看似就是引用，如果这个变量的值改变，我们看着像是在赋值。</p>
+<p><strong>不可变对象参数调用：</strong></p>
+<pre data-role="codeBlock" data-info="python" class="language-python"><span class="token number">1</span>
+<span class="token number">2</span>
+<span class="token number">3</span>
+<span class="token number">4</span>
+<span class="token number">5</span>
+<span class="token keyword">def</span> <span class="token function">ChangeInt</span><span class="token punctuation">(</span> a <span class="token punctuation">)</span><span class="token punctuation">:</span>
+    a <span class="token operator">=</span> <span class="token number">10</span>
+nfoo <span class="token operator">=</span> <span class="token number">2</span>
+ChangeInt<span class="token punctuation">(</span>nfoo<span class="token punctuation">)</span>
+<span class="token keyword">print</span> nfoo <span class="token comment">#结果是2</span>
+</pre><p>这时发生了什么，有一个int对象2，和指向它的变量nfoo，当传递给ChangeInt的时候，按照传值的方式，复制了变量nfoo的值，这样，a就是nfoo指向同一个Int对象了，函数中a=10的时候，发生什么？由于int是不能更改的对象，于是，做了一个新的int对象，另a指向它（但是此时，被变量nfoo指向的对象，没有发生变化），于是在外面的感觉就是函数没有改变nfoo的值。</p>
+<p><strong>可变对象参数调用：</strong></p>
+<pre data-role="codeBlock" data-info="python" class="language-python"><span class="token number">1</span>
+<span class="token number">2</span>
+<span class="token number">3</span>
+<span class="token number">4</span>
+<span class="token number">5</span>
+<span class="token keyword">def</span> <span class="token function">ChangeList</span><span class="token punctuation">(</span> a <span class="token punctuation">)</span><span class="token punctuation">:</span>
+    a<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token number">10</span>
+lstFoo <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token number">2</span><span class="token punctuation">]</span>
+ChangeList<span class="token punctuation">(</span>lstFoo <span class="token punctuation">)</span>
+<span class="token keyword">print</span> nfoo <span class="token comment">#结果是[10]</span>
+</pre><p>当传递给ChangeList的时候，变量仍旧按照“传值”的方式，复制了变量lstFoo的值，于是a和lstFoo指向同一个对象，但是，list是可以改变的对象，对a[0]的操作，就是对lstFoo指向的对象的内容的操作，于是，这时的a[0] = 10，就是更改了lstFoo 指向的对象的第一个元素，所以，再次输出lstFoo 时，显示[10]，内容被改变了。</p>
+<h3 class="mume-header" id="python%E4%B8%AD%E7%9A%84%E6%B7%B1%E6%8B%B7%E8%B4%9D%E5%92%8C%E6%B5%85%E6%8B%B7%E8%B4%9D">python中的深拷贝和浅拷贝：</h3>
+
+<p><strong>浅拷贝</strong> 仅仅复制了容器中元素的地址：</p>
+<pre data-role="codeBlock" data-info="python" class="language-python"><span class="token operator">&gt;&gt;</span><span class="token operator">&gt;</span> a<span class="token operator">=</span><span class="token punctuation">[</span><span class="token string">'hello'</span><span class="token punctuation">,</span><span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token number">2</span><span class="token punctuation">,</span><span class="token number">3</span><span class="token punctuation">]</span><span class="token punctuation">]</span>
+<span class="token operator">&gt;&gt;</span><span class="token operator">&gt;</span> b<span class="token operator">=</span>a<span class="token punctuation">[</span><span class="token punctuation">:</span><span class="token punctuation">]</span>
+<span class="token operator">&gt;&gt;</span><span class="token operator">&gt;</span> <span class="token punctuation">[</span><span class="token builtin">id</span><span class="token punctuation">(</span>x<span class="token punctuation">)</span> <span class="token keyword">for</span> x <span class="token keyword">in</span> a<span class="token punctuation">]</span>
+<span class="token punctuation">[</span><span class="token number">55792504</span><span class="token punctuation">,</span> <span class="token number">6444104</span><span class="token punctuation">]</span>
+<span class="token operator">&gt;&gt;</span><span class="token operator">&gt;</span> <span class="token punctuation">[</span><span class="token builtin">id</span><span class="token punctuation">(</span>x<span class="token punctuation">)</span> <span class="token keyword">for</span> x <span class="token keyword">in</span> b<span class="token punctuation">]</span>
+<span class="token punctuation">[</span><span class="token number">55792504</span><span class="token punctuation">,</span> <span class="token number">6444104</span><span class="token punctuation">]</span>
+<span class="token operator">&gt;&gt;</span><span class="token operator">&gt;</span> a<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token operator">=</span><span class="token string">'world'</span>
+<span class="token operator">&gt;&gt;</span><span class="token operator">&gt;</span> a<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">.</span>append<span class="token punctuation">(</span><span class="token number">4</span><span class="token punctuation">)</span>
+<span class="token operator">&gt;&gt;</span><span class="token operator">&gt;</span> <span class="token keyword">print</span><span class="token punctuation">(</span>a<span class="token punctuation">)</span>
+<span class="token punctuation">[</span><span class="token string">'world'</span><span class="token punctuation">,</span> <span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">4</span><span class="token punctuation">]</span><span class="token punctuation">]</span>
+<span class="token operator">&gt;&gt;</span><span class="token operator">&gt;</span> <span class="token keyword">print</span><span class="token punctuation">(</span>b<span class="token punctuation">)</span>
+<span class="token punctuation">[</span><span class="token string">'hello'</span><span class="token punctuation">,</span> <span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">4</span><span class="token punctuation">]</span><span class="token punctuation">]</span>
+</pre><p>这里可以看出，未修改前，a和b中元素的地址都是相同的，不可变的hello和可变的list地址都一样，说明浅拷贝知识将容器内的元素的地址复制了一份。这可以通过修改后，b中字符串没改变，但是list元素随着a相应改变得到验证。</p>
+<blockquote>
+<p>浅拷贝是在另一块地址中创建一个新的变量或容器，但是容器内的元素的地址均是源对象的元素的地址的拷贝。也就是说新的容器中指向了旧的元素（ 新瓶装旧酒 ）。</p>
+</blockquote>
+<p>当我们使用下面的操作的时候，会产生浅拷贝的效果：</p>
+<ul>
+<li>
+<p>使用切片[:]操作</p>
+</li>
+<li>
+<p>使用工厂函数（如list/dir/set）</p>
+</li>
+<li>
+<p>使用copy模块中的copy()函数</p>
+</li>
+</ul>
+<p><strong>深拷贝</strong> 完全拷贝了一个副本，容器内部元素地址都不一样:</p>
+<pre data-role="codeBlock" data-info="python" class="language-python"><span class="token operator">&gt;&gt;</span><span class="token operator">&gt;</span> <span class="token keyword">from</span> copy <span class="token keyword">import</span> deepcopy
+<span class="token operator">&gt;&gt;</span><span class="token operator">&gt;</span> a<span class="token operator">=</span><span class="token punctuation">[</span><span class="token string">'hello'</span><span class="token punctuation">,</span><span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token number">2</span><span class="token punctuation">,</span><span class="token number">3</span><span class="token punctuation">]</span><span class="token punctuation">]</span>
+<span class="token operator">&gt;&gt;</span><span class="token operator">&gt;</span> b<span class="token operator">=</span>deepcopy<span class="token punctuation">(</span>a<span class="token punctuation">)</span>
+<span class="token operator">&gt;&gt;</span><span class="token operator">&gt;</span> <span class="token punctuation">[</span><span class="token builtin">id</span><span class="token punctuation">(</span>x<span class="token punctuation">)</span> <span class="token keyword">for</span> x <span class="token keyword">in</span> a<span class="token punctuation">]</span>
+<span class="token punctuation">[</span><span class="token number">55792504</span><span class="token punctuation">,</span> <span class="token number">55645000</span><span class="token punctuation">]</span>
+<span class="token operator">&gt;&gt;</span><span class="token operator">&gt;</span> <span class="token punctuation">[</span><span class="token builtin">id</span><span class="token punctuation">(</span>x<span class="token punctuation">)</span> <span class="token keyword">for</span> x <span class="token keyword">in</span> b<span class="token punctuation">]</span>
+<span class="token punctuation">[</span><span class="token number">55792504</span><span class="token punctuation">,</span> <span class="token number">58338824</span><span class="token punctuation">]</span>
+<span class="token operator">&gt;&gt;</span><span class="token operator">&gt;</span> a<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token operator">=</span><span class="token string">'world'</span>
+<span class="token operator">&gt;&gt;</span><span class="token operator">&gt;</span> a<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">.</span>append<span class="token punctuation">(</span><span class="token number">4</span><span class="token punctuation">)</span>
+<span class="token operator">&gt;&gt;</span><span class="token operator">&gt;</span> <span class="token keyword">print</span><span class="token punctuation">(</span>a<span class="token punctuation">)</span>
+<span class="token punctuation">[</span><span class="token string">'world'</span><span class="token punctuation">,</span> <span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">4</span><span class="token punctuation">]</span><span class="token punctuation">]</span>
+<span class="token operator">&gt;&gt;</span><span class="token operator">&gt;</span> <span class="token keyword">print</span><span class="token punctuation">(</span>b<span class="token punctuation">)</span>
+<span class="token punctuation">[</span><span class="token string">'hello'</span><span class="token punctuation">,</span> <span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">]</span><span class="token punctuation">]</span>
+</pre><p>这里可以看出，深拷贝后，a和b的地址以及a和b中的元素地址均不同，这是完全拷贝的一个副本，修改a后，发现b没有发生任何改变，因为b是一个完全的副本，元素地址与a均不同，a修改不影响b。</p>
+<blockquote>
+<p>深拷贝是在另一块地址中创建一个新的变量或容器，同时容器内的元素的地址也是新开辟的，仅仅是值相同而已，是完全的副本。也就是说（ 新瓶装新酒 ）。</p>
+</blockquote>
+<p>总结：</p>
+<ul>
+<li>
+<p>Python中对象的赋值都是进行对象引用（内存地址）传递；</p>
+</li>
+<li>
+<p>使用 <strong>copy.copy()</strong> ，可以进行对象的 <strong>浅拷贝</strong> ，它复制了对象，但对于对象中的元素，依然使用原始的引用；</p>
+</li>
+<li>
+<p>如果需要复制一个容器对象，以及它里面的所有元素（包含元素的子元素），可以使用 <strong>copy.deepcopy()</strong> 进行 <strong>深拷贝</strong> ；</p>
+</li>
+<li>
+<p>对于非容器类型（如数字、字符串、和其他'原子'类型的对象）没有被拷贝一说；(可以“正常”拷贝，只是实际copy后的的地址是一样的；见如下例子)</p>
+</li>
+<li>
+<p>如果元祖变量只包含原子类型对象，则不能深拷贝。</p>
+</li>
+</ul>
+<p>(原子类型指所有的数值类型以及字符串)</p>
+<p>举例：</p>
+<pre data-role="codeBlock" data-info="python" class="language-python"><span class="token comment"># 被copy对象中的元素都是原子类型对象的情况</span>
+<span class="token keyword">import</span> copy
+
+a <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token number">2</span><span class="token punctuation">,</span><span class="token number">3</span><span class="token punctuation">)</span>
+b <span class="token operator">=</span> copy<span class="token punctuation">.</span>copy<span class="token punctuation">(</span>a<span class="token punctuation">)</span>
+c <span class="token operator">=</span> copy<span class="token punctuation">.</span>deepcopy<span class="token punctuation">(</span>a<span class="token punctuation">)</span>
+
+<span class="token keyword">print</span> a <span class="token keyword">is</span> b
+<span class="token keyword">print</span> a <span class="token keyword">is</span> c
+
+<span class="token keyword">print</span> <span class="token builtin">id</span><span class="token punctuation">(</span>a<span class="token punctuation">)</span>
+<span class="token keyword">print</span> <span class="token builtin">id</span><span class="token punctuation">(</span>b<span class="token punctuation">)</span>
+<span class="token keyword">print</span> <span class="token builtin">id</span><span class="token punctuation">(</span>c<span class="token punctuation">)</span>
+</pre><p>输出结果：</p>
+<pre data-role="codeBlock" data-info="python" class="language-python"><span class="token boolean">True</span>
+<span class="token boolean">True</span>
+<span class="token number">9302736</span>
+<span class="token number">9302736</span>
+<span class="token number">9302736</span>  <span class="token comment"># 深拷贝和浅拷贝的实际的地址是一样；即指向的是同一个元素</span>
+</pre><pre data-role="codeBlock" data-info="python" class="language-python"><span class="token comment"># 被copy对象中的元素不都是原子类型对象的情况</span>
+<span class="token keyword">import</span> copy
+
+a <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token number">2</span><span class="token punctuation">,</span><span class="token number">3</span><span class="token punctuation">,</span><span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+b <span class="token operator">=</span> copy<span class="token punctuation">.</span>copy<span class="token punctuation">(</span>a<span class="token punctuation">)</span>
+c <span class="token operator">=</span> copy<span class="token punctuation">.</span>deepcopy<span class="token punctuation">(</span>a<span class="token punctuation">)</span>
+
+<span class="token keyword">print</span> a <span class="token keyword">is</span> b
+<span class="token keyword">print</span> a <span class="token keyword">is</span> c
+
+<span class="token keyword">print</span> <span class="token builtin">id</span><span class="token punctuation">(</span>a<span class="token punctuation">)</span>
+<span class="token keyword">print</span> <span class="token builtin">id</span><span class="token punctuation">(</span>b<span class="token punctuation">)</span>
+<span class="token keyword">print</span> <span class="token builtin">id</span><span class="token punctuation">(</span>c<span class="token punctuation">)</span>
+</pre><p>输出结果：</p>
+<pre data-role="codeBlock" data-info="python" class="language-python"><span class="token boolean">True</span>
+<span class="token boolean">False</span>
+<span class="token number">42475672</span>
+<span class="token number">42475672</span>
+<span class="token number">42998744</span>  <span class="token comment"># 深拷贝和浅拷贝的地址不一样；即指向不同的元素</span>
+</pre><p>总之就是，如果要拷贝的元素 <strong>一定是</strong> 不可变的，那么就没有必要重新为其分配一个地址来存储它，所以如果要copy的对象都是这种 <strong>一定</strong> 是不会改变的，那么copy后的对象也是指向原来的地址的，所以copy后的地址是一样的。如果要copy的对象中有 <strong>可能会变的元素</strong> ，那么进行 <strong>深拷贝</strong> 的时候就需要重新为其分配内存空间，所以地址就会不一样。</p>
+
+      </div>
+      
+      
+    
+    
+    
+    
+    
+    
+    
+    
+  </body></html>

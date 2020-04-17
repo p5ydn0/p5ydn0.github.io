@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<!-- saved from url=(0099)file:///private/var/folders/jq/l66hzx9956qbmxs_990g1djh0000gn/T/mume2020317-90899-1jw2tjw.edkg.html -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+      <title>Python模块、包及其导入</title>
+      
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      
+      <link rel="stylesheet" href="./Python模块、包及其导入_files/katex.min.css">
+      
+      
+
+      
+      
+      
+      
+      
+      
+      
+
+      <style>
+      /**
+ * prism.js Github theme based on GitHub's theme.
+ * @author Sam Clarke
+ */
+code[class*="language-"],
+pre[class*="language-"] {
+  color: #333;
+  background: none;
+  font-family: Consolas, "Liberation Mono", Menlo, Courier, monospace;
+  text-align: left;
+  white-space: pre;
+  word-spacing: normal;
+  word-break: normal;
+  word-wrap: normal;
+  line-height: 1.4;
+
+  -moz-tab-size: 8;
+  -o-tab-size: 8;
+  tab-size: 8;
+
+  -webkit-hyphens: none;
+  -moz-hyphens: none;
+  -ms-hyphens: none;
+  hyphens: none;
+}
+
+/* Code blocks */
+pre[class*="language-"] {
+  padding: .8em;
+  overflow: auto;
+  /* border: 1px solid #ddd; */
+  border-radius: 3px;
+  /* background: #fff; */
+  background: #f5f5f5;
+}
+
+/* Inline code */
+:not(pre) > code[class*="language-"] {
+  padding: .1em;
+  border-radius: .3em;
+  white-space: normal;
+  background: #f5f5f5;
+}
+
+.token.comment,
+.token.blockquote {
+  color: #969896;
+}
+
+.token.cdata {
+  color: #183691;
+}
+
+.token.doctype,
+.token.punctuation,
+.token.variable,
+.token.macro.property {
+  color: #333;
+}
+
+.token.operator,
+.token.important,
+.token.keyword,
+.token.rule,
+.token.builtin {
+  color: #a71d5d;
+}
+
+.token.string,
+.token.url,
+.token.regex,
+.token.attr-value {
+  color: #183691;
+}
+
+.token.property,
+.token.number,
+.token.boolean,
+.token.entity,
+.token.atrule,
+.token.constant,
+.token.symbol,
+.token.command,
+.token.code {
+  color: #0086b3;
+}
+
+.token.tag,
+.token.selector,
+.token.prolog {
+  color: #63a35c;
+}
+
+.token.function,
+.token.namespace,
+.token.pseudo-element,
+.token.class,
+.token.class-name,
+.token.pseudo-class,
+.token.id,
+.token.url-reference .token.variable,
+.token.attr-name {
+  color: #795da3;
+}
+
+.token.entity {
+  cursor: help;
+}
+
+.token.title,
+.token.title .token.punctuation {
+  font-weight: bold;
+  color: #1d3e81;
+}
+
+.token.list {
+  color: #ed6a43;
+}
+
+.token.inserted {
+  background-color: #eaffea;
+  color: #55a532;
+}
+
+.token.deleted {
+  background-color: #ffecec;
+  color: #bd2c00;
+}
+
+.token.bold {
+  font-weight: bold;
+}
+
+.token.italic {
+  font-style: italic;
+}
+
+
+/* JSON */
+.language-json .token.property {
+  color: #183691;
+}
+
+.language-markup .token.tag .token.punctuation {
+  color: #333;
+}
+
+/* CSS */
+code.language-css,
+.language-css .token.function {
+  color: #0086b3;
+}
+
+/* YAML */
+.language-yaml .token.atrule {
+  color: #63a35c;
+}
+
+code.language-yaml {
+  color: #183691;
+}
+
+/* Ruby */
+.language-ruby .token.function {
+  color: #333;
+}
+
+/* Markdown */
+.language-markdown .token.url {
+  color: #795da3;
+}
+
+/* Makefile */
+.language-makefile .token.symbol {
+  color: #795da3;
+}
+
+.language-makefile .token.variable {
+  color: #183691;
+}
+
+.language-makefile .token.builtin {
+  color: #0086b3;
+}
+
+/* Bash */
+.language-bash .token.keyword {
+  color: #0086b3;
+}
+
+/* highlight */
+pre[data-line] {
+  position: relative;
+  padding: 1em 0 1em 3em;
+}
+pre[data-line] .line-highlight-wrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: transparent;
+  display: block;
+  width: 100%;
+}
+
+pre[data-line] .line-highlight {
+  position: absolute;
+  left: 0;
+  right: 0;
+  padding: inherit 0;
+  margin-top: 1em;
+  background: hsla(24, 20%, 50%,.08);
+  background: linear-gradient(to right, hsla(24, 20%, 50%,.1) 70%, hsla(24, 20%, 50%,0));
+  pointer-events: none;
+  line-height: inherit;
+  white-space: pre;
+}
+
+pre[data-line] .line-highlight:before, 
+pre[data-line] .line-highlight[data-end]:after {
+  content: attr(data-start);
+  position: absolute;
+  top: .4em;
+  left: .6em;
+  min-width: 1em;
+  padding: 0 .5em;
+  background-color: hsla(24, 20%, 50%,.4);
+  color: hsl(24, 20%, 95%);
+  font: bold 65%/1.5 sans-serif;
+  text-align: center;
+  vertical-align: .3em;
+  border-radius: 999px;
+  text-shadow: none;
+  box-shadow: 0 1px white;
+}
+
+pre[data-line] .line-highlight[data-end]:after {
+  content: attr(data-end);
+  top: auto;
+  bottom: .4em;
+}html body{font-family:"Helvetica Neue",Helvetica,"Segoe UI",Arial,freesans,sans-serif;font-size:16px;line-height:1.6;color:#333;background-color:#fff;overflow:initial;box-sizing:border-box;word-wrap:break-word}html body>:first-child{margin-top:0}html body h1,html body h2,html body h3,html body h4,html body h5,html body h6{line-height:1.2;margin-top:1em;margin-bottom:16px;color:#000}html body h1{font-size:2.25em;font-weight:300;padding-bottom:.3em}html body h2{font-size:1.75em;font-weight:400;padding-bottom:.3em}html body h3{font-size:1.5em;font-weight:500}html body h4{font-size:1.25em;font-weight:600}html body h5{font-size:1.1em;font-weight:600}html body h6{font-size:1em;font-weight:600}html body h1,html body h2,html body h3,html body h4,html body h5{font-weight:600}html body h5{font-size:1em}html body h6{color:#5c5c5c}html body strong{color:#000}html body del{color:#5c5c5c}html body a:not([href]){color:inherit;text-decoration:none}html body a{color:#08c;text-decoration:none}html body a:hover{color:#00a3f5;text-decoration:none}html body img{max-width:100%}html body>p{margin-top:0;margin-bottom:16px;word-wrap:break-word}html body>ul,html body>ol{margin-bottom:16px}html body ul,html body ol{padding-left:2em}html body ul.no-list,html body ol.no-list{padding:0;list-style-type:none}html body ul ul,html body ul ol,html body ol ol,html body ol ul{margin-top:0;margin-bottom:0}html body li{margin-bottom:0}html body li.task-list-item{list-style:none}html body li>p{margin-top:0;margin-bottom:0}html body .task-list-item-checkbox{margin:0 .2em .25em -1.8em;vertical-align:middle}html body .task-list-item-checkbox:hover{cursor:pointer}html body blockquote{margin:16px 0;font-size:inherit;padding:0 15px;color:#5c5c5c;border-left:4px solid #d6d6d6}html body blockquote>:first-child{margin-top:0}html body blockquote>:last-child{margin-bottom:0}html body hr{height:4px;margin:32px 0;background-color:#d6d6d6;border:0 none}html body table{margin:10px 0 15px 0;border-collapse:collapse;border-spacing:0;display:block;width:100%;overflow:auto;word-break:normal;word-break:keep-all}html body table th{font-weight:bold;color:#000}html body table td,html body table th{border:1px solid #d6d6d6;padding:6px 13px}html body dl{padding:0}html body dl dt{padding:0;margin-top:16px;font-size:1em;font-style:italic;font-weight:bold}html body dl dd{padding:0 16px;margin-bottom:16px}html body code{font-family:Menlo,Monaco,Consolas,'Courier New',monospace;font-size:.85em !important;color:#000;background-color:#f0f0f0;border-radius:3px;padding:.2em 0}html body code::before,html body code::after{letter-spacing:-0.2em;content:"\00a0"}html body pre>code{padding:0;margin:0;font-size:.85em !important;word-break:normal;white-space:pre;background:transparent;border:0}html body .highlight{margin-bottom:16px}html body .highlight pre,html body pre{padding:1em;overflow:auto;font-size:.85em !important;line-height:1.45;border:#d6d6d6;border-radius:3px}html body .highlight pre{margin-bottom:0;word-break:normal}html body pre code,html body pre tt{display:inline;max-width:initial;padding:0;margin:0;overflow:initial;line-height:inherit;word-wrap:normal;background-color:transparent;border:0}html body pre code:before,html body pre tt:before,html body pre code:after,html body pre tt:after{content:normal}html body p,html body blockquote,html body ul,html body ol,html body dl,html body pre{margin-top:0;margin-bottom:16px}html body kbd{color:#000;border:1px solid #d6d6d6;border-bottom:2px solid #c7c7c7;padding:2px 4px;background-color:#f0f0f0;border-radius:3px}@media print{html body{background-color:#fff}html body h1,html body h2,html body h3,html body h4,html body h5,html body h6{color:#000;page-break-after:avoid}html body blockquote{color:#5c5c5c}html body pre{page-break-inside:avoid}html body table{display:table}html body img{display:block;max-width:100%;max-height:100%}html body pre,html body code{word-wrap:break-word;white-space:pre}}.markdown-preview{width:100%;height:100%;box-sizing:border-box}.markdown-preview .pagebreak,.markdown-preview .newpage{page-break-before:always}.markdown-preview pre.line-numbers{position:relative;padding-left:3.8em;counter-reset:linenumber}.markdown-preview pre.line-numbers>code{position:relative}.markdown-preview pre.line-numbers .line-numbers-rows{position:absolute;pointer-events:none;top:1em;font-size:100%;left:0;width:3em;letter-spacing:-1px;border-right:1px solid #999;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}.markdown-preview pre.line-numbers .line-numbers-rows>span{pointer-events:none;display:block;counter-increment:linenumber}.markdown-preview pre.line-numbers .line-numbers-rows>span:before{content:counter(linenumber);color:#999;display:block;padding-right:.8em;text-align:right}.markdown-preview .mathjax-exps .MathJax_Display{text-align:center !important}.markdown-preview:not([for="preview"]) .code-chunk .btn-group{display:none}.markdown-preview:not([for="preview"]) .code-chunk .status{display:none}.markdown-preview:not([for="preview"]) .code-chunk .output-div{margin-bottom:16px}.scrollbar-style::-webkit-scrollbar{width:8px}.scrollbar-style::-webkit-scrollbar-track{border-radius:10px;background-color:transparent}.scrollbar-style::-webkit-scrollbar-thumb{border-radius:5px;background-color:rgba(150,150,150,0.66);border:4px solid rgba(150,150,150,0.66);background-clip:content-box}html body[for="html-export"]:not([data-presentation-mode]){position:relative;width:100%;height:100%;top:0;left:0;margin:0;padding:0;overflow:auto}html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{position:relative;top:0}@media screen and (min-width:914px){html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{padding:2em calc(50% - 457px + 2em)}}@media screen and (max-width:914px){html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{padding:2em}}@media screen and (max-width:450px){html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{font-size:14px !important;padding:1em}}@media print{html body[for="html-export"]:not([data-presentation-mode]) #sidebar-toc-btn{display:none}}html body[for="html-export"]:not([data-presentation-mode]) #sidebar-toc-btn{position:fixed;bottom:8px;left:8px;font-size:28px;cursor:pointer;color:inherit;z-index:99;width:32px;text-align:center;opacity:.4}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] #sidebar-toc-btn{opacity:1}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc{position:fixed;top:0;left:0;width:300px;height:100%;padding:32px 0 48px 0;font-size:14px;box-shadow:0 0 4px rgba(150,150,150,0.33);box-sizing:border-box;overflow:auto;background-color:inherit}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar{width:8px}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-track{border-radius:10px;background-color:transparent}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-thumb{border-radius:5px;background-color:rgba(150,150,150,0.66);border:4px solid rgba(150,150,150,0.66);background-clip:content-box}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc a{text-decoration:none}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc ul{padding:0 1.6em;margin-top:.8em}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc li{margin-bottom:.8em}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc ul{list-style-type:none}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{left:300px;width:calc(100% -  300px);padding:2em calc(50% - 457px -  150px);margin:0;box-sizing:border-box}@media screen and (max-width:1274px){html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{padding:2em}}@media screen and (max-width:450px){html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{width:100%}}html body[for="html-export"]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .markdown-preview{left:50%;transform:translateX(-50%)}html body[for="html-export"]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .md-sidebar-toc{display:none}
+/* Please visit the URL below for more information: */
+/*   https://shd101wyy.github.io/markdown-preview-enhanced/#/customize-css */
+
+      </style>
+    </head>
+    <body for="html-export">
+      <div class="mume markdown-preview  ">
+      <h3 class="mume-header" id="python%E6%A8%A1%E5%9D%97-%E5%8C%85%E5%8F%8A%E5%85%B6%E5%AF%BC%E5%85%A5">Python模块、包及其导入</h3>
+
+<p><strong>模块</strong></p>
+<p>在Python中，一个.py文件就称之为一个模块（module）。</p>
+<p>使用模块可以避免函数名和变量名冲突。相同名字的函数和变量完全可以分别存在不同的模块中。</p>
+<p><strong>包</strong></p>
+<p>可以通过模块来防止模块名字之间的冲突。</p>
+<p><strong>导入模块的方法</strong></p>
+<ul>
+<li>常规导入：</li>
+</ul>
+<p>常规导入：import sys</p>
+<p>常规导入应该是最常使用的导入方式。过这种方式导入的好处是可以一次性导入多个包或模块：import os, sys, time(虽然这节省了空间，但是却违背了Python风格指南。Python风格指南建议将每个导入语句单独成行。)</p>
+<p>重命名导入的这个模块：import sys as system</p>
+<ul>
+<li>使用from语句导入：</li>
+</ul>
+<p>有时候只想要导入一个模块或库中的某个部分：from functools import lru_cache</p>
+<p>这样导入能够直接调用lru_cache。如果你按常规方式导入functools，那么就必须像这样调用lru_cache：functools.lru_cache(*args)。</p>
+<p>上面的这种做法可能是更好的。在复杂的代码库中，能够看出某个函数是从哪里导入的这点很有用的。</p>
+<p>当然，也可以使用from方法导入模块的全部内容：from os import *</p>
+<p>这种做法在少数情况下是挺方便的，但是这样也会打乱你的命名空间。问题在于，你可能定义了一个与导入模块中名称相同的变量或函数，这时如果你试图使用os模块中的同名变量或函数，实际使用的将是你自己定义的内容。因此，你最后可能会碰到一个相当让人困惑的逻辑错误。</p>
+<ul>
+<li>相对导入:</li>
+</ul>
+<p>相对导入是使用句点来决定如何相对导入其他包或模块。这么做的原因是为了避免偶然情况下导入标准库中的模块产生冲突。下面是例子：</p>
+<blockquote>
+<p>my_package/<br>
+<strong>init</strong>.py<br>
+subpackage1/<br>
+<strong>init</strong>.py<br>
+module_x.py<br>
+module_y.py<br>
+subpackage2/<br>
+<strong>init</strong>.py<br>
+module_z.py<br>
+module_a.py</p>
+</blockquote>
+<p>在本地磁盘上找个地方创建上述文件和文件夹。在顶层的__init__.py文件中，输入以下代码：</p>
+<pre data-role="codeBlock" data-info="python" class="language-python"><span class="token keyword">from</span> <span class="token punctuation">.</span> <span class="token keyword">import</span> subpackage1
+<span class="token keyword">from</span> <span class="token punctuation">.</span> <span class="token keyword">import</span> subpackage2
+</pre><p>接下来进入subpackage1文件夹，编辑其中的__init__.py文件，输入以下代码：</p>
+<pre data-role="codeBlock" data-info="python" class="language-python"><span class="token keyword">from</span> <span class="token punctuation">.</span> <span class="token keyword">import</span> module_x
+<span class="token keyword">from</span> <span class="token punctuation">.</span> <span class="token keyword">import</span> module_y
+</pre><p>现在编辑module_x.py文件，输入以下代码：</p>
+<pre data-role="codeBlock" data-info="python" class="language-python"><span class="token keyword">from</span> <span class="token punctuation">.</span>module_y <span class="token keyword">import</span> spam <span class="token keyword">as</span> ham
+
+<span class="token keyword">def</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    ham<span class="token punctuation">(</span><span class="token punctuation">)</span>
+</pre><p>最后编辑module_y.py文件，输入以下代码：</p>
+<pre data-role="codeBlock" data-info="python" class="language-python"><span class="token keyword">def</span> <span class="token function">spam</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">'spam '</span> <span class="token operator">*</span> <span class="token number">3</span><span class="token punctuation">)</span>
+</pre><p>打开终端，cd至my_package包所在的文件夹，但不要进入my_package。在这个文件夹下运行Python解释器:</p>
+<pre data-role="codeBlock" data-info="python" class="language-python">In <span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">:</span> <span class="token keyword">import</span> my_package
+
+In <span class="token punctuation">[</span><span class="token number">2</span><span class="token punctuation">]</span><span class="token punctuation">:</span> my_package<span class="token punctuation">.</span>subpackage1<span class="token punctuation">.</span>module_x
+Out<span class="token punctuation">[</span><span class="token number">2</span><span class="token punctuation">]</span><span class="token punctuation">:</span> <span class="token operator">&lt;</span>module <span class="token string">'my_package.subpackage1.module_x'</span> <span class="token keyword">from</span> <span class="token string">'my_package/subpackage1/module_x.py'</span><span class="token operator">&gt;</span>
+
+In <span class="token punctuation">[</span><span class="token number">3</span><span class="token punctuation">]</span><span class="token punctuation">:</span> my_package<span class="token punctuation">.</span>subpackage1<span class="token punctuation">.</span>module_x<span class="token punctuation">.</span>main<span class="token punctuation">(</span><span class="token punctuation">)</span>
+spam spam spam
+</pre><p>相对导入适用于你最终要放入包中的代码。如果你编写了很多相关性强的代码，那么应该采用这种导入方式。你会发现PyPI上有很多流行的包也是采用了相对导入。还要注意一点，如果你想要跨越多个文件层级进行导入，只需要使用多个句点即可。不过，<strong>PEP 328建议相对导入的层级不要超过两层</strong>。</p>
+<ul>
+<li>可选导入:</li>
+</ul>
+<p>如果你希望优先使用某个模块或包，但是同时也想在没有这个模块或包的情况下有备选，你就可以使用可选导入这种方式。这样做可以导入支持某个软件的多种版本或者实现性能提升。以github2包中的代码为例：</p>
+<pre data-role="codeBlock" data-info="python" class="language-python"><span class="token keyword">try</span><span class="token punctuation">:</span>
+    <span class="token comment"># For Python 3</span>
+    <span class="token keyword">from</span> http<span class="token punctuation">.</span>client <span class="token keyword">import</span> responses
+<span class="token keyword">except</span> ImportError<span class="token punctuation">:</span>  <span class="token comment"># For Python 2.5-2.7</span>
+    <span class="token keyword">try</span><span class="token punctuation">:</span>
+        <span class="token keyword">from</span> httplib <span class="token keyword">import</span> responses  <span class="token comment"># NOQA</span>
+    <span class="token keyword">except</span> ImportError<span class="token punctuation">:</span>  <span class="token comment"># For Python 2.4</span>
+        <span class="token keyword">from</span> BaseHTTPServer <span class="token keyword">import</span> BaseHTTPRequestHandler <span class="token keyword">as</span> _BHRH
+        responses <span class="token operator">=</span> <span class="token builtin">dict</span><span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token punctuation">(</span>k<span class="token punctuation">,</span> v<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token keyword">for</span> k<span class="token punctuation">,</span> v <span class="token keyword">in</span> _BHRH<span class="token punctuation">.</span>responses<span class="token punctuation">.</span>items<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+</pre><p>lxml包也有使用可选导入方式：</p>
+<pre data-role="codeBlock" data-info="python" class="language-python"><span class="token keyword">try</span><span class="token punctuation">:</span>
+    <span class="token keyword">from</span> urlparse <span class="token keyword">import</span> urljoin
+    <span class="token keyword">from</span> urllib2 <span class="token keyword">import</span> urlopen
+<span class="token keyword">except</span> ImportError<span class="token punctuation">:</span>
+    <span class="token comment"># Python 3</span>
+    <span class="token keyword">from</span> urllib<span class="token punctuation">.</span>parse <span class="token keyword">import</span> urljoin
+    <span class="token keyword">from</span> urllib<span class="token punctuation">.</span>request <span class="token keyword">import</span> urlopen
+</pre><p>正如以上示例所示，<strong>可选导入的使用很常见，是一个值得掌握的技巧</strong>。</p>
+<p><strong>局部导入</strong></p>
+<p>当你在局部作用域中导入模块时，你执行的就是局部导入。如果你在Python脚本文件的顶部导入一个模块，那么你就是在将该模块导入至全局作用域，这意味着之后的任何函数或方法都可能访问该模块。例如：</p>
+<pre data-role="codeBlock" data-info="python {.line-numbers}" class="language-python line-numbers"><span class="token keyword">import</span> sys  <span class="token comment"># global scope</span>
+
+<span class="token keyword">def</span> <span class="token function">square_root</span><span class="token punctuation">(</span>a<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token comment"># This import is into the square_root functions local scope</span>
+    <span class="token keyword">import</span> math
+    <span class="token keyword">return</span> math<span class="token punctuation">.</span>sqrt<span class="token punctuation">(</span>a<span class="token punctuation">)</span>
+
+<span class="token keyword">def</span> <span class="token function">my_pow</span><span class="token punctuation">(</span>base_num<span class="token punctuation">,</span> power<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword">return</span> math<span class="token punctuation">.</span><span class="token builtin">pow</span><span class="token punctuation">(</span>base_num<span class="token punctuation">,</span> power<span class="token punctuation">)</span>
+
+<span class="token keyword">if</span> __name__ <span class="token operator">==</span> <span class="token string">'__main__'</span><span class="token punctuation">:</span>
+    <span class="token keyword">print</span><span class="token punctuation">(</span>square_root<span class="token punctuation">(</span><span class="token number">49</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+    <span class="token keyword">print</span><span class="token punctuation">(</span>my_pow<span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></pre><p>这里，我们将sys模块导入至全局作用域，但我们并没有使用这个模块。然后，在square_root函数中，我们将math模块导入至该函数的局部作用域，这意味着math模块只能在square_root函数内部使用。如果我们试图在my_pow函数中使用math，会引发NameError。</p>
+<p>使用局部作用域的好处之一，是你使用的模块可能需要很长时间才能导入，如果是这样的话，将其放在某个不经常调用的函数中或许更加合理，而不是直接在全局作用域中导入。老实说，我几乎从没有使用过局部导入，主要是因为如果模块内部到处都有导入语句，会很难分辨出这样做的原因和用途。<strong>根据约定，所有的导入语句都应该位于模块的顶部</strong>。</p>
+
+      </div>
+      
+      
+    
+    
+    
+    
+    
+    
+    
+    
+  </body></html>

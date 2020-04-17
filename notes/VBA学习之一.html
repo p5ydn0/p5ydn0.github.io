@@ -1,0 +1,583 @@
+<!DOCTYPE html>
+<!-- saved from url=(0100)file:///private/var/folders/jq/l66hzx9956qbmxs_990g1djh0000gn/T/mume2020317-90899-10gige0.4qh3l.html -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+      <title>VBA学习之一</title>
+      
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      
+      <link rel="stylesheet" href="./VBA学习之一_files/katex.min.css">
+      
+      
+
+      
+      
+      
+      
+      
+      
+      
+
+      <style>
+      /**
+ * prism.js Github theme based on GitHub's theme.
+ * @author Sam Clarke
+ */
+code[class*="language-"],
+pre[class*="language-"] {
+  color: #333;
+  background: none;
+  font-family: Consolas, "Liberation Mono", Menlo, Courier, monospace;
+  text-align: left;
+  white-space: pre;
+  word-spacing: normal;
+  word-break: normal;
+  word-wrap: normal;
+  line-height: 1.4;
+
+  -moz-tab-size: 8;
+  -o-tab-size: 8;
+  tab-size: 8;
+
+  -webkit-hyphens: none;
+  -moz-hyphens: none;
+  -ms-hyphens: none;
+  hyphens: none;
+}
+
+/* Code blocks */
+pre[class*="language-"] {
+  padding: .8em;
+  overflow: auto;
+  /* border: 1px solid #ddd; */
+  border-radius: 3px;
+  /* background: #fff; */
+  background: #f5f5f5;
+}
+
+/* Inline code */
+:not(pre) > code[class*="language-"] {
+  padding: .1em;
+  border-radius: .3em;
+  white-space: normal;
+  background: #f5f5f5;
+}
+
+.token.comment,
+.token.blockquote {
+  color: #969896;
+}
+
+.token.cdata {
+  color: #183691;
+}
+
+.token.doctype,
+.token.punctuation,
+.token.variable,
+.token.macro.property {
+  color: #333;
+}
+
+.token.operator,
+.token.important,
+.token.keyword,
+.token.rule,
+.token.builtin {
+  color: #a71d5d;
+}
+
+.token.string,
+.token.url,
+.token.regex,
+.token.attr-value {
+  color: #183691;
+}
+
+.token.property,
+.token.number,
+.token.boolean,
+.token.entity,
+.token.atrule,
+.token.constant,
+.token.symbol,
+.token.command,
+.token.code {
+  color: #0086b3;
+}
+
+.token.tag,
+.token.selector,
+.token.prolog {
+  color: #63a35c;
+}
+
+.token.function,
+.token.namespace,
+.token.pseudo-element,
+.token.class,
+.token.class-name,
+.token.pseudo-class,
+.token.id,
+.token.url-reference .token.variable,
+.token.attr-name {
+  color: #795da3;
+}
+
+.token.entity {
+  cursor: help;
+}
+
+.token.title,
+.token.title .token.punctuation {
+  font-weight: bold;
+  color: #1d3e81;
+}
+
+.token.list {
+  color: #ed6a43;
+}
+
+.token.inserted {
+  background-color: #eaffea;
+  color: #55a532;
+}
+
+.token.deleted {
+  background-color: #ffecec;
+  color: #bd2c00;
+}
+
+.token.bold {
+  font-weight: bold;
+}
+
+.token.italic {
+  font-style: italic;
+}
+
+
+/* JSON */
+.language-json .token.property {
+  color: #183691;
+}
+
+.language-markup .token.tag .token.punctuation {
+  color: #333;
+}
+
+/* CSS */
+code.language-css,
+.language-css .token.function {
+  color: #0086b3;
+}
+
+/* YAML */
+.language-yaml .token.atrule {
+  color: #63a35c;
+}
+
+code.language-yaml {
+  color: #183691;
+}
+
+/* Ruby */
+.language-ruby .token.function {
+  color: #333;
+}
+
+/* Markdown */
+.language-markdown .token.url {
+  color: #795da3;
+}
+
+/* Makefile */
+.language-makefile .token.symbol {
+  color: #795da3;
+}
+
+.language-makefile .token.variable {
+  color: #183691;
+}
+
+.language-makefile .token.builtin {
+  color: #0086b3;
+}
+
+/* Bash */
+.language-bash .token.keyword {
+  color: #0086b3;
+}
+
+/* highlight */
+pre[data-line] {
+  position: relative;
+  padding: 1em 0 1em 3em;
+}
+pre[data-line] .line-highlight-wrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: transparent;
+  display: block;
+  width: 100%;
+}
+
+pre[data-line] .line-highlight {
+  position: absolute;
+  left: 0;
+  right: 0;
+  padding: inherit 0;
+  margin-top: 1em;
+  background: hsla(24, 20%, 50%,.08);
+  background: linear-gradient(to right, hsla(24, 20%, 50%,.1) 70%, hsla(24, 20%, 50%,0));
+  pointer-events: none;
+  line-height: inherit;
+  white-space: pre;
+}
+
+pre[data-line] .line-highlight:before, 
+pre[data-line] .line-highlight[data-end]:after {
+  content: attr(data-start);
+  position: absolute;
+  top: .4em;
+  left: .6em;
+  min-width: 1em;
+  padding: 0 .5em;
+  background-color: hsla(24, 20%, 50%,.4);
+  color: hsl(24, 20%, 95%);
+  font: bold 65%/1.5 sans-serif;
+  text-align: center;
+  vertical-align: .3em;
+  border-radius: 999px;
+  text-shadow: none;
+  box-shadow: 0 1px white;
+}
+
+pre[data-line] .line-highlight[data-end]:after {
+  content: attr(data-end);
+  top: auto;
+  bottom: .4em;
+}html body{font-family:"Helvetica Neue",Helvetica,"Segoe UI",Arial,freesans,sans-serif;font-size:16px;line-height:1.6;color:#333;background-color:#fff;overflow:initial;box-sizing:border-box;word-wrap:break-word}html body>:first-child{margin-top:0}html body h1,html body h2,html body h3,html body h4,html body h5,html body h6{line-height:1.2;margin-top:1em;margin-bottom:16px;color:#000}html body h1{font-size:2.25em;font-weight:300;padding-bottom:.3em}html body h2{font-size:1.75em;font-weight:400;padding-bottom:.3em}html body h3{font-size:1.5em;font-weight:500}html body h4{font-size:1.25em;font-weight:600}html body h5{font-size:1.1em;font-weight:600}html body h6{font-size:1em;font-weight:600}html body h1,html body h2,html body h3,html body h4,html body h5{font-weight:600}html body h5{font-size:1em}html body h6{color:#5c5c5c}html body strong{color:#000}html body del{color:#5c5c5c}html body a:not([href]){color:inherit;text-decoration:none}html body a{color:#08c;text-decoration:none}html body a:hover{color:#00a3f5;text-decoration:none}html body img{max-width:100%}html body>p{margin-top:0;margin-bottom:16px;word-wrap:break-word}html body>ul,html body>ol{margin-bottom:16px}html body ul,html body ol{padding-left:2em}html body ul.no-list,html body ol.no-list{padding:0;list-style-type:none}html body ul ul,html body ul ol,html body ol ol,html body ol ul{margin-top:0;margin-bottom:0}html body li{margin-bottom:0}html body li.task-list-item{list-style:none}html body li>p{margin-top:0;margin-bottom:0}html body .task-list-item-checkbox{margin:0 .2em .25em -1.8em;vertical-align:middle}html body .task-list-item-checkbox:hover{cursor:pointer}html body blockquote{margin:16px 0;font-size:inherit;padding:0 15px;color:#5c5c5c;border-left:4px solid #d6d6d6}html body blockquote>:first-child{margin-top:0}html body blockquote>:last-child{margin-bottom:0}html body hr{height:4px;margin:32px 0;background-color:#d6d6d6;border:0 none}html body table{margin:10px 0 15px 0;border-collapse:collapse;border-spacing:0;display:block;width:100%;overflow:auto;word-break:normal;word-break:keep-all}html body table th{font-weight:bold;color:#000}html body table td,html body table th{border:1px solid #d6d6d6;padding:6px 13px}html body dl{padding:0}html body dl dt{padding:0;margin-top:16px;font-size:1em;font-style:italic;font-weight:bold}html body dl dd{padding:0 16px;margin-bottom:16px}html body code{font-family:Menlo,Monaco,Consolas,'Courier New',monospace;font-size:.85em !important;color:#000;background-color:#f0f0f0;border-radius:3px;padding:.2em 0}html body code::before,html body code::after{letter-spacing:-0.2em;content:"\00a0"}html body pre>code{padding:0;margin:0;font-size:.85em !important;word-break:normal;white-space:pre;background:transparent;border:0}html body .highlight{margin-bottom:16px}html body .highlight pre,html body pre{padding:1em;overflow:auto;font-size:.85em !important;line-height:1.45;border:#d6d6d6;border-radius:3px}html body .highlight pre{margin-bottom:0;word-break:normal}html body pre code,html body pre tt{display:inline;max-width:initial;padding:0;margin:0;overflow:initial;line-height:inherit;word-wrap:normal;background-color:transparent;border:0}html body pre code:before,html body pre tt:before,html body pre code:after,html body pre tt:after{content:normal}html body p,html body blockquote,html body ul,html body ol,html body dl,html body pre{margin-top:0;margin-bottom:16px}html body kbd{color:#000;border:1px solid #d6d6d6;border-bottom:2px solid #c7c7c7;padding:2px 4px;background-color:#f0f0f0;border-radius:3px}@media print{html body{background-color:#fff}html body h1,html body h2,html body h3,html body h4,html body h5,html body h6{color:#000;page-break-after:avoid}html body blockquote{color:#5c5c5c}html body pre{page-break-inside:avoid}html body table{display:table}html body img{display:block;max-width:100%;max-height:100%}html body pre,html body code{word-wrap:break-word;white-space:pre}}.markdown-preview{width:100%;height:100%;box-sizing:border-box}.markdown-preview .pagebreak,.markdown-preview .newpage{page-break-before:always}.markdown-preview pre.line-numbers{position:relative;padding-left:3.8em;counter-reset:linenumber}.markdown-preview pre.line-numbers>code{position:relative}.markdown-preview pre.line-numbers .line-numbers-rows{position:absolute;pointer-events:none;top:1em;font-size:100%;left:0;width:3em;letter-spacing:-1px;border-right:1px solid #999;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}.markdown-preview pre.line-numbers .line-numbers-rows>span{pointer-events:none;display:block;counter-increment:linenumber}.markdown-preview pre.line-numbers .line-numbers-rows>span:before{content:counter(linenumber);color:#999;display:block;padding-right:.8em;text-align:right}.markdown-preview .mathjax-exps .MathJax_Display{text-align:center !important}.markdown-preview:not([for="preview"]) .code-chunk .btn-group{display:none}.markdown-preview:not([for="preview"]) .code-chunk .status{display:none}.markdown-preview:not([for="preview"]) .code-chunk .output-div{margin-bottom:16px}.scrollbar-style::-webkit-scrollbar{width:8px}.scrollbar-style::-webkit-scrollbar-track{border-radius:10px;background-color:transparent}.scrollbar-style::-webkit-scrollbar-thumb{border-radius:5px;background-color:rgba(150,150,150,0.66);border:4px solid rgba(150,150,150,0.66);background-clip:content-box}html body[for="html-export"]:not([data-presentation-mode]){position:relative;width:100%;height:100%;top:0;left:0;margin:0;padding:0;overflow:auto}html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{position:relative;top:0}@media screen and (min-width:914px){html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{padding:2em calc(50% - 457px + 2em)}}@media screen and (max-width:914px){html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{padding:2em}}@media screen and (max-width:450px){html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{font-size:14px !important;padding:1em}}@media print{html body[for="html-export"]:not([data-presentation-mode]) #sidebar-toc-btn{display:none}}html body[for="html-export"]:not([data-presentation-mode]) #sidebar-toc-btn{position:fixed;bottom:8px;left:8px;font-size:28px;cursor:pointer;color:inherit;z-index:99;width:32px;text-align:center;opacity:.4}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] #sidebar-toc-btn{opacity:1}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc{position:fixed;top:0;left:0;width:300px;height:100%;padding:32px 0 48px 0;font-size:14px;box-shadow:0 0 4px rgba(150,150,150,0.33);box-sizing:border-box;overflow:auto;background-color:inherit}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar{width:8px}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-track{border-radius:10px;background-color:transparent}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-thumb{border-radius:5px;background-color:rgba(150,150,150,0.66);border:4px solid rgba(150,150,150,0.66);background-clip:content-box}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc a{text-decoration:none}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc ul{padding:0 1.6em;margin-top:.8em}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc li{margin-bottom:.8em}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc ul{list-style-type:none}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{left:300px;width:calc(100% -  300px);padding:2em calc(50% - 457px -  150px);margin:0;box-sizing:border-box}@media screen and (max-width:1274px){html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{padding:2em}}@media screen and (max-width:450px){html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{width:100%}}html body[for="html-export"]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .markdown-preview{left:50%;transform:translateX(-50%)}html body[for="html-export"]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .md-sidebar-toc{display:none}
+/* Please visit the URL below for more information: */
+/*   https://shd101wyy.github.io/markdown-preview-enhanced/#/customize-css */
+
+      </style>
+    </head>
+    <body for="html-export">
+      <div class="mume markdown-preview  ">
+      <h1 class="mume-header" id="vba-%E5%AD%A6%E4%B9%A0">VBA 学习</h1>
+
+<h3 class="mume-header" id="vba%E5%AD%A6%E4%B9%A0%E4%B9%8B%E4%B8%80%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86">VBA学习之一：基础知识</h3>
+
+<hr>
+<h2 class="mume-header" id="1-%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86">1. 基础知识</h2>
+
+<h3 class="mume-header" id="11-vba%E6%9C%AF%E8%AF%AD">1.1. VBA术语</h3>
+
+<ul>
+<li>模块：编写代码的区域：代码写在一个过程（sub）中；</li>
+<li>程序/过程：一组语句，完成特定的任务。</li>
+</ul>
+<p>程序的两种主要类型：子程序(sub）和函数（Function）。</p>
+<ul>
+<li>函数：函数是一组可重用的代码，可以在程序中的任何地方调用。这消除了一遍又一遍地编写相同的代码的需要。除了内置函数外，VBA还允许编写用户定义的函数，并在Function和End Function关键字之间写入语句。</li>
+<li>子程序：子程序的功能与函数类似；虽然子程序没有返回值，函数可能会或不会返回一个值。子程序可以不使用call关键字调用。子程序总是在sub和End sub之间 包含执行的语句。</li>
+</ul>
+<h3 class="mume-header" id="12-%E6%B3%A8%E9%87%8A">1.2. 注释</h3>
+
+<p>需要注意的是，ExcelvBA并没有实质上的块注释，只能由单行"组成"。</p>
+<p>单行注释的两种方法：</p>
+<ul>
+<li>以单引号开头的语句</li>
+<li>以关键字"REM"开义的语句</li>
+</ul>
+<h3 class="mume-header" id="13-%E5%AF%B9vba%E7%BC%96%E8%BE%91%E7%95%8C%E9%9D%A2%E7%9B%B8%E5%85%B3%E5%91%BD%E4%BB%A4%E7%9A%84%E8%AE%BE%E7%BD%AE">1.3. 对VBA编辑界面相关命令的设置</h3>
+
+<p>要查看VBA编辑器的“所有命令”，可以在编辑界面中的"工具栏”的任意处右键，选择"自定义"，（切换到"命令"项)然后即可将需要的命令拖拽到想要放置的位置。</p>
+<p>在“工具栏”的任意处右键也可以控制显示哪些（快捷）工具栏。</p>
+<h3 class="mume-header" id="14-%E5%BF%AB%E9%80%9F%E6%9F%A5%E8%AF%A2%E5%87%BD%E6%95%B0%E7%AD%89%E4%BF%A1%E6%81%AF%E6%96%B9%E6%B3%95">1.4. 快速查询函数等信息方法</h3>
+
+<p>按F1打开"帮助"进行搜索。</p>
+<h3 class="mume-header" id="15%E5%88%A0%E9%99%A4%E6%8E%A7%E4%BB%B6">1.5.删除控件</h3>
+
+<p>首先要确保处子”设计模式"中，然后选中控件，按delete即可。</p>
+<h3 class="mume-header" id="16%E4%BB%A3%E7%A0%81%E7%AA%97%E5%8F%A3">1.6.代码窗口</h3>
+
+<p>在代码窗口的上面，有两个下拉清单列表，方便快速移动到任意代码处：</p>
+<ul>
+<li>对象下拉列表</li>
+<li>过程/事件下拉列表</li>
+</ul>
+<p>在代码窗口左上角的对象列表框，可以选择想查看代码的对象。可以在代码窗口右上角的列表框里选择一个过程或者事件过程查看代码。当打开这个列表框，这个模块里的所有过程名按字母顺序排列在那儿。如果选择了一个过程，光标就会跳到那个过程的第一行处。</p>
+<p>在代码窗口的右上角，有列分工具条。将列分工具条拖曳下列，可以将代码窗口分为两半; 此时就可以查询不同的代码部分了。这样设置代码窗口，目的是方便在同一个模块内的过程里复制或剪切，并粘贴代码片断。只要简单地将列分工具条拖曳至代码窗口上面就行。 在代码窗口的左下角，有单个过程查看图标和模块查看图标。点击"过程查看"图标，代码窗口里一次只显示一个过程，可以通过过程/事件列表框选择另外的过程。点击"全部模块查看" 则可以息示这个模块里的所有过程。使用竖向滚动条可以在代码中滚动。</p>
+<p>代码窗口最左边的页边指示工具条是在修改代码和调试是提供一些帮助指示的。</p>
+<h3 class="mume-header" id="17-sub%E4%B8%8Efunction">1.7. sub与function</h3>
+
+<p><strong>要点：</strong></p>
+<ul>
+<li>
+<p>function可以返回值，sub则不可以返回值；</p>
+</li>
+<li>
+<p>sub可以直接执行，但function需要调用才可以执行。</p>
+</li>
+<li>
+<p>如果使用过程名能返回值，则必须使用function;</p>
+</li>
+<li>
+<p>如果需要直接执行，则要用sub;</p>
+</li>
+</ul>
+<p><strong>Sub定义与调用：</strong></p>
+<p>呼叫子程序时只要直接输入子程序， 再依序加上逗点分隔的输入参数即可。</p>
+<pre data-role="codeBlock" data-info="vb" class="language-vb"><span class="token keyword">Sub</span> mySub<span class="token punctuation">(</span>x <span class="token keyword">As</span> Interger<span class="token punctuation">,</span> y <span class="token keyword">As</span> Interger<span class="token punctuation">)</span>
+    MsgBox<span class="token punctuation">(</span><span class="token string">"x +y = "</span> <span class="token operator">&amp;</span> x<span class="token operator">+</span>y<span class="token punctuation">)</span>
+<span class="token keyword">End</span> <span class="token keyword">Sub</span>
+
+<span class="token keyword">Sub</span> hello <span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token comment">' 呼叫mYsub子程序</span>
+    mySub <span class="token number">1</span><span class="token punctuation">,</span><span class="token number">2</span>
+<span class="token keyword">End</span> <span class="token keyword">Sub</span>
+</pre><p><strong>Sub参数预设值：</strong></p>
+<p>在定义子程序(Sub)的参数时，可以透过optional这个关键字将某些参数设定为选择性的， 并加上参数的预设值：</p>
+<pre data-role="codeBlock" data-info="vb" class="language-vb"><span class="token comment">' 自行定义的子程序</span>
+<span class="token keyword">Sub</span> mySub2 <span class="token punctuation">(</span> <span class="token keyword">Optional</span> x <span class="token keyword">As</span> <span class="token keyword">Integer</span> <span class="token operator">=</span> <span class="token number">3</span><span class="token punctuation">,</span> <span class="token keyword">Optional</span> y <span class="token keyword">As</span> <span class="token keyword">Integer</span> <span class="token operator">=</span> <span class="token number">4</span><span class="token punctuation">)</span>
+    MsgBox <span class="token punctuation">(</span> x <span class="token operator">+</span>y<span class="token operator">=</span> " <span class="token operator">&amp;</span> x<span class="token operator">+</span> y <span class="token punctuation">)</span>
+<span class="token keyword">End</span> <span class="token keyword">Sub</span>
+</pre><p>这样的话在呼叫这个子程序时就可以省略这些选择性的参数，让它自动使用预设值，只在需要预设值的时候才加上该参数：</p>
+<pre data-role="codeBlock" data-info="vb" class="language-vb"><span class="token keyword">Sub</span> hello <span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token comment">' 计算3+4</span>
+    mySub2
+    <span class="token comment">' 计算1+4</span>
+    mySub2 <span class="token number">1</span>
+    <span class="token comment">' 计算1+2</span>
+    mySub2 <span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span>
+<span class="token keyword">End</span> <span class="token keyword">Sub</span>
+</pre><p><strong>传值呼叫与传参考呼叫：</strong></p>
+<p>在预设的情况下，如果在子程序改变传入参数的值，原来的值也会跟着改变，如下：</p>
+<pre data-role="codeBlock" data-info="vb" class="language-vb"><span class="token comment">' 自行定义的子程序</span>
+<span class="token keyword">Sub</span> mySub3 <span class="token punctuation">(</span>x <span class="token keyword">As</span> <span class="token keyword">Integer</span><span class="token punctuation">)</span>
+    x <span class="token operator">=</span> x <span class="token operator">+</span> <span class="token number">1</span>
+<span class="token keyword">End</span> <span class="token keyword">Sub</span>
+</pre><p>在自行定义的子过程中将传入的x值加上1, 然后在呼叫这个子程序之后，检查一下原来的数值：</p>
+<pre data-role="codeBlock" data-info="vb" class="language-vb"><span class="token keyword">Sub</span> Hello <span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token keyword">Dim</span> val <span class="token keyword">As</span> <span class="token keyword">Integer</span>
+    val <span class="token operator">=</span> <span class="token number">5</span>
+    mySub3 val
+    MsgBox val
+<span class="token keyword">End</span> <span class="token keyword">Sub</span>
+</pre><p>执行之后，会发现到原来的val变数值也跟着加上1了。</p>
+<p>会有这样的结果是因为VBA子程序预设的呼叫方式是传参考呼叫（call by reference)，简单来说就好像把这里的val变数直接拿进mySub3子程序中使用，所以mySub3中的x其实就是val, 而改变了x的值就等于是改变了val变数。</p>
+<p>如果不想要让子程序去改变原本的变数值，可以改用传值呼叫(call by value)的方式来定义子程序的参数：</p>
+<pre data-role="codeBlock" data-info="vb" class="language-vb"><span class="token comment">' 传值呼叫的子程序</span>
+<span class="token keyword">Sub</span> mySub3 <span class="token punctuation">(</span><span class="token keyword">ByVal</span> x <span class="token keyword">As</span> <span class="token keyword">Integer</span><span class="token punctuation">)</span>
+    x <span class="token operator">=</span> x <span class="token operator">+</span> <span class="token number">1</span>
+<span class="token keyword">End</span> <span class="token keyword">Sub</span>
+</pre><p>使用方式都一样，只不过使用传值呼叫的参数就不会影响到原来的变数。</p>
+<p>传值呼叫就好像把原来的val复制一份，再放进mySub3中的x ，所以这时候不管x怎么改变，val都不会有影响。</p>
+<p>如果不指定参数使用何种传递方式，VBA预设会使用传参考的方式传，而如果想要让程式码更清楚，可以使用传参考呼叫的标准写法：</p>
+<pre data-role="codeBlock" data-info="vb" class="language-vb"><span class="token comment">' 传参考呼叫的子程序</span>
+<span class="token keyword">Sub</span> mySub3 <span class="token punctuation">(</span><span class="token keyword">ByRef</span> x <span class="token keyword">As</span> <span class="token keyword">Integer</span><span class="token punctuation">)</span>
+x <span class="token operator">=</span> x <span class="token operator">+</span> <span class="token number">1</span>
+<span class="token keyword">End</span> <span class="token keyword">Sub</span>
+</pre><p><strong>Function的定义与使用：</strong></p>
+<p>VBA的通数(Function)跟子程序(sub)类似，比较不一样的地方是函数在执行完之后会有一个传回值，而子程序则没有，以下是一个简单的函数范例：</p>
+<pre data-role="codeBlock" data-info="vb" class="language-vb"><span class="token comment">' 自定义的两数</span>
+<span class="token keyword">Function</span> myFun <span class="token punctuation">(</span>x <span class="token keyword">As</span> lnteger<span class="token punctuation">,</span>y <span class="token keyword">As</span> <span class="token keyword">Integer</span><span class="token punctuation">)</span> <span class="token keyword">As</span> <span class="token keyword">Integer</span>
+myFun <span class="token operator">=</span> x <span class="token operator">+</span> y
+<span class="token keyword">End</span> <span class="token keyword">Sub</span>
+</pre><p>函数的定义与子程序相似，其以Function开头，接着是函数名称与传入参数，而最后 还要加上一个函数传回值的型态，以这个例子来说就是最后一个As lnteger。最后一行End Function就是函数的结尾。</p>
+<pre data-role="codeBlock" data-info="vb" class="language-vb"><span class="token keyword">Sub</span> Hello<span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token keyword">Dim</span> a <span class="token keyword">As</span> <span class="token keyword">Integer</span>
+    a <span class="token operator">=</span> myFun<span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">4</span><span class="token punctuation">)</span>
+    MsgBox a
+<span class="token keyword">End</span> <span class="token keyword">Sub</span>
+</pre><p>在函数内容上，比较要注意的就是传回值的写法，VBA的函数中会有一个与函数同名称的变数，以这个例子来说就是myFun, 函数执行完成后，就会把这个变数的内容当成<br>
+函数的传回值，传回呼叫此函数的位置。</p>
+<p>这里定义的myFun函数会接受x与y两个整数，传回两个整数加起来之后的总和，以下是呼叫这个函数的范例程式码：</p>
+<p><strong>Excel中使用自定义的函数：</strong></p>
+<p>VBA的函数定义好之后，除了可以在一般的VBA程式码中呼叫之外，也可以直接在Excel中使用，其使用方式就跟一般的Excel函数一样，在储存格中输入等于，再加上自订的函数名称以及输入的资料。</p>
+<p><strong>Function预设参数值：</strong></p>
+<p>函数的预设参数值用法与子程序相同，同样都是使用optional， 以下是一个简单的范例：</p>
+<pre data-role="codeBlock" data-info="vb" class="language-vb"><span class="token keyword">Function</span> myFun2<span class="token punctuation">(</span><span class="token keyword">Optional</span> x <span class="token keyword">As</span> <span class="token keyword">Integer</span> <span class="token operator">=</span> <span class="token number">3</span><span class="token punctuation">,</span> <span class="token keyword">Optional</span> y <span class="token keyword">As</span> <span class="token keyword">Integer</span> <span class="token operator">=</span> <span class="token number">4</span><span class="token punctuation">)</span> <span class="token keyword">As</span> <span class="token keyword">Integer</span>
+myFun <span class="token operator">=</span> x <span class="token operator">+</span> y
+<span class="token keyword">End</span> <span class="token keyword">Function</span>
+</pre><p>以下是呼叫此函数的范例：</p>
+<pre data-role="codeBlock" data-info="vb" class="language-vb"><span class="token comment">' 呼叫自定义函数</span>
+<span class="token keyword">Sub</span> Hello<span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token keyword">Dim</span> a <span class="token keyword">As</span> <span class="token keyword">Integer</span>
+<span class="token comment">' 计算3+4</span>
+a <span class="token operator">=</span> myFun2<span class="token punctuation">(</span><span class="token punctuation">)</span>
+MsgBox a
+<span class="token comment">' 计算20+4</span>
+a <span class="token operator">=</span> myFun2<span class="token punctuation">(</span><span class="token number">20</span><span class="token punctuation">)</span>
+MsgBox a
+<span class="token comment">' 计算70+ 40</span>
+a <span class="token operator">=</span> myFun2<span class="token punctuation">(</span><span class="token number">20</span><span class="token punctuation">,</span><span class="token number">40</span><span class="token punctuation">)</span>
+MsgBox a
+<span class="token keyword">End</span> <span class="token keyword">Sub</span>
+</pre><p><strong>传值呼叫与传参考呼叫：</strong></p>
+<p>VBA函数的传值与传参考呼叫原则与子程序相同，以下是函数的传值与传参考呼叫范例:</p>
+<pre data-role="codeBlock" data-info="vb" class="language-vb"><span class="token comment">' 传参考函数</span>
+<span class="token keyword">Function</span> myFun3<span class="token punctuation">(</span>ByRefx <span class="token keyword">As</span> lnteger<span class="token punctuation">)</span><span class="token keyword">As</span> <span class="token keyword">Integer</span>
+x <span class="token operator">=</span> x <span class="token operator">+</span> <span class="token number">1</span>
+myFun3 <span class="token operator">=</span> x
+<span class="token keyword">End</span> <span class="token keyword">Function</span>
+
+<span class="token comment">' 传值函数</span>
+<span class="token keyword">Function</span> myFun4<span class="token punctuation">(</span><span class="token keyword">ByVal</span> x <span class="token keyword">As</span> <span class="token keyword">Integer</span><span class="token punctuation">)</span> <span class="token keyword">As</span> <span class="token keyword">Integer</span>
+x <span class="token operator">=</span> x <span class="token operator">+</span> <span class="token number">1</span>
+myFun4 <span class="token operator">=</span> x
+<span class="token keyword">End</span> <span class="token keyword">Function</span>
+</pre><p>以下是呼叫myFun3与myFun4两个函数的范例:</p>
+<pre data-role="codeBlock" data-info="vb" class="language-vb"><span class="token keyword">Sub</span> Hello<span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token keyword">Dim</span> a <span class="token keyword">As</span> <span class="token keyword">Integer</span><span class="token punctuation">,</span> b <span class="token keyword">As</span> tnteger
+a<span class="token operator">=</span> <span class="token number">5</span>
+b <span class="token operator">=</span> myFun3<span class="token punctuation">(</span>a<span class="token punctuation">)</span>
+MsgBox a
+
+a <span class="token operator">=</span> <span class="token number">5</span>
+b <span class="token operator">=</span> myFun4<span class="token punctuation">(</span>a<span class="token punctuation">)</span>
+MsgBox a
+<span class="token keyword">End</span> <span class="token keyword">Sub</span>
+</pre><p>在预设的情况下，VBA函数都会以传参考的方式传递参数。</p>
+<p><strong>Sub与Function调用：</strong></p>
+<ul>
+<li>Sub调用：<br>
+调用Sub的方法有3种：
+<ul>
+<li>使用Call；</li>
+<li>直接调用；</li>
+<li>Application.Run</li>
+</ul>
+</li>
+</ul>
+<p>要点：</p>
+<ul>
+<li>如果使用call进行调用，则参数必须要用括号括起来;</li>
+<li>如果不使用call进行调用，则参数必须不能有括号。</li>
+</ul>
+<pre data-role="codeBlock" data-info="vb" class="language-vb"><span class="token keyword">Sub</span> Main<span class="token punctuation">(</span><span class="token punctuation">)</span>
+HouseCalc <span class="token number">99800</span><span class="token punctuation">,</span> <span class="token number">43100</span>
+<span class="token keyword">Call</span> HouseCalc<span class="token punctuation">(</span><span class="token number">380950</span><span class="token punctuation">,</span><span class="token number">49500</span><span class="token punctuation">)</span>
+<span class="token keyword">End</span> <span class="token keyword">Sub</span>
+
+<span class="token keyword">Sub</span> HouseCalc<span class="token punctuation">(</span>price <span class="token keyword">As</span> <span class="token keyword">Single</span><span class="token punctuation">,</span> wage <span class="token keyword">As</span> <span class="token keyword">Single</span><span class="token punctuation">)</span>
+<span class="token keyword">If</span> <span class="token number">2.5</span> <span class="token operator">*</span> wage <span class="token operator">&lt;</span><span class="token operator">=</span> <span class="token number">0.8</span> <span class="token operator">*</span> price <span class="token keyword">Then</span>
+MsgBox <span class="token string">"You cannot afford this house. "</span>
+<span class="token keyword">Else</span>
+MsgBox <span class="token string">"This house is affordable. "</span>
+<span class="token keyword">End</span> <span class="token keyword">If</span>
+<span class="token keyword">End</span> <span class="token keyword">Sub</span>
+</pre><ul>
+<li>
+<p>Function调用：</p>
+<ul>
+<li>通过Call调用Function:<br>
+可以通过call调用Function, 但是在这种情况下会自动忽略返回值。使用call进行调用不建议在大多数情况下使用。</li>
+<li>不通过Call调用Function:
+<ul>
+<li>需要返回值(通常使用这种即可)：<br>
+为了使用函数的返回值，必须指定函数给变量，并且用括号将参数封闭起来；如：Answer3 = MsgBox("Are you happy with your salary?", 4, "Question 3");</li>
+<li>不需要返回值：<br>
+如果不在意函数的返回值，可以用调用sub过程的方式来调用函数。如下所示：
+<ul>
+<li>不使用call调用：可以省略括号，列出参数并思不要将函数指定给变量：MsgBox“Taskcompleted!”,0, “TaskBOX’‘。（此处如果加了括号就会错误）</li>
+<li>使用Call。（必须加上括号）</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p><strong>在每个函数前可写一个简单测试该函数的测试函数。</strong></p>
+<h3 class="mume-header" id="18-%E5%8F%98%E9%87%8F-%E8%BF%87%E7%A8%8B%E7%9A%84%E4%BD%9C%E7%94%A8%E5%9F%9F">1.8. 变量、过程的作用域</h3>
+
+<p>用户编写的子程序和自定义函数都放在模块中，由于每个子程序都可能定义了变量，对这些变量使用范围定义的不同就会影响它们是否能在其他模块或子程序中使用。所以在学习过程的作用域之前我们首先来看看变量的作用域。</p>
+<p>变量根据定义方式的不同分为局部变量、模块级变量和全局变量三种。</p>
+<p>局部变量是在一个子程序或函数内部定义的变量，局部变量的缺点是只能在定义它的过程中使用，用户无法在其他的过程中访问或改变该变量的值。不同的过程可以定义相同名字的局部变量，且变量之间不会产生干扰。在子程序或自定义函数内部使用Dim关键字定义的变量都属于局部变量。</p>
+<p>模块级变量就是对当前模块中所有子程序和自定义函数都有效的变量，在该模块中的所有过程都可以访问它，其他模块中的过程则不可以访问它。模块级变量的声明可在要使用该变量的模块的顶部使用Dim或Private等关键字来声明。</p>
+<p>全局变量就是对工作薄中的所有模块的子程序和自定义函数都有效的变量，全局变量的声明应在某模块的顶部使用public关键字来声明。通常情况下，全局变量的声明应放在第一个模 块的最前面。</p>
+<p>例如在某工作簿中有两个模块，在模块1的前面对变量x，y，isum等变量作了如下声明：</p>
+<pre data-role="codeBlock" data-info="vb" class="language-vb"><span class="token keyword">Public</span> x <span class="token keyword">As</span> <span class="token keyword">Integer</span>
+<span class="token keyword">Public</span> y <span class="token keyword">As</span> <span class="token keyword">Single</span>
+<span class="token keyword">Dim</span> isum <span class="token keyword">As</span> <span class="token keyword">String</span>
+
+<span class="token keyword">Sub</span> aaa<span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token keyword">Dim</span> i <span class="token keyword">As</span> <span class="token keyword">Single</span>
+<span class="token keyword">End</span> <span class="token keyword">Sub</span>
+
+<span class="token keyword">Sub</span> bbb<span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token keyword">Dim</span> j <span class="token keyword">As</span> <span class="token keyword">Integer</span>
+<span class="token keyword">End</span> <span class="token keyword">Sub</span>
+</pre><p>这里的变量x，y均属于全局变量，它们对当前工作薄中的所有模块和过程都起作用，任何 一个模块及过程都可以对其进行访问。变量isum是模块级变量，它只对模块1有效。在模块1中的所有子程序和自定义函数都可以直接使用或改变该变量的值。在子程序aaa和bbb 中定义的i和j这两个变量都属于局部变量，它们只能在被定义的子程序中运行，即使在不同的子程序中定义了相同的变量，这些变量的值也是不同的而且互不干扰。</p>
+<p><strong>万用类型变量：</strong></p>
+<p>万用类型变量(variant)可以储存任何资料的类型，其使用方式与一般的类型类似：</p>
+<pre data-role="codeBlock" data-info="vb" class="language-vb"><span class="token keyword">Dim</span> x <span class="token keyword">As</span> <span class="token keyword">Variant</span>
+x <span class="token operator">=</span> <span class="token string">"GTWang"</span>
+MsgBox <span class="token string">"My name is "</span> <span class="token operator">&amp;</span> x
+x <span class="token operator">=</span> <span class="token number">123</span>
+MsgBox <span class="token string">"The Value is"</span> <span class="token operator">&amp;</span> x
+</pre><p>如果在宣告变数时不指定变数类型，则VBA预设会将变数视为variant类型，所以如下这两种写法的效果是相同的：</p>
+<pre data-role="codeBlock" data-info="vb" class="language-vb"><span class="token keyword">Dim</span> x <span class="token keyword">As</span> <span class="token keyword">Variant</span>
+<span class="token keyword">Dim</span> x <span class="token comment">' 预设为variant</span>
+</pre><p>Variant类型的变数通常可用于<strong>从Excel储存格中读取使用者输入的资料</strong>，由于使用者输入的资料变异性很大，可能会是任何类型，所以直接使用Variant来储存会比较方便。</p>
+<p>虽然variant非常方便，但它的缺点就是程式<strong>执行效能较差</strong>，所以除非必要，在一般的情况下还是使用固定的变数类型较佳。</p>
+<p><strong>未经定义的变量：</strong></p>
+<p>Excel VBA也允许使用者省略变数宣告，所以其实未经宣告也可以直接定义变数：<code>MyVar = 35</code>, 未经宣告的变数预设会是Variant万用类型。</p>
+<p><strong>强迫变量定义：</strong></p>
+<p>虽然不宣告就使用变数非常方便，但明确宣告变数可以让程式执行效率较好，而且比较不容易因为打错字造成bugs, 所以建议在写程式时都明确加入变数宣告。如果想避免自己在写程式时，不小心在没有宣告的情况下就使用变数，或是有宣告变数，但是在使用时打错又没发现，可以在程式码的开头加上：</p>
+<pre data-role="codeBlock" data-info="vb" class="language-vb"><span class="token keyword">Option</span> Explicit <span class="token comment">’ 强迫变数宣告0001111</span>
+
+<span class="token keyword">Sub</span> Hello <span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token keyword">Dim</span> MyVar <span class="token keyword">As</span> <span class="token keyword">Integer</span>
+    MyVar <span class="token operator">=</span> <span class="token number">10</span>
+    Mylnt <span class="token operator">=</span> <span class="token number">10</span>  <span class="token comment">' 未宣告</span>
+<span class="token keyword">End</span> <span class="token keyword">Sub</span>
+</pre><p>这样只要遇到变数未宣告就使用的状况，编译时就会出现错误讯息。</p>
+<hr>
+<p>与变量一样，VBA中的过程也有使用范围。过程的有效作用范围即作用域是通过在声明语句前添加<code>Private</code>或<code>Public</code>等关键字来实现的，如<code>Private sub resetall(), Public Function newline()</code> 等，其中<code>Public</code>表示全局过程(也叫公用过程)，即所有模块中的过程都可以访问这个过程。在默认情况下，用户在模块中定义的子程序和自定义函数都被声明为<code>public</code>， 所以可以忽略关键字<code>public</code>。<code>private</code>表示局部过程(也叫私有过程)，只有当前模块中的过程才可以访问该过程。</p>
+<h3 class="mume-header" id="19-vba%E4%BB%A3%E7%A0%81%E5%A4%9A%E8%A1%8C%E4%B9%A6%E5%86%99">1.9. VBA代码多行书写</h3>
+
+<p>行尾加上下划线来进行续行。</p>
+<h3 class="mume-header" id="110-excel-rangeend-%E5%B1%9E%E6%80%A7">1.10. Excel Range.End 属性</h3>
+
+<p>返回一个<code>Range</code>对象，该对象代表包含源区域的区域尾端的单元格。等同于按键End+向上键、End+向下键、End+向左键或End+向右键。Range对象，只读。</p>
+<p>语法为：<code>End(Direction)</code></p>
+<p>其中：<code>Direction</code>为<code>XIDirection</code>类型。<code>XIDirection</code>的值有：</p>
+<ul>
+<li>xlDown: 向下；</li>
+<li>xlToLeft: 向左；</li>
+<li>xlToRight: 向右；</li>
+<li>xlUp: 向上。</li>
+</ul>
+<pre data-role="codeBlock" data-info="vb" class="language-vb"><span class="token comment">' 选定包含单元格B4的区域中B列顶端的单元格</span>
+Range<span class="token punctuation">(</span><span class="token string">"B4"</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token keyword">End</span><span class="token punctuation">(</span>xlUp<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token keyword">Select</span>
+<span class="token comment">' 选定包含单元格BA的区域中第4行尾端的单元格</span>
+Range<span class="token punctuation">(</span><span class="token string">"B4"</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token keyword">End</span><span class="token punctuation">(</span>xlToRight<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token keyword">Select</span>
+<span class="token comment">' 选定区域从单元格B4延伸至第4行最后一个包含数据的单元格</span>
+Worksheets<span class="token punctuation">(</span><span class="token string">"Sheet1"</span><span class="token punctuation">)</span><span class="token punctuation">.</span>Activate
+Range<span class="token punctuation">(</span><span class="token string">"B4"</span><span class="token punctuation">,</span> Range<span class="token punctuation">(</span><span class="token string">"B4"</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token keyword">End</span><span class="token punctuation">(</span>xlToRight<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token keyword">Select</span>
+</pre><h3 class="mume-header" id="111-dim%E4%B8%8Eset">1.11. dim与set</h3>
+
+<p>dim是定义变量名(包括对象变量），set是给对象变量赋值。</p>
+<h3 class="mume-header" id="112-debug%E6%8A%80%E5%B7%A7">1.12. debug技巧</h3>
+
+<p>若要测试某个子程序(sub）的执行状况，可将游标<strong>移动到该子程序中</strong>，这时候视窗右上角的子程序名称会即时显示目前游标所在的子程序名称，接着按下工具列上面的执行按钮，这样就可以立刻执行这个子程序，观察执行结果。</p>
+<p>在中断模式中，我们可以将滑鼠移动到要观察的变数上，这样就可以立即查看变数的内容。遇到无法停止的程式，可以按下键盘上的ESC按键，或是ctrl+break按键，让程式立即停止执行。</p>
+<p>在程式的除错过程中，我们可能会需要观察多个变数或运算式的内容变化，这时候就可以将有兴趣的运算式选取起来，在滑鼠右键选单中点选「新增监看式」。</p>
+<hr>
+
+      </div>
+      
+      
+    
+    
+    
+    
+    
+    
+    
+    
+  </body></html>

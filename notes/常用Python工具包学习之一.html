@@ -1,0 +1,1497 @@
+<!DOCTYPE html>
+<!-- saved from url=(0099)file:///private/var/folders/jq/l66hzx9956qbmxs_990g1djh0000gn/T/mume2020317-90899-1ov0tot.tcjz.html -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+      <title>常用Python工具包学习之一</title>
+      
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      
+      <link rel="stylesheet" href="./常用Python工具包学习之一_files/katex.min.css">
+      
+      
+
+      
+      
+      
+      
+      
+      
+      
+
+      <style>
+      /**
+ * prism.js Github theme based on GitHub's theme.
+ * @author Sam Clarke
+ */
+code[class*="language-"],
+pre[class*="language-"] {
+  color: #333;
+  background: none;
+  font-family: Consolas, "Liberation Mono", Menlo, Courier, monospace;
+  text-align: left;
+  white-space: pre;
+  word-spacing: normal;
+  word-break: normal;
+  word-wrap: normal;
+  line-height: 1.4;
+
+  -moz-tab-size: 8;
+  -o-tab-size: 8;
+  tab-size: 8;
+
+  -webkit-hyphens: none;
+  -moz-hyphens: none;
+  -ms-hyphens: none;
+  hyphens: none;
+}
+
+/* Code blocks */
+pre[class*="language-"] {
+  padding: .8em;
+  overflow: auto;
+  /* border: 1px solid #ddd; */
+  border-radius: 3px;
+  /* background: #fff; */
+  background: #f5f5f5;
+}
+
+/* Inline code */
+:not(pre) > code[class*="language-"] {
+  padding: .1em;
+  border-radius: .3em;
+  white-space: normal;
+  background: #f5f5f5;
+}
+
+.token.comment,
+.token.blockquote {
+  color: #969896;
+}
+
+.token.cdata {
+  color: #183691;
+}
+
+.token.doctype,
+.token.punctuation,
+.token.variable,
+.token.macro.property {
+  color: #333;
+}
+
+.token.operator,
+.token.important,
+.token.keyword,
+.token.rule,
+.token.builtin {
+  color: #a71d5d;
+}
+
+.token.string,
+.token.url,
+.token.regex,
+.token.attr-value {
+  color: #183691;
+}
+
+.token.property,
+.token.number,
+.token.boolean,
+.token.entity,
+.token.atrule,
+.token.constant,
+.token.symbol,
+.token.command,
+.token.code {
+  color: #0086b3;
+}
+
+.token.tag,
+.token.selector,
+.token.prolog {
+  color: #63a35c;
+}
+
+.token.function,
+.token.namespace,
+.token.pseudo-element,
+.token.class,
+.token.class-name,
+.token.pseudo-class,
+.token.id,
+.token.url-reference .token.variable,
+.token.attr-name {
+  color: #795da3;
+}
+
+.token.entity {
+  cursor: help;
+}
+
+.token.title,
+.token.title .token.punctuation {
+  font-weight: bold;
+  color: #1d3e81;
+}
+
+.token.list {
+  color: #ed6a43;
+}
+
+.token.inserted {
+  background-color: #eaffea;
+  color: #55a532;
+}
+
+.token.deleted {
+  background-color: #ffecec;
+  color: #bd2c00;
+}
+
+.token.bold {
+  font-weight: bold;
+}
+
+.token.italic {
+  font-style: italic;
+}
+
+
+/* JSON */
+.language-json .token.property {
+  color: #183691;
+}
+
+.language-markup .token.tag .token.punctuation {
+  color: #333;
+}
+
+/* CSS */
+code.language-css,
+.language-css .token.function {
+  color: #0086b3;
+}
+
+/* YAML */
+.language-yaml .token.atrule {
+  color: #63a35c;
+}
+
+code.language-yaml {
+  color: #183691;
+}
+
+/* Ruby */
+.language-ruby .token.function {
+  color: #333;
+}
+
+/* Markdown */
+.language-markdown .token.url {
+  color: #795da3;
+}
+
+/* Makefile */
+.language-makefile .token.symbol {
+  color: #795da3;
+}
+
+.language-makefile .token.variable {
+  color: #183691;
+}
+
+.language-makefile .token.builtin {
+  color: #0086b3;
+}
+
+/* Bash */
+.language-bash .token.keyword {
+  color: #0086b3;
+}
+
+/* highlight */
+pre[data-line] {
+  position: relative;
+  padding: 1em 0 1em 3em;
+}
+pre[data-line] .line-highlight-wrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: transparent;
+  display: block;
+  width: 100%;
+}
+
+pre[data-line] .line-highlight {
+  position: absolute;
+  left: 0;
+  right: 0;
+  padding: inherit 0;
+  margin-top: 1em;
+  background: hsla(24, 20%, 50%,.08);
+  background: linear-gradient(to right, hsla(24, 20%, 50%,.1) 70%, hsla(24, 20%, 50%,0));
+  pointer-events: none;
+  line-height: inherit;
+  white-space: pre;
+}
+
+pre[data-line] .line-highlight:before, 
+pre[data-line] .line-highlight[data-end]:after {
+  content: attr(data-start);
+  position: absolute;
+  top: .4em;
+  left: .6em;
+  min-width: 1em;
+  padding: 0 .5em;
+  background-color: hsla(24, 20%, 50%,.4);
+  color: hsl(24, 20%, 95%);
+  font: bold 65%/1.5 sans-serif;
+  text-align: center;
+  vertical-align: .3em;
+  border-radius: 999px;
+  text-shadow: none;
+  box-shadow: 0 1px white;
+}
+
+pre[data-line] .line-highlight[data-end]:after {
+  content: attr(data-end);
+  top: auto;
+  bottom: .4em;
+}html body{font-family:"Helvetica Neue",Helvetica,"Segoe UI",Arial,freesans,sans-serif;font-size:16px;line-height:1.6;color:#333;background-color:#fff;overflow:initial;box-sizing:border-box;word-wrap:break-word}html body>:first-child{margin-top:0}html body h1,html body h2,html body h3,html body h4,html body h5,html body h6{line-height:1.2;margin-top:1em;margin-bottom:16px;color:#000}html body h1{font-size:2.25em;font-weight:300;padding-bottom:.3em}html body h2{font-size:1.75em;font-weight:400;padding-bottom:.3em}html body h3{font-size:1.5em;font-weight:500}html body h4{font-size:1.25em;font-weight:600}html body h5{font-size:1.1em;font-weight:600}html body h6{font-size:1em;font-weight:600}html body h1,html body h2,html body h3,html body h4,html body h5{font-weight:600}html body h5{font-size:1em}html body h6{color:#5c5c5c}html body strong{color:#000}html body del{color:#5c5c5c}html body a:not([href]){color:inherit;text-decoration:none}html body a{color:#08c;text-decoration:none}html body a:hover{color:#00a3f5;text-decoration:none}html body img{max-width:100%}html body>p{margin-top:0;margin-bottom:16px;word-wrap:break-word}html body>ul,html body>ol{margin-bottom:16px}html body ul,html body ol{padding-left:2em}html body ul.no-list,html body ol.no-list{padding:0;list-style-type:none}html body ul ul,html body ul ol,html body ol ol,html body ol ul{margin-top:0;margin-bottom:0}html body li{margin-bottom:0}html body li.task-list-item{list-style:none}html body li>p{margin-top:0;margin-bottom:0}html body .task-list-item-checkbox{margin:0 .2em .25em -1.8em;vertical-align:middle}html body .task-list-item-checkbox:hover{cursor:pointer}html body blockquote{margin:16px 0;font-size:inherit;padding:0 15px;color:#5c5c5c;border-left:4px solid #d6d6d6}html body blockquote>:first-child{margin-top:0}html body blockquote>:last-child{margin-bottom:0}html body hr{height:4px;margin:32px 0;background-color:#d6d6d6;border:0 none}html body table{margin:10px 0 15px 0;border-collapse:collapse;border-spacing:0;display:block;width:100%;overflow:auto;word-break:normal;word-break:keep-all}html body table th{font-weight:bold;color:#000}html body table td,html body table th{border:1px solid #d6d6d6;padding:6px 13px}html body dl{padding:0}html body dl dt{padding:0;margin-top:16px;font-size:1em;font-style:italic;font-weight:bold}html body dl dd{padding:0 16px;margin-bottom:16px}html body code{font-family:Menlo,Monaco,Consolas,'Courier New',monospace;font-size:.85em !important;color:#000;background-color:#f0f0f0;border-radius:3px;padding:.2em 0}html body code::before,html body code::after{letter-spacing:-0.2em;content:"\00a0"}html body pre>code{padding:0;margin:0;font-size:.85em !important;word-break:normal;white-space:pre;background:transparent;border:0}html body .highlight{margin-bottom:16px}html body .highlight pre,html body pre{padding:1em;overflow:auto;font-size:.85em !important;line-height:1.45;border:#d6d6d6;border-radius:3px}html body .highlight pre{margin-bottom:0;word-break:normal}html body pre code,html body pre tt{display:inline;max-width:initial;padding:0;margin:0;overflow:initial;line-height:inherit;word-wrap:normal;background-color:transparent;border:0}html body pre code:before,html body pre tt:before,html body pre code:after,html body pre tt:after{content:normal}html body p,html body blockquote,html body ul,html body ol,html body dl,html body pre{margin-top:0;margin-bottom:16px}html body kbd{color:#000;border:1px solid #d6d6d6;border-bottom:2px solid #c7c7c7;padding:2px 4px;background-color:#f0f0f0;border-radius:3px}@media print{html body{background-color:#fff}html body h1,html body h2,html body h3,html body h4,html body h5,html body h6{color:#000;page-break-after:avoid}html body blockquote{color:#5c5c5c}html body pre{page-break-inside:avoid}html body table{display:table}html body img{display:block;max-width:100%;max-height:100%}html body pre,html body code{word-wrap:break-word;white-space:pre}}.markdown-preview{width:100%;height:100%;box-sizing:border-box}.markdown-preview .pagebreak,.markdown-preview .newpage{page-break-before:always}.markdown-preview pre.line-numbers{position:relative;padding-left:3.8em;counter-reset:linenumber}.markdown-preview pre.line-numbers>code{position:relative}.markdown-preview pre.line-numbers .line-numbers-rows{position:absolute;pointer-events:none;top:1em;font-size:100%;left:0;width:3em;letter-spacing:-1px;border-right:1px solid #999;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}.markdown-preview pre.line-numbers .line-numbers-rows>span{pointer-events:none;display:block;counter-increment:linenumber}.markdown-preview pre.line-numbers .line-numbers-rows>span:before{content:counter(linenumber);color:#999;display:block;padding-right:.8em;text-align:right}.markdown-preview .mathjax-exps .MathJax_Display{text-align:center !important}.markdown-preview:not([for="preview"]) .code-chunk .btn-group{display:none}.markdown-preview:not([for="preview"]) .code-chunk .status{display:none}.markdown-preview:not([for="preview"]) .code-chunk .output-div{margin-bottom:16px}.scrollbar-style::-webkit-scrollbar{width:8px}.scrollbar-style::-webkit-scrollbar-track{border-radius:10px;background-color:transparent}.scrollbar-style::-webkit-scrollbar-thumb{border-radius:5px;background-color:rgba(150,150,150,0.66);border:4px solid rgba(150,150,150,0.66);background-clip:content-box}html body[for="html-export"]:not([data-presentation-mode]){position:relative;width:100%;height:100%;top:0;left:0;margin:0;padding:0;overflow:auto}html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{position:relative;top:0}@media screen and (min-width:914px){html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{padding:2em calc(50% - 457px + 2em)}}@media screen and (max-width:914px){html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{padding:2em}}@media screen and (max-width:450px){html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{font-size:14px !important;padding:1em}}@media print{html body[for="html-export"]:not([data-presentation-mode]) #sidebar-toc-btn{display:none}}html body[for="html-export"]:not([data-presentation-mode]) #sidebar-toc-btn{position:fixed;bottom:8px;left:8px;font-size:28px;cursor:pointer;color:inherit;z-index:99;width:32px;text-align:center;opacity:.4}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] #sidebar-toc-btn{opacity:1}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc{position:fixed;top:0;left:0;width:300px;height:100%;padding:32px 0 48px 0;font-size:14px;box-shadow:0 0 4px rgba(150,150,150,0.33);box-sizing:border-box;overflow:auto;background-color:inherit}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar{width:8px}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-track{border-radius:10px;background-color:transparent}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-thumb{border-radius:5px;background-color:rgba(150,150,150,0.66);border:4px solid rgba(150,150,150,0.66);background-clip:content-box}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc a{text-decoration:none}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc ul{padding:0 1.6em;margin-top:.8em}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc li{margin-bottom:.8em}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc ul{list-style-type:none}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{left:300px;width:calc(100% -  300px);padding:2em calc(50% - 457px -  150px);margin:0;box-sizing:border-box}@media screen and (max-width:1274px){html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{padding:2em}}@media screen and (max-width:450px){html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{width:100%}}html body[for="html-export"]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .markdown-preview{left:50%;transform:translateX(-50%)}html body[for="html-export"]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .md-sidebar-toc{display:none}
+/* Please visit the URL below for more information: */
+/*   https://shd101wyy.github.io/markdown-preview-enhanced/#/customize-css */
+
+      </style>
+    </head>
+    <body for="html-export">
+      <div class="mume markdown-preview  ">
+      <h1 class="mume-header" id="%E5%B8%B8%E7%94%A8python%E5%B7%A5%E5%85%B7%E5%8C%85%E5%AD%A6%E4%B9%A0%E4%B9%8B%E4%B8%80%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90%E5%B7%A5%E5%85%B7numpy%E4%B8%8Epandas">常用Python工具包学习之一：数据分析工具Numpy与Pandas</h1>
+
+<hr>
+<h2 class="mume-header" id="1-pandas%E5%9F%BA%E7%A1%80">1. Pandas基础</h2>
+
+<h3 class="mume-header" id="11-series%E5%9F%BA%E7%A1%80">1.1. Series基础</h3>
+
+<p><strong>创建一个 Series：</strong></p>
+<pre data-role="codeBlock" data-info="python" class="language-python"><span class="token keyword">import</span> numpy <span class="token keyword">as</span> np
+<span class="token keyword">import</span> pandas <span class="token keyword">as</span> pd
+
+s <span class="token operator">=</span> pd<span class="token punctuation">.</span>Series<span class="token punctuation">(</span>np<span class="token punctuation">.</span>random<span class="token punctuation">.</span>rand<span class="token punctuation">(</span><span class="token number">10</span><span class="token punctuation">)</span><span class="token punctuation">)</span>  <span class="token comment"># 注意这里的 random 调用的是 numpy 模块中的</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span>s<span class="token punctuation">)</span>
+</pre><p>运行结果：</p>
+<pre data-role="codeBlock" data-info="shell" class="language-shell">0    0.420822
+1    0.700232
+2    0.059284
+3    0.668801
+4    0.874959
+5    0.340301
+6    0.852802
+7    0.003425
+8    0.708703
+9    0.909793
+dtype: float64
+</pre><p><strong>查看 Series 的 index 和 values：</strong></p>
+<pre data-role="codeBlock" data-info="python" class="language-python"><span class="token keyword">import</span> numpy <span class="token keyword">as</span> np
+<span class="token keyword">import</span> pandas <span class="token keyword">as</span> pd
+
+s <span class="token operator">=</span> pd<span class="token punctuation">.</span>Series<span class="token punctuation">(</span>np<span class="token punctuation">.</span>random<span class="token punctuation">.</span>rand<span class="token punctuation">(</span><span class="token number">10</span><span class="token punctuation">)</span><span class="token punctuation">)</span>  <span class="token comment"># 注意这里的 random 调用的是 numpy 模块中的</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span>s<span class="token punctuation">)</span>
+
+<span class="token keyword">print</span><span class="token punctuation">(</span>s<span class="token punctuation">.</span>index<span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span>s<span class="token punctuation">.</span>values<span class="token punctuation">)</span>
+</pre><p>运行结果：</p>
+<pre data-role="codeBlock" data-info="shell" class="language-shell">0    0.553489
+1    0.317508
+2    0.727974
+3    0.228932
+4    0.224144
+5    0.931560
+6    0.416786
+7    0.052598
+8    0.203329
+9    0.698232
+dtype: float64
+RangeIndex<span class="token punctuation">(</span>start<span class="token operator">=</span>0, stop<span class="token operator">=</span>10, step<span class="token operator">=</span>1<span class="token punctuation">)</span>
+<span class="token punctuation">[</span>0.55348858 0.31750766 0.72797434 0.22893181 0.22414441 0.93156027
+ 0.41678607 0.05259833 0.20332851 0.69823221<span class="token punctuation">]</span>
+</pre><hr>
+<p><strong><code>numpy.random.rand</code> 相关函数：</strong></p>
+<ol>
+<li><code>numpy.random.rand()</code></li>
+</ol>
+<p><code>numpy.random.rand(d0,d1,…,dn)</code>：</p>
+<pre data-role="codeBlock" data-info="python" class="language-python"><span class="token keyword">import</span> numpy <span class="token keyword">as</span> np
+
+np<span class="token punctuation">.</span>random<span class="token punctuation">.</span>rand<span class="token punctuation">(</span><span class="token number">4</span><span class="token punctuation">,</span><span class="token number">2</span><span class="token punctuation">)</span>
+</pre><pre data-role="codeBlock" data-info="shell" class="language-shell">array<span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token punctuation">[</span> 0.02173903,  0.44376568<span class="token punctuation">]</span>,
+       <span class="token punctuation">[</span> 0.25309942,  0.85259262<span class="token punctuation">]</span>,
+       <span class="token punctuation">[</span> 0.56465709,  0.95135013<span class="token punctuation">]</span>,
+       <span class="token punctuation">[</span> 0.14145746,  0.55389458<span class="token punctuation">]</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+</pre><pre data-role="codeBlock" data-info="python" class="language-python"><span class="token keyword">import</span> numpy <span class="token keyword">as</span> np
+
+np<span class="token punctuation">.</span>random<span class="token punctuation">.</span>rand<span class="token punctuation">(</span><span class="token number">4</span><span class="token punctuation">,</span><span class="token number">3</span><span class="token punctuation">,</span><span class="token number">2</span><span class="token punctuation">)</span> <span class="token comment"># shape: 4*3*2</span>
+</pre><pre data-role="codeBlock" data-info="shell" class="language-shell">array<span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token punctuation">[</span><span class="token punctuation">[</span> 0.08256277,  0.11408276<span class="token punctuation">]</span>,
+        <span class="token punctuation">[</span> 0.11182496,  0.51452019<span class="token punctuation">]</span>,
+        <span class="token punctuation">[</span> 0.09731856,  0.18279204<span class="token punctuation">]</span><span class="token punctuation">]</span>,
+
+       <span class="token punctuation">[</span><span class="token punctuation">[</span> 0.74637005,  0.76065562<span class="token punctuation">]</span>,
+        <span class="token punctuation">[</span> 0.32060311,  0.69410458<span class="token punctuation">]</span>,
+        <span class="token punctuation">[</span> 0.28890543,  0.68532579<span class="token punctuation">]</span><span class="token punctuation">]</span>,
+
+       <span class="token punctuation">[</span><span class="token punctuation">[</span> 0.72110169,  0.52517524<span class="token punctuation">]</span>,
+        <span class="token punctuation">[</span> 0.32876607,  0.66632414<span class="token punctuation">]</span>,
+        <span class="token punctuation">[</span> 0.45762399,  0.49176764<span class="token punctuation">]</span><span class="token punctuation">]</span>,
+
+       <span class="token punctuation">[</span><span class="token punctuation">[</span> 0.73886671,  0.81877121<span class="token punctuation">]</span>,
+        <span class="token punctuation">[</span> 0.03984658,  0.99454548<span class="token punctuation">]</span>,
+</pre><ol start="2">
+<li><code>numpy.random.randn()</code></li>
+</ol>
+<p>与 <code>numpy.random.rand()</code> 类似，只是返回的数据服从标准正态分布（以 0 为均值、以 1 为标准差）。</p>
+<ol start="3">
+<li><code>numpy.random.randint()</code></li>
+</ol>
+<p><code>numpy.random.randint(low, high=None, size=None, dtype=’l’)</code>：</p>
+<ul>
+<li>返回随机整数，范围区间为 <code>[low,high)</code>，包含 low，不包含 high</li>
+<li>参数：low 为最小值，high 为最大值，size 为数组维度大小，dtype 为数据类型，默认的数据类型是 np.int</li>
+<li>high 没有填写时，默认生成随机数的范围是 [0，low)</li>
+</ul>
+<pre data-role="codeBlock" data-info="python" class="language-python">np<span class="token punctuation">.</span>random<span class="token punctuation">.</span>randint<span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span>size<span class="token operator">=</span><span class="token number">5</span><span class="token punctuation">)</span> <span class="token comment"># 返回[0,1)之间的整数，所以只有0</span>
+</pre><p>运行结果：</p>
+<pre data-role="codeBlock" data-info="shell" class="language-shell">array<span class="token punctuation">(</span><span class="token punctuation">[</span>0, 0, 0, 0, 0<span class="token punctuation">]</span><span class="token punctuation">)</span>
+</pre><pre data-role="codeBlock" data-info="python" class="language-python">np<span class="token punctuation">.</span>random<span class="token punctuation">.</span>randint<span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token number">5</span><span class="token punctuation">)</span> <span class="token comment"># 返回1个[1,5)之间的随机整数</span>
+</pre><p>运行结果：</p>
+<pre data-role="codeBlock" data-info="shell" class="language-shell">4
+</pre><pre data-role="codeBlock" data-info="python" class="language-python">np<span class="token punctuation">.</span>random<span class="token punctuation">.</span>randint<span class="token punctuation">(</span><span class="token operator">-</span><span class="token number">5</span><span class="token punctuation">,</span><span class="token number">5</span><span class="token punctuation">,</span>size<span class="token operator">=</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">,</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+</pre><p>运行结果：</p>
+<pre data-role="codeBlock" data-info="shell" class="language-shell">array<span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token punctuation">[</span> 2, -1<span class="token punctuation">]</span>,
+       <span class="token punctuation">[</span> 2,  0<span class="token punctuation">]</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+</pre><hr>
+<h3 class="mume-header" id="12-series-%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5%E4%B8%8E%E5%88%9B%E5%BB%BA">1.2. Series 基本概念与创建</h3>
+
+<ol>
+<li>用字典创建</li>
+</ol>
+<pre data-role="codeBlock" data-info="python" class="language-python">dic <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token string">'a'</span><span class="token punctuation">:</span><span class="token number">1</span> <span class="token punctuation">,</span><span class="token string">'b'</span><span class="token punctuation">:</span><span class="token number">2</span> <span class="token punctuation">,</span> <span class="token string">'c'</span><span class="token punctuation">:</span><span class="token number">3</span><span class="token punctuation">,</span> <span class="token string">'4'</span><span class="token punctuation">:</span><span class="token number">4</span><span class="token punctuation">,</span> <span class="token string">'5'</span><span class="token punctuation">:</span><span class="token number">5</span><span class="token punctuation">}</span>
+s <span class="token operator">=</span> pd<span class="token punctuation">.</span>Series<span class="token punctuation">(</span>dic<span class="token punctuation">)</span>
+</pre><ol start="2">
+<li>由一维数组创建</li>
+</ol>
+<pre data-role="codeBlock" data-info="python" class="language-python">arr <span class="token operator">=</span> np<span class="token punctuation">.</span>random<span class="token punctuation">.</span>rand<span class="token punctuation">(</span><span class="token number">10</span><span class="token punctuation">)</span>  <span class="token comment"># 一维数组</span>
+s <span class="token operator">=</span> pd<span class="token punctuation">.</span>Series<span class="token punctuation">(</span>arr<span class="token punctuation">)</span>
+</pre><ol start="3">
+<li>用标量创建</li>
+</ol>
+<pre data-role="codeBlock" data-info="python" class="language-python">s <span class="token operator">=</span> pd<span class="token punctuation">.</span>Series<span class="token punctuation">(</span><span class="token number">100</span><span class="token punctuation">,</span> index<span class="token operator">=</span><span class="token builtin">range</span><span class="token punctuation">(</span><span class="token number">10</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+</pre><p><strong>Series 属性：</strong></p>
+<ol>
+<li>name</li>
+</ol>
+<pre data-role="codeBlock" data-info="python" class="language-python">s1 <span class="token operator">=</span> pd<span class="token punctuation">.</span>Series<span class="token punctuation">(</span><span class="token number">100</span><span class="token punctuation">,</span> index<span class="token operator">=</span><span class="token builtin">range</span><span class="token punctuation">(</span><span class="token number">5</span><span class="token punctuation">)</span><span class="token punctuation">,</span> name<span class="token operator">=</span><span class="token string">'sky'</span><span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span>s1<span class="token punctuation">)</span>
+s2 <span class="token operator">=</span> s1<span class="token punctuation">.</span>rename<span class="token punctuation">(</span><span class="token string">'apple'</span><span class="token punctuation">)</span>  <span class="token comment"># rename指向一个新的 Series</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span>s2<span class="token punctuation">)</span>
+</pre><h3 class="mume-header" id="13-series-%E7%B4%A2%E5%BC%95">1.3. Series 索引</h3>
+
+<p><strong>位置下标索引：</strong></p>
+<pre data-role="codeBlock" data-info="python" class="language-python">s <span class="token operator">=</span> pd<span class="token punctuation">.</span>Series<span class="token punctuation">(</span>np<span class="token punctuation">.</span>random<span class="token punctuation">.</span>rand<span class="token punctuation">(</span><span class="token number">10</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span>s<span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span>s<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+</pre><p>运行结果：</p>
+<pre data-role="codeBlock" data-info="shell" class="language-shell">0    0.319583
+1    0.554041
+2    0.412740
+3    0.775027
+4    0.062653
+5    0.015515
+6    0.039659
+7    0.153687
+8    0.590421
+9    0.783267
+dtype: float64
+0.5540406228970685
+</pre><p><strong>标签索引：</strong></p>
+<p>方法类似下标索引，用 <code>[]</code> 表示，内写上 index，注意 index 是字符串。</p>
+<pre data-role="codeBlock" data-info="python" class="language-python">s <span class="token operator">=</span> pd<span class="token punctuation">.</span>Series<span class="token punctuation">(</span>np<span class="token punctuation">.</span>random<span class="token punctuation">.</span>rand<span class="token punctuation">(</span><span class="token number">5</span><span class="token punctuation">)</span><span class="token punctuation">,</span> index<span class="token operator">=</span><span class="token punctuation">[</span><span class="token string">'a'</span><span class="token punctuation">,</span><span class="token string">'b'</span><span class="token punctuation">,</span><span class="token string">'c'</span><span class="token punctuation">,</span><span class="token string">'d'</span><span class="token punctuation">,</span><span class="token string">'e'</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span>s<span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span>s<span class="token punctuation">[</span><span class="token string">'b'</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span>s<span class="token punctuation">[</span><span class="token punctuation">[</span><span class="token string">'a'</span><span class="token punctuation">,</span><span class="token string">'c'</span><span class="token punctuation">]</span><span class="token punctuation">]</span><span class="token punctuation">)</span>  <span class="token comment"># 注意如果是多个值的话要再加一个 []</span>
+</pre><p>运行结果：</p>
+<pre data-role="codeBlock" data-info="shell" class="language-shell">a    0.352152
+b    0.668760
+c    0.779389
+d    0.294866
+e    0.949190
+dtype: float64
+0.668760136860433
+a    0.352152
+c    0.779389
+dtype: float64
+</pre><p><strong>切片索引：</strong></p>
+<p>用下标索引的时候和 list 切片类似；用 index 索引的时候有点不同，是左闭右闭的</p>
+<pre data-role="codeBlock" data-info="python" class="language-python">s <span class="token operator">=</span> pd<span class="token punctuation">.</span>Series<span class="token punctuation">(</span>np<span class="token punctuation">.</span>random<span class="token punctuation">.</span>rand<span class="token punctuation">(</span><span class="token number">5</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span>s<span class="token punctuation">)</span>
+<span class="token comment"># 下标索引做切片，和list写法一样</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span>s<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">:</span><span class="token number">3</span><span class="token punctuation">]</span><span class="token punctuation">)</span>  <span class="token comment"># 左闭右开</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span>s<span class="token punctuation">[</span><span class="token number">2</span><span class="token punctuation">:</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span>s<span class="token punctuation">[</span><span class="token punctuation">:</span><span class="token number">4</span><span class="token punctuation">:</span><span class="token number">2</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">'-----------'</span><span class="token punctuation">)</span>
+s <span class="token operator">=</span> pd<span class="token punctuation">.</span>Series<span class="token punctuation">(</span>np<span class="token punctuation">.</span>random<span class="token punctuation">.</span>rand<span class="token punctuation">(</span><span class="token number">5</span><span class="token punctuation">)</span><span class="token punctuation">,</span> index<span class="token operator">=</span><span class="token punctuation">[</span><span class="token string">'a'</span><span class="token punctuation">,</span><span class="token string">'b'</span><span class="token punctuation">,</span><span class="token string">'c'</span><span class="token punctuation">,</span><span class="token string">'d'</span><span class="token punctuation">,</span><span class="token string">'e'</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span>s<span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span>s<span class="token punctuation">[</span><span class="token string">'b'</span><span class="token punctuation">:</span><span class="token string">'e'</span><span class="token punctuation">]</span><span class="token punctuation">)</span>  <span class="token comment"># 左闭右闭</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span>s<span class="token punctuation">[</span><span class="token punctuation">:</span><span class="token string">'e'</span><span class="token punctuation">:</span><span class="token number">2</span><span class="token punctuation">]</span><span class="token punctuation">)</span>  <span class="token comment"># 左闭右闭</span>
+</pre><p>运行结果：</p>
+<pre data-role="codeBlock" data-info="shell" class="language-shell">0    0.087591
+1    0.676850
+2    0.851446
+3    0.119207
+4    0.213420
+dtype: float64
+1    0.676850
+2    0.851446
+dtype: float64
+2    0.851446
+3    0.119207
+dtype: float64
+0    0.087591
+2    0.851446
+dtype: float64
+-----------
+a    0.692801
+b    0.394996
+c    0.083263
+d    0.620415
+e    0.463508
+dtype: float64
+b    0.394996
+c    0.083263
+d    0.620415
+e    0.463508
+dtype: float64
+a    0.692801
+c    0.083263
+e    0.463508
+dtype: float64
+</pre><p><strong>布尔型索引：</strong></p>
+<pre data-role="codeBlock" data-info="python" class="language-python">s <span class="token operator">=</span> pd<span class="token punctuation">.</span>Series<span class="token punctuation">(</span>np<span class="token punctuation">.</span>random<span class="token punctuation">.</span>rand<span class="token punctuation">(</span><span class="token number">5</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+s<span class="token punctuation">[</span><span class="token number">6</span><span class="token punctuation">]</span> <span class="token operator">=</span> np<span class="token punctuation">.</span>nan  <span class="token comment"># 添加一个空值</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span>s<span class="token punctuation">)</span>
+condition1 <span class="token operator">=</span> s<span class="token operator">&gt;</span><span class="token number">0.2</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span>condition1<span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span>s<span class="token punctuation">[</span>condition1<span class="token punctuation">]</span><span class="token punctuation">)</span>
+</pre><p>运行结果：</p>
+<pre data-role="codeBlock" data-info="shell" class="language-shell">0    0.917323
+1    0.867359
+2    0.205042
+3    0.124465
+4    0.565888
+6         NaN
+dtype: float64
+0     True
+1     True
+2     True
+3    False
+4     True
+6    False
+dtype: bool
+0    0.917323
+1    0.867359
+2    0.205042
+4    0.565888
+dtype: float64
+</pre><h3 class="mume-header" id="14-series%E5%9F%BA%E6%9C%AC%E6%8A%80%E5%B7%A7">1.4. Series基本技巧</h3>
+
+<p><strong>数据查看：</strong></p>
+<p>数据查看：<code>head()</code> 和 <code>tail()</code>。</p>
+<pre data-role="codeBlock" data-info="python" class="language-python">s <span class="token operator">=</span> pd<span class="token punctuation">.</span>Series<span class="token punctuation">(</span>np<span class="token punctuation">.</span>random<span class="token punctuation">.</span>rand<span class="token punctuation">(</span><span class="token number">7</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span>s<span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">'--------'</span><span class="token punctuation">)</span>
+<span class="token comment"># 默认查看 5 条数据</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span>s<span class="token punctuation">.</span>head<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span>s<span class="token punctuation">.</span>tail<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span>s<span class="token punctuation">.</span>head<span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span>s<span class="token punctuation">.</span>tail<span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+</pre><p>运行结果：</p>
+<pre data-role="codeBlock" data-info="shell" class="language-shell">0    0.808179
+1    0.725903
+2    0.011927
+3    0.170385
+4    0.366768
+5    0.012185
+6    0.518126
+dtype: float64
+--------
+0    0.808179
+1    0.725903
+2    0.011927
+3    0.170385
+4    0.366768
+dtype: float64
+2    0.011927
+3    0.170385
+4    0.366768
+5    0.012185
+6    0.518126
+dtype: float64
+0    0.808179
+1    0.725903
+dtype: float64
+5    0.012185
+6    0.518126
+dtype: float64
+</pre><p><strong>重新索引：</strong></p>
+<p>重新索引：<code>reindex()</code>。</p>
+<p><code>reindex()</code> 将会根据索引重新排序，如果当前索引不存在，则引入缺失值。</p>
+<pre data-role="codeBlock" data-info="python" class="language-python">s <span class="token operator">=</span> pd<span class="token punctuation">.</span>Series<span class="token punctuation">(</span>np<span class="token punctuation">.</span>random<span class="token punctuation">.</span>rand<span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">)</span><span class="token punctuation">,</span> index<span class="token operator">=</span><span class="token punctuation">[</span><span class="token string">'a'</span><span class="token punctuation">,</span><span class="token string">'b'</span><span class="token punctuation">,</span><span class="token string">'c'</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span>s<span class="token punctuation">)</span>
+s1 <span class="token operator">=</span> s<span class="token punctuation">.</span>reindex<span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token string">'c'</span><span class="token punctuation">,</span><span class="token string">'d'</span><span class="token punctuation">,</span><span class="token string">'b'</span><span class="token punctuation">,</span><span class="token string">'a'</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span>s1<span class="token punctuation">)</span>
+s2 <span class="token operator">=</span> s<span class="token punctuation">.</span>reindex<span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token string">'c'</span><span class="token punctuation">,</span><span class="token string">'d'</span><span class="token punctuation">,</span><span class="token string">'b'</span><span class="token punctuation">,</span><span class="token string">'a'</span><span class="token punctuation">]</span><span class="token punctuation">,</span> fill_value<span class="token operator">=</span><span class="token string">'empty'</span><span class="token punctuation">)</span>  <span class="token comment"># fill_value参数：设置填充缺失值的值</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span>s2<span class="token punctuation">)</span>
+</pre><p>运行结果：</p>
+<pre data-role="codeBlock" data-info="shell" class="language-shell">a    0.394411
+b    0.973399
+c    0.190907
+dtype: float64
+c    0.190907
+d         NaN
+b    0.973399
+a    0.394411
+dtype: float64
+c    0.190907
+d       empty
+b    0.973399
+a    0.394411
+dtype: object
+</pre><p><strong>Series 对齐：</strong></p>
+<p>Series 和 ndarray 之间的主要区别是，Series 上的操作会根据标签自动对齐。</p>
+<p>index 顺序不会影响数值计算，以标签来计算。</p>
+<p>空值和任何值计算结果仍为空值。</p>
+<pre data-role="codeBlock" data-info="python" class="language-python">s1 <span class="token operator">=</span> pd<span class="token punctuation">.</span>Series<span class="token punctuation">(</span>np<span class="token punctuation">.</span>random<span class="token punctuation">.</span>rand<span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">)</span><span class="token punctuation">,</span> index <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token string">'Jack'</span><span class="token punctuation">,</span><span class="token string">'Marry'</span><span class="token punctuation">,</span><span class="token string">'Tom'</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+s2 <span class="token operator">=</span> pd<span class="token punctuation">.</span>Series<span class="token punctuation">(</span>np<span class="token punctuation">.</span>random<span class="token punctuation">.</span>rand<span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">)</span><span class="token punctuation">,</span> index <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token string">'Wang'</span><span class="token punctuation">,</span><span class="token string">'Jack'</span><span class="token punctuation">,</span><span class="token string">'Marry'</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span>s1<span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span>s2<span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span>s1<span class="token operator">+</span>s2<span class="token punctuation">)</span>
+</pre><p>运行结果：</p>
+<pre data-role="codeBlock" data-info="shell" class="language-shell">Jack     0.298142
+Marry    0.242797
+Tom      0.779021
+dtype: float64
+Wang     0.645430
+Jack     0.698954
+Marry    0.711804
+dtype: float64
+Jack     0.997096
+Marry    0.954600
+Tom           NaN
+Wang          NaN
+dtype: float64
+</pre><p><strong>删除 drop()：</strong></p>
+<p><code>drop()</code> 删除元素之后返回副本(<code>inplace=False</code>)。</p>
+<pre data-role="codeBlock" data-info="python" class="language-python">s <span class="token operator">=</span> pd<span class="token punctuation">.</span>Series<span class="token punctuation">(</span>np<span class="token punctuation">.</span>random<span class="token punctuation">.</span>rand<span class="token punctuation">(</span><span class="token number">5</span><span class="token punctuation">)</span><span class="token punctuation">,</span> index <span class="token operator">=</span> <span class="token builtin">list</span><span class="token punctuation">(</span><span class="token string">'ngjur'</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span>s<span class="token punctuation">)</span>
+s1 <span class="token operator">=</span> s<span class="token punctuation">.</span>drop<span class="token punctuation">(</span><span class="token string">'n'</span><span class="token punctuation">)</span>
+s2 <span class="token operator">=</span> s<span class="token punctuation">.</span>drop<span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token string">'g'</span><span class="token punctuation">,</span><span class="token string">'j'</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span>s1<span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span>s2<span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span>s<span class="token punctuation">)</span>
+</pre><p>运行结果：</p>
+<pre data-role="codeBlock" data-info="shell" class="language-shell">n    0.475305
+g    0.267326
+j    0.545522
+u    0.828036
+r    0.853077
+dtype: float64
+g    0.267326
+j    0.545522
+u    0.828036
+r    0.853077
+dtype: float64
+n    0.475305
+u    0.828036
+r    0.853077
+dtype: float64
+n    0.475305
+g    0.267326
+j    0.545522
+u    0.828036
+r    0.853077
+dtype: float64
+</pre><p><strong>添加：</strong></p>
+<p>可直接通过下标索引/标签 index 添加值。</p>
+<p>可通过 <code>append()</code> 方法，直接添加一个数组。<code>append()</code> 方法生成一个新的数组，不改变之前的数组。</p>
+<pre data-role="codeBlock" data-info="python" class="language-python">s1 <span class="token operator">=</span> pd<span class="token punctuation">.</span>Series<span class="token punctuation">(</span>np<span class="token punctuation">.</span>random<span class="token punctuation">.</span>rand<span class="token punctuation">(</span><span class="token number">5</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+s2 <span class="token operator">=</span> pd<span class="token punctuation">.</span>Series<span class="token punctuation">(</span>np<span class="token punctuation">.</span>random<span class="token punctuation">.</span>rand<span class="token punctuation">(</span><span class="token number">5</span><span class="token punctuation">)</span><span class="token punctuation">,</span> index <span class="token operator">=</span> <span class="token builtin">list</span><span class="token punctuation">(</span><span class="token string">'ngjur'</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span>s1<span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span>s2<span class="token punctuation">)</span>
+s1<span class="token punctuation">[</span><span class="token number">5</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token number">100</span>
+s2<span class="token punctuation">[</span><span class="token string">'a'</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token number">100</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">'-----'</span><span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span>s1<span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span>s2<span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">'-----'</span><span class="token punctuation">)</span>
+<span class="token comment"># 直接通过下标索引/标签index添加值</span>
+
+s3 <span class="token operator">=</span> s1<span class="token punctuation">.</span>append<span class="token punctuation">(</span>s2<span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span>s3<span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span>s1<span class="token punctuation">)</span>
+<span class="token comment"># 通过.append方法，直接添加一个数组</span>
+<span class="token comment"># .append方法生成一个新的数组，不改变之前的数组</span>
+</pre><p>运行结果：</p>
+<pre data-role="codeBlock" data-info="shell" class="language-shell">0    0.224206
+1    0.649238
+2    0.290517
+3    0.099042
+4    0.663318
+dtype: float64
+n    0.365998
+g    0.906360
+j    0.671501
+u    0.673431
+r    0.378762
+dtype: float64
+-----
+0      0.224206
+1      0.649238
+2      0.290517
+3      0.099042
+4      0.663318
+5    100.000000
+dtype: float64
+n      0.365998
+g      0.906360
+j      0.671501
+u      0.673431
+r      0.378762
+a    100.000000
+dtype: float64
+-----
+0      0.224206
+1      0.649238
+2      0.290517
+3      0.099042
+4      0.663318
+5    100.000000
+n      0.365998
+g      0.906360
+j      0.671501
+u      0.673431
+r      0.378762
+a    100.000000
+dtype: float64
+0      0.224206
+1      0.649238
+2      0.290517
+3      0.099042
+4      0.663318
+5    100.000000
+dtype: float64
+</pre><p><strong>修改：</strong></p>
+<p>通过索引直接修改，类似序列。</p>
+<pre data-role="codeBlock" data-info="python" class="language-python">s <span class="token operator">=</span> pd<span class="token punctuation">.</span>Series<span class="token punctuation">(</span>np<span class="token punctuation">.</span>random<span class="token punctuation">.</span>rand<span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">)</span><span class="token punctuation">,</span> index <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token string">'a'</span><span class="token punctuation">,</span><span class="token string">'b'</span><span class="token punctuation">,</span><span class="token string">'c'</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span>s<span class="token punctuation">)</span>
+s<span class="token punctuation">[</span><span class="token string">'a'</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token number">100</span>
+s<span class="token punctuation">[</span><span class="token punctuation">[</span><span class="token string">'b'</span><span class="token punctuation">,</span><span class="token string">'c'</span><span class="token punctuation">]</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token number">200</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span>s<span class="token punctuation">)</span>
+</pre><p>运行结果：</p>
+<pre data-role="codeBlock" data-info="shell" class="language-shell">a    0.995180
+b    0.920134
+c    0.096950
+dtype: float64
+a    100.0
+b    200.0
+c    200.0
+dtype: float64
+</pre><h3 class="mume-header" id="15-dataframe%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5%E5%8F%8A%E5%88%9B%E5%BB%BA">1.5. Dataframe基本概念及创建</h3>
+
+<p>Dataframe 是一个表格型的数据结构，是“带有标签（行标签和列标签）的二维数组”。Dataframe 带有 index（行标签）和 columns（列标签）。</p>
+<pre data-role="codeBlock" data-info="python" class="language-python">data <span class="token operator">=</span> <span class="token punctuation">{</span>
+    <span class="token string">'name'</span><span class="token punctuation">:</span><span class="token punctuation">[</span><span class="token string">'Jack'</span><span class="token punctuation">,</span><span class="token string">'Tom'</span><span class="token punctuation">,</span><span class="token string">'Mary'</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+    <span class="token string">'age'</span><span class="token punctuation">:</span><span class="token punctuation">[</span><span class="token number">18</span><span class="token punctuation">,</span><span class="token number">19</span><span class="token punctuation">,</span><span class="token number">20</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+    <span class="token string">'gender'</span><span class="token punctuation">:</span><span class="token punctuation">[</span><span class="token string">'m'</span><span class="token punctuation">,</span><span class="token string">'m'</span><span class="token punctuation">,</span><span class="token string">'w'</span><span class="token punctuation">]</span>
+<span class="token punctuation">}</span>
+df <span class="token operator">=</span> pd<span class="token punctuation">.</span>DataFrame<span class="token punctuation">(</span>data<span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span>df<span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span>df<span class="token punctuation">.</span>index<span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span>df<span class="token punctuation">.</span>columns<span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span>df<span class="token punctuation">.</span>values<span class="token punctuation">)</span>  <span class="token comment"># 数据类型为ndarray</span>
+</pre><p>运行结果：</p>
+<pre data-role="codeBlock" data-info="shell" class="language-shell">   name  age gender
+0  Jack   18      m
+1   Tom   19      m
+2  Mary   20      w
+RangeIndex<span class="token punctuation">(</span>start<span class="token operator">=</span>0, stop<span class="token operator">=</span>3, step<span class="token operator">=</span>1<span class="token punctuation">)</span>
+Index<span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token string">'name'</span>, <span class="token string">'age'</span>, <span class="token string">'gender'</span><span class="token punctuation">]</span>, dtype<span class="token operator">=</span><span class="token string">'object'</span><span class="token punctuation">)</span>
+<span class="token punctuation">[</span><span class="token punctuation">[</span><span class="token string">'Jack'</span> 18 <span class="token string">'m'</span><span class="token punctuation">]</span>
+ <span class="token punctuation">[</span><span class="token string">'Tom'</span> 19 <span class="token string">'m'</span><span class="token punctuation">]</span>
+ <span class="token punctuation">[</span><span class="token string">'Mary'</span> 20 <span class="token string">'w'</span><span class="token punctuation">]</span><span class="token punctuation">]</span>
+</pre><h3 class="mume-header" id="16-dataframe%E5%88%9B%E5%BB%BA%E6%96%B9%E6%B3%95">1.6. Dataframe创建方法</h3>
+
+<p><strong>由数组/list组成的字典创建：</strong></p>
+<pre data-role="codeBlock" data-info="python" class="language-python">data1 <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token string">'a'</span><span class="token punctuation">:</span><span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token number">2</span><span class="token punctuation">,</span><span class="token number">3</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+        <span class="token string">'b'</span><span class="token punctuation">:</span><span class="token punctuation">[</span><span class="token number">3</span><span class="token punctuation">,</span><span class="token number">4</span><span class="token punctuation">,</span><span class="token number">5</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+        <span class="token string">'c'</span><span class="token punctuation">:</span><span class="token punctuation">[</span><span class="token number">5</span><span class="token punctuation">,</span><span class="token number">6</span><span class="token punctuation">,</span><span class="token number">7</span><span class="token punctuation">]</span><span class="token punctuation">}</span>
+data2 <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token string">'one'</span><span class="token punctuation">:</span>np<span class="token punctuation">.</span>random<span class="token punctuation">.</span>rand<span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+        <span class="token string">'two'</span><span class="token punctuation">:</span>np<span class="token punctuation">.</span>random<span class="token punctuation">.</span>rand<span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">)</span><span class="token punctuation">}</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span>data1<span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span>data2<span class="token punctuation">)</span>
+df1 <span class="token operator">=</span> pd<span class="token punctuation">.</span>DataFrame<span class="token punctuation">(</span>data1<span class="token punctuation">)</span>
+df2 <span class="token operator">=</span> pd<span class="token punctuation">.</span>DataFrame<span class="token punctuation">(</span>data2<span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span>df1<span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span>df2<span class="token punctuation">)</span>
+<span class="token comment"># 由数组/list组成的字典创建Dataframe，columns为字典key，index为默认数字标签</span>
+<span class="token comment"># 字典的值的长度必须保持一致！</span>
+
+df1 <span class="token operator">=</span> pd<span class="token punctuation">.</span>DataFrame<span class="token punctuation">(</span>data1<span class="token punctuation">,</span> columns <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token string">'b'</span><span class="token punctuation">,</span><span class="token string">'c'</span><span class="token punctuation">,</span><span class="token string">'a'</span><span class="token punctuation">,</span><span class="token string">'d'</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span>df1<span class="token punctuation">)</span>
+df1 <span class="token operator">=</span> pd<span class="token punctuation">.</span>DataFrame<span class="token punctuation">(</span>data1<span class="token punctuation">,</span> columns <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token string">'b'</span><span class="token punctuation">,</span><span class="token string">'c'</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span>df1<span class="token punctuation">)</span>
+<span class="token comment"># columns参数：可以重新指定列的顺序，格式为list，如果现有数据中没有该列（比如'd'），则产生NaN值</span>
+<span class="token comment"># 如果columns重新指定时候，列的数量可以少于原数据</span>
+
+df2 <span class="token operator">=</span> pd<span class="token punctuation">.</span>DataFrame<span class="token punctuation">(</span>data2<span class="token punctuation">,</span> index <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token string">'f1'</span><span class="token punctuation">,</span><span class="token string">'f2'</span><span class="token punctuation">,</span><span class="token string">'f3'</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span>df2<span class="token punctuation">)</span>
+<span class="token comment"># index参数：重新定义index，格式为list，长度必须保持一致</span>
+</pre><p>运行结果：</p>
+<pre data-role="codeBlock" data-info="shell" class="language-shell"><span class="token punctuation">{</span><span class="token string">'a'</span><span class="token keyword">:</span> <span class="token punctuation">[</span>1, 2, 3<span class="token punctuation">]</span>, <span class="token string">'b'</span><span class="token keyword">:</span> <span class="token punctuation">[</span>3, 4, 5<span class="token punctuation">]</span>, <span class="token string">'c'</span><span class="token keyword">:</span> <span class="token punctuation">[</span>5, 6, 7<span class="token punctuation">]</span><span class="token punctuation">}</span>
+<span class="token punctuation">{</span><span class="token string">'one'</span><span class="token keyword">:</span> array<span class="token punctuation">(</span><span class="token punctuation">[</span>0.36720969, 0.69798103, 0.66916554<span class="token punctuation">]</span><span class="token punctuation">)</span>, <span class="token string">'two'</span><span class="token keyword">:</span> array<span class="token punctuation">(</span><span class="token punctuation">[</span>0.92646171, 0.53448549, 0.5948733 <span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">}</span>
+   a  b  c
+0  1  3  5
+1  2  4  6
+2  3  5  7
+        one       two
+0  0.367210  0.926462
+1  0.697981  0.534485
+2  0.669166  0.594873
+   b  c  a    d
+0  3  5  1  NaN
+1  4  6  2  NaN
+2  5  7  3  NaN
+   b  c
+0  3  5
+1  4  6
+2  5  7
+         one       two
+f1  0.367210  0.926462
+f2  0.697981  0.534485
+f3  0.669166  0.594873
+</pre><p><strong>由 Series 组成的字典：</strong></p>
+<pre data-role="codeBlock" data-info="python" class="language-python">data1 <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token string">'one'</span><span class="token punctuation">:</span>pd<span class="token punctuation">.</span>Series<span class="token punctuation">(</span>np<span class="token punctuation">.</span>random<span class="token punctuation">.</span>rand<span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+        <span class="token string">'two'</span><span class="token punctuation">:</span>pd<span class="token punctuation">.</span>Series<span class="token punctuation">(</span>np<span class="token punctuation">.</span>random<span class="token punctuation">.</span>rand<span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">}</span>  <span class="token comment"># 没有设置index的Series</span>
+data2 <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token string">'one'</span><span class="token punctuation">:</span>pd<span class="token punctuation">.</span>Series<span class="token punctuation">(</span>np<span class="token punctuation">.</span>random<span class="token punctuation">.</span>rand<span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">,</span> index <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token string">'a'</span><span class="token punctuation">,</span><span class="token string">'b'</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+        <span class="token string">'two'</span><span class="token punctuation">:</span>pd<span class="token punctuation">.</span>Series<span class="token punctuation">(</span>np<span class="token punctuation">.</span>random<span class="token punctuation">.</span>rand<span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">)</span><span class="token punctuation">,</span>index <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token string">'a'</span><span class="token punctuation">,</span><span class="token string">'b'</span><span class="token punctuation">,</span><span class="token string">'c'</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">}</span>  <span class="token comment"># 设置了index的Series</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span>data1<span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span>data2<span class="token punctuation">)</span>
+df1 <span class="token operator">=</span> pd<span class="token punctuation">.</span>DataFrame<span class="token punctuation">(</span>data1<span class="token punctuation">)</span>
+df2 <span class="token operator">=</span> pd<span class="token punctuation">.</span>DataFrame<span class="token punctuation">(</span>data2<span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span>df1<span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span>df2<span class="token punctuation">)</span>
+<span class="token comment"># 由Seris组成的字典 创建Dataframe，columns为字典key，index为Series的标签（如果Series没有指定标签，则是默认数字标签）</span>
+<span class="token comment"># Series可以长度不一样，生成的Dataframe会出现NaN值</span>
+</pre><p>运行结果：</p>
+<pre data-role="codeBlock" data-info="shell" class="language-shell"><span class="token punctuation">{</span><span class="token string">'one'</span><span class="token keyword">:</span> 0    0.273308
+1    0.520002
+dtype: float64, <span class="token string">'two'</span><span class="token keyword">:</span> 0    0.933440
+1    0.035472
+2    0.710588
+dtype: float64<span class="token punctuation">}</span>
+<span class="token punctuation">{</span><span class="token string">'one'</span><span class="token keyword">:</span> a    0.770401
+b    0.221548
+dtype: float64, <span class="token string">'two'</span><span class="token keyword">:</span> a    0.493121
+b    0.000671
+c    0.907366
+dtype: float64<span class="token punctuation">}</span>
+        one       two
+0  0.273308  0.933440
+1  0.520002  0.035472
+2       NaN  0.710588
+        one       two
+a  0.770401  0.493121
+b  0.221548  0.000671
+c       NaN  0.907366
+</pre><p><strong>通过二维数组直接创建：</strong></p>
+<pre data-role="codeBlock" data-info="python" class="language-python">ar <span class="token operator">=</span> np<span class="token punctuation">.</span>random<span class="token punctuation">.</span>rand<span class="token punctuation">(</span><span class="token number">9</span><span class="token punctuation">)</span><span class="token punctuation">.</span>reshape<span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">,</span><span class="token number">3</span><span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span>ar<span class="token punctuation">)</span>
+df1 <span class="token operator">=</span> pd<span class="token punctuation">.</span>DataFrame<span class="token punctuation">(</span>ar<span class="token punctuation">)</span>
+df2 <span class="token operator">=</span> pd<span class="token punctuation">.</span>DataFrame<span class="token punctuation">(</span>ar<span class="token punctuation">,</span> index <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token string">'a'</span><span class="token punctuation">,</span> <span class="token string">'b'</span><span class="token punctuation">,</span> <span class="token string">'c'</span><span class="token punctuation">]</span><span class="token punctuation">,</span> columns <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token string">'one'</span><span class="token punctuation">,</span><span class="token string">'two'</span><span class="token punctuation">,</span><span class="token string">'three'</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span>df1<span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span>df2<span class="token punctuation">)</span>
+<span class="token comment"># 通过二维数组直接创建Dataframe，得到一样形状的结果数据，如果不指定index和columns，两者均返回默认数字格式</span>
+<span class="token comment"># index和colunms指定长度与原数组保持一致</span>
+</pre><p>运行结果：</p>
+<pre data-role="codeBlock" data-info="shell" class="language-shell"><span class="token punctuation">[</span><span class="token punctuation">[</span>0.42806901 0.54183432 0.80628695<span class="token punctuation">]</span>
+ <span class="token punctuation">[</span>0.2312552  0.31199154 0.85698797<span class="token punctuation">]</span>
+ <span class="token punctuation">[</span>0.70363301 0.31854592 0.62947519<span class="token punctuation">]</span><span class="token punctuation">]</span>
+          0         1         2
+0  0.428069  0.541834  0.806287
+1  0.231255  0.311992  0.856988
+2  0.703633  0.318546  0.629475
+        one       two     three
+a  0.428069  0.541834  0.806287
+b  0.231255  0.311992  0.856988
+c  0.703633  0.318546  0.629475
+</pre><p><strong>由字典组成的列表：</strong></p>
+<pre data-role="codeBlock" data-info="python" class="language-python">data <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">{</span><span class="token string">'one'</span><span class="token punctuation">:</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token string">'two'</span><span class="token punctuation">:</span> <span class="token number">2</span><span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token punctuation">{</span><span class="token string">'one'</span><span class="token punctuation">:</span> <span class="token number">5</span><span class="token punctuation">,</span> <span class="token string">'two'</span><span class="token punctuation">:</span> <span class="token number">10</span><span class="token punctuation">,</span> <span class="token string">'three'</span><span class="token punctuation">:</span> <span class="token number">20</span><span class="token punctuation">}</span><span class="token punctuation">]</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span>data<span class="token punctuation">)</span>
+df1 <span class="token operator">=</span> pd<span class="token punctuation">.</span>DataFrame<span class="token punctuation">(</span>data<span class="token punctuation">)</span>
+df2 <span class="token operator">=</span> pd<span class="token punctuation">.</span>DataFrame<span class="token punctuation">(</span>data<span class="token punctuation">,</span> index <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token string">'a'</span><span class="token punctuation">,</span><span class="token string">'b'</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+df3 <span class="token operator">=</span> pd<span class="token punctuation">.</span>DataFrame<span class="token punctuation">(</span>data<span class="token punctuation">,</span> columns <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token string">'one'</span><span class="token punctuation">,</span><span class="token string">'two'</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span>df1<span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span>df2<span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span>df3<span class="token punctuation">)</span>
+<span class="token comment"># 由字典组成的列表创建Dataframe，columns为字典的key，index不做指定则为默认数组标签</span>
+<span class="token comment"># colunms和index参数分别重新指定相应列及行标签</span>
+</pre><p>运行结果：</p>
+<pre data-role="codeBlock" data-info="shell" class="language-shell"><span class="token punctuation">[</span><span class="token punctuation">{</span><span class="token string">'one'</span><span class="token keyword">:</span> 1, <span class="token string">'two'</span><span class="token keyword">:</span> 2<span class="token punctuation">}</span>, <span class="token punctuation">{</span><span class="token string">'one'</span><span class="token keyword">:</span> 5, <span class="token string">'two'</span><span class="token keyword">:</span> 10, <span class="token string">'three'</span><span class="token keyword">:</span> 20<span class="token punctuation">}</span><span class="token punctuation">]</span>
+   one  three  two
+0    1    NaN    2
+1    5   20.0   10
+   one  three  two
+a    1    NaN    2
+b    5   20.0   10
+   one  two
+0    1    2
+1    5   10
+</pre><p><strong>由字典组成的字典：</strong></p>
+<pre data-role="codeBlock" data-info="python" class="language-python"><span class="token keyword">import</span> numpy <span class="token keyword">as</span> np
+<span class="token keyword">import</span> pandas <span class="token keyword">as</span> pd
+
+data <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token string">'Jack'</span><span class="token punctuation">:</span><span class="token punctuation">{</span><span class="token string">'math'</span><span class="token punctuation">:</span><span class="token number">90</span><span class="token punctuation">,</span><span class="token string">'english'</span><span class="token punctuation">:</span><span class="token number">89</span><span class="token punctuation">,</span><span class="token string">'art'</span><span class="token punctuation">:</span><span class="token number">78</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+       <span class="token string">'Marry'</span><span class="token punctuation">:</span><span class="token punctuation">{</span><span class="token string">'math'</span><span class="token punctuation">:</span><span class="token number">82</span><span class="token punctuation">,</span><span class="token string">'english'</span><span class="token punctuation">:</span><span class="token number">95</span><span class="token punctuation">,</span><span class="token string">'art'</span><span class="token punctuation">:</span><span class="token number">92</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+       <span class="token string">'Tom'</span><span class="token punctuation">:</span><span class="token punctuation">{</span><span class="token string">'math'</span><span class="token punctuation">:</span><span class="token number">78</span><span class="token punctuation">,</span><span class="token string">'english'</span><span class="token punctuation">:</span><span class="token number">67</span><span class="token punctuation">}</span><span class="token punctuation">}</span>
+df1 <span class="token operator">=</span> pd<span class="token punctuation">.</span>DataFrame<span class="token punctuation">(</span>data<span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span>df1<span class="token punctuation">)</span>
+<span class="token comment"># 由字典组成的字典创建Dataframe，columns为字典的key，index为子字典的key</span>
+
+df2 <span class="token operator">=</span> pd<span class="token punctuation">.</span>DataFrame<span class="token punctuation">(</span>data<span class="token punctuation">,</span> columns <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token string">'Jack'</span><span class="token punctuation">,</span><span class="token string">'Tom'</span><span class="token punctuation">,</span><span class="token string">'Bob'</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+df3 <span class="token operator">=</span> pd<span class="token punctuation">.</span>DataFrame<span class="token punctuation">(</span>data<span class="token punctuation">,</span> index <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token string">'a'</span><span class="token punctuation">,</span><span class="token string">'b'</span><span class="token punctuation">,</span><span class="token string">'c'</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span>df2<span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span>df3<span class="token punctuation">)</span>
+<span class="token comment"># columns参数可以增加和减少现有列，如出现新的列，值为NaN</span>
+<span class="token comment"># index在这里和之前不同，并不能改变原有index，如果指向新的标签，值为NaN （非常重要！）</span>
+</pre><p>运行结果：</p>
+<pre data-role="codeBlock" data-info="shell" class="language-shell">         Jack  Marry   Tom
+art        78     92   NaN
+english    89     95  67.0
+math       90     82  78.0
+         Jack   Tom  Bob
+art        78   NaN  NaN
+english    89  67.0  NaN
+math       90  78.0  NaN
+   Jack  Marry  Tom
+a   NaN    NaN  NaN
+b   NaN    NaN  NaN
+c   NaN    NaN  NaN
+</pre><h3 class="mume-header" id="17-dataframe%E7%B4%A2%E5%BC%95">1.7. Dataframe索引</h3>
+
+<p>Dataframe 既有行索引也有列索引，可以被看做由 Series 组成的字典（共用一个索引）。</p>
+<p><strong>选择行与列：</strong></p>
+<pre data-role="codeBlock" data-info="python" class="language-python"><span class="token keyword">import</span> numpy <span class="token keyword">as</span> np
+<span class="token keyword">import</span> pandas <span class="token keyword">as</span> pd
+
+df <span class="token operator">=</span> pd<span class="token punctuation">.</span>DataFrame<span class="token punctuation">(</span>np<span class="token punctuation">.</span>random<span class="token punctuation">.</span>rand<span class="token punctuation">(</span><span class="token number">12</span><span class="token punctuation">)</span><span class="token punctuation">.</span>reshape<span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">,</span><span class="token number">4</span><span class="token punctuation">)</span><span class="token operator">*</span><span class="token number">100</span><span class="token punctuation">,</span>
+                   index <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token string">'one'</span><span class="token punctuation">,</span><span class="token string">'two'</span><span class="token punctuation">,</span><span class="token string">'three'</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+                   columns <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token string">'a'</span><span class="token punctuation">,</span><span class="token string">'b'</span><span class="token punctuation">,</span><span class="token string">'c'</span><span class="token punctuation">,</span><span class="token string">'d'</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span>df<span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">'-----'</span><span class="token punctuation">)</span>
+data1 <span class="token operator">=</span> df<span class="token punctuation">[</span><span class="token string">'a'</span><span class="token punctuation">]</span>
+data2 <span class="token operator">=</span> df<span class="token punctuation">[</span><span class="token punctuation">[</span><span class="token string">'a'</span><span class="token punctuation">,</span><span class="token string">'c'</span><span class="token punctuation">]</span><span class="token punctuation">]</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span>data1<span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">'-----'</span><span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span>data2<span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">'-----'</span><span class="token punctuation">)</span>
+<span class="token comment"># 按照列名选择列，只选择一列输出Series，选择多列输出Dataframe</span>
+
+data3 <span class="token operator">=</span> df<span class="token punctuation">.</span>loc<span class="token punctuation">[</span><span class="token string">'one'</span><span class="token punctuation">]</span>
+data4 <span class="token operator">=</span> df<span class="token punctuation">.</span>loc<span class="token punctuation">[</span><span class="token punctuation">[</span><span class="token string">'one'</span><span class="token punctuation">,</span><span class="token string">'two'</span><span class="token punctuation">]</span><span class="token punctuation">]</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span>data3<span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">'-----'</span><span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span>data4<span class="token punctuation">)</span>
+<span class="token comment"># 按照index选择行，只选择一行输出Series，选择多行输出Dataframe</span>
+</pre><p>运行结果：</p>
+<pre data-role="codeBlock" data-info="shell" class="language-shell">               a          b          c          d
+one     4.333648  67.689109  50.013554  76.486190
+two    59.299918  17.171985   9.093652  73.767995
+three  82.198235  19.175775  45.999421  67.690946
+-----
+one       4.333648
+two      59.299918
+three    82.198235
+Name: a, dtype: float64
+-----
+               a          c
+one     4.333648  50.013554
+two    59.299918   9.093652
+three  82.198235  45.999421
+-----
+a     4.333648
+b    67.689109
+c    50.013554
+d    76.486190
+Name: one, dtype: float64
+-----
+             a          b          c          d
+one   4.333648  67.689109  50.013554  76.486190
+two  59.299918  17.171985   9.093652  73.767995
+</pre><p><strong>利用 <code>df[]</code> 选择：</strong></p>
+<pre data-role="codeBlock" data-info="python" class="language-python"><span class="token keyword">import</span> numpy <span class="token keyword">as</span> np
+<span class="token keyword">import</span> pandas <span class="token keyword">as</span> pd
+
+<span class="token comment"># df[] - 选择列</span>
+<span class="token comment"># 一般用于选择列，也可以选择行</span>
+
+df <span class="token operator">=</span> pd<span class="token punctuation">.</span>DataFrame<span class="token punctuation">(</span>np<span class="token punctuation">.</span>random<span class="token punctuation">.</span>rand<span class="token punctuation">(</span><span class="token number">12</span><span class="token punctuation">)</span><span class="token punctuation">.</span>reshape<span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">,</span><span class="token number">4</span><span class="token punctuation">)</span><span class="token operator">*</span><span class="token number">100</span><span class="token punctuation">,</span>
+                   index <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token string">'one'</span><span class="token punctuation">,</span><span class="token string">'two'</span><span class="token punctuation">,</span><span class="token string">'three'</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+                   columns <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token string">'a'</span><span class="token punctuation">,</span><span class="token string">'b'</span><span class="token punctuation">,</span><span class="token string">'c'</span><span class="token punctuation">,</span><span class="token string">'d'</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span>df<span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">'-----'</span><span class="token punctuation">)</span>
+
+data1 <span class="token operator">=</span> df<span class="token punctuation">[</span><span class="token string">'a'</span><span class="token punctuation">]</span>
+data2 <span class="token operator">=</span> df<span class="token punctuation">[</span><span class="token punctuation">[</span><span class="token string">'b'</span><span class="token punctuation">,</span><span class="token string">'c'</span><span class="token punctuation">]</span><span class="token punctuation">]</span>  <span class="token comment"># 尝试输入 data2 = df[['b','c','e']]</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span>data1<span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span>data2<span class="token punctuation">)</span>
+<span class="token comment"># df[]默认选择列，[]中写列名（所以一般数据colunms都会单独制定，不会用默认数字列名，以免和index冲突）</span>
+<span class="token comment"># 单选列为Series，print结果为Series格式</span>
+<span class="token comment"># 多选列为Dataframe，print结果为Dataframe格式</span>
+
+data3 <span class="token operator">=</span> df<span class="token punctuation">[</span><span class="token punctuation">:</span><span class="token number">2</span><span class="token punctuation">]</span>
+<span class="token comment">#data3 = df[0]</span>
+<span class="token comment">#data3 = df['one']</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span>data3<span class="token punctuation">,</span><span class="token builtin">type</span><span class="token punctuation">(</span>data3<span class="token punctuation">)</span><span class="token punctuation">)</span>
+<span class="token comment"># df[]中为数字时，默认选择行，且只能进行切片的选择，不能单独选择（df[0]）</span>
+<span class="token comment"># 输出结果为Dataframe，即便只选择一行</span>
+<span class="token comment"># df[]不能通过索引标签名来选择行(df['one'])</span>
+
+<span class="token comment"># 核心笔记：df[col]一般用于选择列，[]中写列名</span>
+</pre><p>运行结果：</p>
+<pre data-role="codeBlock" data-info="shell" class="language-shell">               a          b          c          d
+one    29.082761  29.832770  90.082089  19.089431
+two    30.583849  22.718375  21.492464  24.460752
+three  25.234704  48.523981  31.565083  16.372901
+-----
+one      29.082761
+two      30.583849
+three    25.234704
+Name: a, dtype: float64
+               b          c
+one    29.832770  90.082089
+two    22.718375  21.492464
+three  48.523981  31.565083
+             a          b          c          d
+one  29.082761  29.832770  90.082089  19.089431
+two  30.583849  22.718375  21.492464  24.460752 <span class="token operator">&lt;</span>class <span class="token string">'pandas.core.frame.DataFrame'</span><span class="token operator">&gt;</span>
+</pre><p><strong>用 <code>df.loc[]</code>按 index 选择行：</strong></p>
+<pre data-role="codeBlock" data-info="python" class="language-python"><span class="token keyword">import</span> numpy <span class="token keyword">as</span> np
+<span class="token keyword">import</span> pandas <span class="token keyword">as</span> pd
+<span class="token comment"># df.loc[] - 按index选择行</span>
+
+df1 <span class="token operator">=</span> pd<span class="token punctuation">.</span>DataFrame<span class="token punctuation">(</span>np<span class="token punctuation">.</span>random<span class="token punctuation">.</span>rand<span class="token punctuation">(</span><span class="token number">16</span><span class="token punctuation">)</span><span class="token punctuation">.</span>reshape<span class="token punctuation">(</span><span class="token number">4</span><span class="token punctuation">,</span><span class="token number">4</span><span class="token punctuation">)</span><span class="token operator">*</span><span class="token number">100</span><span class="token punctuation">,</span>
+                   index <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token string">'one'</span><span class="token punctuation">,</span><span class="token string">'two'</span><span class="token punctuation">,</span><span class="token string">'three'</span><span class="token punctuation">,</span><span class="token string">'four'</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+                   columns <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token string">'a'</span><span class="token punctuation">,</span><span class="token string">'b'</span><span class="token punctuation">,</span><span class="token string">'c'</span><span class="token punctuation">,</span><span class="token string">'d'</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+df2 <span class="token operator">=</span> pd<span class="token punctuation">.</span>DataFrame<span class="token punctuation">(</span>np<span class="token punctuation">.</span>random<span class="token punctuation">.</span>rand<span class="token punctuation">(</span><span class="token number">16</span><span class="token punctuation">)</span><span class="token punctuation">.</span>reshape<span class="token punctuation">(</span><span class="token number">4</span><span class="token punctuation">,</span><span class="token number">4</span><span class="token punctuation">)</span><span class="token operator">*</span><span class="token number">100</span><span class="token punctuation">,</span>
+                   columns <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token string">'a'</span><span class="token punctuation">,</span><span class="token string">'b'</span><span class="token punctuation">,</span><span class="token string">'c'</span><span class="token punctuation">,</span><span class="token string">'d'</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span>df1<span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span>df2<span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">'-----'</span><span class="token punctuation">)</span>
+
+data1 <span class="token operator">=</span> df1<span class="token punctuation">.</span>loc<span class="token punctuation">[</span><span class="token string">'one'</span><span class="token punctuation">]</span>
+data2 <span class="token operator">=</span> df2<span class="token punctuation">.</span>loc<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span>data1<span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span>data2<span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">'单标签索引\n-----'</span><span class="token punctuation">)</span>
+<span class="token comment"># 单个标签索引，返回Series</span>
+
+data3 <span class="token operator">=</span> df1<span class="token punctuation">.</span>loc<span class="token punctuation">[</span><span class="token punctuation">[</span><span class="token string">'two'</span><span class="token punctuation">,</span><span class="token string">'three'</span><span class="token punctuation">,</span><span class="token string">'five'</span><span class="token punctuation">]</span><span class="token punctuation">]</span>
+data4 <span class="token operator">=</span> df2<span class="token punctuation">.</span>loc<span class="token punctuation">[</span><span class="token punctuation">[</span><span class="token number">3</span><span class="token punctuation">,</span><span class="token number">2</span><span class="token punctuation">,</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">]</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span>data3<span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span>data4<span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">'多标签索引\n-----'</span><span class="token punctuation">)</span>
+<span class="token comment"># 多个标签索引，如果标签不存在，则返回NaN</span>
+<span class="token comment"># 顺序可变</span>
+
+data5 <span class="token operator">=</span> df1<span class="token punctuation">.</span>loc<span class="token punctuation">[</span><span class="token string">'one'</span><span class="token punctuation">:</span><span class="token string">'three'</span><span class="token punctuation">]</span>
+data6 <span class="token operator">=</span> df2<span class="token punctuation">.</span>loc<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">:</span><span class="token number">3</span><span class="token punctuation">]</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span>data5<span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span>data6<span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">'切片索引'</span><span class="token punctuation">)</span>
+<span class="token comment"># 可以做切片对象</span>
+<span class="token comment"># 末端包含</span>
+
+<span class="token comment"># 核心笔记：df.loc[label]主要针对index选择行，同时支持指定index，及默认数字index</span>
+</pre><p>运行结果：</p>
+<pre data-role="codeBlock" data-info="shell" class="language-shell">               a          b          c          d
+one    53.080364  31.351166  61.406242  33.170733
+two    47.484047  22.262427  39.953474  52.818757
+three  94.686532  49.656449   3.139361   6.655703
+four   82.373303  98.089830  75.933522  99.869257
+           a          b          c          d
+0   9.325663  72.292683  99.379268  96.087387
+1  37.561749  26.590809  77.456971  28.785611
+2  54.001719  62.440157  27.168655  47.757418
+3  53.438283  56.926651  31.901658  14.644120
+-----
+a    53.080364
+b    31.351166
+c    61.406242
+d    33.170733
+Name: one, dtype: float64
+a    37.561749
+b    26.590809
+c    77.456971
+d    28.785611
+Name: 1, dtype: float64
+单标签索引
+-----
+name.py:21: FutureWarning:
+Passing list-likes to .loc or <span class="token punctuation">[</span><span class="token punctuation">]</span> with any missing label will raise
+KeyError <span class="token keyword">in</span> the future, you can use .reindex<span class="token punctuation">(</span><span class="token punctuation">)</span> as an alternative.
+
+See the documentation here:
+https://pandas.pydata.org/pandas-docs/stable/indexing.html<span class="token comment">#deprecate-loc-reindex-listlike</span>
+  data3 <span class="token operator">=</span> df1.loc<span class="token punctuation">[</span><span class="token punctuation">[</span><span class="token string">'two'</span>,<span class="token string">'three'</span>,<span class="token string">'five'</span><span class="token punctuation">]</span><span class="token punctuation">]</span>
+               a          b          c          d
+two    47.484047  22.262427  39.953474  52.818757
+three  94.686532  49.656449   3.139361   6.655703
+five         NaN        NaN        NaN        NaN
+           a          b          c          d
+3  53.438283  56.926651  31.901658  14.644120
+2  54.001719  62.440157  27.168655  47.757418
+1  37.561749  26.590809  77.456971  28.785611
+多标签索引
+-----
+               a          b          c          d
+one    53.080364  31.351166  61.406242  33.170733
+two    47.484047  22.262427  39.953474  52.818757
+three  94.686532  49.656449   3.139361   6.655703
+           a          b          c          d
+1  37.561749  26.590809  77.456971  28.785611
+2  54.001719  62.440157  27.168655  47.757418
+3  53.438283  56.926651  31.901658  14.644120
+切片索引
+</pre><p><strong>用 <code>df.iloc[]</code> 按照整数位置选择行：</strong></p>
+<pre data-role="codeBlock" data-info="python" class="language-python"><span class="token keyword">import</span> numpy <span class="token keyword">as</span> np
+<span class="token keyword">import</span> pandas <span class="token keyword">as</span> pd
+
+<span class="token comment"># df.iloc[] - 按照整数位置（从轴的0到length-1）选择行</span>
+<span class="token comment"># 类似list的索引，其顺序就是dataframe的整数位置，从0开始计</span>
+
+df <span class="token operator">=</span> pd<span class="token punctuation">.</span>DataFrame<span class="token punctuation">(</span>np<span class="token punctuation">.</span>random<span class="token punctuation">.</span>rand<span class="token punctuation">(</span><span class="token number">16</span><span class="token punctuation">)</span><span class="token punctuation">.</span>reshape<span class="token punctuation">(</span><span class="token number">4</span><span class="token punctuation">,</span><span class="token number">4</span><span class="token punctuation">)</span><span class="token operator">*</span><span class="token number">100</span><span class="token punctuation">,</span>
+                   index <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token string">'one'</span><span class="token punctuation">,</span><span class="token string">'two'</span><span class="token punctuation">,</span><span class="token string">'three'</span><span class="token punctuation">,</span><span class="token string">'four'</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+                   columns <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token string">'a'</span><span class="token punctuation">,</span><span class="token string">'b'</span><span class="token punctuation">,</span><span class="token string">'c'</span><span class="token punctuation">,</span><span class="token string">'d'</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span>df<span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">'------'</span><span class="token punctuation">)</span>
+
+<span class="token keyword">print</span><span class="token punctuation">(</span>df<span class="token punctuation">.</span>iloc<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span>df<span class="token punctuation">.</span>iloc<span class="token punctuation">[</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+<span class="token comment">#print(df.iloc[4])</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">'单位置索引\n-----'</span><span class="token punctuation">)</span>
+<span class="token comment"># 单位置索引</span>
+<span class="token comment"># 和loc索引不同，不能索引超出数据行数的整数位置</span>
+
+<span class="token keyword">print</span><span class="token punctuation">(</span>df<span class="token punctuation">.</span>iloc<span class="token punctuation">[</span><span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">,</span><span class="token number">2</span><span class="token punctuation">]</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span>df<span class="token punctuation">.</span>iloc<span class="token punctuation">[</span><span class="token punctuation">[</span><span class="token number">3</span><span class="token punctuation">,</span><span class="token number">2</span><span class="token punctuation">,</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">'多位置索引\n-----'</span><span class="token punctuation">)</span>
+<span class="token comment"># 多位置索引</span>
+<span class="token comment"># 顺序可变</span>
+
+<span class="token keyword">print</span><span class="token punctuation">(</span>df<span class="token punctuation">.</span>iloc<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">:</span><span class="token number">3</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span>df<span class="token punctuation">.</span>iloc<span class="token punctuation">[</span><span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token number">2</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">'切片索引'</span><span class="token punctuation">)</span>
+<span class="token comment"># 切片索引</span>
+<span class="token comment"># 末端不包含</span>
+</pre><p>运行结果：</p>
+<pre data-role="codeBlock" data-info="shell" class="language-shell">               a          b          c          d
+one    90.129470  59.327203   4.299391  21.231969
+two    57.131492  77.049759  81.293148  20.450093
+three   5.074725  88.136628  57.070486   0.450828
+four   34.578766  73.323582  12.753872  73.887327
+------
+a    90.129470
+b    59.327203
+c     4.299391
+d    21.231969
+Name: one, dtype: float64
+a    34.578766
+b    73.323582
+c    12.753872
+d    73.887327
+Name: four, dtype: float64
+单位置索引
+-----
+               a          b          c          d
+one    90.129470  59.327203   4.299391  21.231969
+three   5.074725  88.136628  57.070486   0.450828
+               a          b          c          d
+four   34.578766  73.323582  12.753872  73.887327
+three   5.074725  88.136628  57.070486   0.450828
+two    57.131492  77.049759  81.293148  20.450093
+多位置索引
+-----
+               a          b          c          d
+two    57.131492  77.049759  81.293148  20.450093
+three   5.074725  88.136628  57.070486   0.450828
+               a          b          c          d
+one    90.129470  59.327203   4.299391  21.231969
+three   5.074725  88.136628  57.070486   0.450828
+切片索引
+</pre><p><strong>布尔型索引：</strong></p>
+<pre data-role="codeBlock" data-info="python" class="language-python"><span class="token keyword">import</span> numpy <span class="token keyword">as</span> np
+<span class="token keyword">import</span> pandas <span class="token keyword">as</span> pd
+
+<span class="token comment"># 布尔型索引</span>
+<span class="token comment"># 和Series原理相同</span>
+
+df <span class="token operator">=</span> pd<span class="token punctuation">.</span>DataFrame<span class="token punctuation">(</span>np<span class="token punctuation">.</span>random<span class="token punctuation">.</span>rand<span class="token punctuation">(</span><span class="token number">16</span><span class="token punctuation">)</span><span class="token punctuation">.</span>reshape<span class="token punctuation">(</span><span class="token number">4</span><span class="token punctuation">,</span><span class="token number">4</span><span class="token punctuation">)</span><span class="token operator">*</span><span class="token number">100</span><span class="token punctuation">,</span>
+                   index <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token string">'one'</span><span class="token punctuation">,</span><span class="token string">'two'</span><span class="token punctuation">,</span><span class="token string">'three'</span><span class="token punctuation">,</span><span class="token string">'four'</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+                   columns <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token string">'a'</span><span class="token punctuation">,</span><span class="token string">'b'</span><span class="token punctuation">,</span><span class="token string">'c'</span><span class="token punctuation">,</span><span class="token string">'d'</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span>df<span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">'------'</span><span class="token punctuation">)</span>
+
+b1 <span class="token operator">=</span> df <span class="token operator">&lt;</span> <span class="token number">20</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span>b1<span class="token punctuation">,</span><span class="token builtin">type</span><span class="token punctuation">(</span>b1<span class="token punctuation">)</span><span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span>df<span class="token punctuation">[</span>b1<span class="token punctuation">]</span><span class="token punctuation">)</span>  <span class="token comment"># 也可以书写为 df[df &lt; 20]</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">'------'</span><span class="token punctuation">)</span>
+<span class="token comment"># 不做索引则会对数据每个值进行判断</span>
+<span class="token comment"># 索引结果保留 所有数据：True返回原数据，False返回值为NaN</span>
+
+b2 <span class="token operator">=</span> df<span class="token punctuation">[</span><span class="token string">'a'</span><span class="token punctuation">]</span> <span class="token operator">&gt;</span> <span class="token number">50</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span>b2<span class="token punctuation">,</span><span class="token builtin">type</span><span class="token punctuation">(</span>b2<span class="token punctuation">)</span><span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span>df<span class="token punctuation">[</span>b2<span class="token punctuation">]</span><span class="token punctuation">)</span>  <span class="token comment"># 也可以书写为 df[df['a'] &gt; 50]</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">'------'</span><span class="token punctuation">)</span>
+<span class="token comment"># 单列做判断</span>
+<span class="token comment"># 索引结果保留 单列判断为True的行数据，包括其他列</span>
+
+b3 <span class="token operator">=</span> df<span class="token punctuation">[</span><span class="token punctuation">[</span><span class="token string">'a'</span><span class="token punctuation">,</span><span class="token string">'b'</span><span class="token punctuation">]</span><span class="token punctuation">]</span> <span class="token operator">&gt;</span> <span class="token number">50</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span>b3<span class="token punctuation">,</span><span class="token builtin">type</span><span class="token punctuation">(</span>b3<span class="token punctuation">)</span><span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span>df<span class="token punctuation">[</span>b3<span class="token punctuation">]</span><span class="token punctuation">)</span>  <span class="token comment"># 也可以书写为 df[df[['a','b']] &gt; 50]</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">'------'</span><span class="token punctuation">)</span>
+<span class="token comment"># 多列做判断</span>
+<span class="token comment"># 索引结果保留 所有数据：True返回原数据，False返回值为NaN</span>
+
+b4 <span class="token operator">=</span> df<span class="token punctuation">.</span>loc<span class="token punctuation">[</span><span class="token punctuation">[</span><span class="token string">'one'</span><span class="token punctuation">,</span><span class="token string">'three'</span><span class="token punctuation">]</span><span class="token punctuation">]</span> <span class="token operator">&lt;</span> <span class="token number">50</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span>b4<span class="token punctuation">,</span><span class="token builtin">type</span><span class="token punctuation">(</span>b4<span class="token punctuation">)</span><span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span>df<span class="token punctuation">[</span>b4<span class="token punctuation">]</span><span class="token punctuation">)</span>  <span class="token comment"># 也可以书写为 df[df.loc[['one','three']] &lt; 50]</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">'------'</span><span class="token punctuation">)</span>
+<span class="token comment"># 多行做判断</span>
+<span class="token comment"># 索引结果保留 所有数据：True返回原数据，False返回值为NaN</span>
+</pre><p>运行结果：</p>
+<pre data-role="codeBlock" data-info="shell" class="language-shell">               a          b          c          d
+one    12.738564  15.322859  19.206182  93.175109
+two     6.233335   5.477782  48.825691  35.929317
+three  23.527545  42.937867  22.966518  16.574533
+four   72.456078  95.349843  46.710937  78.915928
+------
+           a      b      c      d
+one     True   True   True  False
+two     True   True  False  False
+three  False  False  False   True
+four   False  False  False  False <span class="token operator">&lt;</span>class <span class="token string">'pandas.core.frame.DataFrame'</span><span class="token operator">&gt;</span>
+               a          b          c          d
+one    12.738564  15.322859  19.206182        NaN
+two     6.233335   5.477782        NaN        NaN
+three        NaN        NaN        NaN  16.574533
+four         NaN        NaN        NaN        NaN
+------
+one      False
+two      False
+three    False
+four      True
+Name: a, dtype: bool <span class="token operator">&lt;</span>class <span class="token string">'pandas.core.series.Series'</span><span class="token operator">&gt;</span>
+              a          b          c          d
+four  72.456078  95.349843  46.710937  78.915928
+------
+           a      b
+one    False  False
+two    False  False
+three  False  False
+four    True   True <span class="token operator">&lt;</span>class <span class="token string">'pandas.core.frame.DataFrame'</span><span class="token operator">&gt;</span>
+               a          b   c   d
+one          NaN        NaN NaN NaN
+two          NaN        NaN NaN NaN
+three        NaN        NaN NaN NaN
+four   72.456078  95.349843 NaN NaN
+------
+          a     b     c      d
+one    True  True  True  False
+three  True  True  True   True <span class="token operator">&lt;</span>class <span class="token string">'pandas.core.frame.DataFrame'</span><span class="token operator">&gt;</span>
+               a          b          c          d
+one    12.738564  15.322859  19.206182        NaN
+two          NaN        NaN        NaN        NaN
+three  23.527545  42.937867  22.966518  16.574533
+four         NaN        NaN        NaN        NaN
+------
+</pre><p><strong>多重索引：</strong></p>
+<pre data-role="codeBlock" data-info="python" class="language-python"><span class="token comment"># 多重索引：比如同时索引行和列</span>
+<span class="token comment"># 先选择列再选择行 —— 相当于对于一个数据，先筛选字段，再选择数据量</span>
+
+df <span class="token operator">=</span> pd<span class="token punctuation">.</span>DataFrame<span class="token punctuation">(</span>np<span class="token punctuation">.</span>random<span class="token punctuation">.</span>rand<span class="token punctuation">(</span><span class="token number">16</span><span class="token punctuation">)</span><span class="token punctuation">.</span>reshape<span class="token punctuation">(</span><span class="token number">4</span><span class="token punctuation">,</span><span class="token number">4</span><span class="token punctuation">)</span><span class="token operator">*</span><span class="token number">100</span><span class="token punctuation">,</span>
+                   index <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token string">'one'</span><span class="token punctuation">,</span><span class="token string">'two'</span><span class="token punctuation">,</span><span class="token string">'three'</span><span class="token punctuation">,</span><span class="token string">'four'</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+                   columns <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token string">'a'</span><span class="token punctuation">,</span><span class="token string">'b'</span><span class="token punctuation">,</span><span class="token string">'c'</span><span class="token punctuation">,</span><span class="token string">'d'</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span>df<span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">'------'</span><span class="token punctuation">)</span>
+
+<span class="token keyword">print</span><span class="token punctuation">(</span>df<span class="token punctuation">[</span><span class="token string">'a'</span><span class="token punctuation">]</span><span class="token punctuation">.</span>loc<span class="token punctuation">[</span><span class="token punctuation">[</span><span class="token string">'one'</span><span class="token punctuation">,</span><span class="token string">'three'</span><span class="token punctuation">]</span><span class="token punctuation">]</span><span class="token punctuation">)</span>   <span class="token comment"># 选择a列的one，three行</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span>df<span class="token punctuation">[</span><span class="token punctuation">[</span><span class="token string">'b'</span><span class="token punctuation">,</span><span class="token string">'c'</span><span class="token punctuation">,</span><span class="token string">'d'</span><span class="token punctuation">]</span><span class="token punctuation">]</span><span class="token punctuation">.</span>iloc<span class="token punctuation">[</span><span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token number">2</span><span class="token punctuation">]</span><span class="token punctuation">)</span>   <span class="token comment"># 选择b，c，d列的one，three行</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span>df<span class="token punctuation">[</span>df<span class="token punctuation">[</span><span class="token string">'a'</span><span class="token punctuation">]</span> <span class="token operator">&lt;</span> <span class="token number">50</span><span class="token punctuation">]</span><span class="token punctuation">.</span>iloc<span class="token punctuation">[</span><span class="token punctuation">:</span><span class="token number">2</span><span class="token punctuation">]</span><span class="token punctuation">)</span>   <span class="token comment"># 选择满足判断索引的前两行数据</span>
+</pre><p>运行结果：</p>
+<pre data-role="codeBlock" data-info="shell" class="language-shell">               a          b          c          d
+one    14.958467  98.273896  64.137446   2.176809
+two     7.081527  51.641135  42.584241  82.095271
+three   8.080619  45.649117  79.782119  88.317504
+four   26.865986  41.573185  75.503109  53.576166
+------
+one      14.958467
+three     8.080619
+Name: a, dtype: float64
+               b          c          d
+one    98.273896  64.137446   2.176809
+three  45.649117  79.782119  88.317504
+             a          b          c          d
+one  14.958467  98.273896  64.137446   2.176809
+two   7.081527  51.641135  42.584241  82.095271
+</pre><h3 class="mume-header" id="18-dataframe%E5%9F%BA%E6%9C%AC%E6%8A%80%E5%B7%A7">1.8. Dataframe基本技巧</h3>
+
+<p><strong>数据查看、转置：</strong></p>
+<pre data-role="codeBlock" data-info="python" class="language-python">df <span class="token operator">=</span> pd<span class="token punctuation">.</span>DataFrame<span class="token punctuation">(</span>np<span class="token punctuation">.</span>random<span class="token punctuation">.</span>rand<span class="token punctuation">(</span><span class="token number">16</span><span class="token punctuation">)</span><span class="token punctuation">.</span>reshape<span class="token punctuation">(</span><span class="token number">8</span><span class="token punctuation">,</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token operator">*</span><span class="token number">100</span><span class="token punctuation">,</span>
+                   columns <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token string">'a'</span><span class="token punctuation">,</span><span class="token string">'b'</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span>df<span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span>df<span class="token punctuation">.</span>head<span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">)</span>  <span class="token comment"># 是行的前几条（行）</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span>df<span class="token punctuation">.</span>tail<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+<span class="token comment"># .head()查看头部数据</span>
+<span class="token comment"># .tail()查看尾部数据</span>
+<span class="token comment"># 默认查看5条</span>
+
+<span class="token keyword">print</span><span class="token punctuation">(</span>df<span class="token punctuation">.</span>T<span class="token punctuation">)</span>
+<span class="token comment"># .T 转置</span>
+</pre><p>运行结果：</p>
+<pre data-role="codeBlock" data-info="shell" class="language-shell">           a          b
+0  51.979773  91.549211
+1  40.537277  47.223627
+2  33.619865   6.178446
+3  70.525071  62.824512
+4  16.150516  83.952036
+5  87.757638  59.860239
+6  52.395303  29.362578
+7  44.161451  34.770468
+           a          b
+0  51.979773  91.549211
+1  40.537277  47.223627
+           a          b
+3  70.525071  62.824512
+4  16.150516  83.952036
+5  87.757638  59.860239
+6  52.395303  29.362578
+7  44.161451  34.770468
+           0          1          2  <span class="token punctuation">..</span>.          5          6          7
+a  51.979773  40.537277  33.619865  <span class="token punctuation">..</span>.  87.757638  52.395303  44.161451
+b  91.549211  47.223627   6.178446  <span class="token punctuation">..</span>.  59.860239  29.362578  34.770468
+
+<span class="token punctuation">[</span>2 rows x 8 columns<span class="token punctuation">]</span>
+</pre><p><strong>添加与修改：</strong></p>
+<pre data-role="codeBlock" data-info="python" class="language-python">df <span class="token operator">=</span> pd<span class="token punctuation">.</span>DataFrame<span class="token punctuation">(</span>np<span class="token punctuation">.</span>random<span class="token punctuation">.</span>rand<span class="token punctuation">(</span><span class="token number">16</span><span class="token punctuation">)</span><span class="token punctuation">.</span>reshape<span class="token punctuation">(</span><span class="token number">4</span><span class="token punctuation">,</span><span class="token number">4</span><span class="token punctuation">)</span><span class="token operator">*</span><span class="token number">100</span><span class="token punctuation">,</span>
+                   columns <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token string">'a'</span><span class="token punctuation">,</span><span class="token string">'b'</span><span class="token punctuation">,</span><span class="token string">'c'</span><span class="token punctuation">,</span><span class="token string">'d'</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span>df<span class="token punctuation">)</span>
+
+df<span class="token punctuation">[</span><span class="token string">'e'</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token number">10</span>
+df<span class="token punctuation">.</span>loc<span class="token punctuation">[</span><span class="token number">4</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token number">20</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span>df<span class="token punctuation">)</span>
+<span class="token comment"># 新增列/行并赋值</span>
+
+df<span class="token punctuation">[</span><span class="token string">'e'</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token number">20</span>
+df<span class="token punctuation">[</span><span class="token punctuation">[</span><span class="token string">'a'</span><span class="token punctuation">,</span><span class="token string">'c'</span><span class="token punctuation">]</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token number">100</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span>df<span class="token punctuation">)</span>
+<span class="token comment"># 索引后直接修改值</span>
+</pre><p>运行结果：</p>
+<pre data-role="codeBlock" data-info="shell" class="language-shell">           a          b          c          d
+0  61.308776  79.993557  10.746310   8.379040
+1  65.039773  35.913146  63.595198  25.521799
+2  25.252398  94.825920  34.039585  17.251911
+3  64.884322  96.035192  80.389352  13.951519
+           a          b          c          d   e
+0  61.308776  79.993557  10.746310   8.379040  10
+1  65.039773  35.913146  63.595198  25.521799  10
+2  25.252398  94.825920  34.039585  17.251911  10
+3  64.884322  96.035192  80.389352  13.951519  10
+4  20.000000  20.000000  20.000000  20.000000  20
+     a          b    c          d   e
+0  100  79.993557  100   8.379040  20
+1  100  35.913146  100  25.521799  20
+2  100  94.825920  100  17.251911  20
+3  100  96.035192  100  13.951519  20
+4  100  20.000000  100  20.000000  20
+</pre><p><strong>删除 <code>del / drop()</code>：</strong></p>
+<pre data-role="codeBlock" data-info="python" class="language-python">df <span class="token operator">=</span> pd<span class="token punctuation">.</span>DataFrame<span class="token punctuation">(</span>np<span class="token punctuation">.</span>random<span class="token punctuation">.</span>rand<span class="token punctuation">(</span><span class="token number">16</span><span class="token punctuation">)</span><span class="token punctuation">.</span>reshape<span class="token punctuation">(</span><span class="token number">4</span><span class="token punctuation">,</span><span class="token number">4</span><span class="token punctuation">)</span><span class="token operator">*</span><span class="token number">100</span><span class="token punctuation">,</span>
+                   columns <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token string">'a'</span><span class="token punctuation">,</span><span class="token string">'b'</span><span class="token punctuation">,</span><span class="token string">'c'</span><span class="token punctuation">,</span><span class="token string">'d'</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span>df<span class="token punctuation">)</span>
+
+<span class="token keyword">del</span> df<span class="token punctuation">[</span><span class="token string">'a'</span><span class="token punctuation">]</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span>df<span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">'-----'</span><span class="token punctuation">)</span>
+<span class="token comment"># del语句 - 删除列</span>
+
+<span class="token keyword">print</span><span class="token punctuation">(</span>df<span class="token punctuation">.</span>drop<span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span>df<span class="token punctuation">.</span>drop<span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token number">2</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span>df<span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">'-----'</span><span class="token punctuation">)</span>
+<span class="token comment"># drop()删除行，inplace=False → 删除后生成新的数据，不改变原数据</span>
+
+<span class="token keyword">print</span><span class="token punctuation">(</span>df<span class="token punctuation">.</span>drop<span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token string">'d'</span><span class="token punctuation">]</span><span class="token punctuation">,</span> axis <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span>df<span class="token punctuation">)</span>
+<span class="token comment"># drop()删除列，需要加上axis = 1，inplace=False → 删除后生成新的数据，不改变原数据</span>
+</pre><p>运行结果：</p>
+<pre data-role="codeBlock" data-info="shell" class="language-shell">           a          b          c          d
+0  34.082611  60.709694  76.161298  85.979583
+1  33.829290   6.759921  49.190827   8.246144
+2  23.566866  60.094221  27.645148  35.483564
+3  63.104492  52.580891  10.020145  43.689885
+           b          c          d
+0  60.709694  76.161298  85.979583
+1   6.759921  49.190827   8.246144
+2  60.094221  27.645148  35.483564
+3  52.580891  10.020145  43.689885
+-----
+           b          c          d
+1   6.759921  49.190827   8.246144
+2  60.094221  27.645148  35.483564
+3  52.580891  10.020145  43.689885
+           b          c          d
+0  60.709694  76.161298  85.979583
+3  52.580891  10.020145  43.689885
+           b          c          d
+0  60.709694  76.161298  85.979583
+1   6.759921  49.190827   8.246144
+2  60.094221  27.645148  35.483564
+3  52.580891  10.020145  43.689885
+-----
+           b          c
+0  60.709694  76.161298
+1   6.759921  49.190827
+2  60.094221  27.645148
+3  52.580891  10.020145
+           b          c          d
+0  60.709694  76.161298  85.979583
+1   6.759921  49.190827   8.246144
+2  60.094221  27.645148  35.483564
+3  52.580891  10.020145  43.689885
+</pre><p><strong>对齐：</strong></p>
+<pre data-role="codeBlock" data-info="python" class="language-python">df1 <span class="token operator">=</span> pd<span class="token punctuation">.</span>DataFrame<span class="token punctuation">(</span>np<span class="token punctuation">.</span>random<span class="token punctuation">.</span>randn<span class="token punctuation">(</span><span class="token number">10</span><span class="token punctuation">,</span> <span class="token number">4</span><span class="token punctuation">)</span><span class="token punctuation">,</span> columns<span class="token operator">=</span><span class="token punctuation">[</span><span class="token string">'A'</span><span class="token punctuation">,</span> <span class="token string">'B'</span><span class="token punctuation">,</span> <span class="token string">'C'</span><span class="token punctuation">,</span> <span class="token string">'D'</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+df2 <span class="token operator">=</span> pd<span class="token punctuation">.</span>DataFrame<span class="token punctuation">(</span>np<span class="token punctuation">.</span>random<span class="token punctuation">.</span>randn<span class="token punctuation">(</span><span class="token number">7</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">)</span><span class="token punctuation">,</span> columns<span class="token operator">=</span><span class="token punctuation">[</span><span class="token string">'A'</span><span class="token punctuation">,</span> <span class="token string">'B'</span><span class="token punctuation">,</span> <span class="token string">'C'</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span>df1 <span class="token operator">+</span> df2<span class="token punctuation">)</span>
+<span class="token comment"># DataFrame对象之间的数据自动按照列和索引（行标签）对齐</span>
+</pre><p>运行结果：</p>
+<pre data-role="codeBlock" data-info="shell" class="language-shell">          A         B         C   D
+0  0.290444  1.139117  0.553296 NaN
+1  0.328293 -0.836475 -0.315175 NaN
+2 -0.946851 -0.061637 -1.039374 NaN
+3 -1.962562 -1.028024 -0.173179 NaN
+4  0.250802  0.741654 -0.580538 NaN
+5 -2.210973 -0.072362  1.469855 NaN
+6  1.729933 -0.350597  0.512747 NaN
+7       NaN       NaN       NaN NaN
+8       NaN       NaN       NaN NaN
+9       NaN       NaN       NaN NaN
+</pre><p><strong>排序1 - 按值排序<code>.sort_values</code>：</strong></p>
+<pre data-role="codeBlock" data-info="python" class="language-python"><span class="token comment"># 排序1 - 按值排序 .sort_values</span>
+<span class="token comment"># 同样适用于Series</span>
+
+df1 <span class="token operator">=</span> pd<span class="token punctuation">.</span>DataFrame<span class="token punctuation">(</span>np<span class="token punctuation">.</span>random<span class="token punctuation">.</span>rand<span class="token punctuation">(</span><span class="token number">16</span><span class="token punctuation">)</span><span class="token punctuation">.</span>reshape<span class="token punctuation">(</span><span class="token number">4</span><span class="token punctuation">,</span><span class="token number">4</span><span class="token punctuation">)</span><span class="token operator">*</span><span class="token number">100</span><span class="token punctuation">,</span>
+                   columns <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token string">'a'</span><span class="token punctuation">,</span><span class="token string">'b'</span><span class="token punctuation">,</span><span class="token string">'c'</span><span class="token punctuation">,</span><span class="token string">'d'</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span>df1<span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span>df1<span class="token punctuation">.</span>sort_values<span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token string">'a'</span><span class="token punctuation">]</span><span class="token punctuation">,</span> ascending <span class="token operator">=</span> <span class="token boolean">True</span><span class="token punctuation">)</span><span class="token punctuation">)</span>  <span class="token comment"># 升序</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span>df1<span class="token punctuation">.</span>sort_values<span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token string">'a'</span><span class="token punctuation">]</span><span class="token punctuation">,</span> ascending <span class="token operator">=</span> <span class="token boolean">False</span><span class="token punctuation">)</span><span class="token punctuation">)</span>  <span class="token comment"># 降序</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">'------'</span><span class="token punctuation">)</span>
+<span class="token comment"># ascending参数：设置升序降序，默认升序</span>
+<span class="token comment"># 单列排序</span>
+
+df2 <span class="token operator">=</span> pd<span class="token punctuation">.</span>DataFrame<span class="token punctuation">(</span><span class="token punctuation">{</span><span class="token string">'a'</span><span class="token punctuation">:</span><span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token number">2</span><span class="token punctuation">,</span><span class="token number">2</span><span class="token punctuation">,</span><span class="token number">2</span><span class="token punctuation">,</span><span class="token number">2</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+                  <span class="token string">'b'</span><span class="token punctuation">:</span><span class="token builtin">list</span><span class="token punctuation">(</span><span class="token builtin">range</span><span class="token punctuation">(</span><span class="token number">8</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+                  <span class="token string">'c'</span><span class="token punctuation">:</span><span class="token builtin">list</span><span class="token punctuation">(</span><span class="token builtin">range</span><span class="token punctuation">(</span><span class="token number">8</span><span class="token punctuation">,</span><span class="token number">0</span><span class="token punctuation">,</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">}</span><span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span>df2<span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">'------'</span><span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span>df2<span class="token punctuation">.</span>sort_values<span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token string">'a'</span><span class="token punctuation">,</span><span class="token string">'c'</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+<span class="token comment"># 多列排序，按列顺序排序</span>
+</pre><p>运行结果：</p>
+<pre data-role="codeBlock" data-info="shell" class="language-shell">           a          b          c          d
+0  10.350601  95.310700  57.193154  99.408490
+1  62.575888  74.427658  60.581589  27.694165
+2  68.346268  10.682050  69.688630  78.645992
+3  78.077769  60.359608  59.952004  82.899995
+           a          b          c          d
+0  10.350601  95.310700  57.193154  99.408490
+1  62.575888  74.427658  60.581589  27.694165
+2  68.346268  10.682050  69.688630  78.645992
+3  78.077769  60.359608  59.952004  82.899995
+           a          b          c          d
+3  78.077769  60.359608  59.952004  82.899995
+2  68.346268  10.682050  69.688630  78.645992
+1  62.575888  74.427658  60.581589  27.694165
+0  10.350601  95.310700  57.193154  99.408490
+------
+   a  b  c
+0  1  0  8
+1  1  1  7
+2  1  2  6
+3  1  3  5
+4  2  4  4
+5  2  5  3
+6  2  6  2
+7  2  7  1
+------
+   a  b  c
+3  1  3  5
+2  1  2  6
+1  1  1  7
+0  1  0  8
+7  2  7  1
+6  2  6  2
+5  2  5  3
+4  2  4  4
+</pre><p><strong>排序2 - 索引排序 <code>sort_index</code>：</strong></p>
+<pre data-role="codeBlock" data-info="python" class="language-python">df1 <span class="token operator">=</span> pd<span class="token punctuation">.</span>DataFrame<span class="token punctuation">(</span>np<span class="token punctuation">.</span>random<span class="token punctuation">.</span>rand<span class="token punctuation">(</span><span class="token number">16</span><span class="token punctuation">)</span><span class="token punctuation">.</span>reshape<span class="token punctuation">(</span><span class="token number">4</span><span class="token punctuation">,</span><span class="token number">4</span><span class="token punctuation">)</span><span class="token operator">*</span><span class="token number">100</span><span class="token punctuation">,</span>
+                  index <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token number">5</span><span class="token punctuation">,</span><span class="token number">4</span><span class="token punctuation">,</span><span class="token number">3</span><span class="token punctuation">,</span><span class="token number">2</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+                   columns <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token string">'a'</span><span class="token punctuation">,</span><span class="token string">'b'</span><span class="token punctuation">,</span><span class="token string">'c'</span><span class="token punctuation">,</span><span class="token string">'d'</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+df2 <span class="token operator">=</span> pd<span class="token punctuation">.</span>DataFrame<span class="token punctuation">(</span>np<span class="token punctuation">.</span>random<span class="token punctuation">.</span>rand<span class="token punctuation">(</span><span class="token number">16</span><span class="token punctuation">)</span><span class="token punctuation">.</span>reshape<span class="token punctuation">(</span><span class="token number">4</span><span class="token punctuation">,</span><span class="token number">4</span><span class="token punctuation">)</span><span class="token operator">*</span><span class="token number">100</span><span class="token punctuation">,</span>
+                  index <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token string">'h'</span><span class="token punctuation">,</span><span class="token string">'s'</span><span class="token punctuation">,</span><span class="token string">'x'</span><span class="token punctuation">,</span><span class="token string">'g'</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+                   columns <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token string">'a'</span><span class="token punctuation">,</span><span class="token string">'b'</span><span class="token punctuation">,</span><span class="token string">'c'</span><span class="token punctuation">,</span><span class="token string">'d'</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span>df1<span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span>df1<span class="token punctuation">.</span>sort_index<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span>df2<span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span>df2<span class="token punctuation">.</span>sort_index<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+<span class="token comment"># 按照index排序</span>
+<span class="token comment"># 默认 ascending=True, inplace=False</span>
+</pre><p>运行结果：</p>
+<pre data-role="codeBlock" data-info="shell" class="language-shell">           a          b          c          d
+5  40.733212  10.445299  34.088061  97.370034
+4   5.311401  22.574762  55.029392  74.625222
+3  96.930612  83.301038  48.794404  47.623818
+2  69.565058  25.399326  44.265361  11.232812
+           a          b          c          d
+2  69.565058  25.399326  44.265361  11.232812
+3  96.930612  83.301038  48.794404  47.623818
+4   5.311401  22.574762  55.029392  74.625222
+5  40.733212  10.445299  34.088061  97.370034
+           a          b          c          d
+h  76.579044  66.193804  33.960532  76.388075
+s  59.211412  69.786914  48.615661  82.016510
+x  47.509222  52.279430  97.276870  92.473143
+g  26.794591   6.939252  56.783212  70.457853
+           a          b          c          d
+g  26.794591   6.939252  56.783212  70.457853
+h  76.579044  66.193804  33.960532  76.388075
+s  59.211412  69.786914  48.615661  82.016510
+x  47.509222  52.279430  97.276870  92.473143
+</pre><hr>
+
+      </div>
+      
+      
+    
+    
+    
+    
+    
+    
+    
+    
+  </body></html>

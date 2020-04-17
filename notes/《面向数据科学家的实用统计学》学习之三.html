@@ -1,0 +1,673 @@
+<!DOCTYPE html>
+<!-- saved from url=(0099)file:///private/var/folders/jq/l66hzx9956qbmxs_990g1djh0000gn/T/mume2020317-90899-gtceyg.979jf.html -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+      <title>《面向数据科学家的实用统计学》学习之三</title>
+      
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      
+      <link rel="stylesheet" href="./《面向数据科学家的实用统计学》学习之三_files/katex.min.css">
+      
+      
+
+      
+      
+      
+      
+      
+      
+      
+
+      <style>
+      /**
+ * prism.js Github theme based on GitHub's theme.
+ * @author Sam Clarke
+ */
+code[class*="language-"],
+pre[class*="language-"] {
+  color: #333;
+  background: none;
+  font-family: Consolas, "Liberation Mono", Menlo, Courier, monospace;
+  text-align: left;
+  white-space: pre;
+  word-spacing: normal;
+  word-break: normal;
+  word-wrap: normal;
+  line-height: 1.4;
+
+  -moz-tab-size: 8;
+  -o-tab-size: 8;
+  tab-size: 8;
+
+  -webkit-hyphens: none;
+  -moz-hyphens: none;
+  -ms-hyphens: none;
+  hyphens: none;
+}
+
+/* Code blocks */
+pre[class*="language-"] {
+  padding: .8em;
+  overflow: auto;
+  /* border: 1px solid #ddd; */
+  border-radius: 3px;
+  /* background: #fff; */
+  background: #f5f5f5;
+}
+
+/* Inline code */
+:not(pre) > code[class*="language-"] {
+  padding: .1em;
+  border-radius: .3em;
+  white-space: normal;
+  background: #f5f5f5;
+}
+
+.token.comment,
+.token.blockquote {
+  color: #969896;
+}
+
+.token.cdata {
+  color: #183691;
+}
+
+.token.doctype,
+.token.punctuation,
+.token.variable,
+.token.macro.property {
+  color: #333;
+}
+
+.token.operator,
+.token.important,
+.token.keyword,
+.token.rule,
+.token.builtin {
+  color: #a71d5d;
+}
+
+.token.string,
+.token.url,
+.token.regex,
+.token.attr-value {
+  color: #183691;
+}
+
+.token.property,
+.token.number,
+.token.boolean,
+.token.entity,
+.token.atrule,
+.token.constant,
+.token.symbol,
+.token.command,
+.token.code {
+  color: #0086b3;
+}
+
+.token.tag,
+.token.selector,
+.token.prolog {
+  color: #63a35c;
+}
+
+.token.function,
+.token.namespace,
+.token.pseudo-element,
+.token.class,
+.token.class-name,
+.token.pseudo-class,
+.token.id,
+.token.url-reference .token.variable,
+.token.attr-name {
+  color: #795da3;
+}
+
+.token.entity {
+  cursor: help;
+}
+
+.token.title,
+.token.title .token.punctuation {
+  font-weight: bold;
+  color: #1d3e81;
+}
+
+.token.list {
+  color: #ed6a43;
+}
+
+.token.inserted {
+  background-color: #eaffea;
+  color: #55a532;
+}
+
+.token.deleted {
+  background-color: #ffecec;
+  color: #bd2c00;
+}
+
+.token.bold {
+  font-weight: bold;
+}
+
+.token.italic {
+  font-style: italic;
+}
+
+
+/* JSON */
+.language-json .token.property {
+  color: #183691;
+}
+
+.language-markup .token.tag .token.punctuation {
+  color: #333;
+}
+
+/* CSS */
+code.language-css,
+.language-css .token.function {
+  color: #0086b3;
+}
+
+/* YAML */
+.language-yaml .token.atrule {
+  color: #63a35c;
+}
+
+code.language-yaml {
+  color: #183691;
+}
+
+/* Ruby */
+.language-ruby .token.function {
+  color: #333;
+}
+
+/* Markdown */
+.language-markdown .token.url {
+  color: #795da3;
+}
+
+/* Makefile */
+.language-makefile .token.symbol {
+  color: #795da3;
+}
+
+.language-makefile .token.variable {
+  color: #183691;
+}
+
+.language-makefile .token.builtin {
+  color: #0086b3;
+}
+
+/* Bash */
+.language-bash .token.keyword {
+  color: #0086b3;
+}
+
+/* highlight */
+pre[data-line] {
+  position: relative;
+  padding: 1em 0 1em 3em;
+}
+pre[data-line] .line-highlight-wrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: transparent;
+  display: block;
+  width: 100%;
+}
+
+pre[data-line] .line-highlight {
+  position: absolute;
+  left: 0;
+  right: 0;
+  padding: inherit 0;
+  margin-top: 1em;
+  background: hsla(24, 20%, 50%,.08);
+  background: linear-gradient(to right, hsla(24, 20%, 50%,.1) 70%, hsla(24, 20%, 50%,0));
+  pointer-events: none;
+  line-height: inherit;
+  white-space: pre;
+}
+
+pre[data-line] .line-highlight:before, 
+pre[data-line] .line-highlight[data-end]:after {
+  content: attr(data-start);
+  position: absolute;
+  top: .4em;
+  left: .6em;
+  min-width: 1em;
+  padding: 0 .5em;
+  background-color: hsla(24, 20%, 50%,.4);
+  color: hsl(24, 20%, 95%);
+  font: bold 65%/1.5 sans-serif;
+  text-align: center;
+  vertical-align: .3em;
+  border-radius: 999px;
+  text-shadow: none;
+  box-shadow: 0 1px white;
+}
+
+pre[data-line] .line-highlight[data-end]:after {
+  content: attr(data-end);
+  top: auto;
+  bottom: .4em;
+}html body{font-family:"Helvetica Neue",Helvetica,"Segoe UI",Arial,freesans,sans-serif;font-size:16px;line-height:1.6;color:#333;background-color:#fff;overflow:initial;box-sizing:border-box;word-wrap:break-word}html body>:first-child{margin-top:0}html body h1,html body h2,html body h3,html body h4,html body h5,html body h6{line-height:1.2;margin-top:1em;margin-bottom:16px;color:#000}html body h1{font-size:2.25em;font-weight:300;padding-bottom:.3em}html body h2{font-size:1.75em;font-weight:400;padding-bottom:.3em}html body h3{font-size:1.5em;font-weight:500}html body h4{font-size:1.25em;font-weight:600}html body h5{font-size:1.1em;font-weight:600}html body h6{font-size:1em;font-weight:600}html body h1,html body h2,html body h3,html body h4,html body h5{font-weight:600}html body h5{font-size:1em}html body h6{color:#5c5c5c}html body strong{color:#000}html body del{color:#5c5c5c}html body a:not([href]){color:inherit;text-decoration:none}html body a{color:#08c;text-decoration:none}html body a:hover{color:#00a3f5;text-decoration:none}html body img{max-width:100%}html body>p{margin-top:0;margin-bottom:16px;word-wrap:break-word}html body>ul,html body>ol{margin-bottom:16px}html body ul,html body ol{padding-left:2em}html body ul.no-list,html body ol.no-list{padding:0;list-style-type:none}html body ul ul,html body ul ol,html body ol ol,html body ol ul{margin-top:0;margin-bottom:0}html body li{margin-bottom:0}html body li.task-list-item{list-style:none}html body li>p{margin-top:0;margin-bottom:0}html body .task-list-item-checkbox{margin:0 .2em .25em -1.8em;vertical-align:middle}html body .task-list-item-checkbox:hover{cursor:pointer}html body blockquote{margin:16px 0;font-size:inherit;padding:0 15px;color:#5c5c5c;border-left:4px solid #d6d6d6}html body blockquote>:first-child{margin-top:0}html body blockquote>:last-child{margin-bottom:0}html body hr{height:4px;margin:32px 0;background-color:#d6d6d6;border:0 none}html body table{margin:10px 0 15px 0;border-collapse:collapse;border-spacing:0;display:block;width:100%;overflow:auto;word-break:normal;word-break:keep-all}html body table th{font-weight:bold;color:#000}html body table td,html body table th{border:1px solid #d6d6d6;padding:6px 13px}html body dl{padding:0}html body dl dt{padding:0;margin-top:16px;font-size:1em;font-style:italic;font-weight:bold}html body dl dd{padding:0 16px;margin-bottom:16px}html body code{font-family:Menlo,Monaco,Consolas,'Courier New',monospace;font-size:.85em !important;color:#000;background-color:#f0f0f0;border-radius:3px;padding:.2em 0}html body code::before,html body code::after{letter-spacing:-0.2em;content:"\00a0"}html body pre>code{padding:0;margin:0;font-size:.85em !important;word-break:normal;white-space:pre;background:transparent;border:0}html body .highlight{margin-bottom:16px}html body .highlight pre,html body pre{padding:1em;overflow:auto;font-size:.85em !important;line-height:1.45;border:#d6d6d6;border-radius:3px}html body .highlight pre{margin-bottom:0;word-break:normal}html body pre code,html body pre tt{display:inline;max-width:initial;padding:0;margin:0;overflow:initial;line-height:inherit;word-wrap:normal;background-color:transparent;border:0}html body pre code:before,html body pre tt:before,html body pre code:after,html body pre tt:after{content:normal}html body p,html body blockquote,html body ul,html body ol,html body dl,html body pre{margin-top:0;margin-bottom:16px}html body kbd{color:#000;border:1px solid #d6d6d6;border-bottom:2px solid #c7c7c7;padding:2px 4px;background-color:#f0f0f0;border-radius:3px}@media print{html body{background-color:#fff}html body h1,html body h2,html body h3,html body h4,html body h5,html body h6{color:#000;page-break-after:avoid}html body blockquote{color:#5c5c5c}html body pre{page-break-inside:avoid}html body table{display:table}html body img{display:block;max-width:100%;max-height:100%}html body pre,html body code{word-wrap:break-word;white-space:pre}}.markdown-preview{width:100%;height:100%;box-sizing:border-box}.markdown-preview .pagebreak,.markdown-preview .newpage{page-break-before:always}.markdown-preview pre.line-numbers{position:relative;padding-left:3.8em;counter-reset:linenumber}.markdown-preview pre.line-numbers>code{position:relative}.markdown-preview pre.line-numbers .line-numbers-rows{position:absolute;pointer-events:none;top:1em;font-size:100%;left:0;width:3em;letter-spacing:-1px;border-right:1px solid #999;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}.markdown-preview pre.line-numbers .line-numbers-rows>span{pointer-events:none;display:block;counter-increment:linenumber}.markdown-preview pre.line-numbers .line-numbers-rows>span:before{content:counter(linenumber);color:#999;display:block;padding-right:.8em;text-align:right}.markdown-preview .mathjax-exps .MathJax_Display{text-align:center !important}.markdown-preview:not([for="preview"]) .code-chunk .btn-group{display:none}.markdown-preview:not([for="preview"]) .code-chunk .status{display:none}.markdown-preview:not([for="preview"]) .code-chunk .output-div{margin-bottom:16px}.scrollbar-style::-webkit-scrollbar{width:8px}.scrollbar-style::-webkit-scrollbar-track{border-radius:10px;background-color:transparent}.scrollbar-style::-webkit-scrollbar-thumb{border-radius:5px;background-color:rgba(150,150,150,0.66);border:4px solid rgba(150,150,150,0.66);background-clip:content-box}html body[for="html-export"]:not([data-presentation-mode]){position:relative;width:100%;height:100%;top:0;left:0;margin:0;padding:0;overflow:auto}html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{position:relative;top:0}@media screen and (min-width:914px){html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{padding:2em calc(50% - 457px + 2em)}}@media screen and (max-width:914px){html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{padding:2em}}@media screen and (max-width:450px){html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{font-size:14px !important;padding:1em}}@media print{html body[for="html-export"]:not([data-presentation-mode]) #sidebar-toc-btn{display:none}}html body[for="html-export"]:not([data-presentation-mode]) #sidebar-toc-btn{position:fixed;bottom:8px;left:8px;font-size:28px;cursor:pointer;color:inherit;z-index:99;width:32px;text-align:center;opacity:.4}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] #sidebar-toc-btn{opacity:1}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc{position:fixed;top:0;left:0;width:300px;height:100%;padding:32px 0 48px 0;font-size:14px;box-shadow:0 0 4px rgba(150,150,150,0.33);box-sizing:border-box;overflow:auto;background-color:inherit}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar{width:8px}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-track{border-radius:10px;background-color:transparent}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-thumb{border-radius:5px;background-color:rgba(150,150,150,0.66);border:4px solid rgba(150,150,150,0.66);background-clip:content-box}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc a{text-decoration:none}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc ul{padding:0 1.6em;margin-top:.8em}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc li{margin-bottom:.8em}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc ul{list-style-type:none}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{left:300px;width:calc(100% -  300px);padding:2em calc(50% - 457px -  150px);margin:0;box-sizing:border-box}@media screen and (max-width:1274px){html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{padding:2em}}@media screen and (max-width:450px){html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{width:100%}}html body[for="html-export"]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .markdown-preview{left:50%;transform:translateX(-50%)}html body[for="html-export"]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .md-sidebar-toc{display:none}
+/* Please visit the URL below for more information: */
+/*   https://shd101wyy.github.io/markdown-preview-enhanced/#/customize-css */
+
+      </style>
+    </head>
+    <body for="html-export">
+      <div class="mume markdown-preview  ">
+      <h1 class="mume-header" id="%E9%9D%A2%E5%90%91%E6%95%B0%E6%8D%AE%E7%A7%91%E5%AD%A6%E5%AE%B6%E7%9A%84%E5%AE%9E%E7%94%A8%E7%BB%9F%E8%AE%A1%E5%AD%A6%E5%AD%A6%E4%B9%A0">《面向数据科学家的实用统计学》学习</h1>
+
+<h3 class="mume-header" id="%E9%9D%A2%E5%90%91%E6%95%B0%E6%8D%AE%E7%A7%91%E5%AD%A6%E5%AE%B6%E7%9A%84%E5%AE%9E%E7%94%A8%E7%BB%9F%E8%AE%A1%E5%AD%A6%E5%AD%A6%E4%B9%A0%E4%B9%8B%E4%B8%80%E6%8E%A2%E7%B4%A2%E6%80%A7%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90">《面向数据科学家的实用统计学》学习之一：探索性数据分析</h3>
+
+<hr>
+<h2 class="mume-header" id="3-%E7%BB%9F%E8%AE%A1%E5%AE%9E%E9%AA%8C%E4%B8%8E%E6%98%BE%E8%91%97%E6%80%A7%E6%A3%80%E9%AA%8C">3. 统计实验与显著性检验</h2>
+
+<p>实验设计是统计学实践的基石，几乎所有的研究领域都要用到实验。实验设计的目标是设 计出能确认或推翻某个假设的实验。数据科学家需要开展连续的实验，尤其是与用户界面 和产品营销相关的实验。</p>
+<p>如果看到<strong>统计显著性</strong>、<strong>t 检验</strong>或 <strong>p 值</strong>等概念，这一般是在经典统计推断“流水线”的场景 下(如图 3-1 所示)。统计推断过程开始于某个假设，例如，“药物 A 要好于现有的标准药 物”“价格 A 比现有的价格 B 更有利可图”。实验(例如 A/B 测试)是设计用于验证假设 的，我们希望所设计的实验能得出结论性的结果。实验中会收集并分析数据，进而得出结 论。<strong>推断</strong>(inference)一词反映了这样一个意图:将从有限数据集上得到的实验结果应用 于更大的过程或总体。</p>
+<p><img src="./《面向数据科学家的实用统计学》学习之三_files/10.png" alt=""></p>
+<h3 class="mume-header" id="31-ab%E6%B5%8B%E8%AF%95">3.1. A/B测试</h3>
+
+<p>A/B 测试将实验分成两个组开展，进而确定两种处理、产品、过程等中较优的一个。在两 组实验中，一般会有一组采用现有的标准处理，或者是不执行任何处理，称为<strong>对照组</strong>，而 另一组称为<strong>实验组</strong>。实验中的一个典型假设是实验组要优于对照组。</p>
+<hr>
+<p><strong>主要术语：</strong></p>
+<ul>
+<li>处理</li>
+</ul>
+<p>实验对象所接触的东西，例如药品、价格、Web 标题等。 实验组</p>
+<ul>
+<li>实验组</li>
+</ul>
+<p>执行特定处理的一组对象。</p>
+<ul>
+<li>对照组</li>
+</ul>
+<p>执行标准处理或不执行处理的一组对象。</p>
+<ul>
+<li>随机化</li>
+</ul>
+<p>随机地分配实验对象以进行处理的过程。</p>
+<ul>
+<li>实验对象</li>
+</ul>
+<p>接受处理者，例如 Web 访问者、病人等。</p>
+<ul>
+<li>检验统计量</li>
+</ul>
+<p>用于检验处理效果的度量。</p>
+<hr>
+<p>A/B 测试的结果易于测量，因此被广泛地用于 Web 设计和营销中。下面列出了一些使用 A/B 测试的例子。</p>
+<ul>
+<li>测试两种土壤处理，以确定哪种土壤更适合育种。</li>
+<li>测试两种疗法，以确定哪种疗法对于抑制癌症更有效。</li>
+<li>测试两种价格，以确定哪种价格的净利润更高。</li>
+<li>测试两个 Web 标题，以确定哪个标题会带来更多的点击量(如图 3-2 所示)。</li>
+<li>测试两条网络广告，以确定哪条广告能转化为更多的购买行为。</li>
+</ul>
+<p><img src="./《面向数据科学家的实用统计学》学习之三_files/11.png" alt=""></p>
+<p>A/B 测试有对象，对象会分配给两组处理中的一组。对象可能是一个人、一种植物种子 或一位 Web 访问者。注意，对象需要接受处理。在理想情况下，对象是随机指定(即随 机分配)给一组处理的。这样，两个实验组之间的任何差异，只可能是由下面两个因素 所导致的。</p>
+<ul>
+<li>不同处理的效果。</li>
+<li>将对象分配到不同处理过程中的运气因素。一些对象的效果本来就很好，而随机分配可能会导致效果好的对象集中在处理 A 或处理 B 中。</li>
+</ul>
+<p>在 A/B 测试中，我们也需要关注比较 A 组和 B 组时使用的检验统计量(即度量)。在数据 科学中，最常用的度量可能是二元变量，例如点击或未点击，购买或不购买，作弊或未作 弊，等等。我们可以将比较结果归纳为一个 2×2 的表格。表 3-1 给出了实际价格测试结果 的一个 2×2 的表格。</p>
+<p><img src="./《面向数据科学家的实用统计学》学习之三_files/12.png" alt=""></p>
+<p>在比较中所使用的度量，可以是连续变量(例如购买数量、利润等)，也可以是计数(例 如住院天数、访问的页面数量)。两者的结果显示存在着差异。如果关注的并非点击广告 的转化情况，而是每次页面浏览的收益情况，那么在常见的软件输出中，表 3-1 的价格测 试结果大致如下。</p>
+<pre data-role="codeBlock" data-info="R" class="language-r">Revenue<span class="token operator">/</span>page<span class="token operator">-</span>view with price A<span class="token operator">:</span> mean <span class="token operator">=</span> <span class="token number">3.87</span><span class="token punctuation">,</span> SD <span class="token operator">=</span> <span class="token number">51.10</span>
+Revenue<span class="token operator">/</span>page<span class="token operator">-</span>view with price B<span class="token operator">:</span> mean <span class="token operator">=</span> <span class="token number">4.11</span><span class="token punctuation">,</span> SD <span class="token operator">=</span> <span class="token number">62.98</span>
+</pre><p>结果中的 SD 表示的是各组中值的标准偏差。</p>
+<blockquote>
+<p>一些统计软件(包括 R 在内)会默认生成输出，但不能因此认为所有的输 出信息都是有用的，或是与结果相关的。我们可以看到，上面给出的标准偏 差就并非十分有用。它们表明数据中可能存在大量的负值，但我们知道，收 入值是不可能为负的。这是由于数据集由少量较大的值(表示点击转化为购 买)以及大量的零值(表示点击未转化为购买)组成。此类数据的变异性很 难用单个数字总结。相对于标准偏差而言，更合理的度量是偏离均值的绝对 偏差均值(A 组是 7.68，B 组是 8.15)。</p>
+</blockquote>
+<h4 class="mume-header" id="311-%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E6%9C%89%E5%AF%B9%E7%85%A7%E7%BB%84">3.1.1. 为什么要有对照组</h4>
+
+<p>这是因为，如果没有对照组，就不能确保“其他条件均一样”，也不能确保所有差异的确 是由处理(或偶然)导致的。除了处理，对照组与处理组具有相同的条件。如果我们只对 比“基线”或先前的经验，那么除了处理，可能还有其他一些因素存在差异。</p>
+<blockquote>
+<p>单盲研究和双盲研究</p>
+<p>在<strong>单盲研究</strong>中，实验对象本身并不知道自己接受的是处理 A 还是处理 B。如果 对象知道自身所接受的处理，那么会对响应产生影响。<strong>双盲研究</strong>是指研究者和 协助者(例如医学研究中的医生和护士)都不知道哪个对象接受了哪种处理。如 果处理是公开透明的，则盲测是不可行的，例如电脑与心理学家间的认知疗法。</p>
+</blockquote>
+<p>在数据科学中，A/B 测试常用于 Web 领域，其中的处理可以是网页的设计、产品的价格、 标题用语等。我们需要思考如何遵守随机化的原则。通常，实验对象是 Web 访问者，所关 注的结果是点击数、购买、访问时长、访问的页面数量、某个页面是否被访问等。在标准 的 A/B 测试中，需要预先确定一个度量。我们可能需要采集多种行为度量，而且这些度量 可能是我们所关注的。但是，如果如果希望实验能在处理 A 和处理 B 这两者之间做出一个 决策，那么就需要预先确立一个度量，即<strong>检验统计量</strong>。如果在实验开展后再去选择某个检 验统计量，这无疑会引入研究人员的一些偏好。</p>
+<h4 class="mume-header" id="312-%E4%B8%BA%E4%BB%80%E4%B9%88%E5%8F%AA%E6%9C%89%E5%A4%84%E7%90%86a%E5%92%8Cb%E6%B2%A1%E6%9C%89c-d">3.1.2. 为什么只有处理A和B，没有C、D......</h4>
+
+<p>A/B 测试在营销和电子商务领域十分常见，但并非唯一的统计实验类型。我们还可以加入一些其他类型的实验，也可以对实验对象做重复的测量。例如，一些药物试验存在受试者 (即实验对象)稀缺、成本高且需要不断寻找的问题，因此其实验设计中会有多个终止实验并得出结论的偶然性。</p>
+<p>传统的统计实验设计关注的是如何回答有关具体处理的效果的静态问题。对于下面列出的两个问题，数据科学家更关注的是问题 2。</p>
+<ul>
+<li>问题 1:价格 A 和价格 B 之间的差异是否是统计显著的?</li>
+<li>问题 2:在多种可能的价格中，哪种价格最好?</li>
+</ul>
+<p>鉴于此，数据科学家采用的是一种相对新颖的实验设计方法，即<strong>多臂老虎机算法</strong>(参见 3.10 节)。</p>
+<h3 class="mume-header" id="32-%E5%81%87%E8%AE%BE%E6%A3%80%E9%AA%8C">3.2. 假设检验</h3>
+
+<p>假设检验也称显著性检验。假设检验的目的是确定一个观测到的效果是否是由随机性(random chance)造成的。</p>
+<hr>
+<p><strong>主要术语：</strong></p>
+<ul>
+<li>零假设</li>
+</ul>
+<p>完全归咎于偶然性的假设。</p>
+<ul>
+<li>备择假设</li>
+</ul>
+<p>与零假设相反，即实验者希望证实的假设。</p>
+<ul>
+<li>单向检验</li>
+</ul>
+<p>在假设检验中，只从一个方向上计数偶然性结果。</p>
+<ul>
+<li>双向检验</li>
+</ul>
+<p>在假设检验中，从正反两个方向上计数偶然性结果。</p>
+<hr>
+<p>在构建 A/B 测试(参见 3.1 节)时，我们通常会预先构想一个假设，例如假设价格 B 可 能会带来更高的利润。那么我们为什么需要做出一个假设?为什么不能只是查看实验的结 果，然后选择处理结果更好的那一组?</p>
+<p>问题的答案在于，人们在思想上倾向于低估天然随机行为的范围。一个典型的例证就是难 以预料极端事件，即黑天鹅事件(参见 2.8 节)。另一个例证是人们倾向于将随机事件曲解 为具有某种显著性的模式。为此，人们提出了统计假设检验方法，目的是使研究人员免受 随机性的愚弄。</p>
+<blockquote>
+<p>曲解随机性</p>
+<p>我们可以发现，人们倾向于在实验中低估随机性。让一些朋友构想抛 50 次硬币的结 果，并写下一系列随机的 H(正面朝上)和 T(反面朝上)。然后，让这些朋友实际去 抛 50 次硬币，并记录结果。将真正的硬币抛掷结果和人工生成的结果各放一处。我们 很容易看出哪个结果是真实的，因为真实的结果中会出现一组连续的 H 或 T。在真实 的抛 50 次硬币中，常常能看见五六个连续的 H 或 T。但是，我们大多数人在构想随机 抛硬币的结果时，如果已经连续有三四个 H，就会暗示自己，最好在这里就切换为 T， 这样序列看上去更随机一些。</p>
+<p>另外，抛硬币实验也说明了一个问题。如果的确在现实世界中看到了类似于连续出现 6 个 H 这样的事情，例如一个标题比另一个标题好 10%，我们倾向于将其归因于真实 情况，而非巧合。</p>
+</blockquote>
+<p>在一个设计适当的 A/B 测试中，处理 A 和处理 B 之间任何可观测到的差异，必定是由下 面两个因素之一所导致的。</p>
+<ul>
+<li>分配对象中的随机可能性</li>
+<li>处理 A 和处理 B 之间的真实差异</li>
+</ul>
+<p>统计假设检验是对 A/B 测试(或任何随机实验)的进一步分析，意在评估随机性是否可以 合理地解释 A 组和 B 组之间观测到的差异。</p>
+<h4 class="mume-header" id="321-%E9%9B%B6%E5%81%87%E8%AE%BE">3.2.1. 零假设</h4>
+
+<p><strong>假设检验使用的逻辑是:“鉴于人们倾向于对异常的随机行为做出反应，并将其解释为有 意义的真实行为，我们要在实验中证明，组间差异要比偶然性可能导致的差异更极端。”</strong> 这里包含了一个基线假设，即各个处理是等同的，并且组间差异完全是由偶然性所导致 的。我们称该基线假设为零假设。<strong>事实上，我们希望能证明零假设是错误的，并证明 A 组 和 B 组结果之间的差异要比偶然性可能导致的差异更大。</strong></p>
+<p>一种实现方式是通过重采样置换过程，对 A 组和 B 组的结果做随机混洗，并反复将数据分配为 规模相近的组，之后查看实验得到的差异与观测差异同样极端的频率。</p>
+<h4 class="mume-header" id="322-%E5%A4%87%E6%8B%A9%E5%81%87%E8%AE%BE">3.2.2. 备择假设</h4>
+
+<p>假设检验本身不仅包括零假设，还包括一个相抵消的备择假设。下面通过一些例子来说明。</p>
+<p>• 零假设是“A 组和 B 组的均值间没有差异”，备择假设是“A 不同于 B”(可能更大，也 可能更小)。<br>
+• 零假设是“A ≤ B”，备择假设是“A &gt; B”。（<em>self：此处与原文不同。</em>）<br>
+• 零假设是“B 不会比 A 大 x%”，备择假设是“B 比 A 大 x%”。</p>
+<p><strong>总而言之，零假设和备择假设必须涵盖了所有的可能性。</strong> 假设检验的结构取决于零假设的性质。</p>
+<h4 class="mume-header" id="323-%E5%8D%95%E5%90%91%E5%81%87%E8%AE%BE%E6%A3%80%E9%AA%8C%E5%92%8C%E5%8F%8C%E5%90%91%E5%81%87%E8%AE%BE%E6%A3%80%E9%AA%8C">3.2.3. 单向假设检验和双向假设检验</h4>
+
+<p>A/B 测试通常是根据一个已有的默认选项(比如 A)去测试一个新的选项(比如 B)，并且 假定除非证明 B 明显优于 A，否则我们将坚持使用 A。在这种情况下，我们需要一个假设 检验来免受倾向于 B 的偶然性的欺骗。我们并不在意在另一个方向上是否会受偶然性的愚 弄，因为除非能证明 B 更好，否则我们将坚持 A。所以，我们需要一种<strong>有方向的</strong>备择假设(即 B 比 A 好)。这种情况下，我们可以使用<strong>单向</strong>(或“单尾”)假设检验。这意味着极端 偶然性只会导致从一个方向上计入 p 值。</p>
+<p>如果想要假设检验使我们免受任意方向上偶然性的愚弄，那么备择假设应该是双向的(即 A 不同于 B，它可能更大，或是更小)。在这种情况下，我们要使用双向(或“双尾”)假 设。这意味着极端偶然性导致可以从任意一个方向上计入 p 值。</p>
+<p>单向假设检验通常遵循 A/B 决策过程，即需要指定一个选项，并且除非证明另一个选项更 好，否则将指定该选项为“默认”的。然而，包括 R 在内的一些软件的默认输出通常提供 的是双向测试，并且许多统计学家为了避免争议，也会选择更为保守的双向测试。选择单 向还是双向，这是一个让人困惑的问题，但是该问题与数据科学的关系并不大。在数据科 学中，p 值的计算精度并非十分重要。</p>
+<h3 class="mume-header" id="33-%E9%87%8D%E6%8A%BD%E6%A0%B7">3.3. 重抽样</h3>
+
+<p>在统计学中，<strong>重抽样</strong>是指从观测数据中反复地抽取数据值，目标是评估一个统计量中的随 机变异性。重抽样还可用于评估并提高一些机器学习模型的准确性。例如，对于使用多个 自助数据集构建的决策树模型，可以通过 Bagging 过程计算其平均值。</p>
+<p>重抽样过程主要有两种类型，即<strong>自助法</strong>和<strong>置换检验</strong>。自助法用于评估一个估计量的可靠性，我们在前面已经做了介绍(参见 2.4 节)。本节将介绍用于检验假设的置换检验，它通 常涉及两组或多组。</p>
+<hr>
+<p><strong>主要术语：</strong></p>
+<ul>
+<li>置换检验</li>
+</ul>
+<p>将两组或多组样本组合在一起，并将观测值随机地(或穷尽地)重新分配给重抽样。</p>
+<p>同义词:随机化检验、随机置换检验、准确检验</p>
+<ul>
+<li>有放回，无放回</li>
+</ul>
+<p>在抽样时，所抽取的元素在下一次抽取前是否放回样本中。</p>
+<hr>
+<h4 class="mume-header" id="331-%E7%BD%AE%E6%8D%A2%E6%A3%80%E9%AA%8C">3.3.1. 置换检验</h4>
+
+<p><strong>置换</strong>过程涉及两组或多组样本，通常是 A/B 测试或其他假设检验中的组。置换意味着改变 一组值的顺序。要对一个假设进行<strong>置换检验</strong>，首先要将从 A 组和 B 组(当然还可以包括其 他组，例如 C、D......)中得到的结果组合在一起。这就是零假设的逻辑，即无论处理指 定给哪个组，都是无差别的。然后，我们从组合集中随机抽取出各个组，并查看组间的差 异情况，实现对假设的检验。置换过程如下。</p>
+<ol>
+<li>将各个组得出的结果组合为一个数据集。</li>
+<li>对组合得到的数据做随机混洗，然后从中随机抽取(无放回)一个规模与 A 组相同的重抽样样本。</li>
+<li>在余下的数据中，随机抽取(无放回)一个规模与 B 组相同的重抽样样本。</li>
+<li>如果还有 C 组、D 组甚至更多的组，执行同样的操作。</li>
+<li>无论对原始样本计算的是哪一种统计量或估计量(例如，组比例差异)，现在对重抽样进行重新计算，并记录结果。这构成了一次置换迭代。</li>
+<li>重复上述步骤 R 次，生成检验统计量的置换分布。</li>
+</ol>
+<p>现在我们回头查看所观测到的组间差异，并与置换差异进行对比。如果观测到的差异位于 置换差异内，那么置换检验的结果并不能证实任何事情，因为观测到的差异落在偶然可能 产生之差异的范围内。但是，如果观测到的差异大部分落在置换分布之外，那么我们就可 以得出“与偶然性无关”这一结论。如果使用专业术语描述，我们称差异是统计显著的(参见 3.4 节)。</p>
+<h4 class="mume-header" id="332-%E4%BE%8B%E5%AD%90web%E9%BB%8F%E6%80%A7">3.3.2. 例子:Web黏性</h4>
+
+<blockquote>
+<p><strong>代理变量</strong>是一种可以代表我们所关注的真正变量的变量。真正关注的变量可 能不可用，也可能度量的成本太高或耗时过长。例如，在气候研究中，远古 冰芯的含氧量被用作温度的代理变量。最好至少有一点关于真正变量的数 据，这样可以评估真正变量与代理变量间的关联程度。</p>
+</blockquote>
+<p><strong>该例子内容详见书籍对应部分。挺不错。</strong></p>
+<h4 class="mume-header" id="333-%E7%A9%B7%E5%B0%BD%E7%BD%AE%E6%8D%A2%E6%A3%80%E9%AA%8C%E5%92%8C%E8%87%AA%E5%8A%A9%E7%BD%AE%E6%8D%A2%E6%A3%80%E9%AA%8C">3.3.3. 穷尽置换检验和自助置换检验</h4>
+
+<p>置换检验除了使用前面介绍的随机混洗过程(也称<strong>随机置换检验</strong>或<strong>随机检验</strong>)之外，还有两种重要变体:</p>
+<ul>
+<li><strong>穷尽(exhaustive)置换检验</strong></li>
+<li><strong>自助(bootstrap)置换检验</strong></li>
+</ul>
+<p>穷尽置换检验并不是随机混洗并分组数据，而是尝试所有可能的分组。穷尽置换检验只适 用于规模较小的样本。如果做大量的重复混洗，那么随机置换检验的结果会近似于穷尽置 换检验的结果，并在极限上逼近。穷尽置换检验有时也被称为<strong>准确检验</strong>，因为其统计学属 性确保了零模型不会被检验为比 α 值水平更显著(参见 3.4 节)。</p>
+<p>自助置换检验是在置换检验第二步和第三步的抽取中，进行有放回抽样，而非无放回抽 样。这样，重抽样过程不仅建模了随机分配对象给处理的过程，而且建模了从总体中随机 抽取对象的过程。这两个都是统计学过程，但是它们之间的差别过于复杂，因而不被数据 科学实践所关注。</p>
+<h4 class="mume-header" id="334-%E7%BD%AE%E6%8D%A2%E6%A3%80%E9%AA%8C%E6%95%B0%E6%8D%AE%E7%A7%91%E5%AD%A6%E7%9A%84%E5%BA%95%E7%BA%BF">3.3.4. 置换检验:数据科学的底线</h4>
+
+<p>在探索随机变异性中，置换检验是一种十分有用的启发式过程。它很容易编码，也很容易 理解和解释。针对统计学中那些基于公式的形式主义和“假决定论”，置换检验提供了切 实可行的绕行方法。</p>
+<p>不同于依赖于统计学公式的方法，重抽样的一个优点在于给出了一种更加近乎于“万能” 的推断方法。它所适用的数据可以是数值，也可以是二元的;样本规模可以相同，也可以 不同;并且无须假设数据符合正态分布。</p>
+<h3 class="mume-header" id="34-%E7%BB%9F%E8%AE%A1%E6%98%BE%E8%91%97%E6%80%A7%E5%92%8Cp%E5%80%BC">3.4. 统计显著性和p值</h3>
+
+<p>统计学家引入了统计显著性的概念，用于衡量一个实验(也可以是对已有数据的研究)所生成的结果是否会比随机情况下可能给出的结果更极端。如果生成的结果超出了随机变异 的范围，则我们称它是统计显著的。</p>
+<hr>
+<p><strong>主要术语：</strong></p>
+<ul>
+<li>p值</li>
+</ul>
+<p>对于一个加入了零假设的偶然性模型，p 值指得到与观测结果一样不寻常或极端 的结果的概率。</p>
+<ul>
+<li>α值</li>
+</ul>
+<p>在实际结果的确是统计显著的情况下，α 值指偶然性结果必须超出的“不寻常性” 概率的阈值。</p>
+<ul>
+<li>第一类错误</li>
+</ul>
+<p>错误地将一个由随机导致的效果归结为真。</p>
+<ul>
+<li>第二类错误</li>
+</ul>
+<p>错误地将一个为真的效果归结为由随机导致的。</p>
+<hr>
+<p>以表 3-2 为例，表中数据是 3.1 节中 Web 测试的结果。</p>
+<p><img src="./《面向数据科学家的实用统计学》学习之三_files/13.png" alt=""></p>
+<p>价格 A 的转化情况比价格 B 好近乎 5%(0.8425% 对比 0.8057%，差异为 0.0368%)。当业 务量很大时，这一差异就会具有显著的意义。一个有超过 4.5 万条数据的集合，完全可以 被视为“大数据”，没有必要做统计显著性检验，统计显著性检验主要针对的是小规模样 本中的抽样变异性。不过我们也能看到，此例中的转化率非常低，甚至小于 1%，以至于 实际有意义的值(即转化)只有数百个。事实上，所需的样本规模取决于转化率。我们可 以使用重抽样，检验价格 A 与价格 B 之间的转化差异是否位于随机变异的范围内。这里所 说的随机变异(chance variation)，是指在概率模型中加入“两者在转换率上不存在差异” 这一零假设后，由模型生成的随机变异性(参见 3.2.1 节)。下面我们给出一个置换过程， 该过程的目的是要回答如下问题:“如果两种价格具有相同的转换率，那么随机变异的方 差能否产生 5% 的差异?”</p>
+<p>(1) 将所有的样本结果置于同一个桶中。同一个桶表示假定两种价格具有相同的转换率。在 本例中，我们有 200 + 182 = 382 个 1，23539 + 22406 = 45945 个 0，这样转换率为 382/ (45945 + 382) = 0.008246 = 0.8246%。</p>
+<p>(2) 在桶中做随机混洗，并从中抽出规模为 23 739(与价格 A 的 n 值相同)的重抽样，记 录抽样中 1 的个数。</p>
+<p>(3) 记录桶中余下 22 588(与价格 B 的 n 值相同)个数据点中 1 的个数。</p>
+<p>(4) 记录两者中 1 的比例在百分位数上的差异。</p>
+<p>(5) 重复第 2 步到第 4 步多次。</p>
+<p>(6) 计算其中差异大于或等于 0.0368% 的频数。</p>
+<h4 class="mume-header" id="341-p%E5%80%BC">3.4.1. p值</h4>
+
+<p>在衡量统计显著性时，简单地查看绘图并不是一个非常精确的方法，人们更关注的是 p 值。p 值表示随机模型生成的结果比观测结果更极端的频数。在估计置换检验的 p 值时， 我们可以采用置换检验中生成大于或等于观测差异值的检验次数所占的比例。</p>
+<h4 class="mume-header" id="342-%CE%B1%E5%80%BC">3.4.2. α值</h4>
+
+<p>完全根据研究人员的判断力去确定一个结果是否“太不寻常”因而是偶然的，统计学家无 疑会对此做法大皱眉头。在统计学家看来，正确的做法是提前设定一个阈值，例如“超过 随机(零假设)结果 5%”。这样的阈值被称为 α 值。α 值的常见取值是 5% 和 1%。α 值的 选取具有一定的随意性——该过程无法确保在 x% 的情况下做出正确的决策。原因在于我 们要回答的概率问题并不是“随机发生的概率是多少”，而是“给定一个随机模型，出现 极端结果的概率是多少”。这样我们需要对随机模型的适当性进行逆推，但是在判断过程 中没有任何可依据的概率。这个问题一直困扰着统计学家。</p>
+<p><strong>p值的意义：</strong></p>
+<p>近年来，对 p 值的使用一直存在着相当大的争议。</p>
+<p><strong>更多内容详见书籍。</strong></p>
+<h4 class="mume-header" id="343-%E7%AC%AC%E4%B8%80%E7%B1%BB%E9%94%99%E8%AF%AF%E5%92%8C%E7%AC%AC%E4%BA%8C%E7%B1%BB%E9%94%99%E8%AF%AF">3.4.3. 第一类错误和第二类错误</h4>
+
+<p>在评估统计显著性时，可能会出现下面两种类型的错误。</p>
+<ul>
+<li><strong>第一类错误:</strong> 错误地将仅由随机性导致的效果判定为真。</li>
+<li><strong>第二类错误:</strong> 错误地将实际为真的效果判定为假的(即由随机性导致的)。</li>
+</ul>
+<p>事实上，第二类错误并不是一种错误，它是由于判断样本的规模过小，而无法检测到效 果。如果 p 值不足以表明统计显著性(例如，超过 5%)，我们应称其为“效果未验证”。 增大样本的规模，可能会生成较小的 p 值。</p>
+<p>显著性检验(即<strong>假设检验</strong>)的基本功能就是防止我们被随机性愚弄。因此，我们通常可以 通过构造显著性检验去最小化第一类错误。</p>
+<h4 class="mume-header" id="344-%E6%95%B0%E6%8D%AE%E7%A7%91%E5%AD%A6%E4%B8%8Ep%E5%80%BC">3.4.4. 数据科学与p值</h4>
+
+<p>数据科学家所做的工作一般并不会发表在科学期刊上，因此对 p 值意义的辩论是颇具学术 性的。如果数据科学家想知道一个看上去有意义并且有用的模型结果是否落在随机变异的 范围内，p 值是一种有用的指标。<strong>作为一种在实验中使用的决策工具，p 值不应被视为一 种决定性的因素，而应被视为是另一种可以辅助决策的信息。</strong> 例如，有时可以将 p 值作为 一些统计学或机器学习模型的中间输入值，根据 p 值决定一个特征应该包含在模型中，还 是应该从模型中排除。</p>
+<h3 class="mume-header" id="35-t%E6%A3%80%E9%AA%8C">3.5. t检验</h3>
+
+<p>显著性检验具有多种类型，具体取决于数据集是计数数据还是测量数据、所具有的样本 数量以及测量的具体内容。<strong>t 检验</strong>是其中一种十分常用的检验。t 分布用于估计单个样本均值的分布情况。</p>
+<hr>
+<p><strong>主要术语：</strong></p>
+<ul>
+<li>检验统计量</li>
+</ul>
+<p>对我们所关注的差异或效果的度量。</p>
+<ul>
+<li>t 统计量</li>
+</ul>
+<p>归一化的检验统计量。</p>
+<ul>
+<li>t 分布</li>
+</ul>
+<p>一种用于比较所观测到的 t 统计量的参考分布。对于 t 检验，参考分布是从零假 设生成的。</p>
+<hr>
+<p>所有的显著性检验都要求指定一个<strong>检验统计量</strong>去测量所关注的效果，并确定观测到的效果 是否落在随机变异的范围内。在重抽样检验(参见 3.3.1 节对置换的介绍)中，数据的规 模并不是十分重要。我们从数据本身创建参考(零假设)分布，并据此使用检验统计量。</p>
+<p>统计假设检验形成于 20 世纪 20 年代和 30 年代，当时无法做到对数据随机混洗数千次， 以用于重抽样检验。但是统计学家发现，t 检验很好地近似了置换(随机混洗)分布。t 检 验基于格赛特提出的 t 分布，可以在十分常见的两个样本的比较(即 A/B 测试)中使用， 只要样本中的数据是数值型的。但是在使用 t 分布时，为了排除规模因素的影响，必须对 检验统计量做归一化处理。</p>
+<p>经典的统计学教材在介绍 t 检验时，会列出多个公式，其中包含了格赛特提出的 t 分布。 还会介绍如何对数据做归一化，以便与标准 t 分布做比较。但是在本书中，我们并不会给 出这些公式，因为这些公式已经包含在 R 和 Python 等统计软件的常用命令中。</p>
+<h3 class="mume-header" id="36-%E5%A4%9A%E9%87%8D%E6%A3%80%E9%AA%8C">3.6. 多重检验</h3>
+
+<hr>
+<p><strong>主要术语：</strong></p>
+<ul>
+<li>第一类错误</li>
+</ul>
+<p>错误地得出一个效果是统计显著的结论。</p>
+<ul>
+<li>错误发现率</li>
+</ul>
+<p>在多重检验中，犯第一类错误的比率。</p>
+<ul>
+<li>p 值校正</li>
+</ul>
+<p>用于在同一数据上做多重检验。</p>
+<ul>
+<li>过拟合</li>
+</ul>
+<p>拟合了噪声。</p>
+<hr>
+<p><strong>更多内容详见书籍。</strong></p>
+<h3 class="mume-header" id="37-%E8%87%AA%E7%94%B1%E5%BA%A6">3.7. 自由度</h3>
+
+<p>在许多统计检验的文档和设置中，我们都能看到自由度这一概念。自由度应用于从样本数 据计算得到的统计量，指可以自由变化的值的个数。例如，对于一个具有 10 个值的样本， 如果知道了样本的均值以及样本中的 9 个值，那么第 10 个值也是已知的，即只有 9 个值 是自由变化的。</p>
+<hr>
+<p><strong>主要术语：</strong></p>
+<ul>
+<li>n，即样本规模</li>
+</ul>
+<p>在数据中，观测(也称为行或记录)的数量。</p>
+<ul>
+<li>d.f.</li>
+</ul>
+<p>degrees of freedom(自由度)的简写。</p>
+<hr>
+<p>自由度是很多统计检验的一个输入。例如，在计算方差和标准偏差时，分母 n-1 就是自由 度。为什么要使用自由度?在使用一个样本估计总体的方差时，如果在分母上使用了 n， 那么估计的偏差就会偏小。如果在分母上使用了 n-1，这时估计就是无偏的。</p>
+<p>t 检验、F 检验等各种对假设的标准检验，占据了传统统计学课程或教材的大部分内容。在 传统的统计学公式中，如果使用了经过归一化的样本统计量，自由度就是归一化计算的一 部分，它确保了归一化的数据可以匹配适当的参考分布，如 t 分布、F 分布等。</p>
+<p>自由度对数据科学是否也同样重要?答案是并非如此，至少就显著性检验而言并非如此。 一方面，在数据科学中，我们只是保守地使用了正式的统计检验。另一方面，数据的规模 通常会非常大，这使得对于数据科学家来说，分母是 n 还是 n-1 几乎没有区别。</p>
+<p>但是在数据科学中，有一种场景是与自由度相关的，那就是在回归(包括逻辑回归)中使 用因子化变量。如果在回归算法中使用了完全冗余的预测变量，那么算法就会产生阻塞。 该问题经常出现在将分类变量因子化为二元标识(虚拟变量)的情况下。以星期为例，虽 然一个星期有 7 天，但具体是星期几，其自由度为 6。一旦我们知道某一天并不是从星期 一到星期六中的任意一天，那么它一定是星期天。因此，如果在回归中包括了星期一至星 期六，就意味着也加入了星期天，而由于<strong>多重共线性</strong>(multicollinearity)问题，这将导致 回归失败。</p>
+<h3 class="mume-header" id="38-%E6%96%B9%E5%B7%AE%E5%88%86%E6%9E%90">3.8. 方差分析</h3>
+
+<p>如果我们不是要对两个组做 A/B 测试，而是要对比多个包含数值型数据的组(比如 A、B、 C、D)，这时可以使用方差分析(ANOVA，analysis of variance)。<strong>方差分析是一种检验多 个组之间统计显著性差异的统计学方法。</strong></p>
+<hr>
+<p><strong>主要术语：</strong></p>
+<ul>
+<li>两两对比</li>
+</ul>
+<p>对于有多个组的情况，在两个组之间做假设检验(比如对均值)。</p>
+<ul>
+<li>多项检验(omnibus test)</li>
+</ul>
+<p>一种可以测定多个组均值间方差的单一假设检验。</p>
+<ul>
+<li>方差分解</li>
+</ul>
+<p>从整体统计量中(例如，从整体均值、处理均值以及残差中)，分离出单个值的贡献 情况。</p>
+<ul>
+<li>F 统计量</li>
+</ul>
+<p>一种归一化统计量，用于衡量多个组均值间的差异是否会超过随机模型的预期。</p>
+<ul>
+<li>SS</li>
+</ul>
+<p>sum of square(平方和)的简写，指与某一均值的偏差。</p>
+<hr>
+<p><strong>更多内容详见书籍。</strong></p>
+<h4 class="mume-header" id="381-f%E7%BB%9F%E8%AE%A1%E9%87%8F">3.8.1. F统计量</h4>
+
+<p>在比较两组的均值时，我们可以使用 t 检验替代置换检验。类似地，对于方差分析而言， 存在一种基于 F 统计量的统计检验。F 统计量基于各组均值间的方差(即处理效果)与由 于残差所导致的方差间的比率。比率越高，结果就越统计显著。如果数据遵循正态分布， 那么根据统计学理论，统计量也应符合某种分布。由此，p 值也是可以计算的。</p>
+<p><strong>更多内容详见书籍。</strong></p>
+<h4 class="mume-header" id="382-%E5%8F%8C%E5%90%91%E6%96%B9%E5%B7%AE%E5%88%86%E6%9E%90">3.8.2. 双向方差分析</h4>
+
+<p><strong>更多内容详见书籍。</strong></p>
+<h3 class="mume-header" id="39-%E5%8D%A1%E6%96%B9%E6%A3%80%E9%AA%8C">3.9. 卡方检验</h3>
+
+<p>通常在 Web 测试中，需要一次检验多个处理，这超出了 A/B 测试的范围。卡方检验适用 于计数数据，它可以检验数据与预期分布的拟合程度。在统计实践中，<strong>卡方</strong>统计量的最常 见用法是与 r×c 列联表一起使用，以评估对变量间独立性的零假设是否合理。</p>
+<hr>
+<p><strong>主要术语：</strong></p>
+<ul>
+<li>卡方统计量</li>
+</ul>
+<p>观测数据偏离预期程度的量度。</p>
+<ul>
+<li>期望值 / 期望</li>
+</ul>
+<p>在某种假设(通常是零假设)下，我们期望数据能给出的结果。</p>
+<ul>
+<li>d.f.</li>
+</ul>
+<p>自由度。</p>
+<hr>
+<h4 class="mume-header" id="391-%E5%8D%A1%E6%96%B9%E6%A3%80%E9%AA%8C%E4%B8%80%E7%A7%8D%E9%87%8D%E6%8A%BD%E6%A0%B7%E6%96%B9%E6%B3%95">3.9.1. 卡方检验:一种重抽样方法</h4>
+
+<p><strong>更多内容详见书籍。</strong></p>
+<h4 class="mume-header" id="392-%E5%8D%A1%E6%96%B9%E6%A3%80%E9%AA%8C%E7%BB%9F%E8%AE%A1%E7%90%86%E8%AE%BA">3.9.2. 卡方检验:统计理论</h4>
+
+<p><strong>更多内容详见书籍。</strong></p>
+<h4 class="mume-header" id="393-%E8%B4%B9%E8%88%8D%E5%B0%94%E7%B2%BE%E7%A1%AE%E6%A3%80%E9%AA%8C">3.9.3. 费舍尔精确检验</h4>
+
+<p>卡方分布可以很好地近似上面所介绍的混洗重抽样检验过程，但是它并不适用于计数非常 低(达到个位数，特别是少于 5 个)的情况。在这种情况下，重抽样过程本身就能给出更 精确的 p 值。事实上，大多数统计软件都可以实际列出所有可能出现的重排(置换)情 况及其频数，进而确定观测结果的极端程度。这一操作被称为<strong>费舍尔精确检验</strong>(Fisher’s exact test)。</p>
+<p><strong>更多内容详见书籍。</strong></p>
+<h4 class="mume-header" id="394-%E4%B8%8E%E6%95%B0%E6%8D%AE%E7%A7%91%E5%AD%A6%E7%9A%84%E5%85%B3%E8%81%94">3.9.4. 与数据科学的关联</h4>
+
+<p>卡方检验的大多数标准用法(以及费舍尔精确检验)，与数据科学的联系并不是十分紧密。 在大多数数据科学实验中，无论是 A/B 测试，还是 A/B/C......测试，实验目标并不是要简 单地确定统计显著性，而是要给出最佳的处理。对此，多臂老虎机算法(参见 3.10 节)可 以给出更完整的解决方案。</p>
+<p>在数据科学中，卡方检验(尤其是费舍尔精确检验)的一个应用是确定适当的 Web 实验样 本规模。在此类实验中，尽管具有大量的页面展示，但是点击率通常很低。过小的计数率 可能会导致实验无法得出确定的结论。这时可以使用费舍尔精确检验、卡方检验等检验方 法，计算检验效能和样本规模(参见 3.11 节)。</p>
+<p>在科学研究中，一些研究人员广泛地使用了卡方检验，以确定难以捉摸的统计显著性 p 值，进而使自己的研究成果适合发表。在数据科学的应用中，并不是将卡方检验或类似的 重抽样模拟作为正式的显著性检验，而是更多地将此类检验方法作为一种过滤器，用以确 定某个效应或特征是否值得进一步考虑。例如，此类方法可用于空间统计学和映射中，以 确定空间数据是否符合某个指定的零分布，例如集中在某一区域的犯罪率是否大于随机性 所允许的程度。此类方法还可以用于机器学习中的自动特征选择，通过判定各个特性的主 要类是否符合随机变异的范围，即是否存在过高或过低的问题，进而确定特性的主要类。</p>
+<h3 class="mume-header" id="310-%E5%A4%9A%E8%87%82%E8%80%81%E8%99%8E%E6%9C%BA%E7%AE%97%E6%B3%95">3.10. 多臂老虎机算法</h3>
+
+<p>多臂老虎机算法(multi-arm bandit algorithm)是一种检验方法，尤其适用于 Web 测试。相 比于传统的统计学实验设计方法，它实现了明显的优化，并且能更快地做出决策。</p>
+<hr>
+<p><strong>主要术语：</strong></p>
+<ul>
+<li>多臂老虎机</li>
+</ul>
+<p>一种假想的老虎机，提供多个拉杆供用户选择，每个拉杆对应不同的收益，用于 模拟多处理实验。</p>
+<ul>
+<li>臂</li>
+</ul>
+<p>表示实验中的一个处理，例如 Web 测试中的标题 A。 获胜</p>
+<ul>
+<li>获胜</li>
+</ul>
+<p>通过实验模拟老虎机上的获胜，例如客户点击了链接。</p>
+<hr>
+<p>传统的 A/B 测试需要根据特定的设计在实验中采集数据，去回答某个具体的问题，例如: “处理 A 和处理 B 哪个更好?”假定一旦问题得到解答，就结束实验，然后继续操作结果。</p>
+<p>你可能已经发现，使用这一方法存在几个问题。首先，我们得到的答案并不是结论性的， 即“效果未证明”。换句话说，实验结果可能会表明一个效果，但是我们没有足够的样本去证明所表明的效果，也就无法确定效果是否符合传统的统计标准。这并未回答我们应该 做出什么决策的问题。其次，我们可能希望在实验得出结论前，就开始利用之前获得的结 果。再次，我们希望能根据实验结束后获得的其他数据，去更改我们的决策，或是尝试其 他的事情。传统的实验方法和假设检验方法可以追溯至 20 世纪 20 年代，这些方法是相当 僵化的。随着具有强大计算能力的计算机和软件的出现，我们可以使用一些更强大、更灵 活的方法。此外，数据科学(包括商业)并不十分关注统计显著性，而是更加关注整体工 作和结果的优化。</p>
+<p>多臂老虎机算法在 Web 测试中广受欢迎。它可以一次测试多个处理，相比于传统的统计设 计，它能更快地得出结论。该算法以赌博中使用的老虎机命名，也称“单臂老虎机”，因 为该算法在配置上实现了稳定地从赌徒那里掠取金钱。让我们想象一台有多个拉杆的老虎 机，每个拉杆以不同的速率付款，这就是一个多臂老虎机，即该算法全称的由来。</p>
+<p>我们的目标是尽可能赢取更多的钱。具体地说，越早识别并确定可以获胜的拉杆越好。但 是挑战在于，我们并不知道各个老虎机拉杆的回报速率，只知道拉动老虎机拉杆的结果。 我们假设无论拉的是哪个拉杆，每次“获胜”将得到相同数额的回报，不同之处只在于获 胜的概率。进一步假设，我们初始尝试拉动每个拉杆 50 次，得到以下结果。</p>
+<ul>
+<li>拉杆 A:拉动 50 次，获胜 10 次。</li>
+<li>拉杆B:拉动50次，获胜2次。</li>
+<li>拉杆C:拉动50次，获胜4次。</li>
+</ul>
+<p>一种极端的做法是:“拉杆 A 看起来像是赢家。因此让我们放弃尝试拉动其他的拉杆，一 直拉动拉杆 B。”该做法充分利用了初始试验的结果。如果拉杆 A 的确更优，我们就可以 尽早从中受益。但另一方面，如果拉杆 B 和拉杆 C 事实上更好，那么我们就会失去发现这 一点的偶然性。另一种极端的做法是:“这看上去完全在随机范围内。让我们继续以均等 的可能性拉动各个拉杆。”这一做法将给予拉杆 A 的替代者们一个充分展示的偶然性。但 是在此过程中，我们的处理看上去并非最优。问题在于这一做法将持续多长时间?老虎机 算法采用了一种混合的方法。一开始，我们更频繁地拉动拉杆 A，充分利用该拉杆初始看 上去更优的结果。但我们并未放弃拉杆 B 和拉杆 C，只是较少地拉动它们。如果拉杆 A 持 续表现优异，我们将继续少拉动拉杆 B 和拉杆 C，而是更频繁地拉动拉杆 A。而如果拉杆 C 的表现开始变好，拉杆 A 的结果开始变糟，这时我们可以减少拉动拉杆 A 的次数，转而 频繁地拉动拉杆 C。如果其中一个拉杆被证明是优于拉杆 A 的，只是由于随机性导致它未 在初始试验中显现出来，那么现在就有偶然性在进一步的检验中得以显现。</p>
+<p>一个更复杂的算法使用了汤普森抽样(Thompson’s sampling)方法。我们可以在每个阶段 中做一次“抽样”(拉动拉杆)，以最大化选择最佳拉杆的可能性。当然，我们并不知道哪 个拉杆是最佳的，而问题完全在于此!但是随着每一次连续的抽取，我们都能获得收益， 进而获得更多的信息。汤普森抽样采用了贝叶斯方法。它首先使用 Beta 分布假设回报的 先验分布。Beta 分布常用于指定贝叶斯问题中的先验情况。随着每次抽取信息的累积，通 过更新累积信息，我们就可以更好地优化下一次抽取，直至选取最优的拉杆。</p>
+<p>老虎机算法可以有效地应对三种以上的处理，并趋向于最佳选择的方向。对于传统的统计 检验过程而言，三种以上处理决策的复杂性，远远超出了传统的 A/B 测试，因此老虎机算 法颇具优势。</p>
+<p><strong>更多内容详见书籍。</strong></p>
+<h3 class="mume-header" id="311-%E6%A3%80%E9%AA%8C%E6%95%88%E8%83%BD%E5%92%8C%E6%A0%B7%E6%9C%AC%E8%A7%84%E6%A8%A1">3.11. 检验效能和样本规模</h3>
+
+<p><strong>更多内容详见书籍。</strong></p>
+<hr>
+
+      </div>
+      
+      
+    
+    
+    
+    
+    
+    
+    
+    
+  </body></html>

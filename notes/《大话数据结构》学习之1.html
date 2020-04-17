@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<!-- saved from url=(0099)file:///private/var/folders/jq/l66hzx9956qbmxs_990g1djh0000gn/T/mume2020317-90899-15b4602.p9l4.html -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+      <title>《大话数据结构》学习之1</title>
+      
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      
+      <link rel="stylesheet" href="./《大话数据结构》学习之1_files/katex.min.css">
+      
+      
+
+      
+      
+      
+      
+      
+      
+      
+
+      <style>
+      /**
+ * prism.js Github theme based on GitHub's theme.
+ * @author Sam Clarke
+ */
+code[class*="language-"],
+pre[class*="language-"] {
+  color: #333;
+  background: none;
+  font-family: Consolas, "Liberation Mono", Menlo, Courier, monospace;
+  text-align: left;
+  white-space: pre;
+  word-spacing: normal;
+  word-break: normal;
+  word-wrap: normal;
+  line-height: 1.4;
+
+  -moz-tab-size: 8;
+  -o-tab-size: 8;
+  tab-size: 8;
+
+  -webkit-hyphens: none;
+  -moz-hyphens: none;
+  -ms-hyphens: none;
+  hyphens: none;
+}
+
+/* Code blocks */
+pre[class*="language-"] {
+  padding: .8em;
+  overflow: auto;
+  /* border: 1px solid #ddd; */
+  border-radius: 3px;
+  /* background: #fff; */
+  background: #f5f5f5;
+}
+
+/* Inline code */
+:not(pre) > code[class*="language-"] {
+  padding: .1em;
+  border-radius: .3em;
+  white-space: normal;
+  background: #f5f5f5;
+}
+
+.token.comment,
+.token.blockquote {
+  color: #969896;
+}
+
+.token.cdata {
+  color: #183691;
+}
+
+.token.doctype,
+.token.punctuation,
+.token.variable,
+.token.macro.property {
+  color: #333;
+}
+
+.token.operator,
+.token.important,
+.token.keyword,
+.token.rule,
+.token.builtin {
+  color: #a71d5d;
+}
+
+.token.string,
+.token.url,
+.token.regex,
+.token.attr-value {
+  color: #183691;
+}
+
+.token.property,
+.token.number,
+.token.boolean,
+.token.entity,
+.token.atrule,
+.token.constant,
+.token.symbol,
+.token.command,
+.token.code {
+  color: #0086b3;
+}
+
+.token.tag,
+.token.selector,
+.token.prolog {
+  color: #63a35c;
+}
+
+.token.function,
+.token.namespace,
+.token.pseudo-element,
+.token.class,
+.token.class-name,
+.token.pseudo-class,
+.token.id,
+.token.url-reference .token.variable,
+.token.attr-name {
+  color: #795da3;
+}
+
+.token.entity {
+  cursor: help;
+}
+
+.token.title,
+.token.title .token.punctuation {
+  font-weight: bold;
+  color: #1d3e81;
+}
+
+.token.list {
+  color: #ed6a43;
+}
+
+.token.inserted {
+  background-color: #eaffea;
+  color: #55a532;
+}
+
+.token.deleted {
+  background-color: #ffecec;
+  color: #bd2c00;
+}
+
+.token.bold {
+  font-weight: bold;
+}
+
+.token.italic {
+  font-style: italic;
+}
+
+
+/* JSON */
+.language-json .token.property {
+  color: #183691;
+}
+
+.language-markup .token.tag .token.punctuation {
+  color: #333;
+}
+
+/* CSS */
+code.language-css,
+.language-css .token.function {
+  color: #0086b3;
+}
+
+/* YAML */
+.language-yaml .token.atrule {
+  color: #63a35c;
+}
+
+code.language-yaml {
+  color: #183691;
+}
+
+/* Ruby */
+.language-ruby .token.function {
+  color: #333;
+}
+
+/* Markdown */
+.language-markdown .token.url {
+  color: #795da3;
+}
+
+/* Makefile */
+.language-makefile .token.symbol {
+  color: #795da3;
+}
+
+.language-makefile .token.variable {
+  color: #183691;
+}
+
+.language-makefile .token.builtin {
+  color: #0086b3;
+}
+
+/* Bash */
+.language-bash .token.keyword {
+  color: #0086b3;
+}
+
+/* highlight */
+pre[data-line] {
+  position: relative;
+  padding: 1em 0 1em 3em;
+}
+pre[data-line] .line-highlight-wrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: transparent;
+  display: block;
+  width: 100%;
+}
+
+pre[data-line] .line-highlight {
+  position: absolute;
+  left: 0;
+  right: 0;
+  padding: inherit 0;
+  margin-top: 1em;
+  background: hsla(24, 20%, 50%,.08);
+  background: linear-gradient(to right, hsla(24, 20%, 50%,.1) 70%, hsla(24, 20%, 50%,0));
+  pointer-events: none;
+  line-height: inherit;
+  white-space: pre;
+}
+
+pre[data-line] .line-highlight:before, 
+pre[data-line] .line-highlight[data-end]:after {
+  content: attr(data-start);
+  position: absolute;
+  top: .4em;
+  left: .6em;
+  min-width: 1em;
+  padding: 0 .5em;
+  background-color: hsla(24, 20%, 50%,.4);
+  color: hsl(24, 20%, 95%);
+  font: bold 65%/1.5 sans-serif;
+  text-align: center;
+  vertical-align: .3em;
+  border-radius: 999px;
+  text-shadow: none;
+  box-shadow: 0 1px white;
+}
+
+pre[data-line] .line-highlight[data-end]:after {
+  content: attr(data-end);
+  top: auto;
+  bottom: .4em;
+}html body{font-family:"Helvetica Neue",Helvetica,"Segoe UI",Arial,freesans,sans-serif;font-size:16px;line-height:1.6;color:#333;background-color:#fff;overflow:initial;box-sizing:border-box;word-wrap:break-word}html body>:first-child{margin-top:0}html body h1,html body h2,html body h3,html body h4,html body h5,html body h6{line-height:1.2;margin-top:1em;margin-bottom:16px;color:#000}html body h1{font-size:2.25em;font-weight:300;padding-bottom:.3em}html body h2{font-size:1.75em;font-weight:400;padding-bottom:.3em}html body h3{font-size:1.5em;font-weight:500}html body h4{font-size:1.25em;font-weight:600}html body h5{font-size:1.1em;font-weight:600}html body h6{font-size:1em;font-weight:600}html body h1,html body h2,html body h3,html body h4,html body h5{font-weight:600}html body h5{font-size:1em}html body h6{color:#5c5c5c}html body strong{color:#000}html body del{color:#5c5c5c}html body a:not([href]){color:inherit;text-decoration:none}html body a{color:#08c;text-decoration:none}html body a:hover{color:#00a3f5;text-decoration:none}html body img{max-width:100%}html body>p{margin-top:0;margin-bottom:16px;word-wrap:break-word}html body>ul,html body>ol{margin-bottom:16px}html body ul,html body ol{padding-left:2em}html body ul.no-list,html body ol.no-list{padding:0;list-style-type:none}html body ul ul,html body ul ol,html body ol ol,html body ol ul{margin-top:0;margin-bottom:0}html body li{margin-bottom:0}html body li.task-list-item{list-style:none}html body li>p{margin-top:0;margin-bottom:0}html body .task-list-item-checkbox{margin:0 .2em .25em -1.8em;vertical-align:middle}html body .task-list-item-checkbox:hover{cursor:pointer}html body blockquote{margin:16px 0;font-size:inherit;padding:0 15px;color:#5c5c5c;border-left:4px solid #d6d6d6}html body blockquote>:first-child{margin-top:0}html body blockquote>:last-child{margin-bottom:0}html body hr{height:4px;margin:32px 0;background-color:#d6d6d6;border:0 none}html body table{margin:10px 0 15px 0;border-collapse:collapse;border-spacing:0;display:block;width:100%;overflow:auto;word-break:normal;word-break:keep-all}html body table th{font-weight:bold;color:#000}html body table td,html body table th{border:1px solid #d6d6d6;padding:6px 13px}html body dl{padding:0}html body dl dt{padding:0;margin-top:16px;font-size:1em;font-style:italic;font-weight:bold}html body dl dd{padding:0 16px;margin-bottom:16px}html body code{font-family:Menlo,Monaco,Consolas,'Courier New',monospace;font-size:.85em !important;color:#000;background-color:#f0f0f0;border-radius:3px;padding:.2em 0}html body code::before,html body code::after{letter-spacing:-0.2em;content:"\00a0"}html body pre>code{padding:0;margin:0;font-size:.85em !important;word-break:normal;white-space:pre;background:transparent;border:0}html body .highlight{margin-bottom:16px}html body .highlight pre,html body pre{padding:1em;overflow:auto;font-size:.85em !important;line-height:1.45;border:#d6d6d6;border-radius:3px}html body .highlight pre{margin-bottom:0;word-break:normal}html body pre code,html body pre tt{display:inline;max-width:initial;padding:0;margin:0;overflow:initial;line-height:inherit;word-wrap:normal;background-color:transparent;border:0}html body pre code:before,html body pre tt:before,html body pre code:after,html body pre tt:after{content:normal}html body p,html body blockquote,html body ul,html body ol,html body dl,html body pre{margin-top:0;margin-bottom:16px}html body kbd{color:#000;border:1px solid #d6d6d6;border-bottom:2px solid #c7c7c7;padding:2px 4px;background-color:#f0f0f0;border-radius:3px}@media print{html body{background-color:#fff}html body h1,html body h2,html body h3,html body h4,html body h5,html body h6{color:#000;page-break-after:avoid}html body blockquote{color:#5c5c5c}html body pre{page-break-inside:avoid}html body table{display:table}html body img{display:block;max-width:100%;max-height:100%}html body pre,html body code{word-wrap:break-word;white-space:pre}}.markdown-preview{width:100%;height:100%;box-sizing:border-box}.markdown-preview .pagebreak,.markdown-preview .newpage{page-break-before:always}.markdown-preview pre.line-numbers{position:relative;padding-left:3.8em;counter-reset:linenumber}.markdown-preview pre.line-numbers>code{position:relative}.markdown-preview pre.line-numbers .line-numbers-rows{position:absolute;pointer-events:none;top:1em;font-size:100%;left:0;width:3em;letter-spacing:-1px;border-right:1px solid #999;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}.markdown-preview pre.line-numbers .line-numbers-rows>span{pointer-events:none;display:block;counter-increment:linenumber}.markdown-preview pre.line-numbers .line-numbers-rows>span:before{content:counter(linenumber);color:#999;display:block;padding-right:.8em;text-align:right}.markdown-preview .mathjax-exps .MathJax_Display{text-align:center !important}.markdown-preview:not([for="preview"]) .code-chunk .btn-group{display:none}.markdown-preview:not([for="preview"]) .code-chunk .status{display:none}.markdown-preview:not([for="preview"]) .code-chunk .output-div{margin-bottom:16px}.scrollbar-style::-webkit-scrollbar{width:8px}.scrollbar-style::-webkit-scrollbar-track{border-radius:10px;background-color:transparent}.scrollbar-style::-webkit-scrollbar-thumb{border-radius:5px;background-color:rgba(150,150,150,0.66);border:4px solid rgba(150,150,150,0.66);background-clip:content-box}html body[for="html-export"]:not([data-presentation-mode]){position:relative;width:100%;height:100%;top:0;left:0;margin:0;padding:0;overflow:auto}html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{position:relative;top:0}@media screen and (min-width:914px){html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{padding:2em calc(50% - 457px + 2em)}}@media screen and (max-width:914px){html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{padding:2em}}@media screen and (max-width:450px){html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{font-size:14px !important;padding:1em}}@media print{html body[for="html-export"]:not([data-presentation-mode]) #sidebar-toc-btn{display:none}}html body[for="html-export"]:not([data-presentation-mode]) #sidebar-toc-btn{position:fixed;bottom:8px;left:8px;font-size:28px;cursor:pointer;color:inherit;z-index:99;width:32px;text-align:center;opacity:.4}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] #sidebar-toc-btn{opacity:1}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc{position:fixed;top:0;left:0;width:300px;height:100%;padding:32px 0 48px 0;font-size:14px;box-shadow:0 0 4px rgba(150,150,150,0.33);box-sizing:border-box;overflow:auto;background-color:inherit}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar{width:8px}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-track{border-radius:10px;background-color:transparent}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-thumb{border-radius:5px;background-color:rgba(150,150,150,0.66);border:4px solid rgba(150,150,150,0.66);background-clip:content-box}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc a{text-decoration:none}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc ul{padding:0 1.6em;margin-top:.8em}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc li{margin-bottom:.8em}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc ul{list-style-type:none}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{left:300px;width:calc(100% -  300px);padding:2em calc(50% - 457px -  150px);margin:0;box-sizing:border-box}@media screen and (max-width:1274px){html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{padding:2em}}@media screen and (max-width:450px){html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{width:100%}}html body[for="html-export"]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .markdown-preview{left:50%;transform:translateX(-50%)}html body[for="html-export"]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .md-sidebar-toc{display:none}
+/* Please visit the URL below for more information: */
+/*   https://shd101wyy.github.io/markdown-preview-enhanced/#/customize-css */
+
+      </style>
+    </head>
+    <body for="html-export">
+      <div class="mume markdown-preview  ">
+      <h1 class="mume-header" id="%E5%A4%A7%E8%AF%9D%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%AD%A6%E4%B9%A0">《大话数据结构》学习</h1>
+
+<h3 class="mume-header" id="%E5%A4%A7%E8%AF%9D%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%AD%A6%E4%B9%A0%E4%B9%8B%E4%B8%80%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E7%BB%AA%E8%AE%BA">《大话数据结构》学习之一：数据结构绪论</h3>
+
+<hr>
+<h2 class="mume-header" id="1-%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E7%BB%AA%E8%AE%BA">1. 数据结构绪论</h2>
+
+<p>数据结构：是相互之间存在一种或多种特定关系的数据元素的集合。</p>
+<h3 class="mume-header" id="11-%E5%BC%80%E5%9C%BA%E7%99%BD">1.1. 开场白</h3>
+
+<h3 class="mume-header" id="12-%E4%BD%A0%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E6%80%8E%E4%B9%88%E5%AD%A6%E7%9A%84">1.2. 你数据结构怎么学的？</h3>
+
+<h3 class="mume-header" id="13-%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E8%B5%B7%E6%BA%90">1.3. 数据结构起源</h3>
+
+<p>数据结构是一门研究非数值计算的程序设计问题中的操作对象，以及它们之间的关系和操作等相关问题的学科。</p>
+<h3 class="mume-header" id="14-%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5%E5%92%8C%E6%9C%AF%E8%AF%AD">1.4. 基本概念和术语</h3>
+
+<h4 class="mume-header" id="141-%E6%95%B0%E6%8D%AE">1.4.1. 数据</h4>
+
+<p><strong>数据：</strong> 是描述客观事物的符号，是计算机中可以操作的对象，是能被计算机识别，并输入给计算机处理的符号集合。数据不仅仅包括整型、实型等数值类型，还包括字符及声音、图像、视频等非数值类型。</p>
+<p>这里说的数据就是符号，必须具备两个前提：</p>
+<ul>
+<li>可以输入到计算机中</li>
+<li>能被计算机程序处理</li>
+</ul>
+<p>对于整型、实型等数值类型，可以进行数值计算。</p>
+<p>对于字符数据类型，就需要进行非数值的处理。而声音、图像、视频等其实是可以通过编码的手段变成字符数据来处理的。</p>
+<h4 class="mume-header" id="142-%E6%95%B0%E6%8D%AE%E5%85%83%E7%B4%A0">1.4.2. 数据元素</h4>
+
+<p><strong>数据元素：</strong> 是组成数据的、有一定意义的基本单位，在计算机中通常作为整体处理。也被称为记录。</p>
+<p>比如，在人类中人就是数据元素。在禽类中，牛、马、羊等就是数据元素。</p>
+<h4 class="mume-header" id="143-%E6%95%B0%E6%8D%AE%E9%A1%B9">1.4.3. 数据项</h4>
+
+<p><strong>数据项：</strong> 一个数据元素可以由若干个数据项组成。</p>
+<p>比如人这样的数据元素，可以有眼、耳、鼻等这些数据项，也可以有姓名、年龄、性别等这些数据项，具体有哪些数据项，要视你做的系统来决定。</p>
+<p>数据项是数据不可分割的最小单位。但真正讨论问题时，数据元素才是数据结构中建立数据模型的着眼点。</p>
+<h4 class="mume-header" id="144-%E6%95%B0%E6%8D%AE%E5%AF%B9%E8%B1%A1">1.4.4. 数据对象</h4>
+
+<p><strong>数据对象：</strong> 是性质相同的数据元素的集合，是数据的子集。</p>
+<p>性质相同是指数据元素具有相同数量和类型的数据项，比如，还是刚才的例子，人拥有姓名、生日、性别等相同的数据项。</p>
+<p>既然数据对象是数据的子集，在实际应用中，处理数据的数据元素通常具有相同性质，在不产生混淆的情况下，我们都将数据对象简称为数据。</p>
+<h4 class="mume-header" id="145-%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84">1.4.5. 数据结构</h4>
+
+<p><strong>数据结构：</strong> 是相互之间存在一种或多种特定关系的数据元素的集合。</p>
+<p>在计算机中，数据元素并不是孤立、杂乱无序的，而是具有内在联系的数据集合。数据元素之间存在的一种或多种特定关系，也就是数据的组织形式。</p>
+<p>结构：指各个组成部分相互搭配和排列的方式。简单的理解就是关系，比如分子结构，就是说组成分子的原子之间的排列方式。</p>
+<p>为编写出一个“好”的程序，必须分析待处理对象的特性及各处理对象之间存在的关系。这也就是研究数据结构的意义所在。</p>
+<h3 class="mume-header" id="15-%E9%80%BB%E8%BE%91%E7%BB%93%E6%9E%84%E4%B8%8E%E7%89%A9%E7%90%86%E7%BB%93%E6%9E%84">1.5. 逻辑结构与物理结构</h3>
+
+<p>按照视点的不同，把数据结构分为逻辑结构和物理结构。</p>
+<h4 class="mume-header" id="151-%E9%80%BB%E8%BE%91%E7%BB%93%E6%9E%84">1.5.1. 逻辑结构</h4>
+
+<p><strong>逻辑结构：</strong> 指数据对象中数据元素之间的相互关系。（这也是我们今后最需要关注的问题。）</p>
+<p>逻辑结构分为以下四种：</p>
+<ol>
+<li>集合结构</li>
+</ol>
+<p>集合结构中的数据元素除了同属于一个集合外没有其他关系。各个数据元素是“平等”的，共同属性是“同属于一个集合”。集合关系就类似于数学中的集合。</p>
+<p><img src="./《大话数据结构》学习之1_files/01.png" alt=""></p>
+<ol start="2">
+<li>线性结构</li>
+</ol>
+<p>线性结构中的数据元素之间是一对一的关系。</p>
+<p><img src="./《大话数据结构》学习之1_files/02.png" alt=""></p>
+<ol start="3">
+<li>树形结构</li>
+</ol>
+<p>树形结构中的数据元素之间存在一种一对多的层次关系。</p>
+<p><img src="./《大话数据结构》学习之1_files/03.png" alt=""></p>
+<ol start="4">
+<li>图形结构</li>
+</ol>
+<p>图形结构的数据元素是多对多的关系。</p>
+<p><img src="./《大话数据结构》学习之1_files/04.png" alt=""></p>
+<p>用示意图表示数据的逻辑结构时，要注意两点：</p>
+<ol>
+<li>将每一个数据元素看做一个结点，用圆圈表示。</li>
+<li>元素之间的逻辑关系用结点之间的连线表示，如果这个关系是有方向的，那么用带箭头的连线表示。</li>
+</ol>
+<p>从之前的例子也可以看出，逻辑结构是针对具体问题的，是为了解决某个问题，在对问题理解的基础上，选择一个合适的数据结构表示数据元素之间的逻辑关系。</p>
+<h4 class="mume-header" id="152-%E7%89%A9%E7%90%86%E7%BB%93%E6%9E%84%E5%AD%98%E5%82%A8%E7%BB%93%E6%9E%84">1.5.2. 物理结构（存储结构）</h4>
+
+<p><strong>物理结构：</strong> 指数据的逻辑结构在计算机中的存储形式。</p>
+<p>数据是<strong>数据元素</strong>的集合，根据物理结构的定义，实际上就是如何<strong>把数据元素存储到计算机的存储器中</strong>。存储器主要是针对内存而言的，像硬盘、软盘、光盘等外部存储器的数据组织通常用文件结构来描述。</p>
+<p>数据的存储结构应正确反映数据元素之间的逻辑关系，这才是最为关键的，如何存储数据元素之间的逻辑关系，是实现物理结构的重点和难点。</p>
+<p>数据元素的存储结构形式有两种：顺序存储和链式存储。</p>
+<ol>
+<li>顺序存储结构</li>
+</ol>
+<p>顺序存储结构是把数据元素存放在地址连续的存储单元里，其数据间的逻辑关系和物理关系是一致的。如下图：</p>
+<p><img src="./《大话数据结构》学习之1_files/05.png" alt=""></p>
+<p>这种存储结构其实很简单，说白了，就是排队占位。大家都按顺序排好，每个人占一小段空间，大家谁也别插谁的队。我们之前学计算机语言时，数组就是这样的顺序存储结构。当你告诉计算机，你要建立一个有 9 个整型数据的数组时，计算机就在内存中找了片空地，按照一个整型所占位置的大小乘以 9，开辟一段连续的空间，于是第一个数组数据就放在第一个位置，第二个数据放在第二个，这样依次摆放。</p>
+<ol start="2">
+<li>链式存储结构</li>
+</ol>
+<p>链式存储结构是把数据元素存放在任意的存储单元里，这组存储单元可以是连续的，也可以是不连续的。数据元素的存储关系并不能反映其逻辑关系，需要用一个指针存放数据元素的地址，通过地址就可以找到相关联数据元素的位置。如下图：</p>
+<p><img src="./《大话数据结构》学习之1_files/06.png" alt=""></p>
+<p>显然，链式存储就灵活多了，数据存在哪里不重要，只要有一个指针存放了相应的地址就能找到它了。</p>
+<p>逻辑结构是面向问题的，而物理结构是面向计算机的，其基本的目标就是将数据及其逻辑关系存储到计算机的内存中。</p>
+<h3 class="mume-header" id="16-%E6%8A%BD%E8%B1%A1%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B">1.6. 抽象数据类型</h3>
+
+<h4 class="mume-header" id="161-%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B">1.6.1. 数据类型</h4>
+
+<p>数据类型：是指一组性质相同的值的集合及定义在此集合上的一些操作的总称。</p>
+<p>数据类型是按照值的不同进行划分的。在高级语言中，每个变量、常量和表达式都有各自的取值范围。类型就用来说明变量或表达式的取值范围和所能进行的操作。</p>
+<p>在C语言中，按照取值的不同，数据类型可以分为两类：</p>
+<ol>
+<li>
+<p>原子类型：是不可以再分解的基本类型，包括整型、实型、字符型等。</p>
+</li>
+<li>
+<p>结构类型：由若干个类型组合而成，是可以再分解的。例如，整型数组是由若干整型数据组成的。</p>
+</li>
+</ol>
+<p>比如，在C语言中变量声明int a,b，这就意味着，在给变量a和b赋值时不能超出int的取值范围，变量a和b之间的运算只能是int类型所允许的运算。</p>
+<p>因为不同的计算机有不同的硬件系统，这就要求程序语言最终通过编译器或解释器转换成底层语言，如汇编语言甚至是通过机器语言的数据类型来实现的。可事实上，高级语言的编程者不管最终程序运行在什么计算机上，他的目的就是为了实现两个整型数字的运算，如 <code>a+b</code>、 <code>a-b</code>、 <code>axb</code> 和 <code>a/b</code> 等，他才不关心整数在计算机内部是如何表示的，也不想知道 CPU 为了实现 <code>1+2</code> 进行几次开关操作，这些操作是如何实现的，对高级语言开发者来讲根本不重要。于是我们就会考虑，无论什么计算机、什么计算机语言，大都会面临着如整数运算、实数运算、字符运算等操作，我们可以考虑把它们都抽象出来。</p>
+<p>抽象：指抽取出事物具有的普遍性的本质。它是抽出问题的特征而忽略非本质的细节，是对具体事物的一个概括。抽象是一种思考问题的方式，它隐藏了繁杂的细节，只保留实现目标所必需的信息。</p>
+<h4 class="mume-header" id="162-%E6%8A%BD%E8%B1%A1%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B">1.6.2. 抽象数据类型</h4>
+
+<p>我们对已有的数据类型进行抽象，就有了抽象数据类型。</p>
+<p><strong>抽象数据类型（Abstract Data Type，ADT）：指一个数学模型及定义在该模型上的一组操作。</strong> 抽象数据类型的定义取决于它的一组逻辑特性，而与其在计算机内部如何表示和实现无关。</p>
+<p>比如刚才的例子，各个计算机，不管是大型机、小型机、PC、平板电脑、PDA，甚至智能手机都拥有“整数”类型，也需要整数间的运算，那么整型其实就是一个抽象数据类型，尽管它在上面提到的这些在不同计算机中实现方法上可能不一样，但由于其定义的数学特性相同，在计算机编程者符来，它们都是相同的。因此，<strong>“抽象”的意义在于数据类型的数学抽象特性。</strong></p>
+<p>而且，抽象数据类型不仅仅指那些已经定义并实现的数据类型，还可以是计算机编程者在设计软件程序时自己定义的数据类型，比如我们编写关于计算机绘图或者地图类的软件系统，经常都会用到坐标。也就是说，总是有成对出现的 x 和 y，在 3D 系统中还有 z 出现，既然这三个整型数字是始终在一起出现，我们就定义一个叫 point 的抽象数据类型，它有 x、y、z 三个整型变量，这样我们很方便地操作一个 point 数据变量就能知道这一点的坐标了 。</p>
+<p>根据抽象数据类型的定义，它还包括定义在该模型上的一组操作。就像超级玛丽这个经典的任天堂游戏，里面的游戏主角是马里奥（Mario）。 我们给他定义了几种基本操作，走（前进、后退、上、下）、跳、打子弹等。一个抽象数据类型定义了：一个数据对象、数据对象中各数据元素之间的关系及对数据元素的操作。至于，一个抽象数据类型到底需要哪些操作，这就只能由设计者根据实际需要来定。像马里奥，可能开始只有两种操作，走和跳，后来发现应该要增加一种打子弹的操作，再后来发现有些玩家希望它可以走得快一点，就有了按住打子弹键后前进就会跑 的操作。这都是根据实际情况来设计的。</p>
+<p>事实上，<strong>抽象数据类型体现了程序设计中问题分解、抽象和信息隐藏的特性。</strong> 抽象数据类型把实际生活中的问题分解为多个规模小且容易处理的问题，然后建立一个计算机能处理的数据模型，并把每个功能模块的实现细节作为一个独立的单元，从而使具体实现过程隐藏起来。</p>
+<p>抽象数据类型的标准格式：</p>
+<pre data-role="codeBlock" data-info="" class="language-"><code>ADT
+        抽象数据类型名
+Data
+        数据元素之间逻辑关系的定义
+Operation
+        操作1
+                初始条件
+                操作结果描述
+        操作2
+                 ......
+        操作n
+                 ......
+endADT
+</code></pre><h3 class="mume-header" id="17-%E6%80%BB%E7%BB%93%E5%9B%9E%E9%A1%BE">1.7. 总结回顾</h3>
+
+<p>数据结构的一些相关概念：</p>
+<p><img src="./《大话数据结构》学习之1_files/07.png" alt=""></p>
+<p>由这些概念，给出了数据结构的定义：<strong>数据结构是相互之间存在一种或多种特定关系的数据元素的集合。</strong> 同样是结构，从不同的角度来讨论，会有不同的分类，如下图：</p>
+<p><img src="./《大话数据结构》学习之1_files/08.png" alt=""></p>
+<h3 class="mume-header" id="18-%E7%BB%93%E5%B0%BE%E8%AF%AD">1.8. 结尾语</h3>
+
+<hr>
+
+      </div>
+      
+      
+    
+    
+    
+    
+    
+    
+    
+    
+  </body></html>

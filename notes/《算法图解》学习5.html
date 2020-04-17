@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<!-- saved from url=(0098)file:///private/var/folders/jq/l66hzx9956qbmxs_990g1djh0000gn/T/mume2020317-90899-mwuid4.9s8e.html -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+      <title>《算法图解》学习5</title>
+      
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      
+      <link rel="stylesheet" href="./《算法图解》学习5_files/katex.min.css">
+      
+      
+
+      
+      
+      
+      
+      
+      
+      
+
+      <style>
+      /**
+ * prism.js Github theme based on GitHub's theme.
+ * @author Sam Clarke
+ */
+code[class*="language-"],
+pre[class*="language-"] {
+  color: #333;
+  background: none;
+  font-family: Consolas, "Liberation Mono", Menlo, Courier, monospace;
+  text-align: left;
+  white-space: pre;
+  word-spacing: normal;
+  word-break: normal;
+  word-wrap: normal;
+  line-height: 1.4;
+
+  -moz-tab-size: 8;
+  -o-tab-size: 8;
+  tab-size: 8;
+
+  -webkit-hyphens: none;
+  -moz-hyphens: none;
+  -ms-hyphens: none;
+  hyphens: none;
+}
+
+/* Code blocks */
+pre[class*="language-"] {
+  padding: .8em;
+  overflow: auto;
+  /* border: 1px solid #ddd; */
+  border-radius: 3px;
+  /* background: #fff; */
+  background: #f5f5f5;
+}
+
+/* Inline code */
+:not(pre) > code[class*="language-"] {
+  padding: .1em;
+  border-radius: .3em;
+  white-space: normal;
+  background: #f5f5f5;
+}
+
+.token.comment,
+.token.blockquote {
+  color: #969896;
+}
+
+.token.cdata {
+  color: #183691;
+}
+
+.token.doctype,
+.token.punctuation,
+.token.variable,
+.token.macro.property {
+  color: #333;
+}
+
+.token.operator,
+.token.important,
+.token.keyword,
+.token.rule,
+.token.builtin {
+  color: #a71d5d;
+}
+
+.token.string,
+.token.url,
+.token.regex,
+.token.attr-value {
+  color: #183691;
+}
+
+.token.property,
+.token.number,
+.token.boolean,
+.token.entity,
+.token.atrule,
+.token.constant,
+.token.symbol,
+.token.command,
+.token.code {
+  color: #0086b3;
+}
+
+.token.tag,
+.token.selector,
+.token.prolog {
+  color: #63a35c;
+}
+
+.token.function,
+.token.namespace,
+.token.pseudo-element,
+.token.class,
+.token.class-name,
+.token.pseudo-class,
+.token.id,
+.token.url-reference .token.variable,
+.token.attr-name {
+  color: #795da3;
+}
+
+.token.entity {
+  cursor: help;
+}
+
+.token.title,
+.token.title .token.punctuation {
+  font-weight: bold;
+  color: #1d3e81;
+}
+
+.token.list {
+  color: #ed6a43;
+}
+
+.token.inserted {
+  background-color: #eaffea;
+  color: #55a532;
+}
+
+.token.deleted {
+  background-color: #ffecec;
+  color: #bd2c00;
+}
+
+.token.bold {
+  font-weight: bold;
+}
+
+.token.italic {
+  font-style: italic;
+}
+
+
+/* JSON */
+.language-json .token.property {
+  color: #183691;
+}
+
+.language-markup .token.tag .token.punctuation {
+  color: #333;
+}
+
+/* CSS */
+code.language-css,
+.language-css .token.function {
+  color: #0086b3;
+}
+
+/* YAML */
+.language-yaml .token.atrule {
+  color: #63a35c;
+}
+
+code.language-yaml {
+  color: #183691;
+}
+
+/* Ruby */
+.language-ruby .token.function {
+  color: #333;
+}
+
+/* Markdown */
+.language-markdown .token.url {
+  color: #795da3;
+}
+
+/* Makefile */
+.language-makefile .token.symbol {
+  color: #795da3;
+}
+
+.language-makefile .token.variable {
+  color: #183691;
+}
+
+.language-makefile .token.builtin {
+  color: #0086b3;
+}
+
+/* Bash */
+.language-bash .token.keyword {
+  color: #0086b3;
+}
+
+/* highlight */
+pre[data-line] {
+  position: relative;
+  padding: 1em 0 1em 3em;
+}
+pre[data-line] .line-highlight-wrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: transparent;
+  display: block;
+  width: 100%;
+}
+
+pre[data-line] .line-highlight {
+  position: absolute;
+  left: 0;
+  right: 0;
+  padding: inherit 0;
+  margin-top: 1em;
+  background: hsla(24, 20%, 50%,.08);
+  background: linear-gradient(to right, hsla(24, 20%, 50%,.1) 70%, hsla(24, 20%, 50%,0));
+  pointer-events: none;
+  line-height: inherit;
+  white-space: pre;
+}
+
+pre[data-line] .line-highlight:before, 
+pre[data-line] .line-highlight[data-end]:after {
+  content: attr(data-start);
+  position: absolute;
+  top: .4em;
+  left: .6em;
+  min-width: 1em;
+  padding: 0 .5em;
+  background-color: hsla(24, 20%, 50%,.4);
+  color: hsl(24, 20%, 95%);
+  font: bold 65%/1.5 sans-serif;
+  text-align: center;
+  vertical-align: .3em;
+  border-radius: 999px;
+  text-shadow: none;
+  box-shadow: 0 1px white;
+}
+
+pre[data-line] .line-highlight[data-end]:after {
+  content: attr(data-end);
+  top: auto;
+  bottom: .4em;
+}html body{font-family:"Helvetica Neue",Helvetica,"Segoe UI",Arial,freesans,sans-serif;font-size:16px;line-height:1.6;color:#333;background-color:#fff;overflow:initial;box-sizing:border-box;word-wrap:break-word}html body>:first-child{margin-top:0}html body h1,html body h2,html body h3,html body h4,html body h5,html body h6{line-height:1.2;margin-top:1em;margin-bottom:16px;color:#000}html body h1{font-size:2.25em;font-weight:300;padding-bottom:.3em}html body h2{font-size:1.75em;font-weight:400;padding-bottom:.3em}html body h3{font-size:1.5em;font-weight:500}html body h4{font-size:1.25em;font-weight:600}html body h5{font-size:1.1em;font-weight:600}html body h6{font-size:1em;font-weight:600}html body h1,html body h2,html body h3,html body h4,html body h5{font-weight:600}html body h5{font-size:1em}html body h6{color:#5c5c5c}html body strong{color:#000}html body del{color:#5c5c5c}html body a:not([href]){color:inherit;text-decoration:none}html body a{color:#08c;text-decoration:none}html body a:hover{color:#00a3f5;text-decoration:none}html body img{max-width:100%}html body>p{margin-top:0;margin-bottom:16px;word-wrap:break-word}html body>ul,html body>ol{margin-bottom:16px}html body ul,html body ol{padding-left:2em}html body ul.no-list,html body ol.no-list{padding:0;list-style-type:none}html body ul ul,html body ul ol,html body ol ol,html body ol ul{margin-top:0;margin-bottom:0}html body li{margin-bottom:0}html body li.task-list-item{list-style:none}html body li>p{margin-top:0;margin-bottom:0}html body .task-list-item-checkbox{margin:0 .2em .25em -1.8em;vertical-align:middle}html body .task-list-item-checkbox:hover{cursor:pointer}html body blockquote{margin:16px 0;font-size:inherit;padding:0 15px;color:#5c5c5c;border-left:4px solid #d6d6d6}html body blockquote>:first-child{margin-top:0}html body blockquote>:last-child{margin-bottom:0}html body hr{height:4px;margin:32px 0;background-color:#d6d6d6;border:0 none}html body table{margin:10px 0 15px 0;border-collapse:collapse;border-spacing:0;display:block;width:100%;overflow:auto;word-break:normal;word-break:keep-all}html body table th{font-weight:bold;color:#000}html body table td,html body table th{border:1px solid #d6d6d6;padding:6px 13px}html body dl{padding:0}html body dl dt{padding:0;margin-top:16px;font-size:1em;font-style:italic;font-weight:bold}html body dl dd{padding:0 16px;margin-bottom:16px}html body code{font-family:Menlo,Monaco,Consolas,'Courier New',monospace;font-size:.85em !important;color:#000;background-color:#f0f0f0;border-radius:3px;padding:.2em 0}html body code::before,html body code::after{letter-spacing:-0.2em;content:"\00a0"}html body pre>code{padding:0;margin:0;font-size:.85em !important;word-break:normal;white-space:pre;background:transparent;border:0}html body .highlight{margin-bottom:16px}html body .highlight pre,html body pre{padding:1em;overflow:auto;font-size:.85em !important;line-height:1.45;border:#d6d6d6;border-radius:3px}html body .highlight pre{margin-bottom:0;word-break:normal}html body pre code,html body pre tt{display:inline;max-width:initial;padding:0;margin:0;overflow:initial;line-height:inherit;word-wrap:normal;background-color:transparent;border:0}html body pre code:before,html body pre tt:before,html body pre code:after,html body pre tt:after{content:normal}html body p,html body blockquote,html body ul,html body ol,html body dl,html body pre{margin-top:0;margin-bottom:16px}html body kbd{color:#000;border:1px solid #d6d6d6;border-bottom:2px solid #c7c7c7;padding:2px 4px;background-color:#f0f0f0;border-radius:3px}@media print{html body{background-color:#fff}html body h1,html body h2,html body h3,html body h4,html body h5,html body h6{color:#000;page-break-after:avoid}html body blockquote{color:#5c5c5c}html body pre{page-break-inside:avoid}html body table{display:table}html body img{display:block;max-width:100%;max-height:100%}html body pre,html body code{word-wrap:break-word;white-space:pre}}.markdown-preview{width:100%;height:100%;box-sizing:border-box}.markdown-preview .pagebreak,.markdown-preview .newpage{page-break-before:always}.markdown-preview pre.line-numbers{position:relative;padding-left:3.8em;counter-reset:linenumber}.markdown-preview pre.line-numbers>code{position:relative}.markdown-preview pre.line-numbers .line-numbers-rows{position:absolute;pointer-events:none;top:1em;font-size:100%;left:0;width:3em;letter-spacing:-1px;border-right:1px solid #999;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}.markdown-preview pre.line-numbers .line-numbers-rows>span{pointer-events:none;display:block;counter-increment:linenumber}.markdown-preview pre.line-numbers .line-numbers-rows>span:before{content:counter(linenumber);color:#999;display:block;padding-right:.8em;text-align:right}.markdown-preview .mathjax-exps .MathJax_Display{text-align:center !important}.markdown-preview:not([for="preview"]) .code-chunk .btn-group{display:none}.markdown-preview:not([for="preview"]) .code-chunk .status{display:none}.markdown-preview:not([for="preview"]) .code-chunk .output-div{margin-bottom:16px}.scrollbar-style::-webkit-scrollbar{width:8px}.scrollbar-style::-webkit-scrollbar-track{border-radius:10px;background-color:transparent}.scrollbar-style::-webkit-scrollbar-thumb{border-radius:5px;background-color:rgba(150,150,150,0.66);border:4px solid rgba(150,150,150,0.66);background-clip:content-box}html body[for="html-export"]:not([data-presentation-mode]){position:relative;width:100%;height:100%;top:0;left:0;margin:0;padding:0;overflow:auto}html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{position:relative;top:0}@media screen and (min-width:914px){html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{padding:2em calc(50% - 457px + 2em)}}@media screen and (max-width:914px){html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{padding:2em}}@media screen and (max-width:450px){html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{font-size:14px !important;padding:1em}}@media print{html body[for="html-export"]:not([data-presentation-mode]) #sidebar-toc-btn{display:none}}html body[for="html-export"]:not([data-presentation-mode]) #sidebar-toc-btn{position:fixed;bottom:8px;left:8px;font-size:28px;cursor:pointer;color:inherit;z-index:99;width:32px;text-align:center;opacity:.4}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] #sidebar-toc-btn{opacity:1}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc{position:fixed;top:0;left:0;width:300px;height:100%;padding:32px 0 48px 0;font-size:14px;box-shadow:0 0 4px rgba(150,150,150,0.33);box-sizing:border-box;overflow:auto;background-color:inherit}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar{width:8px}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-track{border-radius:10px;background-color:transparent}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-thumb{border-radius:5px;background-color:rgba(150,150,150,0.66);border:4px solid rgba(150,150,150,0.66);background-clip:content-box}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc a{text-decoration:none}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc ul{padding:0 1.6em;margin-top:.8em}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc li{margin-bottom:.8em}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc ul{list-style-type:none}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{left:300px;width:calc(100% -  300px);padding:2em calc(50% - 457px -  150px);margin:0;box-sizing:border-box}@media screen and (max-width:1274px){html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{padding:2em}}@media screen and (max-width:450px){html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{width:100%}}html body[for="html-export"]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .markdown-preview{left:50%;transform:translateX(-50%)}html body[for="html-export"]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .md-sidebar-toc{display:none}
+/* Please visit the URL below for more information: */
+/*   https://shd101wyy.github.io/markdown-preview-enhanced/#/customize-css */
+
+      </style>
+    </head>
+    <body for="html-export">
+      <div class="mume markdown-preview  ">
+      <h1 class="mume-header" id="%E7%AE%97%E6%B3%95%E5%9B%BE%E8%A7%A3%E5%AD%A6%E4%B9%A0">《算法图解》学习</h1>
+
+<h3 class="mume-header" id="%E7%AE%97%E6%B3%95%E5%9B%BE%E8%A7%A3%E5%AD%A6%E4%B9%A0%E4%B9%8B%E4%BA%94%E6%95%A3%E5%88%97%E8%A1%A8">《算法图解》学习之五：散列表</h3>
+
+<hr>
+<h2 class="mume-header" id="5-%E6%95%A3%E5%88%97%E8%A1%A8">5. 散列表</h2>
+
+<p>前面介绍了两种数据结构:数组和链表(其实还有栈，但栈<br>
+并不能用于查找)。</p>
+<h3 class="mume-header" id="51-%E6%95%A3%E5%88%97%E5%87%BD%E6%95%B0">5.1. 散列函数</h3>
+
+<p>散列函数是这样的函数，即无论你给它什么数据，它都还你一个数字。</p>
+<p><img src="./《算法图解》学习5_files/36.png" alt=""></p>
+<p>如果用专业术语来表达的话，我们会说，散列函数“将输入映射到数字”。你可能认为散列函数输出的数字没什么规律，但其实散列函数必须满足一些要求。</p>
+<ul>
+<li>它必须是一致的。例如，假设你输入 apple 时得到的是 4，那么每次输入 apple 时，得到的都必须为 4。如果不是这样，散列表将毫无用处。</li>
+<li>它应将不同的输入映射到不同的数字。例如，如果一个散列函数不管输入是什么都返回 1，它就不是好的散列函数。最理想的情况是，将不同的输入映射到不同的数字。</li>
+</ul>
+<p>散列函数的一些性质：</p>
+<ul>
+<li>散列函数总是将同样的输入映射到相同的索引。</li>
+<li>散列函数将不同的输入映射到不同的索引。</li>
+<li>散列函数知道数组有多大，只返回有效的索引。如果数组包含 5 个元素，散列函数就不会 返回无效索引 100。</li>
+</ul>
+<p>在你将学习的复杂数据结构中，散列表可能是最有用的，也被称为散列映射、映射、<strong>字典</strong>和关联数组。散列表的速度很快!还记得第 2 章关于数组和链表的讨论吗?你可以立即获取数组中的元素，而<strong>散列表也使用数组来存储数据，因此其获取元素的速度与数组一样快</strong>。</p>
+<p>你可能根本不需要自己去实现散列表，任一优秀的语言都提供了散列表实现。Python 提供的散列表实现为字典，你可使用函数 <code>dict</code> 来创建散列表。</p>
+<pre data-role="codeBlock" data-info="python" class="language-python">book <span class="token operator">=</span> <span class="token builtin">dict</span><span class="token punctuation">(</span><span class="token punctuation">)</span>  <span class="token comment"># 可用 book = {} 代替</span>
+</pre><p>创建散列表 book 后，在其中添加一些商品的价格。</p>
+<pre data-role="codeBlock" data-info="python" class="language-python">book <span class="token operator">=</span> <span class="token builtin">dict</span><span class="token punctuation">(</span><span class="token punctuation">)</span>  <span class="token comment"># 可用 book = {} 代替</span>
+
+book<span class="token punctuation">[</span><span class="token string">"apple"</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token number">0.67</span>
+book<span class="token punctuation">[</span><span class="token string">"milk"</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token number">1.49</span>
+book<span class="token punctuation">[</span><span class="token string">"avocado"</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token number">1.49</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span>book<span class="token punctuation">)</span>
+</pre><p>运行结果：</p>
+<pre data-role="codeBlock" data-info="python" class="language-python"><span class="token punctuation">{</span><span class="token string">'apple'</span><span class="token punctuation">:</span> <span class="token number">0.67</span><span class="token punctuation">,</span> <span class="token string">'milk'</span><span class="token punctuation">:</span> <span class="token number">1.49</span><span class="token punctuation">,</span> <span class="token string">'avocado'</span><span class="token punctuation">:</span> <span class="token number">1.49</span><span class="token punctuation">}</span>
+</pre><p>散列表由键和值组成。在前面的散列表 book 中，键为商品名，值为商品价格。散列表将键映射到值。</p>
+<h3 class="mume-header" id="52-%E5%BA%94%E7%94%A8%E6%A1%88%E4%BE%8B">5.2. 应用案例</h3>
+
+<h4 class="mume-header" id="521-%E5%B0%86%E6%95%A3%E5%88%97%E8%A1%A8%E7%94%A8%E4%BA%8E%E6%9F%A5%E6%89%BE">5.2.1. 将散列表用于查找</h4>
+
+<p>在下述情况下，使用散列表是很不错的选择：</p>
+<ul>
+<li>创建映射。</li>
+<li>查找。</li>
+</ul>
+<p><strong>更多内容详见书籍。</strong></p>
+<h4 class="mume-header" id="522-%E9%98%B2%E6%AD%A2%E9%87%8D%E5%A4%8D">5.2.2. 防止重复</h4>
+
+<p>使用散列表来检查是否重复，速度非常快。</p>
+<p><strong>更多内容详见书籍。</strong></p>
+<h4 class="mume-header" id="523%E5%B0%86%E6%95%A3%E5%88%97%E8%A1%A8%E7%94%A8%E4%BD%9C%E7%BC%93%E5%AD%98">5.2.3.将散列表用作缓存</h4>
+
+<p><strong>更多内容详见书籍。</strong></p>
+<h4 class="mume-header" id="524-%E5%B0%8F%E7%BB%93">5.2.4. 小结</h4>
+
+<p>这里总结一下，散列表适合用于:</p>
+<ul>
+<li>模拟映射关系;</li>
+<li>防止重复;</li>
+<li>缓存/记住数据，以免服务器再通过处理来生成它们。</li>
+</ul>
+<h3 class="mume-header" id="53-%E5%86%B2%E7%AA%81">5.3. 冲突</h3>
+
+<p>前面说过，大多数语言都提供了散列表实现，你不用知道如何实现它们。有鉴于此，我就不再过多地讨论散列表的内部原理，但你依然需要考虑性能!要明白散列表的性能，你得先搞清楚什么是冲突。本节和下一节将分别介绍冲突和性能。</p>
+<p>首先，我撒了一个<strong>善意的谎</strong>。我之前告诉你的是，散列函数总是将不同的键映射到数组的不同位置。</p>
+<p>实际上，几乎不可能编写出这样的散列函数。</p>
+<p>冲突(collision):给两 个键分配的位置相同。</p>
+<p>处理冲突的方式 很多，最简单的办法如下:如果两个键映射到了同一个位置，就在这个位置存储一个链表。</p>
+<p><img src="./《算法图解》学习5_files/37.png" alt=""></p>
+<p>在这个例子中，apple 和 avocado 映射到了同一个位置，因此在这个位置存储一个链表。在需要查询香蕉的价格时，速度依然很快。但在需要查询苹果的价格时，速度要慢些:你必须在相应的链表中找到 apple。如果这个链表很短，也没什么大不了——只需搜索三四个元素。但是，假设你工作的杂货店只销售名称以字母 A 打头的商品。</p>
+<p><img src="./《算法图解》学习5_files/38.png" alt=""></p>
+<p>等等!除第一个位置外，整个散列表都是空的，而第一个位置包含一个很长的列表!换言之，这个散列表中的所有元素都在这个链表中，这与一开始就将所有元素存储到一个链表中一样糟糕:散列表的速度会很慢。</p>
+<p>这里的经验教训有两个。</p>
+<ul>
+<li><strong>散列函数很重要。</strong> 前面的散列函数将所有的键都映射到一个位置，而最理想的情况是，散列函数将键均匀地映射到散列表的不同位置。</li>
+<li><strong>如果散列表存储的链表很长，散列表的速度将急剧下降。</strong> 然而，如果使用的散列函数很好，这些链表就不会很长!</li>
+</ul>
+<p>散列函数很重要，好的散列函数很少导致冲突。那么，如何选择好的散列函数呢?这将在下一节介绍!</p>
+<h3 class="mume-header" id="54%E6%80%A7%E8%83%BD">5.4.性能</h3>
+
+<p><img src="./《算法图解》学习5_files/39.png" alt=""></p>
+<p>在平均情况下，散列表执行各种操作的时间都为 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>O</mi><mo stretchy="false">(</mo><mn>1</mn><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">O(1)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord">1</span><span class="mclose">)</span></span></span></span>。<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>O</mi><mo stretchy="false">(</mo><mn>1</mn><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">O(1)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord">1</span><span class="mclose">)</span></span></span></span> 被称为常量时间。你以前没有见过常量时间，它并不意味着马上，而是说不管散列表多大，所需的时间都相同。例如，你知道的，简单查找的运行时间为线性时间。</p>
+<p><img src="./《算法图解》学习5_files/40.png" alt=""></p>
+<p>二分查找的速度更快，所需时间为对数时间。</p>
+<p><img src="./《算法图解》学习5_files/41.png" alt=""></p>
+<p>在散列表中查找所花费的时间为常量时间。</p>
+<p><img src="./《算法图解》学习5_files/42.png" alt=""></p>
+<p>一条水平线，看到了吧?这意味着无论散列表包含一个元素还是 10 亿个元素，从其中获取数据所需的时间都相同。实际上，你以前见过常量时间——从数组中获取一个元素所需的时间就是固定的:不管数组多大，从中获取一个元素所需的时间都是相同的。在平均情况下，散列表的速度确实很快。</p>
+<p>在最糟情况下，散列表所有操作的运行时间都为 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>O</mi><mo stretchy="false">(</mo><mi>n</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">O(n)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord mathdefault">n</span><span class="mclose">)</span></span></span></span> ——线性时间，这真的很慢。我们来将散列表同数组和链表比较一下。</p>
+<p><img src="./《算法图解》学习5_files/43.png" alt=""></p>
+<p>在平均情况下，散列表的查找(获取给定索引处的值)速度与数组一样快，而插入和删除速度与链表一样快，因此它兼具两者的优点!但在最糟情况下，散列表的各种操作的速度都很慢。 因此，在使用散列表时，避开最糟情况至关重要。为此，需要避免冲突。而要避免冲突，需要有:</p>
+<ul>
+<li>较低的填装因子;</li>
+<li>良好的散列函数。</li>
+</ul>
+<blockquote>
+<p>说明</p>
+<p>接下来的内容并非必读的，我将讨论如何实现散列表，但你根本就不需要这样做。不管你使用的是哪种编程语言，其中都内置了散列表实现。你可使用内置的散列表，并假定其性 能良好。下面带你去看看幕后的情况。</p>
+</blockquote>
+<h4 class="mume-header" id="541-%E5%A1%AB%E8%A3%85%E5%9B%A0%E5%AD%90">5.4.1. 填装因子</h4>
+
+<p>散列表的填装因子很容易计算。</p>
+<p><img src="./《算法图解》学习5_files/44.png" alt=""></p>
+<p>填装因子度量的是散列表中有多少位置是空的。</p>
+<p>不可能让每种商品都有自己的位置，因为没有足够的位置!填装因子大于 1 意味着商品数量超过了数组的位置数。一旦填装因子开始增大，你就需要在散列表中添加位置，这被称为<strong>调整长度(resizing)</strong>。</p>
+<p><strong>填装因子越低，发生冲突的可能性越小，散列表的性能越高。一个不错的经验规则是:一旦填装因子大于 0.7，就调整散列表的长度。</strong></p>
+<p>你可能在想，调整散列表长度的工作需要很长时间!你说得没错，调整长度的开销很大，因此你不会希望频繁地这样做。但平均而言，即便考虑到调整长度所需的时间，散列表操作所需的时间也为 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>O</mi><mo stretchy="false">(</mo><mn>1</mn><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">O(1)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord">1</span><span class="mclose">)</span></span></span></span>。</p>
+<h4 class="mume-header" id="542-%E8%89%AF%E5%A5%BD%E7%9A%84%E6%95%A3%E5%88%97%E5%87%BD%E6%95%B0">5.4.2. 良好的散列函数</h4>
+
+<p>良好的散列函数让数组中的值呈均匀分布。糟糕的散列函数让值扎堆，导致大量的冲突。</p>
+<p>什么样的散列函数是良好的呢?你根本不用操心——天塌下来有高个子顶着。如果你好奇，可研究一下 SHA 函数(本书最后一章做了简要的介绍)。你可将它用作散列函数。</p>
+<h3 class="mume-header" id="55-%E5%B0%8F%E7%BB%93">5.5. 小结</h3>
+
+<p>你几乎根本不用自己去实现散列表，因为你使用的编程语言提供了散列表实现。你可使用 Python提供的散列表，并假定能够获得平均情况下的性能:常量时间。</p>
+<p>散列表是一种功能强大的数据结构，其操作速度快，还能让你以不同的方式建立数据模型。</p>
+<ul>
+<li>你可以结合散列函数和数组来创建散列表。</li>
+<li>冲突很糟糕，你应使用可以最大限度减少冲突的散列函数。</li>
+<li>散列表的查找、插入和删除速度都非常快。</li>
+<li>散列表适合用于模拟映射关系。</li>
+<li>一旦填装因子超过 0.7，就该调整散列表的长度。</li>
+<li>散列表可用于缓存数据(例如，在 Web 服务器上)。</li>
+<li>散列表非常适合用于防止重复。</li>
+</ul>
+<hr>
+
+      </div>
+      
+      
+    
+    
+    
+    
+    
+    
+    
+    
+  </body></html>

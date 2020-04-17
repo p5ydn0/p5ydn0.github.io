@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<!-- saved from url=(0099)file:///private/var/folders/jq/l66hzx9956qbmxs_990g1djh0000gn/T/mume2020317-90899-h731hh.t4ngu.html -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+      <title>Python中的yield，next和send</title>
+      
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      
+      <link rel="stylesheet" href="./Python中的yield，next和send_files/katex.min.css">
+      
+      
+
+      
+      
+      
+      
+      
+      
+      
+
+      <style>
+      /**
+ * prism.js Github theme based on GitHub's theme.
+ * @author Sam Clarke
+ */
+code[class*="language-"],
+pre[class*="language-"] {
+  color: #333;
+  background: none;
+  font-family: Consolas, "Liberation Mono", Menlo, Courier, monospace;
+  text-align: left;
+  white-space: pre;
+  word-spacing: normal;
+  word-break: normal;
+  word-wrap: normal;
+  line-height: 1.4;
+
+  -moz-tab-size: 8;
+  -o-tab-size: 8;
+  tab-size: 8;
+
+  -webkit-hyphens: none;
+  -moz-hyphens: none;
+  -ms-hyphens: none;
+  hyphens: none;
+}
+
+/* Code blocks */
+pre[class*="language-"] {
+  padding: .8em;
+  overflow: auto;
+  /* border: 1px solid #ddd; */
+  border-radius: 3px;
+  /* background: #fff; */
+  background: #f5f5f5;
+}
+
+/* Inline code */
+:not(pre) > code[class*="language-"] {
+  padding: .1em;
+  border-radius: .3em;
+  white-space: normal;
+  background: #f5f5f5;
+}
+
+.token.comment,
+.token.blockquote {
+  color: #969896;
+}
+
+.token.cdata {
+  color: #183691;
+}
+
+.token.doctype,
+.token.punctuation,
+.token.variable,
+.token.macro.property {
+  color: #333;
+}
+
+.token.operator,
+.token.important,
+.token.keyword,
+.token.rule,
+.token.builtin {
+  color: #a71d5d;
+}
+
+.token.string,
+.token.url,
+.token.regex,
+.token.attr-value {
+  color: #183691;
+}
+
+.token.property,
+.token.number,
+.token.boolean,
+.token.entity,
+.token.atrule,
+.token.constant,
+.token.symbol,
+.token.command,
+.token.code {
+  color: #0086b3;
+}
+
+.token.tag,
+.token.selector,
+.token.prolog {
+  color: #63a35c;
+}
+
+.token.function,
+.token.namespace,
+.token.pseudo-element,
+.token.class,
+.token.class-name,
+.token.pseudo-class,
+.token.id,
+.token.url-reference .token.variable,
+.token.attr-name {
+  color: #795da3;
+}
+
+.token.entity {
+  cursor: help;
+}
+
+.token.title,
+.token.title .token.punctuation {
+  font-weight: bold;
+  color: #1d3e81;
+}
+
+.token.list {
+  color: #ed6a43;
+}
+
+.token.inserted {
+  background-color: #eaffea;
+  color: #55a532;
+}
+
+.token.deleted {
+  background-color: #ffecec;
+  color: #bd2c00;
+}
+
+.token.bold {
+  font-weight: bold;
+}
+
+.token.italic {
+  font-style: italic;
+}
+
+
+/* JSON */
+.language-json .token.property {
+  color: #183691;
+}
+
+.language-markup .token.tag .token.punctuation {
+  color: #333;
+}
+
+/* CSS */
+code.language-css,
+.language-css .token.function {
+  color: #0086b3;
+}
+
+/* YAML */
+.language-yaml .token.atrule {
+  color: #63a35c;
+}
+
+code.language-yaml {
+  color: #183691;
+}
+
+/* Ruby */
+.language-ruby .token.function {
+  color: #333;
+}
+
+/* Markdown */
+.language-markdown .token.url {
+  color: #795da3;
+}
+
+/* Makefile */
+.language-makefile .token.symbol {
+  color: #795da3;
+}
+
+.language-makefile .token.variable {
+  color: #183691;
+}
+
+.language-makefile .token.builtin {
+  color: #0086b3;
+}
+
+/* Bash */
+.language-bash .token.keyword {
+  color: #0086b3;
+}
+
+/* highlight */
+pre[data-line] {
+  position: relative;
+  padding: 1em 0 1em 3em;
+}
+pre[data-line] .line-highlight-wrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: transparent;
+  display: block;
+  width: 100%;
+}
+
+pre[data-line] .line-highlight {
+  position: absolute;
+  left: 0;
+  right: 0;
+  padding: inherit 0;
+  margin-top: 1em;
+  background: hsla(24, 20%, 50%,.08);
+  background: linear-gradient(to right, hsla(24, 20%, 50%,.1) 70%, hsla(24, 20%, 50%,0));
+  pointer-events: none;
+  line-height: inherit;
+  white-space: pre;
+}
+
+pre[data-line] .line-highlight:before, 
+pre[data-line] .line-highlight[data-end]:after {
+  content: attr(data-start);
+  position: absolute;
+  top: .4em;
+  left: .6em;
+  min-width: 1em;
+  padding: 0 .5em;
+  background-color: hsla(24, 20%, 50%,.4);
+  color: hsl(24, 20%, 95%);
+  font: bold 65%/1.5 sans-serif;
+  text-align: center;
+  vertical-align: .3em;
+  border-radius: 999px;
+  text-shadow: none;
+  box-shadow: 0 1px white;
+}
+
+pre[data-line] .line-highlight[data-end]:after {
+  content: attr(data-end);
+  top: auto;
+  bottom: .4em;
+}html body{font-family:"Helvetica Neue",Helvetica,"Segoe UI",Arial,freesans,sans-serif;font-size:16px;line-height:1.6;color:#333;background-color:#fff;overflow:initial;box-sizing:border-box;word-wrap:break-word}html body>:first-child{margin-top:0}html body h1,html body h2,html body h3,html body h4,html body h5,html body h6{line-height:1.2;margin-top:1em;margin-bottom:16px;color:#000}html body h1{font-size:2.25em;font-weight:300;padding-bottom:.3em}html body h2{font-size:1.75em;font-weight:400;padding-bottom:.3em}html body h3{font-size:1.5em;font-weight:500}html body h4{font-size:1.25em;font-weight:600}html body h5{font-size:1.1em;font-weight:600}html body h6{font-size:1em;font-weight:600}html body h1,html body h2,html body h3,html body h4,html body h5{font-weight:600}html body h5{font-size:1em}html body h6{color:#5c5c5c}html body strong{color:#000}html body del{color:#5c5c5c}html body a:not([href]){color:inherit;text-decoration:none}html body a{color:#08c;text-decoration:none}html body a:hover{color:#00a3f5;text-decoration:none}html body img{max-width:100%}html body>p{margin-top:0;margin-bottom:16px;word-wrap:break-word}html body>ul,html body>ol{margin-bottom:16px}html body ul,html body ol{padding-left:2em}html body ul.no-list,html body ol.no-list{padding:0;list-style-type:none}html body ul ul,html body ul ol,html body ol ol,html body ol ul{margin-top:0;margin-bottom:0}html body li{margin-bottom:0}html body li.task-list-item{list-style:none}html body li>p{margin-top:0;margin-bottom:0}html body .task-list-item-checkbox{margin:0 .2em .25em -1.8em;vertical-align:middle}html body .task-list-item-checkbox:hover{cursor:pointer}html body blockquote{margin:16px 0;font-size:inherit;padding:0 15px;color:#5c5c5c;border-left:4px solid #d6d6d6}html body blockquote>:first-child{margin-top:0}html body blockquote>:last-child{margin-bottom:0}html body hr{height:4px;margin:32px 0;background-color:#d6d6d6;border:0 none}html body table{margin:10px 0 15px 0;border-collapse:collapse;border-spacing:0;display:block;width:100%;overflow:auto;word-break:normal;word-break:keep-all}html body table th{font-weight:bold;color:#000}html body table td,html body table th{border:1px solid #d6d6d6;padding:6px 13px}html body dl{padding:0}html body dl dt{padding:0;margin-top:16px;font-size:1em;font-style:italic;font-weight:bold}html body dl dd{padding:0 16px;margin-bottom:16px}html body code{font-family:Menlo,Monaco,Consolas,'Courier New',monospace;font-size:.85em !important;color:#000;background-color:#f0f0f0;border-radius:3px;padding:.2em 0}html body code::before,html body code::after{letter-spacing:-0.2em;content:"\00a0"}html body pre>code{padding:0;margin:0;font-size:.85em !important;word-break:normal;white-space:pre;background:transparent;border:0}html body .highlight{margin-bottom:16px}html body .highlight pre,html body pre{padding:1em;overflow:auto;font-size:.85em !important;line-height:1.45;border:#d6d6d6;border-radius:3px}html body .highlight pre{margin-bottom:0;word-break:normal}html body pre code,html body pre tt{display:inline;max-width:initial;padding:0;margin:0;overflow:initial;line-height:inherit;word-wrap:normal;background-color:transparent;border:0}html body pre code:before,html body pre tt:before,html body pre code:after,html body pre tt:after{content:normal}html body p,html body blockquote,html body ul,html body ol,html body dl,html body pre{margin-top:0;margin-bottom:16px}html body kbd{color:#000;border:1px solid #d6d6d6;border-bottom:2px solid #c7c7c7;padding:2px 4px;background-color:#f0f0f0;border-radius:3px}@media print{html body{background-color:#fff}html body h1,html body h2,html body h3,html body h4,html body h5,html body h6{color:#000;page-break-after:avoid}html body blockquote{color:#5c5c5c}html body pre{page-break-inside:avoid}html body table{display:table}html body img{display:block;max-width:100%;max-height:100%}html body pre,html body code{word-wrap:break-word;white-space:pre}}.markdown-preview{width:100%;height:100%;box-sizing:border-box}.markdown-preview .pagebreak,.markdown-preview .newpage{page-break-before:always}.markdown-preview pre.line-numbers{position:relative;padding-left:3.8em;counter-reset:linenumber}.markdown-preview pre.line-numbers>code{position:relative}.markdown-preview pre.line-numbers .line-numbers-rows{position:absolute;pointer-events:none;top:1em;font-size:100%;left:0;width:3em;letter-spacing:-1px;border-right:1px solid #999;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}.markdown-preview pre.line-numbers .line-numbers-rows>span{pointer-events:none;display:block;counter-increment:linenumber}.markdown-preview pre.line-numbers .line-numbers-rows>span:before{content:counter(linenumber);color:#999;display:block;padding-right:.8em;text-align:right}.markdown-preview .mathjax-exps .MathJax_Display{text-align:center !important}.markdown-preview:not([for="preview"]) .code-chunk .btn-group{display:none}.markdown-preview:not([for="preview"]) .code-chunk .status{display:none}.markdown-preview:not([for="preview"]) .code-chunk .output-div{margin-bottom:16px}.scrollbar-style::-webkit-scrollbar{width:8px}.scrollbar-style::-webkit-scrollbar-track{border-radius:10px;background-color:transparent}.scrollbar-style::-webkit-scrollbar-thumb{border-radius:5px;background-color:rgba(150,150,150,0.66);border:4px solid rgba(150,150,150,0.66);background-clip:content-box}html body[for="html-export"]:not([data-presentation-mode]){position:relative;width:100%;height:100%;top:0;left:0;margin:0;padding:0;overflow:auto}html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{position:relative;top:0}@media screen and (min-width:914px){html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{padding:2em calc(50% - 457px + 2em)}}@media screen and (max-width:914px){html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{padding:2em}}@media screen and (max-width:450px){html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{font-size:14px !important;padding:1em}}@media print{html body[for="html-export"]:not([data-presentation-mode]) #sidebar-toc-btn{display:none}}html body[for="html-export"]:not([data-presentation-mode]) #sidebar-toc-btn{position:fixed;bottom:8px;left:8px;font-size:28px;cursor:pointer;color:inherit;z-index:99;width:32px;text-align:center;opacity:.4}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] #sidebar-toc-btn{opacity:1}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc{position:fixed;top:0;left:0;width:300px;height:100%;padding:32px 0 48px 0;font-size:14px;box-shadow:0 0 4px rgba(150,150,150,0.33);box-sizing:border-box;overflow:auto;background-color:inherit}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar{width:8px}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-track{border-radius:10px;background-color:transparent}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-thumb{border-radius:5px;background-color:rgba(150,150,150,0.66);border:4px solid rgba(150,150,150,0.66);background-clip:content-box}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc a{text-decoration:none}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc ul{padding:0 1.6em;margin-top:.8em}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc li{margin-bottom:.8em}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc ul{list-style-type:none}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{left:300px;width:calc(100% -  300px);padding:2em calc(50% - 457px -  150px);margin:0;box-sizing:border-box}@media screen and (max-width:1274px){html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{padding:2em}}@media screen and (max-width:450px){html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{width:100%}}html body[for="html-export"]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .markdown-preview{left:50%;transform:translateX(-50%)}html body[for="html-export"]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .md-sidebar-toc{display:none}
+/* Please visit the URL below for more information: */
+/*   https://shd101wyy.github.io/markdown-preview-enhanced/#/customize-css */
+
+      </style>
+    </head>
+    <body for="html-export">
+      <div class="mume markdown-preview  ">
+      <h1 class="mume-header" id="python%E4%B8%AD%E7%9A%84yieldnext%E5%92%8Csend">Python中的yield，next和send</h1>
+
+<p>当定义的方法和函数中有<strong>yield关键字</strong> ，这个执行这个函数或者方法就将返回一个生成器对象，这个生成器对象<strong>可以被for循环迭代，也可以手动执行next或者send方法精准控制这个生成器的内部执行</strong>，我们看如下代码就可以简单理解 yield，next和send之间的关系和用法：</p>
+<pre data-role="codeBlock" data-info="Python" class="language-python"><span class="token comment">#!/usr/bin/env python</span>
+<span class="token keyword">import</span> types
+
+<span class="token keyword">def</span> <span class="token function">gen</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword">print</span> <span class="token punctuation">(</span><span class="token string">'enter'</span><span class="token punctuation">)</span>
+    a <span class="token operator">=</span> <span class="token keyword">yield</span> <span class="token number">1</span>  <span class="token comment"># StateA</span>
+    <span class="token keyword">print</span> <span class="token punctuation">(</span><span class="token string">'next'</span><span class="token punctuation">)</span>
+    <span class="token keyword">print</span> <span class="token punctuation">(</span>a <span class="token punctuation">)</span>
+    b <span class="token operator">=</span> <span class="token keyword">yield</span> <span class="token number">2</span>  <span class="token comment"># StateB</span>
+    <span class="token keyword">print</span> <span class="token punctuation">(</span>b <span class="token keyword">or</span> <span class="token string">'b'</span><span class="token punctuation">)</span>
+    <span class="token keyword">print</span> <span class="token punctuation">(</span><span class="token string">'next again'</span><span class="token punctuation">)</span>
+
+g <span class="token operator">=</span> gen<span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span><span class="token builtin">type</span><span class="token punctuation">(</span>g<span class="token punctuation">)</span><span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">'g isinstance types.GeneratorTyp : '</span><span class="token operator">+</span> <span class="token builtin">str</span><span class="token punctuation">(</span><span class="token builtin">isinstance</span><span class="token punctuation">(</span>g<span class="token punctuation">,</span> types<span class="token punctuation">.</span>GeneratorType<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span><span class="token builtin">next</span><span class="token punctuation">(</span>g<span class="token punctuation">)</span><span class="token punctuation">)</span>
+
+i<span class="token operator">=</span><span class="token number">0</span>
+<span class="token keyword">while</span><span class="token punctuation">(</span>i<span class="token operator">&gt;=</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    i <span class="token operator">+=</span> <span class="token number">1</span>
+    <span class="token keyword">print</span> <span class="token punctuation">(</span><span class="token string">'i:'</span><span class="token operator">+</span><span class="token builtin">str</span><span class="token punctuation">(</span>i<span class="token punctuation">)</span><span class="token punctuation">)</span>
+    <span class="token keyword">try</span><span class="token punctuation">:</span>
+        <span class="token keyword">print</span><span class="token punctuation">(</span>g<span class="token punctuation">.</span>send<span class="token punctuation">(</span><span class="token string">'x'</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+    <span class="token keyword">except</span> StopIteration<span class="token punctuation">:</span>
+        <span class="token keyword">break</span>
+
+<span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">'--------------'</span><span class="token punctuation">)</span>
+
+g2 <span class="token operator">=</span> gen<span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span><span class="token builtin">type</span><span class="token punctuation">(</span>g2<span class="token punctuation">)</span><span class="token punctuation">)</span>
+<span class="token keyword">for</span> x <span class="token keyword">in</span> g2<span class="token punctuation">:</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span>x<span class="token punctuation">)</span>
+</pre><p>运行结果：</p>
+<pre data-role="codeBlock" data-info="Python" class="language-python"><span class="token operator">&lt;</span><span class="token keyword">class</span> <span class="token string">'generator'</span><span class="token operator">&gt;</span>
+g <span class="token builtin">isinstance</span> types<span class="token punctuation">.</span>GeneratorTyp <span class="token punctuation">:</span> <span class="token boolean">True</span>
+enter
+<span class="token number">1</span>
+i<span class="token punctuation">:</span><span class="token number">1</span>
+<span class="token builtin">next</span>
+x
+<span class="token number">2</span>
+i<span class="token punctuation">:</span><span class="token number">2</span>
+x
+<span class="token builtin">next</span> again
+<span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span><span class="token operator">-</span>
+<span class="token operator">&lt;</span><span class="token keyword">class</span> <span class="token string">'generator'</span><span class="token operator">&gt;</span>
+enter
+<span class="token number">1</span>
+<span class="token builtin">next</span>
+<span class="token boolean">None</span>
+<span class="token number">2</span>
+b
+<span class="token builtin">next</span> again
+</pre><p>详细解释一下执行过程：</p>
+<p>1 定义生成器函数：</p>
+<p><code>def gen()</code></p>
+<p>2 获得迭代器对象，并赋值给g，同时我们打印g的类型，返回generator，可以看到我们类型判断为 generator：</p>
+<p><code>g = gen()</code></p>
+<p>3 执行迭代器到到第一个yield处，此处打印1,然后<strong>迭代器就挂起了，等待下一次调用</strong>，我们暂时命名此出挂起状态为StateA。</p>
+<p><code>print(g.next())</code></p>
+<p>4 进入while循环，第一次执行循环，打印“i:1”，然后执行如下代码：<br>
+<code>print(g.send('x'))</code></p>
+<p>上述代码将继续&nbsp;StateA 状态开始执行，首先将字符串“x”发送到迭代器中，然后迭代器开始运行，将字符串“x”复制给变量a，然后打印出：</p>
+<pre data-role="codeBlock" data-info="Python" class="language-python"><span class="token keyword">print</span> <span class="token string">'next'</span>  <span class="token comment">#next</span>
+<span class="token keyword">print</span> a <span class="token keyword">or</span> <span class="token string">'a'</span> <span class="token comment">#x</span>
+</pre><p>接着运行到下一个 yield，返回yield值“2”到send函数，于是在while循环中就打印出了“2”，这时迭代器函数的状态运行到StateB。</p>
+<p>5 再次进入while循环，send函数将字符串“x”传递进迭代器，赋值给b，这样迭代器就打印出：</p>
+<pre data-role="codeBlock" data-info="Python" class="language-python"><span class="token keyword">print</span> b <span class="token keyword">or</span> <span class="token string">'b'</span>      <span class="token comment">#x</span>
+<span class="token keyword">print</span> <span class="token string">'next again'</span>  <span class="token comment">#next again</span>
+</pre><p>然后<strong>由于迭代器中没有 yield 操作，将抛出一个 StopIteration 异常</strong>，我们接受到 StopIteration 异常就终止循环。</p>
+<p>6  <strong>通过使用for循环来迭代一个迭代器对象更简单，不需要判断&nbsp;StopIteration 异常就可以获取yield传出来的值</strong>，直接将其打印出。</p>
+<p><strong>self：</strong></p>
+<p><img src="./Python中的yield，next和send_files/01.png" alt=""></p>
+<p>如上图；大概是这样执行的：</p>
+<p>首先定义了一个gen()函数（注意并没有去执行），然后将这个函数赋值给g；g打印两行（14、15行）；然后执行next(g)，也就是执行gen()函数；于是开始执行gen函数，输出’enter’，然后<strong>yield 1将1返回出来，也就是返回给next(g)</strong>，next(g)收到1后通过print()函数将它打印出来。与此同时要注意的是，<strong>yield将1返回出去以后就会停止执行，直到下一次的next或send方法执行</strong>。</p>
+<p>接下来就开始执行下面的while循环。i=1，打印出i:1。然后执行第23行；g.send(‘x’)将x传给“gen()函数”，并且被第6行的yield接收到（注意此时“gen()函数”还停留在第6行中的yield），yield接收到后将这个值将这个值传给a，然后执行第7行的打印‘next’；然后执行第8行的print (a or 'a')，因为此时a为字符串x，所以将字符串x打印出来；打印完成后，<strong>执行到第19行的yield，此时yield 2将2返回出去（并且停留在这里），也就是返回给g.send('x')</strong>，然后再通过print(g.send('x'))打印出来，也就是打印出 2 。</p>
+<p>接下来继续执行while循环，此时i=2。然后打印i:2，然后再执行g.send(‘x’)，将字符串x传出去，传出去后gen()函数通过yield接收到，然后将它赋值给b，然后打印print (b or 'b')，打印print ('next again')；<strong>注意此时，将上述两个打印执行完成以后，它会继续往下执行知道遇到下一个yield然后停留在下一个yield处；但是它发现下面已经没有yield了，于是它就会抛出一个StopIteration 异常。</strong> 然后下面的while循环捕捉到这个异常然后break退出循环。</p>
+<p><img src="./Python中的yield，next和send_files/02.png" alt=""></p>
+<p>然后继续往下执行。打印——等。</p>
+<p>然后到了第31行执行for循环。<strong>执行for循环的时候，将g2执行完成后“代入”到x中（作为x；或者“返回给x”（如果有返回值的话）），然后执行下面的print(x)。</strong> 那么具体的就是，先执行第一次循环，与上面的类似，打印出enter，将yield 1返回出去到第31行中的g2，g2将1“代入”到x，然后通过第32行的print(x)给打印出来。打印完成后，继续执行for循环，然后 <strong>由于没有返回值，那么第6行中的yield就不会收到任何值</strong> ，那么a什么也没接收到，所以在打印出next继续执行第8 行的时候打印的就是字符串a（之所以打印的是字符串a是因为print (a or 'a')；<strong>如果你把它改成print (a)，那么此处输出（打印出）的就会是None，说明a什么也没接收到。）</strong> ；打印完成后，继续执行到第9行，然后通过yield 2将2返回出去（返回出去后），与上述过程类似，g2接收到2然后“代入”到x通过32行打印出来。接下来执行第3次循环，同上面类似，继续执行打印字符串b打印next agin，<strong>然后继续往下执行寻找“停靠点”时发现没有yield了；于是抛出一个StopIteration 异常，然后传到for循环中，于是for循环就会退出循环。</strong></p>
+<p><strong>（生成器的 next 方法可以手动调用也可以由 for 循环实现。）</strong></p>
+<p>程序执行结束。</p>
+
+      </div>
+      
+      
+    
+    
+    
+    
+    
+    
+    
+    
+  </body></html>
