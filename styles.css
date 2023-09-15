@@ -1,0 +1,47 @@
+/* Reset some default styles */
+body, h1, p {
+    margin: 0;
+    padding: 0;
+}
+
+/* Style the header */
+header {
+    background-color: #ffcccc;
+    text-align: center;
+    padding: 20px;
+}
+
+/* Style the main container */
+.container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+}
+
+/* Style the love note */
+.love-note {
+    flex: 1;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+/* Style the love symbol (large emoji) */
+.love-symbol {
+    flex: 1;
+    text-align: center;
+}
+
+/* Adjust the size of large emoji to match the text */
+.large-emoji {
+    font-size: 1.3em; /* Adjust the font size as needed */
+}
+
+/* Style the footer */
+footer {
+    background-color: #ffcccc;
+    text-align: center;
+    padding: 10px;
+}
